@@ -1,37 +1,133 @@
-﻿using Replay.Core.Client;
-using Replay.Core.Contracts.Agents;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ChangeGen_v2
 {
     public partial class Form1 : Form
     {
-        private ListViewColumnSorter lvwColumnSorter;
-        List<Server> serversList;
-        private List<Control> connectionPageControls;
-        private List<Control> listviewPageControls;
+        ListViewColumnSorter lvwColumnSorter;           // used for storing instance of column sorter object
+        private List<Control> connectionPageControls;   // used for storing controls of Connection page
+        private List<Control> listviewPageControls;     // used for storing controls of ListView page
 
-        private string username, password, hostname;
         public Form1()
         {
             InitializeComponent();
 
+            AddControlsToCollections();
+            displayConnectionPage();
+
+            lvwColumnSorter = new ListViewColumnSorter();
+            this.lv_AgentsList.ListViewItemSorter = lvwColumnSorter;
+        }
+
+        private void btn_Connect_Click(object sender, EventArgs e)
+        {
+            // Displays list of servers received from Core API to ListView
+            try
+            {
+                ServerWrapper.ServersToListView(lv_AgentsList,
+                                            tb_hostname.Text,
+                                            Convert.ToInt32(tb_Port.Text),
+                                            tb_userName.Text,
+                                            tb_password.Text);
+                Logger.Log("Successfully connected to Core Server: " + tb_hostname.Text, Logger.LogLevel.Info, tb_hostname.Text);
+            }
+            catch (WCFClientBase.ClientServerErrorException exception)
+            {
+                Logger.Log("Cannot connect to Core server:" + tb_hostname.Text + Environment.NewLine + exception.Message
+                    + Environment.NewLine + exception.StackTrace, Logger.LogLevel.Error);
+                MessageBox.Show("Cannot connect to Core server." + Environment.NewLine + exception.Message);
+
+                return;
+            }
+
+
+            // Hide Connection Page and displays ListView Page
+            displayListViewPage();          
+        }
+
+        private void lv_AgentsList_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            // Sort ListView by clicked column
+            lvwColumnSorter.sortColumn(e, lv_AgentsList);
+        }
+
+        private void cb_selectAllAgents_CheckedChanged(object sender, EventArgs e)
+        {
+            // Check/Uncheck all agents
+            ControlsImplementation.selectUnselectAll(lv_AgentsList, cb_selectAllAgents.Checked);
+        }
+
+        private void btn_StopDDT_Click(object sender, EventArgs e)
+        {
+            // Stop DDT for selected servers
+            DDTWrapper.StopDDT(lv_AgentsList, ServerWrapper.serversList);
+
+            // Update ListView
+            ServerWrapper.UpdateListView(lv_AgentsList);
+        }
+
+        private void btn_startDDT_Click(object sender, EventArgs e)
+        {
+            // checking if checkbox "Use Core credentials" checked,
+            // if so using core credentils to connect to each server,
+            // if no using custom credentials.
+
+            string username;
+            string password;
+
+            if (cb_useCoreCreds.Checked)
+            {
+                username = tb_userName.Text;
+                password = tb_password.Text;
+            }
+            else
+            {
+                username = tb_customUsername.Text;
+                password = tb_customPassword.Text;
+            }
+
+            // Start DDT for selected servers with specific parameters
+            DDTWrapper.StartDDT(lv_AgentsList,
+                                ServerWrapper.serversList,
+                                Convert.ToInt32(tb_Size.Text),
+                                Convert.ToInt32(tb_Compression.Text),
+                                Convert.ToInt32(tb_Interval.Text), tb_Path.Text,
+                                username,
+                                password);
+            // Update ListView
+            ServerWrapper.UpdateListView(lv_AgentsList);
+
+        }
+
+        // This method displays controls for connection page
+        public void displayConnectionPage()
+        {
+            ControlsImplementation.ChangePage(listviewPageControls, connectionPageControls);
+        }
+
+        // This method displays controls for ListView Page
+        public void displayListViewPage()
+        {
+            ControlsImplementation.ChangePage(connectionPageControls, listviewPageControls);
+        }
+
+        // This methdo add controls of Connection and ListView page to two separate collections
+        private void AddControlsToCollections()
+        {
             connectionPageControls = new List<Control>();
             listviewPageControls = new List<Control>();
 
-            connectionPageControls.Add(tb_serverName);
+            connectionPageControls.Add(tb_hostname);
             connectionPageControls.Add(tb_userName);
             connectionPageControls.Add(tb_password);
             connectionPageControls.Add(btn_Connect);
             connectionPageControls.Add(lbl_hostname);
             connectionPageControls.Add(lbl_username);
             connectionPageControls.Add(lbl_password);
+            connectionPageControls.Add(tb_Port);
+            connectionPageControls.Add(lbl_Port);
 
             listviewPageControls.Add(lv_AgentsList);
             listviewPageControls.Add(cb_selectAllAgents);
@@ -50,104 +146,8 @@ namespace ChangeGen_v2
             listviewPageControls.Add(tb_customUsername);
             listviewPageControls.Add(lbl_customPassword);
             listviewPageControls.Add(tb_customPassword);
-            listviewPageControls.Add(lbl_customCreds);
-
-            displayConnectionPage();
-
-            lv_AgentsList.Columns.Add("     Display Name", 100);
-            lv_AgentsList.Columns.Add("IP", 100);
-            lv_AgentsList.Columns.Add("Repository", 100);
-            lv_AgentsList.Columns.Add("DDT Status", 70);
-            lv_AgentsList.Columns.Add("Filesize", 50);
-            lv_AgentsList.Columns.Add("Compression", 75);
-            lv_AgentsList.Columns.Add("Interval", 50);
-            lv_AgentsList.Columns.Add("Path", 100);
-            lv_AgentsList.CheckBoxes = true;
-
-            lvwColumnSorter = new ListViewColumnSorter();
-            this.lv_AgentsList.ListViewItemSorter = lvwColumnSorter;
-        }
-
-        private void btn_Connect_Click(object sender, EventArgs e)
-        {
-            username = tb_userName.Text;
-            password = tb_password.Text;
-            hostname = tb_serverName.Text;
-
-            ServerWrapper.ServersToListView(lv_AgentsList, CoreConnector.GetServersToListFromCore(hostname, 8006, username, password, ref serversList));
-            displayListViewPage();          
-        }
-
-        private void lv_AgentsList_ColumnClick(object sender, ColumnClickEventArgs e)
-        {
-            lvwColumnSorter.sortColumn(e, lv_AgentsList);
-        }
-
-        private void cb_selectAllAgents_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cb_selectAllAgents.Checked == true)
-            {
-                for (int i = 0; i < lv_AgentsList.Items.Count; i++)
-                {
-                    lv_AgentsList.Items[i].Checked = true;
-                }
-            }
-            else
-            {
-                for (int i = 0; i < lv_AgentsList.Items.Count; i++)
-                {
-                    lv_AgentsList.Items[i].Checked = false;
-                }
-            }
-        }
-
-        private void btn_StopDDT_Click(object sender, EventArgs e)
-        {
-            DDTWrapper.StopDDT(lv_AgentsList, serversList);
-
-            ServerWrapper.UpdateListView(lv_AgentsList,serversList);
-        }
-
-        private void btn_startDDT_Click(object sender, EventArgs e)
-        {  
-            int fileSize = Convert.ToInt32(tb_Size.Text);
-            int compression = Convert.ToInt32(tb_Compression.Text);
-            int interval = Convert.ToInt32(tb_Interval.Text);
-            string filePath  = tb_Path.Text;
-            string customUsername = tb_customUsername.Text;
-            string customPassword = tb_customPassword.Text;
-            bool useCoreCredentilas = cb_useCoreCreds.Checked;
-
-            DDTWrapper.StartDDT(lv_AgentsList,serversList,fileSize,compression,interval,filePath,username,password,customUsername,customPassword,useCoreCredentilas);
-
-            ServerWrapper.UpdateListView(lv_AgentsList, serversList);
-
-        }
-
-        public void displayConnectionPage()
-        {
-            foreach (var control in connectionPageControls)
-            {
-                control.Visible = true;
-            }
-
-            foreach (var control in listviewPageControls)
-            {
-                control.Visible = false;
-            }
-        }
-
-        public void displayListViewPage()
-        {
-            foreach (var control in connectionPageControls)
-            {
-                control.Visible = false;
-            }
-
-            foreach (var control in listviewPageControls)
-            {
-                control.Visible = true;
-            }
+            listviewPageControls.Add(gb_customcreds);
+            listviewPageControls.Add(gb_ddtparams);
         }
     }
 }

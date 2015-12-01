@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -10,12 +8,13 @@ namespace ChangeGen_v2
 {
     class DDTWrapper
     {
+        // This method used to initiate start of DDT on remote machine
         public static void StartDDT(ListView listview, List<Server> serversList, int filesize, int compression, int interval, string filepath, 
-            string coreUsername, string corePassword, string customUsername, string customPassword, bool useCoreCreds)
+            string username, string password)
         {
-            var selectedServers = listview.Items.Cast<ListViewItem>().Where(item => item.Checked).ToList();
+            var selectedServers = listview.Items.Cast<ListViewItem>().Where(item => item.Checked).ToList(); // Creating list of selected servers
 
-            for (int x = 0; x < selectedServers.Count; x++)
+            for (int x = 0; x < selectedServers.Count; x++)    
             {
                 for (int y = 0; y < serversList.Count; y++)
                 {
@@ -29,18 +28,9 @@ namespace ChangeGen_v2
                         serversList[y].FilePath = filepath;
                         serversList[y]._ddtStatus = Server.DDTStatus.Running;
                         serversList[y]._cts = new CancellationTokenSource();
-
-
-                        if (useCoreCreds)
-                        {
-                            serversList[y]._username = coreUsername;
-                            serversList[y]._password = corePassword;
-                        }
-                        else
-                        {
-                            serversList[y]._username = customUsername;
-                            serversList[y]._password = customPassword;
-                        }
+                        serversList[y]._username = username;
+                        serversList[y]._password = password;
+                       
 
                         if (serversList[y]._task == null || serversList[y]._task.Status != TaskStatus.Running)
                         {
@@ -52,6 +42,7 @@ namespace ChangeGen_v2
             }
         }
 
+        // Cancel DDT for selected server
         public static void StopDDT(ListView listview, List<Server> serversList)
         {
             var selectedServers = listview.Items.Cast<ListViewItem>().Where(item => item.Checked).ToList();
@@ -66,7 +57,6 @@ namespace ChangeGen_v2
 
                         serversList[y]._ddtStatus = Server.DDTStatus.Stopped;
                         serversList[y]._cts.Cancel();
-                        selectedServers[x].SubItems[3].Text = "Stopped";
                     }
                 }
             }

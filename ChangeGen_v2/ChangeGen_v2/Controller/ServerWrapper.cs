@@ -1,43 +1,21 @@
-﻿using Replay.Core.Contracts.Agents;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ChangeGen_v2
 {
+    // This class store methods which update ListView with servers current state
     static class ServerWrapper
     {
-        public static void ServersToListView(ListView listview, List<Server> serverList)
+        public static List<Server> serversList; // store list of servers
+
+        // This method displays servers received from Core API to ListView
+        public static void ServersToListView(ListView listview, string hostname, int port, string username, string password)
         {
-            //username = tb_userName.Text;
-            //password = tb_password.Text;
-            //hostname = tb_serverName.Text;
 
-            //AgentInfoCollection protectedAgents;
-            //try
-            //{
-            //    protectedAgents = CoreConnector.GetProtectedAgents(hostname, 8006, username, password);
-            //}
-            //catch (WCFClientBase.ClientServerErrorException exception)
-            //{
-            //    Logger.Log("Cannot connect to Core server:" + hostname + Environment.NewLine + exception.Message
-            //        + Environment.NewLine + exception.StackTrace, Logger.LogLevel.Error);
-            //    MessageBox.Show("Cannot connect to Core server." + Environment.NewLine + exception.Message);
-
-            //    return;
-            //}
-
-            //foreach (var agent in protectedAgents)
-            //{
-            //    if ((agent.AgentType != AgentType.EsxServer) && (agent.AgentType != AgentType.EsxVirtualMachine))
-            //    {
-            //        serversList.Add(new Server(agent.Descriptor.HostUri.Host, agent.DisplayName, agent.RepositoryName));
-            //    }
-
-            //}
+            serversList = CoreConnector.GetServersToListFromCore(hostname, port, username, password);
+              
+            ListViewCreateColumns(listview);
 
             listview.Items.Clear();
 
@@ -45,7 +23,7 @@ namespace ChangeGen_v2
 
             listview.View = View.Details;
 
-            foreach (var server in serverList)
+            foreach (var server in serversList)
             {
                 lvi_server = new ListViewItem(server._displayname);
                 lvi_server.SubItems.Add(server._ip);
@@ -59,25 +37,42 @@ namespace ChangeGen_v2
             }
         }
 
-        public static void UpdateListView(ListView listView, List<Server> serverList)
+        // This method updates ListView with current state of each server
+        public static void UpdateListView(ListView listView)
         {
             var listViewAgents = listView.Items.Cast<ListViewItem>().ToList();
 
             for (int i = 0; i < listViewAgents.Count; i++)
             {
-                for (int j = 0; j < serverList.Count; j++)
+                for (int j = 0; j < serversList.Count; j++)
                 {
-                    if (listViewAgents[i].SubItems[1].Text == serverList[j]._ip)
+                    if (listViewAgents[i].SubItems[1].Text == serversList[j]._ip)
                     {
-                        listViewAgents[i].SubItems[3].Text = serverList[j]._ddtStatus.ToString();   // DDT Status
-                        listViewAgents[i].SubItems[4].Text = serverList[j]._fileSize.ToString();    // Filesize
-                        listViewAgents[i].SubItems[5].Text = serverList[j]._compression.ToString(); // Compression
-                        listViewAgents[i].SubItems[6].Text = serverList[j]._interval.ToString();    // Interval
-                        listViewAgents[i].SubItems[7].Text = serverList[j].FilePath;                // Path
+                        listViewAgents[i].SubItems[3].Text = serversList[j]._ddtStatus.ToString();   // DDT Status
+                        listViewAgents[i].SubItems[4].Text = serversList[j]._fileSize.ToString();    // Filesize
+                        listViewAgents[i].SubItems[5].Text = serversList[j]._compression.ToString(); // Compression
+                        listViewAgents[i].SubItems[6].Text = serversList[j]._interval.ToString();    // Interval
+                        listViewAgents[i].SubItems[7].Text = serversList[j].FilePath;                // Path
                     }
                 }
             }
         }
+
+        // This method used to create columns in ListView
+        private static void ListViewCreateColumns(ListView listview)
+        {
+            listview.Columns.Add("     Display Name", 100);
+            listview.Columns.Add("IP", 100);
+            listview.Columns.Add("Repository", 100);
+            listview.Columns.Add("DDT Status", 70);
+            listview.Columns.Add("Filesize", 50);
+            listview.Columns.Add("Compression", 75);
+            listview.Columns.Add("Interval", 50);
+            listview.Columns.Add("Path", 100);
+            listview.CheckBoxes = true;
+        }
+
+       
 
 
     }

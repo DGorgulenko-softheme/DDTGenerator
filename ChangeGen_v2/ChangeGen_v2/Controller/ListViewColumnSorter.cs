@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using System.Collections;
 
 namespace ChangeGen_v2
 {
+    // This class is used for sorting ListView by columns
     public class ListViewColumnSorter : IComparer
     {
         /// <summary>

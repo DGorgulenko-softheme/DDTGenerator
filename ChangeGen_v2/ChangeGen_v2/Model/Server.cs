@@ -20,8 +20,6 @@ namespace ChangeGen_v2
         public DDTStatus _ddtStatus = DDTStatus.Stopped;            // Current status of DDT on server
 
 
-        
-
         // This construcor is using when creating new instance using data from Core.
         public Server(string ip, string displayname, string repository)
         {
@@ -63,7 +61,7 @@ namespace ChangeGen_v2
         // Method used to run DDT on server side
         public void Runddt()
         {
-            HelperMethods.Runddtremotely(_ip, _username, _password, _filepath, _fileSize, _compression, _interval, _cts.Token);
+            DDT.Runddtremotely(_ip, _username, _password, _filepath, _fileSize, _compression, _interval, _cts.Token);
         }
     }
 }

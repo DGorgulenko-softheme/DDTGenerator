@@ -13,47 +13,36 @@ namespace ChangeGen_v2
     static class CoreConnector
     {
         // This method used to connect to Core API with creds from current active seesion
-        public static ICoreClient GetDefaultCoreClient(string host, int port)
+        public static ICoreClient GetDefaultCoreClient(string hostname, int port)
         {
             var coreClientFactory = new CoreClientFactory();
 
-            var coreClient = coreClientFactory.Create(CreateApiUri(host, port));
+            var coreClient = coreClientFactory.Create(CreateApiUri(hostname, port));
             coreClient.UseDefaultCredentials();
 
             return coreClient;
         }
 
         // This method is used to connect to Core API with specific credentials
-        public static ICoreClient GetFullCoreClient(string host, int port, string username, string password)
+        public static ICoreClient GetFullCoreClient(string hostname, int port, string username, string password)
         {
             var networkCreds = new NetworkCredential(username, password);
             var factory = new CoreClientFactory();
-            var coreClient = factory.Create(CreateApiUri(host, port));
+            var coreClient = factory.Create(CreateApiUri(hostname, port));
             coreClient.UseSpecificCredentials(networkCreds);
 
             return coreClient;
         }
 
         //This method returns collection of Agent's objects
-        public static List<Server> GetServersToListFromCore(string hostname, int port, string username, string password, ref List<Server> serversList)
+        public static List<Server> GetServersToListFromCore(string hostname, int port, string username, string password)
         {
-            serversList = new List<Server>();
+            List<Server> serversList = new List<Server>();
             ICoreClient _coreClient = CoreConnector.GetFullCoreClient(hostname, port, username, password);
-
-            AgentInfoCollection protectedAgents;
-            try
-            {
-                protectedAgents = _coreClient.AgentsManagement.GetProtectedAgents();
-                Logger.Log("Successfully connected to Core Server: " + hostname, Logger.LogLevel.Info, hostname);
-            }
-            catch (WCFClientBase.ClientServerErrorException exception)
-            {
-                Logger.Log("Cannot connect to Core server:" + hostname + Environment.NewLine + exception.Message
-                    + Environment.NewLine + exception.StackTrace, Logger.LogLevel.Error);
-                MessageBox.Show("Cannot connect to Core server." + Environment.NewLine + exception.Message);
-
-                return null;
-            }
+           
+            var  protectedAgents = _coreClient.AgentsManagement.GetProtectedAgents();
+            Logger.Log("Successfully connected to Core Server: " + hostname, Logger.LogLevel.Info, hostname);
+           
 
             foreach (var agent in protectedAgents)
             {

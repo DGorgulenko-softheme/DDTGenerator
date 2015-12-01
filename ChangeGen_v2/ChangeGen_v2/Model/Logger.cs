@@ -27,6 +27,10 @@ namespace ChangeGen_v2
         {
             Log(logMessage, level, "");
         }
+        public static void Log(string logMessage, string serverIP)
+        {
+            Log(logMessage, LogLevel.Info, serverIP);
+        }
 
         public enum LogLevel
         {

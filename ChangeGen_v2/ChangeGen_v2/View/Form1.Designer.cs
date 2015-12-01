@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tb_serverName = new System.Windows.Forms.TextBox();
+            this.tb_hostname = new System.Windows.Forms.TextBox();
             this.tb_userName = new System.Windows.Forms.TextBox();
             this.tb_password = new System.Windows.Forms.TextBox();
             this.btn_Connect = new System.Windows.Forms.Button();
@@ -48,21 +48,26 @@
             this.lbl_username = new System.Windows.Forms.Label();
             this.lbl_password = new System.Windows.Forms.Label();
             this.cb_useCoreCreds = new System.Windows.Forms.CheckBox();
-            this.lbl_customCreds = new System.Windows.Forms.Label();
             this.lbl_customUsername = new System.Windows.Forms.Label();
             this.tb_customUsername = new System.Windows.Forms.TextBox();
             this.tb_customPassword = new System.Windows.Forms.TextBox();
             this.lbl_customPassword = new System.Windows.Forms.Label();
+            this.tb_Port = new System.Windows.Forms.TextBox();
+            this.lbl_Port = new System.Windows.Forms.Label();
+            this.gb_customcreds = new System.Windows.Forms.GroupBox();
+            this.gb_ddtparams = new System.Windows.Forms.GroupBox();
+            this.gb_customcreds.SuspendLayout();
+            this.gb_ddtparams.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tb_serverName
+            // tb_hostname
             // 
-            this.tb_serverName.Location = new System.Drawing.Point(296, 267);
-            this.tb_serverName.Margin = new System.Windows.Forms.Padding(2);
-            this.tb_serverName.Name = "tb_serverName";
-            this.tb_serverName.Size = new System.Drawing.Size(174, 20);
-            this.tb_serverName.TabIndex = 0;
-            this.tb_serverName.Text = "localhost";
+            this.tb_hostname.Location = new System.Drawing.Point(296, 267);
+            this.tb_hostname.Margin = new System.Windows.Forms.Padding(2);
+            this.tb_hostname.Name = "tb_hostname";
+            this.tb_hostname.Size = new System.Drawing.Size(115, 20);
+            this.tb_hostname.TabIndex = 0;
+            this.tb_hostname.Text = "localhost";
             // 
             // tb_userName
             // 
@@ -132,10 +137,10 @@
             // 
             // tb_Size
             // 
-            this.tb_Size.Location = new System.Drawing.Point(664, 73);
+            this.tb_Size.Location = new System.Drawing.Point(6, 34);
             this.tb_Size.Margin = new System.Windows.Forms.Padding(2);
             this.tb_Size.Name = "tb_Size";
-            this.tb_Size.Size = new System.Drawing.Size(76, 20);
+            this.tb_Size.Size = new System.Drawing.Size(119, 20);
             this.tb_Size.TabIndex = 7;
             this.tb_Size.Text = "10240";
             this.tb_Size.Visible = false;
@@ -155,7 +160,7 @@
             // lbl_Size
             // 
             this.lbl_Size.AutoSize = true;
-            this.lbl_Size.Location = new System.Drawing.Point(664, 55);
+            this.lbl_Size.Location = new System.Drawing.Point(6, 16);
             this.lbl_Size.Name = "lbl_Size";
             this.lbl_Size.Size = new System.Drawing.Size(27, 13);
             this.lbl_Size.TabIndex = 14;
@@ -165,7 +170,7 @@
             // lbl_Compression
             // 
             this.lbl_Compression.AutoSize = true;
-            this.lbl_Compression.Location = new System.Drawing.Point(664, 95);
+            this.lbl_Compression.Location = new System.Drawing.Point(6, 56);
             this.lbl_Compression.Name = "lbl_Compression";
             this.lbl_Compression.Size = new System.Drawing.Size(67, 13);
             this.lbl_Compression.TabIndex = 16;
@@ -174,10 +179,10 @@
             // 
             // tb_Compression
             // 
-            this.tb_Compression.Location = new System.Drawing.Point(664, 113);
+            this.tb_Compression.Location = new System.Drawing.Point(6, 74);
             this.tb_Compression.Margin = new System.Windows.Forms.Padding(2);
             this.tb_Compression.Name = "tb_Compression";
-            this.tb_Compression.Size = new System.Drawing.Size(76, 20);
+            this.tb_Compression.Size = new System.Drawing.Size(119, 20);
             this.tb_Compression.TabIndex = 15;
             this.tb_Compression.Text = "60";
             this.tb_Compression.Visible = false;
@@ -185,7 +190,7 @@
             // lbl_Path
             // 
             this.lbl_Path.AutoSize = true;
-            this.lbl_Path.Location = new System.Drawing.Point(664, 135);
+            this.lbl_Path.Location = new System.Drawing.Point(6, 96);
             this.lbl_Path.Name = "lbl_Path";
             this.lbl_Path.Size = new System.Drawing.Size(29, 13);
             this.lbl_Path.TabIndex = 18;
@@ -194,10 +199,10 @@
             // 
             // tb_Path
             // 
-            this.tb_Path.Location = new System.Drawing.Point(664, 153);
+            this.tb_Path.Location = new System.Drawing.Point(6, 114);
             this.tb_Path.Margin = new System.Windows.Forms.Padding(2);
             this.tb_Path.Name = "tb_Path";
-            this.tb_Path.Size = new System.Drawing.Size(76, 20);
+            this.tb_Path.Size = new System.Drawing.Size(119, 20);
             this.tb_Path.TabIndex = 17;
             this.tb_Path.Text = "E:\\Data\\";
             this.tb_Path.Visible = false;
@@ -205,7 +210,7 @@
             // lbl_Interval
             // 
             this.lbl_Interval.AutoSize = true;
-            this.lbl_Interval.Location = new System.Drawing.Point(664, 175);
+            this.lbl_Interval.Location = new System.Drawing.Point(6, 136);
             this.lbl_Interval.Name = "lbl_Interval";
             this.lbl_Interval.Size = new System.Drawing.Size(42, 13);
             this.lbl_Interval.TabIndex = 20;
@@ -214,10 +219,10 @@
             // 
             // tb_Interval
             // 
-            this.tb_Interval.Location = new System.Drawing.Point(664, 193);
+            this.tb_Interval.Location = new System.Drawing.Point(6, 154);
             this.tb_Interval.Margin = new System.Windows.Forms.Padding(2);
             this.tb_Interval.Name = "tb_Interval";
-            this.tb_Interval.Size = new System.Drawing.Size(76, 20);
+            this.tb_Interval.Size = new System.Drawing.Size(119, 20);
             this.tb_Interval.TabIndex = 19;
             this.tb_Interval.Text = "60";
             this.tb_Interval.Visible = false;
@@ -254,26 +259,17 @@
             this.cb_useCoreCreds.AutoSize = true;
             this.cb_useCoreCreds.Checked = true;
             this.cb_useCoreCreds.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cb_useCoreCreds.Location = new System.Drawing.Point(664, 218);
+            this.cb_useCoreCreds.Location = new System.Drawing.Point(6, 179);
             this.cb_useCoreCreds.Name = "cb_useCoreCreds";
             this.cb_useCoreCreds.Size = new System.Drawing.Size(125, 17);
             this.cb_useCoreCreds.TabIndex = 25;
             this.cb_useCoreCreds.Text = "Use Core Credentials";
             this.cb_useCoreCreds.UseVisualStyleBackColor = true;
             // 
-            // lbl_customCreds
-            // 
-            this.lbl_customCreds.AutoSize = true;
-            this.lbl_customCreds.Location = new System.Drawing.Point(664, 242);
-            this.lbl_customCreds.Name = "lbl_customCreds";
-            this.lbl_customCreds.Size = new System.Drawing.Size(97, 13);
-            this.lbl_customCreds.TabIndex = 26;
-            this.lbl_customCreds.Text = "Custom Credentials";
-            // 
             // lbl_customUsername
             // 
             this.lbl_customUsername.AutoSize = true;
-            this.lbl_customUsername.Location = new System.Drawing.Point(664, 259);
+            this.lbl_customUsername.Location = new System.Drawing.Point(6, 17);
             this.lbl_customUsername.Name = "lbl_customUsername";
             this.lbl_customUsername.Size = new System.Drawing.Size(55, 13);
             this.lbl_customUsername.TabIndex = 27;
@@ -281,62 +277,104 @@
             // 
             // tb_customUsername
             // 
-            this.tb_customUsername.Location = new System.Drawing.Point(664, 276);
+            this.tb_customUsername.Location = new System.Drawing.Point(6, 34);
             this.tb_customUsername.Name = "tb_customUsername";
-            this.tb_customUsername.Size = new System.Drawing.Size(100, 20);
+            this.tb_customUsername.Size = new System.Drawing.Size(120, 20);
             this.tb_customUsername.TabIndex = 28;
             // 
             // tb_customPassword
             // 
-            this.tb_customPassword.Location = new System.Drawing.Point(664, 316);
+            this.tb_customPassword.Location = new System.Drawing.Point(6, 74);
             this.tb_customPassword.Name = "tb_customPassword";
-            this.tb_customPassword.Size = new System.Drawing.Size(100, 20);
+            this.tb_customPassword.Size = new System.Drawing.Size(120, 20);
             this.tb_customPassword.TabIndex = 30;
             this.tb_customPassword.UseSystemPasswordChar = true;
             // 
             // lbl_customPassword
             // 
             this.lbl_customPassword.AutoSize = true;
-            this.lbl_customPassword.Location = new System.Drawing.Point(664, 299);
+            this.lbl_customPassword.Location = new System.Drawing.Point(6, 57);
             this.lbl_customPassword.Name = "lbl_customPassword";
             this.lbl_customPassword.Size = new System.Drawing.Size(53, 13);
             this.lbl_customPassword.TabIndex = 29;
             this.lbl_customPassword.Text = "Password";
             // 
+            // tb_Port
+            // 
+            this.tb_Port.Location = new System.Drawing.Point(417, 267);
+            this.tb_Port.Name = "tb_Port";
+            this.tb_Port.Size = new System.Drawing.Size(53, 20);
+            this.tb_Port.TabIndex = 31;
+            this.tb_Port.Text = "8006";
+            // 
+            // lbl_Port
+            // 
+            this.lbl_Port.AutoSize = true;
+            this.lbl_Port.Location = new System.Drawing.Point(477, 267);
+            this.lbl_Port.Name = "lbl_Port";
+            this.lbl_Port.Size = new System.Drawing.Size(26, 13);
+            this.lbl_Port.TabIndex = 32;
+            this.lbl_Port.Text = "Port";
+            // 
+            // gb_customcreds
+            // 
+            this.gb_customcreds.Controls.Add(this.lbl_customUsername);
+            this.gb_customcreds.Controls.Add(this.tb_customUsername);
+            this.gb_customcreds.Controls.Add(this.lbl_customPassword);
+            this.gb_customcreds.Controls.Add(this.tb_customPassword);
+            this.gb_customcreds.Location = new System.Drawing.Point(663, 234);
+            this.gb_customcreds.Name = "gb_customcreds";
+            this.gb_customcreds.Size = new System.Drawing.Size(132, 100);
+            this.gb_customcreds.TabIndex = 33;
+            this.gb_customcreds.TabStop = false;
+            this.gb_customcreds.Text = "Custom Credentials";
+            // 
+            // gb_ddtparams
+            // 
+            this.gb_ddtparams.Controls.Add(this.lbl_Size);
+            this.gb_ddtparams.Controls.Add(this.tb_Size);
+            this.gb_ddtparams.Controls.Add(this.lbl_Compression);
+            this.gb_ddtparams.Controls.Add(this.tb_Compression);
+            this.gb_ddtparams.Controls.Add(this.cb_useCoreCreds);
+            this.gb_ddtparams.Controls.Add(this.tb_Path);
+            this.gb_ddtparams.Controls.Add(this.lbl_Path);
+            this.gb_ddtparams.Controls.Add(this.lbl_Interval);
+            this.gb_ddtparams.Controls.Add(this.tb_Interval);
+            this.gb_ddtparams.Location = new System.Drawing.Point(664, 11);
+            this.gb_ddtparams.Name = "gb_ddtparams";
+            this.gb_ddtparams.Size = new System.Drawing.Size(132, 217);
+            this.gb_ddtparams.TabIndex = 34;
+            this.gb_ddtparams.TabStop = false;
+            this.gb_ddtparams.Text = "DDT Parameters";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(797, 428);
-            this.Controls.Add(this.tb_customPassword);
-            this.Controls.Add(this.lbl_customPassword);
-            this.Controls.Add(this.tb_customUsername);
-            this.Controls.Add(this.lbl_customUsername);
-            this.Controls.Add(this.lbl_customCreds);
-            this.Controls.Add(this.cb_useCoreCreds);
+            this.ClientSize = new System.Drawing.Size(810, 428);
+            this.Controls.Add(this.gb_ddtparams);
+            this.Controls.Add(this.gb_customcreds);
+            this.Controls.Add(this.lbl_Port);
+            this.Controls.Add(this.tb_Port);
             this.Controls.Add(this.lbl_password);
             this.Controls.Add(this.lbl_username);
             this.Controls.Add(this.lbl_hostname);
-            this.Controls.Add(this.tb_Interval);
-            this.Controls.Add(this.lbl_Interval);
-            this.Controls.Add(this.lbl_Path);
-            this.Controls.Add(this.tb_Path);
-            this.Controls.Add(this.lbl_Compression);
-            this.Controls.Add(this.tb_Compression);
-            this.Controls.Add(this.lbl_Size);
             this.Controls.Add(this.btn_StopDDT);
-            this.Controls.Add(this.tb_Size);
             this.Controls.Add(this.cb_selectAllAgents);
             this.Controls.Add(this.btn_StartDDT);
             this.Controls.Add(this.btn_Connect);
             this.Controls.Add(this.tb_password);
             this.Controls.Add(this.tb_userName);
-            this.Controls.Add(this.tb_serverName);
+            this.Controls.Add(this.tb_hostname);
             this.Controls.Add(this.lv_AgentsList);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Data Generator 0.2";
+            this.gb_customcreds.ResumeLayout(false);
+            this.gb_customcreds.PerformLayout();
+            this.gb_ddtparams.ResumeLayout(false);
+            this.gb_ddtparams.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -344,7 +382,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox tb_serverName;
+        private System.Windows.Forms.TextBox tb_hostname;
         private System.Windows.Forms.TextBox tb_userName;
         private System.Windows.Forms.TextBox tb_password;
         private System.Windows.Forms.Button btn_Connect;
@@ -364,11 +402,14 @@
         private System.Windows.Forms.Label lbl_username;
         private System.Windows.Forms.Label lbl_password;
         private System.Windows.Forms.CheckBox cb_useCoreCreds;
-        private System.Windows.Forms.Label lbl_customCreds;
         private System.Windows.Forms.Label lbl_customUsername;
         private System.Windows.Forms.TextBox tb_customUsername;
         private System.Windows.Forms.TextBox tb_customPassword;
         private System.Windows.Forms.Label lbl_customPassword;
+        private System.Windows.Forms.TextBox tb_Port;
+        private System.Windows.Forms.Label lbl_Port;
+        private System.Windows.Forms.GroupBox gb_customcreds;
+        private System.Windows.Forms.GroupBox gb_ddtparams;
     }
 }
 
