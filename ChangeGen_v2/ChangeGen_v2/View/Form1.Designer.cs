@@ -62,7 +62,7 @@
             // 
             // tb_hostname
             // 
-            this.tb_hostname.Location = new System.Drawing.Point(296, 267);
+            this.tb_hostname.Location = new System.Drawing.Point(327, 267);
             this.tb_hostname.Margin = new System.Windows.Forms.Padding(2);
             this.tb_hostname.Name = "tb_hostname";
             this.tb_hostname.Size = new System.Drawing.Size(115, 20);
@@ -71,7 +71,7 @@
             // 
             // tb_userName
             // 
-            this.tb_userName.Location = new System.Drawing.Point(296, 290);
+            this.tb_userName.Location = new System.Drawing.Point(327, 290);
             this.tb_userName.Margin = new System.Windows.Forms.Padding(2);
             this.tb_userName.Name = "tb_userName";
             this.tb_userName.Size = new System.Drawing.Size(174, 20);
@@ -80,7 +80,7 @@
             // 
             // tb_password
             // 
-            this.tb_password.Location = new System.Drawing.Point(296, 313);
+            this.tb_password.Location = new System.Drawing.Point(327, 313);
             this.tb_password.Margin = new System.Windows.Forms.Padding(2);
             this.tb_password.Name = "tb_password";
             this.tb_password.PasswordChar = '*';
@@ -91,10 +91,11 @@
             // 
             // btn_Connect
             // 
-            this.btn_Connect.Location = new System.Drawing.Point(355, 336);
+            this.btn_Connect.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Connect.Location = new System.Drawing.Point(378, 336);
             this.btn_Connect.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Connect.Name = "btn_Connect";
-            this.btn_Connect.Size = new System.Drawing.Size(56, 19);
+            this.btn_Connect.Size = new System.Drawing.Size(75, 29);
             this.btn_Connect.TabIndex = 3;
             this.btn_Connect.Text = "Connect";
             this.btn_Connect.UseVisualStyleBackColor = true;
@@ -230,27 +231,30 @@
             // lbl_hostname
             // 
             this.lbl_hostname.AutoSize = true;
-            this.lbl_hostname.Location = new System.Drawing.Point(236, 267);
+            this.lbl_hostname.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_hostname.Location = new System.Drawing.Point(250, 268);
             this.lbl_hostname.Name = "lbl_hostname";
-            this.lbl_hostname.Size = new System.Drawing.Size(55, 13);
+            this.lbl_hostname.Size = new System.Drawing.Size(72, 17);
             this.lbl_hostname.TabIndex = 22;
             this.lbl_hostname.Text = "Hostname";
             // 
             // lbl_username
             // 
             this.lbl_username.AutoSize = true;
-            this.lbl_username.Location = new System.Drawing.Point(236, 290);
+            this.lbl_username.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_username.Location = new System.Drawing.Point(249, 291);
             this.lbl_username.Name = "lbl_username";
-            this.lbl_username.Size = new System.Drawing.Size(55, 13);
+            this.lbl_username.Size = new System.Drawing.Size(73, 17);
             this.lbl_username.TabIndex = 23;
             this.lbl_username.Text = "Username";
             // 
             // lbl_password
             // 
             this.lbl_password.AutoSize = true;
-            this.lbl_password.Location = new System.Drawing.Point(238, 313);
+            this.lbl_password.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_password.Location = new System.Drawing.Point(253, 313);
             this.lbl_password.Name = "lbl_password";
-            this.lbl_password.Size = new System.Drawing.Size(53, 13);
+            this.lbl_password.Size = new System.Drawing.Size(69, 17);
             this.lbl_password.TabIndex = 24;
             this.lbl_password.Text = "Password";
             // 
@@ -259,7 +263,7 @@
             this.cb_useCoreCreds.AutoSize = true;
             this.cb_useCoreCreds.Checked = true;
             this.cb_useCoreCreds.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cb_useCoreCreds.Location = new System.Drawing.Point(6, 179);
+            this.cb_useCoreCreds.Location = new System.Drawing.Point(6, 186);
             this.cb_useCoreCreds.Name = "cb_useCoreCreds";
             this.cb_useCoreCreds.Size = new System.Drawing.Size(125, 17);
             this.cb_useCoreCreds.TabIndex = 25;
@@ -301,7 +305,7 @@
             // 
             // tb_Port
             // 
-            this.tb_Port.Location = new System.Drawing.Point(417, 267);
+            this.tb_Port.Location = new System.Drawing.Point(448, 267);
             this.tb_Port.Name = "tb_Port";
             this.tb_Port.Size = new System.Drawing.Size(53, 20);
             this.tb_Port.TabIndex = 31;
@@ -310,9 +314,10 @@
             // lbl_Port
             // 
             this.lbl_Port.AutoSize = true;
-            this.lbl_Port.Location = new System.Drawing.Point(477, 267);
+            this.lbl_Port.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Port.Location = new System.Drawing.Point(508, 267);
             this.lbl_Port.Name = "lbl_Port";
-            this.lbl_Port.Size = new System.Drawing.Size(26, 13);
+            this.lbl_Port.Size = new System.Drawing.Size(34, 17);
             this.lbl_Port.TabIndex = 32;
             this.lbl_Port.Text = "Port";
             // 

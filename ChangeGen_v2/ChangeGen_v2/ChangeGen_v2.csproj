@@ -65,11 +65,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\CoreConnectionCredentials.cs" />
     <Compile Include="Controller\ControlsImplementation.cs" />
     <Compile Include="Model\CoreConnector.cs" />
     <Compile Include="Controller\DDTWrapper.cs" />
     <Compile Include="Controller\ServerWrapper.cs" />
     <Compile Include="Model\DDT.cs" />
+    <Compile Include="Model\DDTParameters.cs" />
+    <Compile Include="Model\ServerConnectionCredentials.cs" />
     <Compile Include="View\Form1.cs">
       <SubType>Form</SubType>
     </Compile>

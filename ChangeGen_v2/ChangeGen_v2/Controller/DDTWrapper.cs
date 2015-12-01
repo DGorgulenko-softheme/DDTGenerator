@@ -9,8 +9,8 @@ namespace ChangeGen_v2
     class DDTWrapper
     {
         // This method used to initiate start of DDT on remote machine
-        public static void StartDDT(ListView listview, List<Server> serversList, int filesize, int compression, int interval, string filepath, 
-            string username, string password)
+        public static void StartDDT(ListView listview, List<Server> serversList, DDTParameters ddtparameters, 
+            ServerConnectionCredentials serverCreds)
         {
             var selectedServers = listview.Items.Cast<ListViewItem>().Where(item => item.Checked).ToList(); // Creating list of selected servers
 
@@ -22,14 +22,14 @@ namespace ChangeGen_v2
                     {
                         int index = y;
 
-                        serversList[y]._fileSize = filesize;
-                        serversList[y]._compression = compression;
-                        serversList[y]._interval = interval;
-                        serversList[y].FilePath = filepath;
+                        serversList[y]._fileSize = ddtparameters.Filesize;
+                        serversList[y]._compression = ddtparameters.Compression;
+                        serversList[y]._interval = ddtparameters.Interval;
+                        serversList[y].FilePath = ddtparameters.Filepath;
                         serversList[y]._ddtStatus = Server.DDTStatus.Running;
                         serversList[y]._cts = new CancellationTokenSource();
-                        serversList[y]._username = username;
-                        serversList[y]._password = password;
+                        serversList[y]._username = serverCreds.Username;
+                        serversList[y]._password = serverCreds.Password;
                        
 
                         if (serversList[y]._task == null || serversList[y]._task.Status != TaskStatus.Running)

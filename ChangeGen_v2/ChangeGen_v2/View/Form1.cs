@@ -6,9 +6,12 @@ namespace ChangeGen_v2
 {
     public partial class Form1 : Form
     {
-        ListViewColumnSorter lvwColumnSorter;           // used for storing instance of column sorter object
-        private List<Control> connectionPageControls;   // used for storing controls of Connection page
-        private List<Control> listviewPageControls;     // used for storing controls of ListView page
+        ListViewColumnSorter lvwColumnSorter;               // used for storing instance of column sorter object
+        private List<Control> connectionPageControls;       // used for storing controls of Connection page
+        private List<Control> listviewPageControls;         // used for storing controls of ListView page
+        private CoreConnectionCredentials coreCreds;        // used for storing core API credentials
+        private ServerConnectionCredentials serverCreds;    // used for storing creds to servers
+        private DDTParameters ddtParameters;                // used for storing DDT Parameters
 
         public Form1()
         {
@@ -23,14 +26,16 @@ namespace ChangeGen_v2
 
         private void btn_Connect_Click(object sender, EventArgs e)
         {
+            coreCreds = new CoreConnectionCredentials();
+            coreCreds.Hostname = tb_hostname.Text;
+            coreCreds.Port = Convert.ToInt32(tb_Port.Text);
+            coreCreds.Username = tb_userName.Text;
+            coreCreds.Password = tb_password.Text;
+
             // Displays list of servers received from Core API to ListView
             try
             {
-                ServerWrapper.ServersToListView(lv_AgentsList,
-                                            tb_hostname.Text,
-                                            Convert.ToInt32(tb_Port.Text),
-                                            tb_userName.Text,
-                                            tb_password.Text);
+                ServerWrapper.ServersToListView(lv_AgentsList,coreCreds);
                 Logger.Log("Successfully connected to Core Server: " + tb_hostname.Text, Logger.LogLevel.Info, tb_hostname.Text);
             }
             catch (WCFClientBase.ClientServerErrorException exception)
@@ -74,28 +79,33 @@ namespace ChangeGen_v2
             // if so using core credentils to connect to each server,
             // if no using custom credentials.
 
-            string username;
-            string password;
+            serverCreds = new ServerConnectionCredentials();
 
             if (cb_useCoreCreds.Checked)
             {
-                username = tb_userName.Text;
-                password = tb_password.Text;
+                serverCreds.Username = coreCreds.Username;
+                serverCreds.Password = coreCreds.Password;
             }
             else
             {
-                username = tb_customUsername.Text;
-                password = tb_customPassword.Text;
+                serverCreds.Username = tb_customUsername.Text;
+                serverCreds.Password = tb_customPassword.Text;
             }
 
+            ddtParameters = new DDTParameters()
+            {
+                Filesize = Convert.ToInt32(tb_Size.Text),
+                Compression = Convert.ToInt32(tb_Compression.Text),
+                Interval = Convert.ToInt32(tb_Interval.Text),
+                Filepath = tb_Path.Text
+            };
+
+
             // Start DDT for selected servers with specific parameters
-            DDTWrapper.StartDDT(lv_AgentsList,
+                DDTWrapper.StartDDT(lv_AgentsList,
                                 ServerWrapper.serversList,
-                                Convert.ToInt32(tb_Size.Text),
-                                Convert.ToInt32(tb_Compression.Text),
-                                Convert.ToInt32(tb_Interval.Text), tb_Path.Text,
-                                username,
-                                password);
+                                ddtParameters,
+                                serverCreds);
             // Update ListView
             ServerWrapper.UpdateListView(lv_AgentsList);
 

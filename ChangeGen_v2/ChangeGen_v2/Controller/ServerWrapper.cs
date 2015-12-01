@@ -10,10 +10,10 @@ namespace ChangeGen_v2
         public static List<Server> serversList; // store list of servers
 
         // This method displays servers received from Core API to ListView
-        public static void ServersToListView(ListView listview, string hostname, int port, string username, string password)
+        public static void ServersToListView(ListView listview, CoreConnectionCredentials coreCredentials)
         {
 
-            serversList = CoreConnector.GetServersToListFromCore(hostname, port, username, password);
+            serversList = CoreConnector.GetServersToListFromCore(coreCredentials);
               
             ListViewCreateColumns(listview);
 

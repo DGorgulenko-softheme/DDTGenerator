@@ -130,3 +130,11 @@ Call to service method https://localhost:8006/apprecovery/api/core/agents/protec
 [Info][10.23.20.199][11/30/2015 10:33:41 PM]: Waiting for 1 min. to create new datagen file.
 [Info][10.23.20.44][11/30/2015 10:33:41 PM]: DDT succesfully performed data generation.
 [Info][10.23.20.44][11/30/2015 10:33:41 PM]: Waiting for 1 min. to create new datagen file.
+[Info][localhost][12/1/2015 2:53:49 PM]: Successfully connected to Core Server: localhost
+[Info][localhost][12/1/2015 2:53:49 PM]: Successfully connected to Core Server: localhost
+[Info][10.23.20.199][12/1/2015 2:54:11 PM]: Successfully copied DDT to server
+[Info][10.23.20.199][12/1/2015 2:54:12 PM]: Successfully deleted files in folder for data generation
+[Info][10.23.20.199][12/1/2015 2:54:12 PM]: DDT succesfully performed data generation.
+[Info][10.23.20.199][12/1/2015 2:54:12 PM]: Waiting for 60 min. to create new datagen file.
+[Info][localhost][12/1/2015 2:55:30 PM]: Successfully connected to Core Server: localhost
+[Info][localhost][12/1/2015 2:55:30 PM]: Successfully connected to Core Server: localhost

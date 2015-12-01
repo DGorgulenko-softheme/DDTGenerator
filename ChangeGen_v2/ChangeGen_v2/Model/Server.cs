@@ -39,13 +39,9 @@ namespace ChangeGen_v2
             {
                 if (!value.EndsWith("\\"))  // Check if value in tb_Path is end with '\' symbol
                 {
-                    value += "\\";
-                    _filepath = value;
+                    value += "\\";  
                 }
-                else
-                {
-                    _filepath = value;
-                }
+                _filepath = value;
             }
         }
 

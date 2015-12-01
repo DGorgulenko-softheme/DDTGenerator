@@ -13,35 +13,35 @@ namespace ChangeGen_v2
     static class CoreConnector
     {
         // This method used to connect to Core API with creds from current active seesion
-        public static ICoreClient GetDefaultCoreClient(string hostname, int port)
+        public static ICoreClient GetDefaultCoreClient(CoreConnectionCredentials coreCredentials)
         {
             var coreClientFactory = new CoreClientFactory();
 
-            var coreClient = coreClientFactory.Create(CreateApiUri(hostname, port));
+            var coreClient = coreClientFactory.Create(CreateApiUri(coreCredentials.Hostname, coreCredentials.Port));
             coreClient.UseDefaultCredentials();
 
             return coreClient;
         }
 
         // This method is used to connect to Core API with specific credentials
-        public static ICoreClient GetFullCoreClient(string hostname, int port, string username, string password)
+        public static ICoreClient GetFullCoreClient(CoreConnectionCredentials coreCredentials)
         {
-            var networkCreds = new NetworkCredential(username, password);
+            var networkCreds = new NetworkCredential(coreCredentials.Username, coreCredentials.Password);
             var factory = new CoreClientFactory();
-            var coreClient = factory.Create(CreateApiUri(hostname, port));
+            var coreClient = factory.Create(CreateApiUri(coreCredentials.Hostname, coreCredentials.Port));
             coreClient.UseSpecificCredentials(networkCreds);
 
             return coreClient;
         }
 
         //This method returns collection of Agent's objects
-        public static List<Server> GetServersToListFromCore(string hostname, int port, string username, string password)
+        public static List<Server> GetServersToListFromCore(CoreConnectionCredentials coreCredentials)
         {
             List<Server> serversList = new List<Server>();
-            ICoreClient _coreClient = CoreConnector.GetFullCoreClient(hostname, port, username, password);
+            ICoreClient _coreClient = CoreConnector.GetFullCoreClient(coreCredentials);
            
             var  protectedAgents = _coreClient.AgentsManagement.GetProtectedAgents();
-            Logger.Log("Successfully connected to Core Server: " + hostname, Logger.LogLevel.Info, hostname);
+            Logger.Log("Successfully connected to Core Server: " + coreCredentials.Hostname, Logger.LogLevel.Info, coreCredentials.Hostname);
            
 
             foreach (var agent in protectedAgents)
