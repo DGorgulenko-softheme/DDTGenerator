@@ -138,3 +138,7 @@ Call to service method https://localhost:8006/apprecovery/api/core/agents/protec
 [Info][10.23.20.199][12/1/2015 2:54:12 PM]: Waiting for 60 min. to create new datagen file.
 [Info][localhost][12/1/2015 2:55:30 PM]: Successfully connected to Core Server: localhost
 [Info][localhost][12/1/2015 2:55:30 PM]: Successfully connected to Core Server: localhost
+[Info][localhost][12/1/2015 4:43:36 PM]: Successfully connected to Core Server: localhost
+[Info][localhost][12/1/2015 4:43:36 PM]: Successfully connected to Core Server: localhost
+[Info][10.23.10.20][12/1/2015 4:55:26 PM]: Successfully connected to Core Server: 10.23.10.20
+[Info][10.23.10.20][12/1/2015 4:55:26 PM]: Successfully connected to Core Server: 10.23.10.20

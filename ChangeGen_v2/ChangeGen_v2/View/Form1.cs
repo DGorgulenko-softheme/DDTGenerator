@@ -20,8 +20,10 @@ namespace ChangeGen_v2
             AddControlsToCollections();
             displayConnectionPage();
 
+            GetCredsFromFileToGUI();
+
             lvwColumnSorter = new ListViewColumnSorter();
-            this.lv_AgentsList.ListViewItemSorter = lvwColumnSorter;
+            this.lv_AgentsList.ListViewItemSorter = lvwColumnSorter;          
         }
 
         private void btn_Connect_Click(object sender, EventArgs e)
@@ -31,6 +33,8 @@ namespace ChangeGen_v2
             coreCreds.Port = Convert.ToInt32(tb_Port.Text);
             coreCreds.Username = tb_userName.Text;
             coreCreds.Password = tb_password.Text;
+
+            coreCreds.SerizalizeCredsToFile();
 
             // Displays list of servers received from Core API to ListView
             try
@@ -158,6 +162,21 @@ namespace ChangeGen_v2
             listviewPageControls.Add(tb_customPassword);
             listviewPageControls.Add(gb_customcreds);
             listviewPageControls.Add(gb_ddtparams);
+        }
+
+        private void GetCredsFromFileToGUI()
+        {
+            var creds = CoreConnectionCredentials.DeserializeCredsFromFile();
+            if (creds == null)
+            {
+                return;
+            }
+
+            tb_hostname.Text = creds.Hostname;
+            tb_Port.Text = creds.Port.ToString();
+            tb_userName.Text = creds.Username;
+            tb_password.Text = creds.Password;
+
         }
     }
 }

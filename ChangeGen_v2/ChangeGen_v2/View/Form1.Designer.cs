@@ -67,7 +67,6 @@
             this.tb_hostname.Name = "tb_hostname";
             this.tb_hostname.Size = new System.Drawing.Size(115, 20);
             this.tb_hostname.TabIndex = 0;
-            this.tb_hostname.Text = "localhost";
             // 
             // tb_userName
             // 
@@ -76,7 +75,6 @@
             this.tb_userName.Name = "tb_userName";
             this.tb_userName.Size = new System.Drawing.Size(174, 20);
             this.tb_userName.TabIndex = 1;
-            this.tb_userName.Text = "administrator";
             // 
             // tb_password
             // 
@@ -86,7 +84,6 @@
             this.tb_password.PasswordChar = '*';
             this.tb_password.Size = new System.Drawing.Size(174, 20);
             this.tb_password.TabIndex = 2;
-            this.tb_password.Text = "raid4us!";
             this.tb_password.UseSystemPasswordChar = true;
             // 
             // btn_Connect
