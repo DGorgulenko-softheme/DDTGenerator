@@ -22,14 +22,10 @@ namespace ChangeGen_v2
                     {
                         int index = y;
 
-                        serversList[y]._fileSize = ddtparameters.Filesize;
-                        serversList[y]._compression = ddtparameters.Compression;
-                        serversList[y]._interval = ddtparameters.Interval;
-                        serversList[y].FilePath = ddtparameters.Filepath;
                         serversList[y]._ddtStatus = Server.DDTStatus.Running;
                         serversList[y]._cts = new CancellationTokenSource();
-                        serversList[y]._username = serverCreds.Username;
-                        serversList[y]._password = serverCreds.Password;
+                        serversList[y]._serverCredentials = serverCreds;
+                        serversList[y]._ddtParameters = ddtparameters;
                        
 
                         if (serversList[y]._task == null || serversList[y]._task.Status != TaskStatus.Running)

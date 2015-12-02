@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tb_hostname = new System.Windows.Forms.TextBox();
             this.tb_userName = new System.Windows.Forms.TextBox();
             this.tb_password = new System.Windows.Forms.TextBox();
@@ -56,6 +57,7 @@
             this.lbl_Port = new System.Windows.Forms.Label();
             this.gb_customcreds = new System.Windows.Forms.GroupBox();
             this.gb_ddtparams = new System.Windows.Forms.GroupBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.gb_customcreds.SuspendLayout();
             this.gb_ddtparams.SuspendLayout();
             this.SuspendLayout();
@@ -135,7 +137,7 @@
             // 
             // tb_Size
             // 
-            this.tb_Size.Location = new System.Drawing.Point(6, 34);
+            this.tb_Size.Location = new System.Drawing.Point(6, 33);
             this.tb_Size.Margin = new System.Windows.Forms.Padding(2);
             this.tb_Size.Name = "tb_Size";
             this.tb_Size.Size = new System.Drawing.Size(119, 20);
@@ -160,9 +162,9 @@
             this.lbl_Size.AutoSize = true;
             this.lbl_Size.Location = new System.Drawing.Point(6, 16);
             this.lbl_Size.Name = "lbl_Size";
-            this.lbl_Size.Size = new System.Drawing.Size(27, 13);
+            this.lbl_Size.Size = new System.Drawing.Size(52, 13);
             this.lbl_Size.TabIndex = 14;
-            this.lbl_Size.Text = "Size";
+            this.lbl_Size.Text = "Size (MB)";
             this.lbl_Size.Visible = false;
             // 
             // lbl_Compression
@@ -170,9 +172,9 @@
             this.lbl_Compression.AutoSize = true;
             this.lbl_Compression.Location = new System.Drawing.Point(6, 56);
             this.lbl_Compression.Name = "lbl_Compression";
-            this.lbl_Compression.Size = new System.Drawing.Size(67, 13);
+            this.lbl_Compression.Size = new System.Drawing.Size(84, 13);
             this.lbl_Compression.TabIndex = 16;
-            this.lbl_Compression.Text = "Compression";
+            this.lbl_Compression.Text = "Compression (%)";
             this.lbl_Compression.Visible = false;
             // 
             // tb_Compression
@@ -190,9 +192,9 @@
             this.lbl_Path.AutoSize = true;
             this.lbl_Path.Location = new System.Drawing.Point(6, 96);
             this.lbl_Path.Name = "lbl_Path";
-            this.lbl_Path.Size = new System.Drawing.Size(29, 13);
+            this.lbl_Path.Size = new System.Drawing.Size(69, 13);
             this.lbl_Path.TabIndex = 18;
-            this.lbl_Path.Text = "Path";
+            this.lbl_Path.Text = "Remote Path";
             this.lbl_Path.Visible = false;
             // 
             // tb_Path
@@ -210,9 +212,9 @@
             this.lbl_Interval.AutoSize = true;
             this.lbl_Interval.Location = new System.Drawing.Point(6, 136);
             this.lbl_Interval.Name = "lbl_Interval";
-            this.lbl_Interval.Size = new System.Drawing.Size(42, 13);
+            this.lbl_Interval.Size = new System.Drawing.Size(67, 13);
             this.lbl_Interval.TabIndex = 20;
-            this.lbl_Interval.Text = "Interval";
+            this.lbl_Interval.Text = "Interval (min)";
             this.lbl_Interval.Visible = false;
             // 
             // tb_Interval
@@ -349,6 +351,10 @@
             this.gb_ddtparams.TabStop = false;
             this.gb_ddtparams.Text = "DDT Parameters";
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -372,7 +378,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Data Generator 0.2";
+            this.Text = "Data Generator 0.2b";
             this.gb_customcreds.ResumeLayout(false);
             this.gb_customcreds.PerformLayout();
             this.gb_ddtparams.ResumeLayout(false);
@@ -412,6 +418,7 @@
         private System.Windows.Forms.Label lbl_Port;
         private System.Windows.Forms.GroupBox gb_customcreds;
         private System.Windows.Forms.GroupBox gb_ddtparams;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

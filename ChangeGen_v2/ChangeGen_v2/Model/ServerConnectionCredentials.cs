@@ -11,5 +11,6 @@ namespace ChangeGen_v2
         public string Username { get; set; }
         public string  Password { get; set; }
         public string Domain { get; set; }
+        public string IP { get; set; }
     }
 }

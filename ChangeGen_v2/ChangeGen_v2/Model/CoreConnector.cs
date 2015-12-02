@@ -39,9 +39,8 @@ namespace ChangeGen_v2
         {
             List<Server> serversList = new List<Server>();
             ICoreClient _coreClient = CoreConnector.GetFullCoreClient(coreCredentials);
-           
-            var  protectedAgents = _coreClient.AgentsManagement.GetProtectedAgents();
-            Logger.Log("Successfully connected to Core Server: " + coreCredentials.Hostname, Logger.LogLevel.Info, coreCredentials.Hostname);
+
+            var protectedAgents = _coreClient.AgentsManagement.GetProtectedAgents();
            
 
             foreach (var agent in protectedAgents)

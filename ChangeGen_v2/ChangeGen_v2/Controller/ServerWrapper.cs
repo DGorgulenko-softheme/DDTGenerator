@@ -49,10 +49,17 @@ namespace ChangeGen_v2
                     if (listViewAgents[i].SubItems[1].Text == serversList[j]._ip)
                     {
                         listViewAgents[i].SubItems[3].Text = serversList[j]._ddtStatus.ToString();   // DDT Status
-                        listViewAgents[i].SubItems[4].Text = serversList[j]._fileSize.ToString();    // Filesize
-                        listViewAgents[i].SubItems[5].Text = serversList[j]._compression.ToString(); // Compression
-                        listViewAgents[i].SubItems[6].Text = serversList[j]._interval.ToString();    // Interval
-                        listViewAgents[i].SubItems[7].Text = serversList[j].FilePath;                // Path
+                        if(serversList[j]._ddtParameters == null)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            listViewAgents[i].SubItems[4].Text = serversList[j]._ddtParameters.Filesize.ToString();   // Filesize
+                            listViewAgents[i].SubItems[5].Text = serversList[j]._ddtParameters.Compression.ToString(); // Compression
+                            listViewAgents[i].SubItems[6].Text = serversList[j]._ddtParameters.Interval.ToString();    // Interval
+                            listViewAgents[i].SubItems[7].Text = serversList[j]._ddtParameters.Filepath;               // Path
+                        }                       
                     }
                 }
             }

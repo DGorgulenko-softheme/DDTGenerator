@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.Windows.Threading;
 
 namespace ChangeGen_v2
 {
@@ -23,11 +25,13 @@ namespace ChangeGen_v2
             GetCredsFromFileToGUI();
 
             lvwColumnSorter = new ListViewColumnSorter();
-            this.lv_AgentsList.ListViewItemSorter = lvwColumnSorter;          
+            this.lv_AgentsList.ListViewItemSorter = lvwColumnSorter;
         }
 
         private void btn_Connect_Click(object sender, EventArgs e)
         {
+            timer1.Interval = 3000;     // Timer for UI update
+            timer1.Start();
             coreCreds = new CoreConnectionCredentials();
             coreCreds.Hostname = tb_hostname.Text;
             coreCreds.Port = Convert.ToInt32(tb_Port.Text);
@@ -35,6 +39,7 @@ namespace ChangeGen_v2
             coreCreds.Password = tb_password.Text;
 
             coreCreds.SerizalizeCredsToFile();
+            GetDDTParamsFromFileToGUI();
 
             // Displays list of servers received from Core API to ListView
             try
@@ -44,8 +49,7 @@ namespace ChangeGen_v2
             }
             catch (WCFClientBase.ClientServerErrorException exception)
             {
-                Logger.Log("Cannot connect to Core server:" + tb_hostname.Text + Environment.NewLine + exception.Message
-                    + Environment.NewLine + exception.StackTrace, Logger.LogLevel.Error);
+                Logger.LogError("Cannot connect to Core server " + coreCreds.Hostname, coreCreds.Hostname, exception);
                 MessageBox.Show("Cannot connect to Core server." + Environment.NewLine + exception.Message);
 
                 return;
@@ -103,6 +107,8 @@ namespace ChangeGen_v2
                 Interval = Convert.ToInt32(tb_Interval.Text),
                 Filepath = tb_Path.Text
             };
+
+            ddtParameters.SerizalizeDDTParamsToFile();
 
 
             // Start DDT for selected servers with specific parameters
@@ -176,6 +182,26 @@ namespace ChangeGen_v2
             tb_Port.Text = creds.Port.ToString();
             tb_userName.Text = creds.Username;
             tb_password.Text = creds.Password;
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            ServerWrapper.UpdateListView(lv_AgentsList);
+        }
+
+        private void GetDDTParamsFromFileToGUI()
+        {
+            var ddtParams = DDTParameters.DeserializeDDTParamsFromFile();
+            if (ddtParams == null)
+            {
+                return;
+            }
+
+            tb_Size.Text = ddtParams.Filesize.ToString();
+            tb_Compression.Text = ddtParams.Compression.ToString();
+            tb_Path.Text = ddtParams.Filepath;
+            tb_Interval.Text = ddtParams.Interval.ToString();
 
         }
     }

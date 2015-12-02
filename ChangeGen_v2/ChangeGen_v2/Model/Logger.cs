@@ -32,6 +32,20 @@ namespace ChangeGen_v2
             Log(logMessage, LogLevel.Info, serverIP);
         }
 
+        public static void LogError(string logMessage, string serverIP, Exception e)
+        {
+            lock (_lock)
+            {
+                using (StreamWriter w = File.AppendText("log.txt"))
+                {
+                    w.WriteLine("[{0}][{1}][{2}]: {3}" + Environment.NewLine +
+                        e.GetType() + Environment.NewLine+
+                        e.Message + Environment.NewLine+
+                        e.StackTrace, LogLevel.Error, serverIP, DateTime.Now.ToString(), logMessage);
+                }
+            }
+        }
+
         public enum LogLevel
         {
             Info,

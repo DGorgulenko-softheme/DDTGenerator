@@ -13,38 +13,34 @@ namespace ChangeGen_v2
         public static extern int LogonUser(string lpszUsername, string lpszDomain, string lpszPassword, int dwLogonType, int dwLogonProvider, ref IntPtr phToken);
 
         // This method is used to perform action delegate remotely on CIFS Share
-        public static void PerformActionRemotely(Action action, string username, string password, string ip)
+        public static void PerformActionRemotely(Action action, ServerConnectionCredentials serverCreds, string ip)
         {
             WindowsIdentity wid_current = WindowsIdentity.GetCurrent();
             WindowsImpersonationContext wic = null;
-            try
-            {
+            //try
+            //{
                 IntPtr admin_token = new IntPtr();
-                if (LogonUser(username, ".", password, 9, 0, ref admin_token) != 0)
+                if (LogonUser(serverCreds.Username, ".", serverCreds.Password, 9, 0, ref admin_token) != 0)
                 {
                     wic = new WindowsIdentity(admin_token).Impersonate();
 
                     action();
                 }
-                else
-                {
-
-                }
-            }
-            catch (Exception se)
-            {
-                int ret = Marshal.GetLastWin32Error();
-                Logger.Log("Invoking action on remote machine failed with: " + Environment.NewLine
-                    + "Error code: " + ret.ToString() + Environment.NewLine + se.Message + Environment.NewLine + se.StackTrace, Logger.LogLevel.Error, ip);
-                return;
-            }
-            finally
-            {
-                if (wic != null)
-                {
-                    wic.Undo();
-                }
-            }
+            //}
+            //catch (Exception se)
+            //{
+            //    int ret = Marshal.GetLastWin32Error();
+            //    Logger.Log("Invoking action on remote machine failed with: " + Environment.NewLine
+            //        + "Error code: " + ret.ToString() + Environment.NewLine + se.Message + Environment.NewLine + se.StackTrace, Logger.LogLevel.Error, ip);
+            //    return;
+            //}
+            //finally
+            //{
+            //    if (wic != null)
+            //    {
+            //        wic.Undo();
+            //    }
+            //}
         }
 
         // This method implements copying of folders
