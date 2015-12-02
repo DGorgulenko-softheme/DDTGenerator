@@ -59,3 +59,30 @@ Access is denied. (Exception from HRESULT: 0x80070005 (E_ACCESSDENIED))
 [Info][10.23.20.199][12/2/2015 5:32:27 PM]: DDT succesfully performed data generation.
 [Info][10.23.20.199][12/2/2015 5:32:27 PM]: Waiting for 1 min. to create new datagen file.
 [Info][10.23.20.199][12/2/2015 5:33:27 PM]: DDT operation has been canceled by user
+[Info][10.23.10.20][12/2/2015 5:50:41 PM]: Successfully connected to Core Server: 10.23.10.20
+[Info][10.23.20.199][12/2/2015 5:50:58 PM]: Successfully copied DDT to server
+[Info][10.23.20.199][12/2/2015 5:50:58 PM]: Successfully deleted files in folder for data generation
+[Info][10.23.20.199][12/2/2015 5:50:58 PM]: DDT succesfully performed data generation.
+[Info][10.23.20.199][12/2/2015 5:50:58 PM]: Waiting for 1 min. to create new datagen file.
+[Info][10.23.10.22][12/2/2015 5:51:14 PM]: Successfully copied DDT to server
+[Info][10.23.10.22][12/2/2015 5:51:14 PM]: Successfully deleted files in folder for data generation
+[Info][10.23.10.22][12/2/2015 5:51:14 PM]: DDT succesfully performed data generation.
+[Info][10.23.10.22][12/2/2015 5:51:14 PM]: Waiting for 1 min. to create new datagen file.
+[Info][10.23.20.199][12/2/2015 5:51:58 PM]: Successfully deleted files in folder for data generation
+[Info][10.23.20.199][12/2/2015 5:51:58 PM]: DDT succesfully performed data generation.
+[Info][10.23.20.199][12/2/2015 5:51:58 PM]: Waiting for 1 min. to create new datagen file.
+[Info][10.23.10.22][12/2/2015 5:52:14 PM]: Successfully deleted files in folder for data generation
+[Info][10.23.10.22][12/2/2015 5:52:14 PM]: DDT succesfully performed data generation.
+[Info][10.23.10.22][12/2/2015 5:52:14 PM]: Waiting for 1 min. to create new datagen file.
+[Info][10.23.20.199][12/2/2015 5:52:59 PM]: Successfully deleted files in folder for data generation
+[Info][10.23.20.199][12/2/2015 5:52:59 PM]: DDT succesfully performed data generation.
+[Info][10.23.20.199][12/2/2015 5:52:59 PM]: Waiting for 1 min. to create new datagen file.
+[Info][10.23.10.22][12/2/2015 5:53:14 PM]: Successfully deleted files in folder for data generation
+[Info][10.23.10.22][12/2/2015 5:53:14 PM]: DDT succesfully performed data generation.
+[Info][10.23.10.22][12/2/2015 5:53:14 PM]: Waiting for 1 min. to create new datagen file.
+[Info][10.23.20.199][12/2/2015 5:53:59 PM]: Successfully deleted files in folder for data generation
+[Info][10.23.20.199][12/2/2015 5:53:59 PM]: DDT succesfully performed data generation.
+[Info][10.23.20.199][12/2/2015 5:53:59 PM]: Waiting for 1 min. to create new datagen file.
+[Info][10.23.10.22][12/2/2015 5:54:14 PM]: Successfully deleted files in folder for data generation
+[Info][10.23.10.22][12/2/2015 5:54:14 PM]: DDT succesfully performed data generation.
+[Info][10.23.10.22][12/2/2015 5:54:14 PM]: Waiting for 1 min. to create new datagen file.

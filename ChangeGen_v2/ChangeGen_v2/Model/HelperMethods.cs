@@ -17,8 +17,8 @@ namespace ChangeGen_v2
         {
             WindowsIdentity wid_current = WindowsIdentity.GetCurrent();
             WindowsImpersonationContext wic = null;
-            //try
-            //{
+            try
+            {
                 IntPtr admin_token = new IntPtr();
                 if (LogonUser(serverCreds.Username, ".", serverCreds.Password, 9, 0, ref admin_token) != 0)
                 {
@@ -26,21 +26,22 @@ namespace ChangeGen_v2
 
                     action();
                 }
-            //}
-            //catch (Exception se)
-            //{
-            //    int ret = Marshal.GetLastWin32Error();
-            //    Logger.Log("Invoking action on remote machine failed with: " + Environment.NewLine
-            //        + "Error code: " + ret.ToString() + Environment.NewLine + se.Message + Environment.NewLine + se.StackTrace, Logger.LogLevel.Error, ip);
-            //    return;
-            //}
-            //finally
-            //{
-            //    if (wic != null)
-            //    {
-            //        wic.Undo();
-            //    }
-            //}
+            }
+            catch (Exception se)
+            {
+                int ret = Marshal.GetLastWin32Error();
+                Logger.Log("Invoking action on remote machine failed with: " + Environment.NewLine
+                    + "Error code: " + ret.ToString() + Environment.NewLine + se.Message + Environment.NewLine + se.StackTrace, Logger.LogLevel.Error, ip);
+                Logger.LogError("Invoking action on remote machine failed with Error code " + ret.ToString(), ip, se);
+                return;
+            }
+            finally
+            {
+                if (wic != null)
+                {
+                    wic.Undo();
+                }
+            }
         }
 
         // This method implements copying of folders
