@@ -58,8 +58,10 @@
             this.gb_customcreds = new System.Windows.Forms.GroupBox();
             this.gb_ddtparams = new System.Windows.Forms.GroupBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.gb_customcreds.SuspendLayout();
             this.gb_ddtparams.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // tb_hostname
@@ -69,6 +71,8 @@
             this.tb_hostname.Name = "tb_hostname";
             this.tb_hostname.Size = new System.Drawing.Size(115, 20);
             this.tb_hostname.TabIndex = 0;
+            this.tb_hostname.Validating += new System.ComponentModel.CancelEventHandler(this.tb_hostname_Validating);
+            this.tb_hostname.Validated += new System.EventHandler(this.tb_hostname_Validated);
             // 
             // tb_userName
             // 
@@ -77,6 +81,8 @@
             this.tb_userName.Name = "tb_userName";
             this.tb_userName.Size = new System.Drawing.Size(174, 20);
             this.tb_userName.TabIndex = 1;
+            this.tb_userName.Validating += new System.ComponentModel.CancelEventHandler(this.tb_userName_Validating);
+            this.tb_userName.Validated += new System.EventHandler(this.tb_userName_Validated);
             // 
             // tb_password
             // 
@@ -87,6 +93,8 @@
             this.tb_password.Size = new System.Drawing.Size(174, 20);
             this.tb_password.TabIndex = 2;
             this.tb_password.UseSystemPasswordChar = true;
+            this.tb_password.Validating += new System.ComponentModel.CancelEventHandler(this.tb_password_Validating);
+            this.tb_password.Validated += new System.EventHandler(this.tb_password_Validated);
             // 
             // btn_Connect
             // 
@@ -144,6 +152,8 @@
             this.tb_Size.TabIndex = 7;
             this.tb_Size.Text = "10240";
             this.tb_Size.Visible = false;
+            this.tb_Size.Validating += new System.ComponentModel.CancelEventHandler(this.tb_Size_Validating);
+            this.tb_Size.Validated += new System.EventHandler(this.tb_Size_Validated);
             // 
             // btn_StopDDT
             // 
@@ -186,6 +196,8 @@
             this.tb_Compression.TabIndex = 15;
             this.tb_Compression.Text = "60";
             this.tb_Compression.Visible = false;
+            this.tb_Compression.Validating += new System.ComponentModel.CancelEventHandler(this.tb_Compression_Validating);
+            this.tb_Compression.Validated += new System.EventHandler(this.tb_Compression_Validated);
             // 
             // lbl_Path
             // 
@@ -206,6 +218,8 @@
             this.tb_Path.TabIndex = 17;
             this.tb_Path.Text = "E:\\Data\\";
             this.tb_Path.Visible = false;
+            this.tb_Path.Validating += new System.ComponentModel.CancelEventHandler(this.tb_Path_Validating);
+            this.tb_Path.Validated += new System.EventHandler(this.tb_Path_Validated);
             // 
             // lbl_Interval
             // 
@@ -226,6 +240,8 @@
             this.tb_Interval.TabIndex = 19;
             this.tb_Interval.Text = "60";
             this.tb_Interval.Visible = false;
+            this.tb_Interval.Validating += new System.ComponentModel.CancelEventHandler(this.tb_Interval_Validating);
+            this.tb_Interval.Validated += new System.EventHandler(this.tb_Interval_Validated);
             // 
             // lbl_hostname
             // 
@@ -268,6 +284,7 @@
             this.cb_useCoreCreds.TabIndex = 25;
             this.cb_useCoreCreds.Text = "Use Core Credentials";
             this.cb_useCoreCreds.UseVisualStyleBackColor = true;
+            this.cb_useCoreCreds.CheckedChanged += new System.EventHandler(this.cb_useCoreCreds_CheckedChanged);
             // 
             // lbl_customUsername
             // 
@@ -280,6 +297,7 @@
             // 
             // tb_customUsername
             // 
+            this.tb_customUsername.Enabled = false;
             this.tb_customUsername.Location = new System.Drawing.Point(6, 34);
             this.tb_customUsername.Name = "tb_customUsername";
             this.tb_customUsername.Size = new System.Drawing.Size(120, 20);
@@ -287,6 +305,7 @@
             // 
             // tb_customPassword
             // 
+            this.tb_customPassword.Enabled = false;
             this.tb_customPassword.Location = new System.Drawing.Point(6, 74);
             this.tb_customPassword.Name = "tb_customPassword";
             this.tb_customPassword.Size = new System.Drawing.Size(120, 20);
@@ -304,11 +323,13 @@
             // 
             // tb_Port
             // 
-            this.tb_Port.Location = new System.Drawing.Point(448, 267);
+            this.tb_Port.Location = new System.Drawing.Point(460, 267);
             this.tb_Port.Name = "tb_Port";
-            this.tb_Port.Size = new System.Drawing.Size(53, 20);
+            this.tb_Port.Size = new System.Drawing.Size(41, 20);
             this.tb_Port.TabIndex = 31;
             this.tb_Port.Text = "8006";
+            this.tb_Port.Validating += new System.ComponentModel.CancelEventHandler(this.tb_Port_Validating);
+            this.tb_Port.Validated += new System.EventHandler(this.tb_Port_Validated);
             // 
             // lbl_Port
             // 
@@ -328,7 +349,7 @@
             this.gb_customcreds.Controls.Add(this.tb_customPassword);
             this.gb_customcreds.Location = new System.Drawing.Point(663, 234);
             this.gb_customcreds.Name = "gb_customcreds";
-            this.gb_customcreds.Size = new System.Drawing.Size(132, 100);
+            this.gb_customcreds.Size = new System.Drawing.Size(145, 100);
             this.gb_customcreds.TabIndex = 33;
             this.gb_customcreds.TabStop = false;
             this.gb_customcreds.Text = "Custom Credentials";
@@ -346,7 +367,7 @@
             this.gb_ddtparams.Controls.Add(this.tb_Interval);
             this.gb_ddtparams.Location = new System.Drawing.Point(664, 11);
             this.gb_ddtparams.Name = "gb_ddtparams";
-            this.gb_ddtparams.Size = new System.Drawing.Size(132, 217);
+            this.gb_ddtparams.Size = new System.Drawing.Size(144, 217);
             this.gb_ddtparams.TabIndex = 34;
             this.gb_ddtparams.TabStop = false;
             this.gb_ddtparams.Text = "DDT Parameters";
@@ -355,11 +376,15 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(810, 428);
+            this.ClientSize = new System.Drawing.Size(815, 428);
             this.Controls.Add(this.gb_ddtparams);
             this.Controls.Add(this.gb_customcreds);
             this.Controls.Add(this.lbl_Port);
@@ -383,6 +408,7 @@
             this.gb_customcreds.PerformLayout();
             this.gb_ddtparams.ResumeLayout(false);
             this.gb_ddtparams.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -419,6 +445,7 @@
         private System.Windows.Forms.GroupBox gb_customcreds;
         private System.Windows.Forms.GroupBox gb_ddtparams;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
 

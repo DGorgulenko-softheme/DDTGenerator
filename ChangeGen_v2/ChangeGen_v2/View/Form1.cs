@@ -25,13 +25,11 @@ namespace ChangeGen_v2
             GetCredsFromFileToGUI();
 
             lvwColumnSorter = new ListViewColumnSorter();
-            this.lv_AgentsList.ListViewItemSorter = lvwColumnSorter;
+            lv_AgentsList.ListViewItemSorter = lvwColumnSorter;
         }
 
         private void btn_Connect_Click(object sender, EventArgs e)
-        {
-            timer1.Interval = 3000;     // Timer for UI update
-            timer1.Start();
+        {           
             coreCreds = new CoreConnectionCredentials();
             coreCreds.Hostname = tb_hostname.Text;
             coreCreds.Port = Convert.ToInt32(tb_Port.Text);
@@ -54,6 +52,16 @@ namespace ChangeGen_v2
 
                 return;
             }
+            catch (WCFClientBase.HttpUnauthorizedRequestException exception)
+            {
+                Logger.LogError("Cannot connect to Core server " + coreCreds.Hostname + " Wrong credentials.", coreCreds.Hostname, exception);
+                MessageBox.Show("Cannot connect to Core server. Wrong credentials." + Environment.NewLine + exception.Message);
+
+                return;
+            }
+
+            timer1.Interval = 3000;     // Timer for UI update
+            timer1.Start();
 
 
             // Hide Connection Page and displays ListView Page
@@ -204,5 +212,99 @@ namespace ChangeGen_v2
             tb_Interval.Text = ddtParams.Interval.ToString();
 
         }
+
+        private void tb_hostname_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validator.TextBox_ValidatingEmpty(e, (TextBox)sender, errorProvider1);
+        }
+
+        private void tb_hostname_Validated(object sender, EventArgs e)
+        {
+            Validator.TextBox_Validated((TextBox)sender, errorProvider1);
+        }
+
+        private void tb_userName_Validated(object sender, EventArgs e)
+        {
+            Validator.TextBox_Validated((TextBox)sender, errorProvider1);
+        }
+
+        private void tb_userName_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validator.TextBox_ValidatingEmpty(e, (TextBox)sender, errorProvider1);
+        }
+
+        private void tb_password_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validator.TextBox_ValidatingEmpty(e, (TextBox)sender, errorProvider1);
+        }
+
+        private void tb_password_Validated(object sender, EventArgs e)
+        {
+            Validator.TextBox_Validated((TextBox)sender, errorProvider1);
+        }
+
+        private void tb_Path_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validator.TextBox_ValidatingEmpty(e, (TextBox)sender, errorProvider1);
+        }
+
+        private void tb_Path_Validated(object sender, EventArgs e)
+        {
+            Validator.TextBox_Validated((TextBox)sender, errorProvider1);
+        }
+
+        private void tb_Port_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validator.TextBox_ValidatingPort(e, (TextBox)sender, errorProvider1);
+        }
+
+        private void tb_Port_Validated(object sender, EventArgs e)
+        {
+            Validator.TextBox_Validated((TextBox)sender, errorProvider1);
+        }
+
+        private void tb_Size_Validated(object sender, EventArgs e)
+        {
+            Validator.TextBox_Validated((TextBox)sender, errorProvider1);
+        }
+
+        private void tb_Size_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validator.TextBox_ValidatingNumeric(e, (TextBox)sender, errorProvider1);
+        }
+
+        private void tb_Interval_Validated(object sender, EventArgs e)
+        {
+            Validator.TextBox_Validated((TextBox)sender, errorProvider1);
+        }
+
+        private void tb_Interval_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validator.TextBox_ValidatingNumeric(e, (TextBox)sender, errorProvider1);
+        }
+
+        private void tb_Compression_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validator.TextBox_ValidatingCompression(e, (TextBox)sender, errorProvider1);
+        }
+
+        private void tb_Compression_Validated(object sender, EventArgs e)
+        {
+            Validator.TextBox_Validated((TextBox)sender, errorProvider1);
+        }
+
+        private void cb_useCoreCreds_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!cb_useCoreCreds.Checked)
+            {
+                tb_customUsername.Enabled = true;
+                tb_customPassword.Enabled = true;
+            }
+            else
+            {
+                tb_customUsername.Enabled = false;
+                tb_customPassword.Enabled = false;
+            }
+        }        
     }
 }

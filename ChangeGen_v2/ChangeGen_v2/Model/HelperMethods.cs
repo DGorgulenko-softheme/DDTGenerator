@@ -30,8 +30,6 @@ namespace ChangeGen_v2
             catch (Exception se)
             {
                 int ret = Marshal.GetLastWin32Error();
-                Logger.Log("Invoking action on remote machine failed with: " + Environment.NewLine
-                    + "Error code: " + ret.ToString() + Environment.NewLine + se.Message + Environment.NewLine + se.StackTrace, Logger.LogLevel.Error, ip);
                 Logger.LogError("Invoking action on remote machine failed with Error code " + ret.ToString(), ip, se);
                 return;
             }

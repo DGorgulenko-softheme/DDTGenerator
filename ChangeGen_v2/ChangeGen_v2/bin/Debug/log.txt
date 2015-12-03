@@ -1,26 +1,59 @@
-[Info][10.23.10.20][12/2/2015 5:17:39 PM]: Successfully connected to Core Server: 10.23.10.20
-[Info][10.23.20.199][12/2/2015 5:17:58 PM]: Successfully copied DDT to server
-[Error][10.23.20.199][12/2/2015 5:17:58 PM]: Remote path doesn't exist
-System.IO.IOException
-The network name cannot be found.
-
-   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
-   at System.IO.Directory.InternalCreateDirectory(String fullPath, String path, Object dirSecurityObj, Boolean checkHost)
-   at System.IO.Directory.InternalCreateDirectoryHelper(String path, Boolean checkHost)
-   at System.IO.Directory.CreateDirectory(String path)
-   at ChangeGen_v2.DDT.<>c__DisplayClass2_0.<cleanFilepathRemotely>b__0() in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\DDT.cs:line 66
-[Error][10.23.10.22][12/2/2015 5:18:12 PM]: Access denied to remote server. Possibly incorrect credentials.
-System.UnauthorizedAccessException
-Access is denied. (Exception from HRESULT: 0x80070005 (E_ACCESSDENIED))
-   at System.Runtime.InteropServices.Marshal.ThrowExceptionForHRInternal(Int32 errorCode, IntPtr errorInfo)
-   at System.Management.ManagementScope.InitializeGuts(Object o)
-   at System.Management.ManagementScope.Initialize()
-   at System.Management.ManagementObjectSearcher.Initialize()
-   at System.Management.ManagementObjectSearcher.Get()
-   at ChangeGen_v2.DDT.WMIKillDDT(String ip, String username, String password) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\DDT.cs:line 103
-[Error][10.23.10.208][12/2/2015 5:21:14 PM]: Cannot connect to Core server 10.23.10.208
+[Info][localhost][12/2/2015 5:55:48 PM]: Successfully connected to Core Server: localhost
+[Error][localhost][12/3/2015 11:07:52 AM]: Cannot connect to Core server localhost Wrong credentials.
+WCFClientBase.HttpUnauthorizedRequestException
+Call to service method https://localhost:8006/apprecovery/api/core/agents/protected GET failed
+   at WCFClientBase.ClientBase.HandleResponse(Uri uri, String method, HttpResponseMessage response)
+   at WCFClientBase.ClientBase.GetResponse(Uri uri, String method, String knownEtag)
+   at WCFClientBase.ClientBase.ExecuteServiceCall[T](Uri uri, String method, String knownETag)
+   at Replay.Core.Client.AgentsManagementCoreClient.GetProtectedAgents()
+   at ChangeGen_v2.CoreConnector.GetServersToListFromCore(CoreConnectionCredentials coreCredentials) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\CoreConnector.cs:line 43
+   at ChangeGen_v2.ServerWrapper.ServersToListView(ListView listview, CoreConnectionCredentials coreCredentials) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Controller\ServerWrapper.cs:line 16
+   at ChangeGen_v2.Form1.btn_Connect_Click(Object sender, EventArgs e) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\View\Form1.cs:line 47
+[Error][localhost][12/3/2015 11:09:28 AM]: Cannot connect to Core server localhost Wrong credentials.
+WCFClientBase.HttpUnauthorizedRequestException
+Call to service method https://localhost:8006/apprecovery/api/core/agents/protected GET failed
+   at WCFClientBase.ClientBase.HandleResponse(Uri uri, String method, HttpResponseMessage response)
+   at WCFClientBase.ClientBase.GetResponse(Uri uri, String method, String knownEtag)
+   at WCFClientBase.ClientBase.ExecuteServiceCall[T](Uri uri, String method, String knownETag)
+   at Replay.Core.Client.AgentsManagementCoreClient.GetProtectedAgents()
+   at ChangeGen_v2.CoreConnector.GetServersToListFromCore(CoreConnectionCredentials coreCredentials) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\CoreConnector.cs:line 43
+   at ChangeGen_v2.ServerWrapper.ServersToListView(ListView listview, CoreConnectionCredentials coreCredentials) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Controller\ServerWrapper.cs:line 16
+   at ChangeGen_v2.Form1.btn_Connect_Click(Object sender, EventArgs e) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\View\Form1.cs:line 47
+[Error][localhost][12/3/2015 11:14:57 AM]: Cannot connect to Core server localhost Wrong credentials.
+WCFClientBase.HttpUnauthorizedRequestException
+Call to service method https://localhost:8006/apprecovery/api/core/agents/protected GET failed
+   at WCFClientBase.ClientBase.HandleResponse(Uri uri, String method, HttpResponseMessage response)
+   at WCFClientBase.ClientBase.GetResponse(Uri uri, String method, String knownEtag)
+   at WCFClientBase.ClientBase.ExecuteServiceCall[T](Uri uri, String method, String knownETag)
+   at Replay.Core.Client.AgentsManagementCoreClient.GetProtectedAgents()
+   at ChangeGen_v2.CoreConnector.GetServersToListFromCore(CoreConnectionCredentials coreCredentials) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\CoreConnector.cs:line 43
+   at ChangeGen_v2.ServerWrapper.ServersToListView(ListView listview, CoreConnectionCredentials coreCredentials) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Controller\ServerWrapper.cs:line 16
+   at ChangeGen_v2.Form1.btn_Connect_Click(Object sender, EventArgs e) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\View\Form1.cs:line 45
+[Error][localhost][12/3/2015 11:22:57 AM]: Cannot connect to Core server localhost Wrong credentials.
+WCFClientBase.HttpUnauthorizedRequestException
+Call to service method https://localhost:8006/apprecovery/api/core/agents/protected GET failed
+   at WCFClientBase.ClientBase.HandleResponse(Uri uri, String method, HttpResponseMessage response)
+   at WCFClientBase.ClientBase.GetResponse(Uri uri, String method, String knownEtag)
+   at WCFClientBase.ClientBase.ExecuteServiceCall[T](Uri uri, String method, String knownETag)
+   at Replay.Core.Client.AgentsManagementCoreClient.GetProtectedAgents()
+   at ChangeGen_v2.CoreConnector.GetServersToListFromCore(CoreConnectionCredentials coreCredentials) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\CoreConnector.cs:line 43
+   at ChangeGen_v2.ServerWrapper.ServersToListView(ListView listview, CoreConnectionCredentials coreCredentials) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Controller\ServerWrapper.cs:line 16
+   at ChangeGen_v2.Form1.btn_Connect_Click(Object sender, EventArgs e) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\View\Form1.cs:line 45
+[Error][localhost][12/3/2015 11:23:02 AM]: Cannot connect to Core server localhost Wrong credentials.
+WCFClientBase.HttpUnauthorizedRequestException
+Call to service method https://localhost:8006/apprecovery/api/core/agents/protected GET failed
+   at WCFClientBase.ClientBase.HandleResponse(Uri uri, String method, HttpResponseMessage response)
+   at WCFClientBase.ClientBase.GetResponse(Uri uri, String method, String knownEtag)
+   at WCFClientBase.ClientBase.ExecuteServiceCall[T](Uri uri, String method, String knownETag)
+   at Replay.Core.Client.AgentsManagementCoreClient.GetProtectedAgents()
+   at ChangeGen_v2.CoreConnector.GetServersToListFromCore(CoreConnectionCredentials coreCredentials) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\CoreConnector.cs:line 43
+   at ChangeGen_v2.ServerWrapper.ServersToListView(ListView listview, CoreConnectionCredentials coreCredentials) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Controller\ServerWrapper.cs:line 16
+   at ChangeGen_v2.Form1.btn_Connect_Click(Object sender, EventArgs e) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\View\Form1.cs:line 45
+[Info][localhost][12/3/2015 11:23:18 AM]: Successfully connected to Core Server: localhost
+[Info][localhost][12/3/2015 12:55:02 PM]: Successfully connected to Core Server: localhost
+[Error][12][12/3/2015 1:23:22 PM]: Cannot connect to Core server 12
 WCFClientBase.ClientServerErrorException
-Call to service method https://10.23.10.208:8006/apprecovery/api/core/agents/protected GET failed
+Call to service method https://0.0.0.12:8006/apprecovery/api/core/agents/protected GET failed
    at WCFClientBase.ClientBase.HandleServiceMethodCallException(Uri uri, String method, TimeSpan elapsedTime, Exception e)
    at WCFClientBase.ClientBase.ExecuteAction(HttpClient client, Uri uri, String method)
    at WCFClientBase.ClientBase.GetResponse(Uri uri, String method, String knownEtag)
@@ -28,61 +61,39 @@ Call to service method https://10.23.10.208:8006/apprecovery/api/core/agents/pro
    at Replay.Core.Client.AgentsManagementCoreClient.GetProtectedAgents()
    at ChangeGen_v2.CoreConnector.GetServersToListFromCore(CoreConnectionCredentials coreCredentials) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\CoreConnector.cs:line 43
    at ChangeGen_v2.ServerWrapper.ServersToListView(ListView listview, CoreConnectionCredentials coreCredentials) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Controller\ServerWrapper.cs:line 16
-   at ChangeGen_v2.Form1.btn_Connect_Click(Object sender, EventArgs e) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\View\Form1.cs:line 46
-[Info][10.23.10.20][12/2/2015 5:21:37 PM]: Successfully connected to Core Server: 10.23.10.20
-[Info][10.23.10.20][12/2/2015 5:31:35 PM]: Successfully connected to Core Server: 10.23.10.20
-[Error][10.23.10.22][12/2/2015 5:31:46 PM]: Access denied to remote server. Possibly incorrect credentials.
-System.UnauthorizedAccessException
-Access is denied. (Exception from HRESULT: 0x80070005 (E_ACCESSDENIED))
-   at System.Runtime.InteropServices.Marshal.ThrowExceptionForHRInternal(Int32 errorCode, IntPtr errorInfo)
-   at System.Management.ManagementScope.InitializeGuts(Object o)
-   at System.Management.ManagementScope.Initialize()
-   at System.Management.ManagementObjectSearcher.Initialize()
-   at System.Management.ManagementObjectSearcher.Get()
-   at ChangeGen_v2.DDT.WMIKillDDT(String ip, String username, String password) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\DDT.cs:line 103
-[Info][10.23.20.199][12/2/2015 5:32:02 PM]: Successfully copied DDT to server
-[Info][10.23.20.199][12/2/2015 5:32:02 PM]: Successfully deleted files in folder for data generation
-[Info][10.23.20.199][12/2/2015 5:32:02 PM]: DDT succesfully performed data generation.
-[Info][10.23.20.199][12/2/2015 5:32:02 PM]: Waiting for 1 min. to create new datagen file.
-[Info][10.23.10.20][12/2/2015 5:32:18 PM]: Successfully connected to Core Server: 10.23.10.20
-[Error][10.23.10.22][12/2/2015 5:32:26 PM]: Access denied to remote server. Possibly incorrect credentials.
-System.UnauthorizedAccessException
-Access is denied. (Exception from HRESULT: 0x80070005 (E_ACCESSDENIED))
-   at System.Runtime.InteropServices.Marshal.ThrowExceptionForHRInternal(Int32 errorCode, IntPtr errorInfo)
-   at System.Management.ManagementScope.InitializeGuts(Object o)
-   at System.Management.ManagementScope.Initialize()
-   at System.Management.ManagementObjectSearcher.Initialize()
-   at System.Management.ManagementObjectSearcher.Get()
-   at ChangeGen_v2.DDT.WMIKillDDT(String ip, String username, String password) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\DDT.cs:line 103
-[Info][10.23.20.199][12/2/2015 5:32:27 PM]: Successfully copied DDT to server
-[Info][10.23.20.199][12/2/2015 5:32:27 PM]: Successfully deleted files in folder for data generation
-[Info][10.23.20.199][12/2/2015 5:32:27 PM]: DDT succesfully performed data generation.
-[Info][10.23.20.199][12/2/2015 5:32:27 PM]: Waiting for 1 min. to create new datagen file.
-[Info][10.23.20.199][12/2/2015 5:33:27 PM]: DDT operation has been canceled by user
-[Info][10.23.10.20][12/2/2015 5:50:41 PM]: Successfully connected to Core Server: 10.23.10.20
-[Info][10.23.20.199][12/2/2015 5:50:58 PM]: Successfully copied DDT to server
-[Info][10.23.20.199][12/2/2015 5:50:58 PM]: Successfully deleted files in folder for data generation
-[Info][10.23.20.199][12/2/2015 5:50:58 PM]: DDT succesfully performed data generation.
-[Info][10.23.20.199][12/2/2015 5:50:58 PM]: Waiting for 1 min. to create new datagen file.
-[Info][10.23.10.22][12/2/2015 5:51:14 PM]: Successfully copied DDT to server
-[Info][10.23.10.22][12/2/2015 5:51:14 PM]: Successfully deleted files in folder for data generation
-[Info][10.23.10.22][12/2/2015 5:51:14 PM]: DDT succesfully performed data generation.
-[Info][10.23.10.22][12/2/2015 5:51:14 PM]: Waiting for 1 min. to create new datagen file.
-[Info][10.23.20.199][12/2/2015 5:51:58 PM]: Successfully deleted files in folder for data generation
-[Info][10.23.20.199][12/2/2015 5:51:58 PM]: DDT succesfully performed data generation.
-[Info][10.23.20.199][12/2/2015 5:51:58 PM]: Waiting for 1 min. to create new datagen file.
-[Info][10.23.10.22][12/2/2015 5:52:14 PM]: Successfully deleted files in folder for data generation
-[Info][10.23.10.22][12/2/2015 5:52:14 PM]: DDT succesfully performed data generation.
-[Info][10.23.10.22][12/2/2015 5:52:14 PM]: Waiting for 1 min. to create new datagen file.
-[Info][10.23.20.199][12/2/2015 5:52:59 PM]: Successfully deleted files in folder for data generation
-[Info][10.23.20.199][12/2/2015 5:52:59 PM]: DDT succesfully performed data generation.
-[Info][10.23.20.199][12/2/2015 5:52:59 PM]: Waiting for 1 min. to create new datagen file.
-[Info][10.23.10.22][12/2/2015 5:53:14 PM]: Successfully deleted files in folder for data generation
-[Info][10.23.10.22][12/2/2015 5:53:14 PM]: DDT succesfully performed data generation.
-[Info][10.23.10.22][12/2/2015 5:53:14 PM]: Waiting for 1 min. to create new datagen file.
-[Info][10.23.20.199][12/2/2015 5:53:59 PM]: Successfully deleted files in folder for data generation
-[Info][10.23.20.199][12/2/2015 5:53:59 PM]: DDT succesfully performed data generation.
-[Info][10.23.20.199][12/2/2015 5:53:59 PM]: Waiting for 1 min. to create new datagen file.
-[Info][10.23.10.22][12/2/2015 5:54:14 PM]: Successfully deleted files in folder for data generation
-[Info][10.23.10.22][12/2/2015 5:54:14 PM]: DDT succesfully performed data generation.
-[Info][10.23.10.22][12/2/2015 5:54:14 PM]: Waiting for 1 min. to create new datagen file.
+   at ChangeGen_v2.Form1.btn_Connect_Click(Object sender, EventArgs e) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\View\Form1.cs:line 45
+[Error][1233333333333333333333333333333333333333333][12/3/2015 1:23:41 PM]: Cannot connect to Core server 1233333333333333333333333333333333333333333
+WCFClientBase.ClientServerErrorException
+Call to service method https://1233333333333333333333333333333333333333333:8006/apprecovery/api/core/agents/protected GET failed
+   at WCFClientBase.ClientBase.HandleServiceMethodCallException(Uri uri, String method, TimeSpan elapsedTime, Exception e)
+   at WCFClientBase.ClientBase.ExecuteAction(HttpClient client, Uri uri, String method)
+   at WCFClientBase.ClientBase.GetResponse(Uri uri, String method, String knownEtag)
+   at WCFClientBase.ClientBase.ExecuteServiceCall[T](Uri uri, String method, String knownETag)
+   at Replay.Core.Client.AgentsManagementCoreClient.GetProtectedAgents()
+   at ChangeGen_v2.CoreConnector.GetServersToListFromCore(CoreConnectionCredentials coreCredentials) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\CoreConnector.cs:line 43
+   at ChangeGen_v2.ServerWrapper.ServersToListView(ListView listview, CoreConnectionCredentials coreCredentials) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Controller\ServerWrapper.cs:line 16
+   at ChangeGen_v2.Form1.btn_Connect_Click(Object sender, EventArgs e) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\View\Form1.cs:line 45
+[Error][1233333333333333333333333333333333333333333][12/3/2015 1:25:54 PM]: Cannot connect to Core server 1233333333333333333333333333333333333333333
+WCFClientBase.ClientServerErrorException
+Call to service method https://1233333333333333333333333333333333333333333:8006/apprecovery/api/core/agents/protected GET failed
+   at WCFClientBase.ClientBase.HandleServiceMethodCallException(Uri uri, String method, TimeSpan elapsedTime, Exception e)
+   at WCFClientBase.ClientBase.ExecuteAction(HttpClient client, Uri uri, String method)
+   at WCFClientBase.ClientBase.GetResponse(Uri uri, String method, String knownEtag)
+   at WCFClientBase.ClientBase.ExecuteServiceCall[T](Uri uri, String method, String knownETag)
+   at Replay.Core.Client.AgentsManagementCoreClient.GetProtectedAgents()
+   at ChangeGen_v2.CoreConnector.GetServersToListFromCore(CoreConnectionCredentials coreCredentials) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\CoreConnector.cs:line 43
+   at ChangeGen_v2.ServerWrapper.ServersToListView(ListView listview, CoreConnectionCredentials coreCredentials) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Controller\ServerWrapper.cs:line 16
+   at ChangeGen_v2.Form1.btn_Connect_Click(Object sender, EventArgs e) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\View\Form1.cs:line 45
+[Info][localhost][12/3/2015 1:26:21 PM]: Successfully connected to Core Server: localhost
+[Info][localhost][12/3/2015 1:47:04 PM]: Successfully connected to Core Server: localhost
+[Info][localhost][12/3/2015 1:47:45 PM]: Successfully connected to Core Server: localhost
+[Info][localhost][12/3/2015 1:52:25 PM]: Successfully connected to Core Server: localhost
+[Info][localhost][12/3/2015 1:53:43 PM]: Successfully connected to Core Server: localhost
+[Info][localhost][12/3/2015 1:54:12 PM]: Successfully connected to Core Server: localhost
+[Info][localhost][12/3/2015 1:54:45 PM]: Successfully connected to Core Server: localhost
+[Info][localhost][12/3/2015 1:58:34 PM]: Successfully connected to Core Server: localhost
+[Info][localhost][12/3/2015 2:03:35 PM]: Successfully connected to Core Server: localhost
+[Info][localhost][12/3/2015 2:07:27 PM]: Successfully connected to Core Server: localhost
+[Info][localhost][12/3/2015 2:12:23 PM]: Successfully connected to Core Server: localhost
+[Info][localhost][12/3/2015 2:15:58 PM]: Successfully connected to Core Server: localhost
+[Info][localhost][12/3/2015 2:17:53 PM]: Successfully connected to Core Server: localhost
