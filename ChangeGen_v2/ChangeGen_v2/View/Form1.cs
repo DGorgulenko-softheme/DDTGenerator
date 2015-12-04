@@ -48,14 +48,16 @@ namespace ChangeGen_v2
             catch (WCFClientBase.ClientServerErrorException exception)
             {
                 Logger.LogError("Cannot connect to Core server " + coreCreds.Hostname, coreCreds.Hostname, exception);
-                MessageBox.Show("Cannot connect to Core server." + Environment.NewLine + exception.Message);
+                MessageBox.Show("Cannot connect to Core server." + Environment.NewLine + exception.Message, "Connection Failed", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 return;
             }
             catch (WCFClientBase.HttpUnauthorizedRequestException exception)
             {
                 Logger.LogError("Cannot connect to Core server " + coreCreds.Hostname + " Wrong credentials.", coreCreds.Hostname, exception);
-                MessageBox.Show("Cannot connect to Core server. Wrong credentials." + Environment.NewLine + exception.Message);
+                MessageBox.Show("Cannot connect to Core server. Incorrect credentials." + Environment.NewLine + exception.Message, "Connection Failed",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 return;
             }
@@ -104,8 +106,18 @@ namespace ChangeGen_v2
             }
             else
             {
-                serverCreds.Username = tb_customUsername.Text;
-                serverCreds.Password = tb_customPassword.Text;
+                if(tb_customUsername.Text.Length != 0 || tb_customPassword.Text.Length != 0)
+                {
+                    serverCreds.Username = tb_customUsername.Text;
+                    serverCreds.Password = tb_customPassword.Text;
+                }
+                else
+                {
+                    MessageBox.Show("Please enter the username and password for server,"+Environment.NewLine+"or check 'Use Core Credentials' checkbox", "Enter credentials",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                
             }
 
             ddtParameters = new DDTParameters()
@@ -305,6 +317,6 @@ namespace ChangeGen_v2
                 tb_customUsername.Enabled = false;
                 tb_customPassword.Enabled = false;
             }
-        }        
+        }
     }
 }

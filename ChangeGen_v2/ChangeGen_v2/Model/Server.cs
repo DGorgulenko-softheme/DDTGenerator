@@ -8,31 +8,47 @@ namespace ChangeGen_v2
     // This class represents the Server object, which used to store information about remote machine, parameters and current state of DDT
     class Server
     {
-        public CancellationTokenSource _cts;                        // Cancelation token to cancel DDT operations on server
-        public Task _task;                                          // Used to create separate async task for each server
-        public string _ip;                                          // Server ip address
-        public string _displayname;                                 // Server display name on Core if available
-        public string _repository;                                  // Server repository on Core if available
-        public DDTStatus _ddtStatus = DDTStatus.Stopped;            // Current status of DDT on server
-        public ServerConnectionCredentials _serverCredentials;      // Server username and password for connection
-        public DDTParameters _ddtParameters;                        // DDT Parameters for current server
+        // Cancelation token to cancel DDT operations on server
+        public CancellationTokenSource CTS { get; set; }
+
+        // Used to create separate async task for each server
+        public Task Task { get; set; }
+
+        // Server ip address
+        public string IP { get; set; }
+
+        // Server display name on Core if available
+        public string DisplayName { get; set; }
+
+        // Server repository on Core if available
+        public string Repository { get; set; }
+
+        // Current status of DDT on server
+        public DDTStatus DdtStatus { get; set; } = DDTStatus.Stopped;
+
+        // Server username and password for connection
+        public ServerConnectionCredentials ServerCredentials { get; set; }
+
+        // DDT Parameters for current server
+        public DDTParameters DdtParameters { get; set; }
 
 
         // This construcor is using when creating new instance using data from Core.
         public Server(string ip, string displayname, string repository)
         {
-            _ip = ip;
-            _displayname = displayname;
-            _repository = repository;
+            IP = ip;
+            DisplayName = displayname;
+            Repository = repository;
         }
 
 
         // Enumaraion of possible status for DDT tool on server
         public enum DDTStatus
         {
+            Failed,
             Running,
-            Stopped,
-            Failed
+            Stopped
+            
         }
 
         // Method used to run DDT on server side
@@ -40,19 +56,19 @@ namespace ChangeGen_v2
         {
             try
             {
-                DDT.Runddtremotely(_ip, _serverCredentials, _ddtParameters, _cts.Token);
+                DDT.Runddtremotely(IP, ServerCredentials, DdtParameters, CTS.Token);
             }
             catch(COMException)
             {
-                _ddtStatus = DDTStatus.Failed;
+                DdtStatus = DDTStatus.Failed;
             }
             catch(System.UnauthorizedAccessException)
             {
-                _ddtStatus = DDTStatus.Failed;
+                DdtStatus = DDTStatus.Failed;
             }
             catch (IOException)
             {
-                _ddtStatus = DDTStatus.Failed;
+                DdtStatus = DDTStatus.Failed;
             }
         }
     }

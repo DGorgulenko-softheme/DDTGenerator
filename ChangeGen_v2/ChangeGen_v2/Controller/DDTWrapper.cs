@@ -18,20 +18,20 @@ namespace ChangeGen_v2
             {
                 for (int y = 0; y < serversList.Count; y++)
                 {
-                    if (selectedServers[x].SubItems[1].Text == serversList[y]._ip)
+                    if (selectedServers[x].SubItems[1].Text == serversList[y].IP)
                     {
                         int index = y;
 
-                        serversList[y]._ddtStatus = Server.DDTStatus.Running;
-                        serversList[y]._cts = new CancellationTokenSource();
-                        serversList[y]._serverCredentials = serverCreds;
-                        serversList[y]._ddtParameters = ddtparameters;
+                        serversList[y].DdtStatus = Server.DDTStatus.Running;
+                        serversList[y].CTS = new CancellationTokenSource();
+                        serversList[y].ServerCredentials = serverCreds;
+                        serversList[y].DdtParameters = ddtparameters;
                        
 
-                        if (serversList[y]._task == null || serversList[y]._task.Status != TaskStatus.Running)
+                        if (serversList[y].Task == null || serversList[y].Task.Status != TaskStatus.Running)
                         {
-                            serversList[y]._task = new Task(() => serversList[index].Runddt());
-                            serversList[y]._task.Start();
+                            serversList[y].Task = new Task(() => serversList[index].Runddt());
+                            serversList[y].Task.Start();
                         }
                     }
                 }
@@ -47,12 +47,12 @@ namespace ChangeGen_v2
             {
                 for (int y = 0; y < serversList.Count; y++)
                 {
-                    if (selectedServers[x].SubItems[1].Text == serversList[y]._ip)
+                    if (selectedServers[x].SubItems[1].Text == serversList[y].IP)
                     {
                         int index = y;
 
-                        serversList[y]._ddtStatus = Server.DDTStatus.Stopped;
-                        serversList[y]._cts.Cancel();
+                        serversList[y].DdtStatus = Server.DDTStatus.Stopped;
+                        serversList[y].CTS.Cancel();
                     }
                 }
             }

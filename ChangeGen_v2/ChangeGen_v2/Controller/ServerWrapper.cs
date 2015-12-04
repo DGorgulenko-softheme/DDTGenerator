@@ -25,10 +25,10 @@ namespace ChangeGen_v2
 
             foreach (var server in serversList)
             {
-                lvi_server = new ListViewItem(server._displayname);
-                lvi_server.SubItems.Add(server._ip);
-                lvi_server.SubItems.Add(server._repository);
-                lvi_server.SubItems.Add(server._ddtStatus.ToString());
+                lvi_server = new ListViewItem(server.DisplayName);
+                lvi_server.SubItems.Add(server.IP);
+                lvi_server.SubItems.Add(server.Repository);
+                lvi_server.SubItems.Add(server.DdtStatus.ToString());
                 lvi_server.SubItems.Add("");
                 lvi_server.SubItems.Add("");
                 lvi_server.SubItems.Add("");
@@ -46,19 +46,19 @@ namespace ChangeGen_v2
             {
                 for (int j = 0; j < serversList.Count; j++)
                 {
-                    if (listViewAgents[i].SubItems[1].Text == serversList[j]._ip)
+                    if (listViewAgents[i].SubItems[1].Text == serversList[j].IP)
                     {
-                        listViewAgents[i].SubItems[3].Text = serversList[j]._ddtStatus.ToString();   // DDT Status
-                        if(serversList[j]._ddtParameters == null)
+                        listViewAgents[i].SubItems[3].Text = serversList[j].DdtStatus.ToString();   // DDT Status
+                        if(serversList[j].DdtParameters == null)
                         {
                             break;
                         }
                         else
                         {
-                            listViewAgents[i].SubItems[4].Text = serversList[j]._ddtParameters.Filesize.ToString();   // Filesize
-                            listViewAgents[i].SubItems[5].Text = serversList[j]._ddtParameters.Compression.ToString(); // Compression
-                            listViewAgents[i].SubItems[6].Text = serversList[j]._ddtParameters.Interval.ToString();    // Interval
-                            listViewAgents[i].SubItems[7].Text = serversList[j]._ddtParameters.Filepath;               // Path
+                            listViewAgents[i].SubItems[4].Text = serversList[j].DdtParameters.Filesize.ToString();   // Filesize
+                            listViewAgents[i].SubItems[5].Text = serversList[j].DdtParameters.Compression.ToString(); // Compression
+                            listViewAgents[i].SubItems[6].Text = serversList[j].DdtParameters.Interval.ToString();    // Interval
+                            listViewAgents[i].SubItems[7].Text = serversList[j].DdtParameters.Filepath;               // Path
                         }                       
                     }
                 }
