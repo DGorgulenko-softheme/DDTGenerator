@@ -59,6 +59,8 @@
             this.gb_ddtparams = new System.Windows.Forms.GroupBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.lbl_creds = new System.Windows.Forms.Label();
+            this.btn_About = new System.Windows.Forms.Button();
             this.gb_customcreds.SuspendLayout();
             this.gb_ddtparams.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -347,7 +349,7 @@
             this.gb_customcreds.Controls.Add(this.tb_customUsername);
             this.gb_customcreds.Controls.Add(this.lbl_customPassword);
             this.gb_customcreds.Controls.Add(this.tb_customPassword);
-            this.gb_customcreds.Location = new System.Drawing.Point(663, 234);
+            this.gb_customcreds.Location = new System.Drawing.Point(663, 252);
             this.gb_customcreds.Name = "gb_customcreds";
             this.gb_customcreds.Size = new System.Drawing.Size(145, 100);
             this.gb_customcreds.TabIndex = 33;
@@ -365,7 +367,7 @@
             this.gb_ddtparams.Controls.Add(this.lbl_Path);
             this.gb_ddtparams.Controls.Add(this.lbl_Interval);
             this.gb_ddtparams.Controls.Add(this.tb_Interval);
-            this.gb_ddtparams.Location = new System.Drawing.Point(664, 11);
+            this.gb_ddtparams.Location = new System.Drawing.Point(664, 29);
             this.gb_ddtparams.Name = "gb_ddtparams";
             this.gb_ddtparams.Size = new System.Drawing.Size(144, 217);
             this.gb_ddtparams.TabIndex = 34;
@@ -380,11 +382,34 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // lbl_creds
+            // 
+            this.lbl_creds.AutoSize = true;
+            this.lbl_creds.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_creds.Location = new System.Drawing.Point(166, 226);
+            this.lbl_creds.Name = "lbl_creds";
+            this.lbl_creds.Size = new System.Drawing.Size(478, 18);
+            this.lbl_creds.TabIndex = 35;
+            this.lbl_creds.Text = "Please enter credentials for Dell Data Protection | Rapid Recovery Core";
+            // 
+            // btn_About
+            // 
+            this.btn_About.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_About.Location = new System.Drawing.Point(781, 7);
+            this.btn_About.Name = "btn_About";
+            this.btn_About.Size = new System.Drawing.Size(26, 23);
+            this.btn_About.TabIndex = 36;
+            this.btn_About.Text = "?";
+            this.btn_About.UseVisualStyleBackColor = true;
+            this.btn_About.Click += new System.EventHandler(this.btn_About_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(815, 428);
+            this.Controls.Add(this.btn_About);
+            this.Controls.Add(this.lbl_creds);
             this.Controls.Add(this.gb_ddtparams);
             this.Controls.Add(this.gb_customcreds);
             this.Controls.Add(this.lbl_Port);
@@ -403,7 +428,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Data Generator 0.2b";
+            this.Text = "DDT Data Generator 0.2b";
             this.gb_customcreds.ResumeLayout(false);
             this.gb_customcreds.PerformLayout();
             this.gb_ddtparams.ResumeLayout(false);
@@ -446,6 +471,8 @@
         private System.Windows.Forms.GroupBox gb_ddtparams;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Label lbl_creds;
+        private System.Windows.Forms.Button btn_About;
     }
 }
 
