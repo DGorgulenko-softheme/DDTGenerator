@@ -1,7 +1,96 @@
-[Info][localhost][12/7/2015 10:41:30 AM]: Successfully connected to Core Server: localhost
-[Info][localhost][12/7/2015 10:44:18 AM]: Successfully connected to Core Server: localhost
-[Info][localhost][12/7/2015 10:56:13 AM]: Successfully connected to Core Server: localhost
-[Info][localhost][12/7/2015 11:10:56 AM]: Successfully connected to Core Server: localhost
-[Info][localhost][12/7/2015 11:55:45 AM]: Successfully connected to Core Server: localhost
-[Info][10.23.20.199][12/7/2015 11:56:03 AM]: Successfully copied DDT to remote server
-[Info][10.23.20.199][12/7/2015 11:56:03 AM]: Data generation started on remote server 10.23.20.199
+[Info][localhost][12/3/2015 2:21:57 PM]: Successfully connected to Core Server: localhost
+[Error][10.23.20.199][12/3/2015 2:22:18 PM]: Cannot connect to remote RPC server. Retry in 30 seconds
+System.Runtime.InteropServices.COMException
+The RPC server is unavailable. (Exception from HRESULT: 0x800706BA)
+   at System.Runtime.InteropServices.Marshal.ThrowExceptionForHRInternal(Int32 errorCode, IntPtr errorInfo)
+   at System.Management.ManagementScope.InitializeGuts(Object o)
+   at System.Management.ManagementScope.Initialize()
+   at System.Management.ManagementObjectSearcher.Initialize()
+   at System.Management.ManagementObjectSearcher.Get()
+   at ChangeGen_v2.DDT.WMIKillDDT(String ip, String username, String password) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\DDT.cs:line 103
+[Info][10.23.20.199][12/3/2015 2:22:48 PM]: Successfully copied DDT to server
+[Info][10.23.20.199][12/3/2015 2:22:48 PM]: Successfully deleted files in folder for data generation
+[Info][10.23.20.199][12/3/2015 2:22:48 PM]: DDT succesfully performed data generation.
+[Info][10.23.20.199][12/3/2015 2:22:48 PM]: Waiting for 1 min. to create new datagen file.
+[Info][10.23.20.199][12/3/2015 2:23:48 PM]: Successfully deleted files in folder for data generation
+[Info][10.23.20.199][12/3/2015 2:23:48 PM]: DDT succesfully performed data generation.
+[Info][10.23.20.199][12/3/2015 2:23:48 PM]: Waiting for 1 min. to create new datagen file.
+[Info][localhost][12/3/2015 7:44:27 PM]: Successfully connected to Core Server: localhost
+[Error][10.23.20.20][12/3/2015 7:44:57 PM]: Cannot connect to remote RPC server. Retry in 30 seconds
+System.Runtime.InteropServices.COMException
+The RPC server is unavailable. (Exception from HRESULT: 0x800706BA)
+   at System.Runtime.InteropServices.Marshal.ThrowExceptionForHRInternal(Int32 errorCode, IntPtr errorInfo)
+   at System.Management.ManagementScope.InitializeGuts(Object o)
+   at System.Management.ManagementScope.Initialize()
+   at System.Management.ManagementObjectSearcher.Initialize()
+   at System.Management.ManagementObjectSearcher.Get()
+   at ChangeGen_v2.DDT.WMIKillDDT(String ip, String username, String password) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\DDT.cs:line 103
+[Error][10.23.20.20][12/3/2015 7:45:53 PM]: Cannot connect to remote RPC server. Retry in 30 seconds
+System.Runtime.InteropServices.COMException
+The RPC server is unavailable. (Exception from HRESULT: 0x800706BA)
+   at System.Runtime.InteropServices.Marshal.ThrowExceptionForHRInternal(Int32 errorCode, IntPtr errorInfo)
+   at System.Management.ManagementScope.InitializeGuts(Object o)
+   at System.Management.ManagementScope.Initialize()
+   at System.Management.ManagementObjectSearcher.Initialize()
+   at System.Management.ManagementObjectSearcher.Get()
+   at ChangeGen_v2.DDT.WMIKillDDT(String ip, String username, String password) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\DDT.cs:line 103
+[Error][10.23.20.20][12/3/2015 7:46:48 PM]: Cannot connect to remote RPC server. Retry in 30 seconds
+System.Runtime.InteropServices.COMException
+The RPC server is unavailable. (Exception from HRESULT: 0x800706BA)
+   at System.Runtime.InteropServices.Marshal.ThrowExceptionForHRInternal(Int32 errorCode, IntPtr errorInfo)
+   at System.Management.ManagementScope.InitializeGuts(Object o)
+   at System.Management.ManagementScope.Initialize()
+   at System.Management.ManagementObjectSearcher.Initialize()
+   at System.Management.ManagementObjectSearcher.Get()
+   at ChangeGen_v2.DDT.WMIKillDDT(String ip, String username, String password) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\DDT.cs:line 103
+[Error][10.23.20.20][12/3/2015 7:47:44 PM]: Cannot connect to remote RPC server.
+System.Runtime.InteropServices.COMException
+The RPC server is unavailable. (Exception from HRESULT: 0x800706BA)
+   at System.Runtime.InteropServices.Marshal.ThrowExceptionForHRInternal(Int32 errorCode, IntPtr errorInfo)
+   at System.Management.ManagementScope.InitializeGuts(Object o)
+   at System.Management.ManagementScope.Initialize()
+   at System.Management.ManagementObjectSearcher.Initialize()
+   at System.Management.ManagementObjectSearcher.Get()
+   at ChangeGen_v2.DDT.WMIKillDDT(String ip, String username, String password) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\DDT.cs:line 103
+[Info][localhost][12/4/2015 11:23:38 AM]: Successfully connected to Core Server: localhost
+[Info][localhost][12/4/2015 11:24:05 AM]: Successfully connected to Core Server: localhost
+[Info][localhost][12/4/2015 11:31:46 AM]: Successfully connected to Core Server: localhost
+[Info][localhost][12/4/2015 11:33:22 AM]: Successfully connected to Core Server: localhost
+[Error][10.23.10.22][12/4/2015 11:33:41 AM]: Access denied to remote server. Possibly incorrect credentials.
+System.UnauthorizedAccessException
+Access is denied. (Exception from HRESULT: 0x80070005 (E_ACCESSDENIED))
+   at System.Runtime.InteropServices.Marshal.ThrowExceptionForHRInternal(Int32 errorCode, IntPtr errorInfo)
+   at System.Management.ManagementScope.InitializeGuts(Object o)
+   at System.Management.ManagementScope.Initialize()
+   at System.Management.ManagementObjectSearcher.Initialize()
+   at System.Management.ManagementObjectSearcher.Get()
+   at ChangeGen_v2.DDT.WMIKillDDT(String ip, String username, String password) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\DDT.cs:line 103
+[Info][10.23.20.199][12/4/2015 11:33:43 AM]: Successfully copied DDT to server
+[Info][10.23.20.199][12/4/2015 11:33:43 AM]: Successfully deleted files in folder for data generation
+[Info][10.23.20.199][12/4/2015 11:33:43 AM]: DDT succesfully performed data generation.
+[Info][10.23.20.199][12/4/2015 11:33:43 AM]: Waiting for 1 min. to create new datagen file.
+[Info][localhost][12/4/2015 11:47:17 AM]: Successfully connected to Core Server: localhost
+[Info][localhost][12/4/2015 11:47:45 AM]: Successfully connected to Core Server: localhost
+[Info][localhost][12/4/2015 11:53:04 AM]: Successfully connected to Core Server: localhost
+[Info][localhost][12/4/2015 11:53:44 AM]: Successfully connected to Core Server: localhost
+[Error][localhos][12/4/2015 11:55:48 AM]: Cannot connect to Core server localhos
+WCFClientBase.ClientServerErrorException
+Call to service method https://localhos:8006/apprecovery/api/core/agents/protected GET failed
+   at WCFClientBase.ClientBase.HandleServiceMethodCallException(Uri uri, String method, TimeSpan elapsedTime, Exception e)
+   at WCFClientBase.ClientBase.ExecuteAction(HttpClient client, Uri uri, String method)
+   at WCFClientBase.ClientBase.GetResponse(Uri uri, String method, String knownEtag)
+   at WCFClientBase.ClientBase.ExecuteServiceCall[T](Uri uri, String method, String knownETag)
+   at Replay.Core.Client.AgentsManagementCoreClient.GetProtectedAgents()
+   at ChangeGen_v2.CoreConnector.GetServersToListFromCore(CoreConnectionCredentials coreCredentials) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\CoreConnector.cs:line 43
+   at ChangeGen_v2.ServerWrapper.ServersToListView(ListView listview, CoreConnectionCredentials coreCredentials) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Controller\ServerWrapper.cs:line 16
+   at ChangeGen_v2.Form1.btn_Connect_Click(Object sender, EventArgs e) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\View\Form1.cs:line 45
+[Error][localhost][12/4/2015 11:56:03 AM]: Cannot connect to Core server localhost Wrong credentials.
+WCFClientBase.HttpUnauthorizedRequestException
+Call to service method https://localhost:8006/apprecovery/api/core/agents/protected GET failed
+   at WCFClientBase.ClientBase.HandleResponse(Uri uri, String method, HttpResponseMessage response)
+   at WCFClientBase.ClientBase.GetResponse(Uri uri, String method, String knownEtag)
+   at WCFClientBase.ClientBase.ExecuteServiceCall[T](Uri uri, String method, String knownETag)
+   at Replay.Core.Client.AgentsManagementCoreClient.GetProtectedAgents()
+   at ChangeGen_v2.CoreConnector.GetServersToListFromCore(CoreConnectionCredentials coreCredentials) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\CoreConnector.cs:line 43
+   at ChangeGen_v2.ServerWrapper.ServersToListView(ListView listview, CoreConnectionCredentials coreCredentials) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Controller\ServerWrapper.cs:line 16
+   at ChangeGen_v2.Form1.btn_Connect_Click(Object sender, EventArgs e) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\View\Form1.cs:line 45

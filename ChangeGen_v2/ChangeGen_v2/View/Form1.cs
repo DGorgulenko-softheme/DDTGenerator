@@ -168,7 +168,6 @@ namespace ChangeGen_v2
             connectionPageControls.Add(lbl_password);
             connectionPageControls.Add(tb_Port);
             connectionPageControls.Add(lbl_Port);
-            connectionPageControls.Add(lbl_creds);
 
             listviewPageControls.Add(lv_AgentsList);
             listviewPageControls.Add(cb_selectAllAgents);
@@ -318,12 +317,6 @@ namespace ChangeGen_v2
                 tb_customUsername.Enabled = false;
                 tb_customPassword.Enabled = false;
             }
-        }
-
-        private void btn_About_Click(object sender, EventArgs e)
-        {
-            FrmAbout frmAbout = new FrmAbout();
-            frmAbout.Show();
         }
     }
 }
