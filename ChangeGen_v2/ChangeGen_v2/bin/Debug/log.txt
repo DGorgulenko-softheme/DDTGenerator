@@ -1,2 +1,0 @@
-[Info][localhost][1/21/2016 4:31:35 PM]: Successfully connected to Core Server: localhost
-[Info][localhost][1/21/2016 4:37:30 PM]: Successfully connected to Core Server: localhost
