@@ -88,7 +88,7 @@ namespace ChangeGen_v2
             DDTWrapper.StopDDT(lv_AgentsList, ServerWrapper.serversList);
 
             // Update ListView
-            ServerWrapper.UpdateListView(lv_AgentsList);
+            ServerWrapper.UpdateListView(lv_AgentsList, lbl_ChangeRateValue);
         }
 
         private void btn_startDDT_Click(object sender, EventArgs e)
@@ -137,7 +137,7 @@ namespace ChangeGen_v2
                                 ddtParameters,
                                 serverCreds);
             // Update ListView
-            ServerWrapper.UpdateListView(lv_AgentsList);
+            ServerWrapper.UpdateListView(lv_AgentsList, lbl_ChangeRateValue);
 
         }
 
@@ -188,6 +188,8 @@ namespace ChangeGen_v2
             listviewPageControls.Add(tb_customPassword);
             listviewPageControls.Add(gb_customcreds);
             listviewPageControls.Add(gb_ddtparams);
+            listviewPageControls.Add(lbl_ChangeRateLabel);
+            listviewPageControls.Add(lbl_ChangeRateValue);
         }
 
         private void GetCredsFromFileToGUI()
@@ -207,7 +209,7 @@ namespace ChangeGen_v2
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            ServerWrapper.UpdateListView(lv_AgentsList);
+            ServerWrapper.UpdateListView(lv_AgentsList, lbl_ChangeRateValue);
         }
 
         private void GetDDTParamsFromFileToGUI()

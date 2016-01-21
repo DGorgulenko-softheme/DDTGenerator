@@ -94,3 +94,214 @@ Call to service method https://localhost:8006/apprecovery/api/core/agents/protec
    at ChangeGen_v2.CoreConnector.GetServersToListFromCore(CoreConnectionCredentials coreCredentials) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\CoreConnector.cs:line 43
    at ChangeGen_v2.ServerWrapper.ServersToListView(ListView listview, CoreConnectionCredentials coreCredentials) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Controller\ServerWrapper.cs:line 16
    at ChangeGen_v2.Form1.btn_Connect_Click(Object sender, EventArgs e) in D:\Git_repos\DDTGenerator\DDTGenerator\ChangeGen_v2\ChangeGen_v2\View\Form1.cs:line 45
+[Info][localhost][1/21/2016 10:36:11 AM]: Successfully connected to Core Server: localhost
+[Info][localhost][1/21/2016 10:41:06 AM]: Successfully connected to Core Server: localhost
+[Info][localhost][1/21/2016 12:05:18 PM]: Successfully connected to Core Server: localhost
+[Info][localhost][1/21/2016 12:49:39 PM]: Successfully connected to Core Server: localhost
+[Error][10.23.21.39][1/21/2016 12:49:57 PM]: Cannot connect to remote RPC server. Retry in 30 seconds
+System.Runtime.InteropServices.COMException
+The RPC server is unavailable. (Exception from HRESULT: 0x800706BA)
+   at System.Runtime.InteropServices.Marshal.ThrowExceptionForHRInternal(Int32 errorCode, IntPtr errorInfo)
+   at System.Management.ManagementScope.InitializeGuts(Object o)
+   at System.Management.ManagementScope.Initialize()
+   at System.Management.ManagementObjectSearcher.Initialize()
+   at System.Management.ManagementObjectSearcher.Get()
+   at ChangeGen_v2.DDT.WMIKillDDT(String ip, String username, String password) in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\DDT.cs:line 103
+[Info][10.23.21.39][1/21/2016 12:50:27 PM]: Successfully copied DDT to server
+[Info][10.23.21.39][1/21/2016 12:50:27 PM]: DDT operation has been canceled by user
+[Info][localhost][1/21/2016 1:11:38 PM]: Successfully connected to Core Server: localhost
+[Info][10.23.21.39][1/21/2016 1:11:57 PM]: Successfully copied DDT to server
+[Error][10.23.21.39][1/21/2016 1:11:57 PM]: Remote path doesn't exist
+System.IO.IOException
+The network name cannot be found.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.Directory.InternalCreateDirectory(String fullPath, String path, Object dirSecurityObj, Boolean checkHost)
+   at System.IO.Directory.InternalCreateDirectoryHelper(String path, Boolean checkHost)
+   at System.IO.Directory.CreateDirectory(String path)
+   at ChangeGen_v2.DDT.<>c__DisplayClass2_0.<cleanFilepathRemotely>b__0() in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\DDT.cs:line 66
+[Error][10.23.21.39][1/21/2016 1:11:57 PM]: Invoking action on remote machine failed with Error code 183
+System.IO.IOException
+The network name cannot be found.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.Directory.InternalCreateDirectory(String fullPath, String path, Object dirSecurityObj, Boolean checkHost)
+   at System.IO.Directory.InternalCreateDirectoryHelper(String path, Boolean checkHost)
+   at System.IO.Directory.CreateDirectory(String path)
+   at ChangeGen_v2.DDT.<>c__DisplayClass2_0.<cleanFilepathRemotely>b__0() in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\DDT.cs:line 71
+   at ChangeGen_v2.HelperMethods.PerformActionRemotely(Action action, ServerConnectionCredentials serverCreds, String ip) in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\HelperMethods.cs:line 27
+[Info][10.23.21.39][1/21/2016 1:11:57 PM]: Successfully deleted files in folder for data generation
+[Info][10.23.21.39][1/21/2016 1:11:58 PM]: DDT succesfully performed data generation.
+[Info][10.23.21.39][1/21/2016 1:11:58 PM]: Waiting for 60 min. to create new datagen file.
+[Info][localhost][1/21/2016 1:15:46 PM]: Successfully connected to Core Server: localhost
+[Info][10.23.21.39][1/21/2016 1:15:50 PM]: Successfully copied DDT to server
+[Error][10.23.21.39][1/21/2016 1:15:50 PM]: Remote path doesn't exist
+System.IO.IOException
+The network name cannot be found.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.Directory.InternalCreateDirectory(String fullPath, String path, Object dirSecurityObj, Boolean checkHost)
+   at System.IO.Directory.InternalCreateDirectoryHelper(String path, Boolean checkHost)
+   at System.IO.Directory.CreateDirectory(String path)
+   at ChangeGen_v2.DDT.<>c__DisplayClass2_0.<cleanFilepathRemotely>b__0() in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\DDT.cs:line 66
+[Error][10.23.21.39][1/21/2016 1:15:50 PM]: Invoking action on remote machine failed with Error code 183
+System.IO.IOException
+The network name cannot be found.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.Directory.InternalCreateDirectory(String fullPath, String path, Object dirSecurityObj, Boolean checkHost)
+   at System.IO.Directory.InternalCreateDirectoryHelper(String path, Boolean checkHost)
+   at System.IO.Directory.CreateDirectory(String path)
+   at ChangeGen_v2.DDT.<>c__DisplayClass2_0.<cleanFilepathRemotely>b__0() in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\DDT.cs:line 71
+   at ChangeGen_v2.HelperMethods.PerformActionRemotely(Action action, ServerConnectionCredentials serverCreds, String ip) in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\HelperMethods.cs:line 27
+[Info][10.23.21.39][1/21/2016 1:15:50 PM]: Successfully deleted files in folder for data generation
+[Info][10.23.21.39][1/21/2016 1:15:50 PM]: DDT succesfully performed data generation.
+[Info][10.23.21.39][1/21/2016 1:15:50 PM]: Waiting for 60 min. to create new datagen file.
+[Info][localhost][1/21/2016 1:16:49 PM]: Successfully connected to Core Server: localhost
+[Info][10.23.21.39][1/21/2016 1:16:52 PM]: Successfully copied DDT to server
+[Error][10.23.21.39][1/21/2016 1:16:52 PM]: Remote path doesn't exist
+System.IO.IOException
+The network name cannot be found.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.Directory.InternalCreateDirectory(String fullPath, String path, Object dirSecurityObj, Boolean checkHost)
+   at System.IO.Directory.InternalCreateDirectoryHelper(String path, Boolean checkHost)
+   at System.IO.Directory.CreateDirectory(String path)
+   at ChangeGen_v2.DDT.<>c__DisplayClass2_0.<cleanFilepathRemotely>b__0() in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\DDT.cs:line 66
+[Error][10.23.21.39][1/21/2016 1:16:52 PM]: Invoking action on remote machine failed with Error code 183
+System.IO.IOException
+The network name cannot be found.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.Directory.InternalCreateDirectory(String fullPath, String path, Object dirSecurityObj, Boolean checkHost)
+   at System.IO.Directory.InternalCreateDirectoryHelper(String path, Boolean checkHost)
+   at System.IO.Directory.CreateDirectory(String path)
+   at ChangeGen_v2.DDT.<>c__DisplayClass2_0.<cleanFilepathRemotely>b__0() in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\DDT.cs:line 71
+   at ChangeGen_v2.HelperMethods.PerformActionRemotely(Action action, ServerConnectionCredentials serverCreds, String ip) in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\HelperMethods.cs:line 27
+[Info][10.23.21.39][1/21/2016 1:16:52 PM]: Successfully deleted files in folder for data generation
+[Info][10.23.21.39][1/21/2016 1:16:52 PM]: DDT succesfully performed data generation.
+[Info][10.23.21.39][1/21/2016 1:16:52 PM]: Waiting for 60 min. to create new datagen file.
+[Info][localhost][1/21/2016 1:18:42 PM]: Successfully connected to Core Server: localhost
+[Info][10.23.21.39][1/21/2016 1:18:44 PM]: Successfully copied DDT to server
+[Error][10.23.21.39][1/21/2016 1:18:44 PM]: Remote path doesn't exist
+System.IO.IOException
+The network name cannot be found.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.Directory.InternalCreateDirectory(String fullPath, String path, Object dirSecurityObj, Boolean checkHost)
+   at System.IO.Directory.InternalCreateDirectoryHelper(String path, Boolean checkHost)
+   at System.IO.Directory.CreateDirectory(String path)
+   at ChangeGen_v2.DDT.<>c__DisplayClass2_0.<cleanFilepathRemotely>b__0() in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\DDT.cs:line 66
+[Error][10.23.21.39][1/21/2016 1:18:44 PM]: Invoking action on remote machine failed with Error code 183
+System.IO.IOException
+The network name cannot be found.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.Directory.InternalCreateDirectory(String fullPath, String path, Object dirSecurityObj, Boolean checkHost)
+   at System.IO.Directory.InternalCreateDirectoryHelper(String path, Boolean checkHost)
+   at System.IO.Directory.CreateDirectory(String path)
+   at ChangeGen_v2.DDT.<>c__DisplayClass2_0.<cleanFilepathRemotely>b__0() in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\DDT.cs:line 71
+   at ChangeGen_v2.HelperMethods.PerformActionRemotely(Action action, ServerConnectionCredentials serverCreds, String ip) in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\HelperMethods.cs:line 27
+[Info][10.23.21.39][1/21/2016 1:18:44 PM]: Successfully deleted files in folder for data generation
+[Info][10.23.21.39][1/21/2016 1:18:44 PM]: DDT succesfully performed data generation.
+[Info][10.23.21.39][1/21/2016 1:18:44 PM]: Waiting for 60 min. to create new datagen file.
+[Info][localhost][1/21/2016 1:19:01 PM]: Successfully connected to Core Server: localhost
+[Info][10.23.21.39][1/21/2016 1:19:07 PM]: Successfully copied DDT to server
+[Error][10.23.21.39][1/21/2016 1:19:07 PM]: Remote path doesn't exist
+System.IO.IOException
+The network name cannot be found.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.Directory.InternalCreateDirectory(String fullPath, String path, Object dirSecurityObj, Boolean checkHost)
+   at System.IO.Directory.InternalCreateDirectoryHelper(String path, Boolean checkHost)
+   at System.IO.Directory.CreateDirectory(String path)
+   at ChangeGen_v2.DDT.<>c__DisplayClass2_0.<cleanFilepathRemotely>b__0() in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\DDT.cs:line 66
+[Error][10.23.21.39][1/21/2016 1:19:07 PM]: Invoking action on remote machine failed with Error code 183
+System.IO.IOException
+The network name cannot be found.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.Directory.InternalCreateDirectory(String fullPath, String path, Object dirSecurityObj, Boolean checkHost)
+   at System.IO.Directory.InternalCreateDirectoryHelper(String path, Boolean checkHost)
+   at System.IO.Directory.CreateDirectory(String path)
+   at ChangeGen_v2.DDT.<>c__DisplayClass2_0.<cleanFilepathRemotely>b__0() in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\DDT.cs:line 71
+   at ChangeGen_v2.HelperMethods.PerformActionRemotely(Action action, ServerConnectionCredentials serverCreds, String ip) in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\HelperMethods.cs:line 27
+[Info][10.23.21.39][1/21/2016 1:19:07 PM]: Successfully deleted files in folder for data generation
+[Info][10.23.21.39][1/21/2016 1:19:07 PM]: DDT succesfully performed data generation.
+[Info][10.23.21.39][1/21/2016 1:19:07 PM]: Waiting for 60 min. to create new datagen file.
+[Info][localhost][1/21/2016 2:35:34 PM]: Successfully connected to Core Server: localhost
+[Info][10.23.21.39][1/21/2016 2:35:51 PM]: Successfully copied DDT to server
+[Info][10.23.21.39][1/21/2016 2:35:51 PM]: DDT operation has been canceled by user
+[Info][10.23.21.32][1/21/2016 2:35:52 PM]: Successfully copied DDT to server
+[Info][10.23.21.38][1/21/2016 2:35:52 PM]: Successfully copied DDT to server
+[Info][10.23.21.38][1/21/2016 2:35:52 PM]: DDT operation has been canceled by user
+[Info][10.23.21.32][1/21/2016 2:35:52 PM]: DDT operation has been canceled by user
+[Info][10.23.21.39][1/21/2016 2:36:09 PM]: Successfully copied DDT to server
+[Error][10.23.21.39][1/21/2016 2:36:09 PM]: Remote path doesn't exist
+System.IO.IOException
+The network name cannot be found.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.Directory.InternalCreateDirectory(String fullPath, String path, Object dirSecurityObj, Boolean checkHost)
+   at System.IO.Directory.InternalCreateDirectoryHelper(String path, Boolean checkHost)
+   at System.IO.Directory.CreateDirectory(String path)
+   at ChangeGen_v2.DDT.<>c__DisplayClass2_0.<cleanFilepathRemotely>b__0() in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\DDT.cs:line 66
+[Error][10.23.21.39][1/21/2016 2:36:09 PM]: Invoking action on remote machine failed with Error code 183
+System.IO.IOException
+The network name cannot be found.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.Directory.InternalCreateDirectory(String fullPath, String path, Object dirSecurityObj, Boolean checkHost)
+   at System.IO.Directory.InternalCreateDirectoryHelper(String path, Boolean checkHost)
+   at System.IO.Directory.CreateDirectory(String path)
+   at ChangeGen_v2.DDT.<>c__DisplayClass2_0.<cleanFilepathRemotely>b__0() in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\DDT.cs:line 71
+   at ChangeGen_v2.HelperMethods.PerformActionRemotely(Action action, ServerConnectionCredentials serverCreds, String ip) in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\HelperMethods.cs:line 27
+[Info][10.23.21.39][1/21/2016 2:36:09 PM]: Successfully deleted files in folder for data generation
+[Info][10.23.21.39][1/21/2016 2:36:10 PM]: DDT succesfully performed data generation.
+[Info][10.23.21.39][1/21/2016 2:36:10 PM]: Waiting for 120 min. to create new datagen file.
+[Info][10.23.21.32][1/21/2016 2:36:20 PM]: Successfully copied DDT to server
+[Error][10.23.21.32][1/21/2016 2:36:20 PM]: Remote path doesn't exist
+System.IO.IOException
+The network name cannot be found.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.Directory.InternalCreateDirectory(String fullPath, String path, Object dirSecurityObj, Boolean checkHost)
+   at System.IO.Directory.InternalCreateDirectoryHelper(String path, Boolean checkHost)
+   at System.IO.Directory.CreateDirectory(String path)
+   at ChangeGen_v2.DDT.<>c__DisplayClass2_0.<cleanFilepathRemotely>b__0() in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\DDT.cs:line 66
+[Error][10.23.21.32][1/21/2016 2:36:20 PM]: Invoking action on remote machine failed with Error code 183
+System.IO.IOException
+The network name cannot be found.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.Directory.InternalCreateDirectory(String fullPath, String path, Object dirSecurityObj, Boolean checkHost)
+   at System.IO.Directory.InternalCreateDirectoryHelper(String path, Boolean checkHost)
+   at System.IO.Directory.CreateDirectory(String path)
+   at ChangeGen_v2.DDT.<>c__DisplayClass2_0.<cleanFilepathRemotely>b__0() in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\DDT.cs:line 71
+   at ChangeGen_v2.HelperMethods.PerformActionRemotely(Action action, ServerConnectionCredentials serverCreds, String ip) in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\HelperMethods.cs:line 27
+[Info][10.23.21.32][1/21/2016 2:36:20 PM]: Successfully deleted files in folder for data generation
+[Info][10.23.21.32][1/21/2016 2:36:20 PM]: DDT succesfully performed data generation.
+[Info][10.23.21.32][1/21/2016 2:36:20 PM]: Waiting for 60 min. to create new datagen file.
+[Info][10.23.21.38][1/21/2016 2:36:33 PM]: Successfully copied DDT to server
+[Error][10.23.21.38][1/21/2016 2:36:33 PM]: Remote path doesn't exist
+System.IO.IOException
+The network name cannot be found.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.Directory.InternalCreateDirectory(String fullPath, String path, Object dirSecurityObj, Boolean checkHost)
+   at System.IO.Directory.InternalCreateDirectoryHelper(String path, Boolean checkHost)
+   at System.IO.Directory.CreateDirectory(String path)
+   at ChangeGen_v2.DDT.<>c__DisplayClass2_0.<cleanFilepathRemotely>b__0() in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\DDT.cs:line 66
+[Error][10.23.21.38][1/21/2016 2:36:33 PM]: Invoking action on remote machine failed with Error code 183
+System.IO.IOException
+The network name cannot be found.
+
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.Directory.InternalCreateDirectory(String fullPath, String path, Object dirSecurityObj, Boolean checkHost)
+   at System.IO.Directory.InternalCreateDirectoryHelper(String path, Boolean checkHost)
+   at System.IO.Directory.CreateDirectory(String path)
+   at ChangeGen_v2.DDT.<>c__DisplayClass2_0.<cleanFilepathRemotely>b__0() in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\DDT.cs:line 71
+   at ChangeGen_v2.HelperMethods.PerformActionRemotely(Action action, ServerConnectionCredentials serverCreds, String ip) in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\HelperMethods.cs:line 27
+[Info][10.23.21.38][1/21/2016 2:36:33 PM]: Successfully deleted files in folder for data generation
+[Info][10.23.21.38][1/21/2016 2:36:33 PM]: DDT succesfully performed data generation.
+[Info][10.23.21.38][1/21/2016 2:36:33 PM]: Waiting for 30 min. to create new datagen file.

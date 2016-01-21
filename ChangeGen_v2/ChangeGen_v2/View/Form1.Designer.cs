@@ -59,6 +59,8 @@
             this.gb_ddtparams = new System.Windows.Forms.GroupBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.lbl_ChangeRateLabel = new System.Windows.Forms.Label();
+            this.lbl_ChangeRateValue = new System.Windows.Forms.Label();
             this.gb_customcreds.SuspendLayout();
             this.gb_ddtparams.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -380,11 +382,32 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // lbl_ChangeRateLabel
+            // 
+            this.lbl_ChangeRateLabel.AutoSize = true;
+            this.lbl_ChangeRateLabel.Location = new System.Drawing.Point(670, 352);
+            this.lbl_ChangeRateLabel.Name = "lbl_ChangeRateLabel";
+            this.lbl_ChangeRateLabel.Size = new System.Drawing.Size(128, 13);
+            this.lbl_ChangeRateLabel.TabIndex = 35;
+            this.lbl_ChangeRateLabel.Text = "Total change rate GiB/hr:";
+            // 
+            // lbl_ChangeRateValue
+            // 
+            this.lbl_ChangeRateValue.AutoSize = true;
+            this.lbl_ChangeRateValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_ChangeRateValue.Location = new System.Drawing.Point(712, 370);
+            this.lbl_ChangeRateValue.Name = "lbl_ChangeRateValue";
+            this.lbl_ChangeRateValue.Size = new System.Drawing.Size(15, 15);
+            this.lbl_ChangeRateValue.TabIndex = 36;
+            this.lbl_ChangeRateValue.Text = "0";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(815, 428);
+            this.Controls.Add(this.lbl_ChangeRateValue);
+            this.Controls.Add(this.lbl_ChangeRateLabel);
             this.Controls.Add(this.gb_ddtparams);
             this.Controls.Add(this.gb_customcreds);
             this.Controls.Add(this.lbl_Port);
@@ -400,10 +423,11 @@
             this.Controls.Add(this.tb_userName);
             this.Controls.Add(this.tb_hostname);
             this.Controls.Add(this.lv_AgentsList);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Data Generator 0.2b";
+            this.Text = "Data Generator 0.3";
             this.gb_customcreds.ResumeLayout(false);
             this.gb_customcreds.PerformLayout();
             this.gb_ddtparams.ResumeLayout(false);
@@ -446,6 +470,8 @@
         private System.Windows.Forms.GroupBox gb_ddtparams;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Label lbl_ChangeRateValue;
+        private System.Windows.Forms.Label lbl_ChangeRateLabel;
     }
 }
 
