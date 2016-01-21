@@ -47,11 +47,10 @@ namespace ChangeGen_v2
             {
                 if ((agent.AgentType != AgentType.EsxServer) && (agent.AgentType != AgentType.EsxVirtualMachine))
                 {
-                    serversList.Add(new Server(agent.Descriptor.HostUri.Host, agent.DisplayName, agent.RepositoryName));
+                    if (!_coreClient.AgentsManagement.GetAgentMetadataById(agent.Id.ToString()).OSVersion.ToString().Contains("Linux"))
+                        serversList.Add(new Server(agent.Descriptor.HostUri.Host, agent.DisplayName, agent.RepositoryName));
                 }
-
             }
-
             return serversList;
         }
 

@@ -33,19 +33,47 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.Contracts">
+      <HintPath>..\Common\Common.Contracts.dll</HintPath>
+    </Reference>
     <Reference Include="Core.Client">
       <HintPath>..\Common\Core.Client.dll</HintPath>
     </Reference>
     <Reference Include="Core.Contracts">
       <HintPath>..\Common\Core.Contracts.dll</HintPath>
     </Reference>
-    <Reference Include="Logging">
+    <Reference Include="DatabaseClient.Contracts">
+      <HintPath>..\Common\DatabaseClient.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="Gibraltar.Agent, Version=3.0.0.0, Culture=neutral, PublicKeyToken=ca42a1ee8d2e42d3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Common\Gibraltar.Agent.dll</HintPath>
+    </Reference>
+    <Reference Include="Logging, Version=6.0.1.594, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Common\Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Http, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Common\Microsoft.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Http.Extensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Common\Microsoft.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=3.2.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Common\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Profiling, Version=6.0.1.594, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Common\Profiling.dll</HintPath>
     </Reference>
     <Reference Include="ServiceHost.Contracts">
       <HintPath>..\Common\ServiceHost.Contracts.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceHost.InMemoryHosting">
+    <Reference Include="ServiceHost.InMemoryHosting, Version=6.0.1.594, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Common\ServiceHost.InMemoryHosting.dll</HintPath>
     </Reference>
     <Reference Include="System" />
