@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Agent.Contracts, Version=6.0.1.594, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Common\Agent.Contracts.dll</HintPath>
+    </Reference>
     <Reference Include="Common.Contracts">
       <HintPath>..\Common\Common.Contracts.dll</HintPath>
     </Reference>
@@ -65,9 +69,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Common\NLog.dll</HintPath>
     </Reference>
+    <Reference Include="O3E.Contracts, Version=6.0.1.594, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Common\O3E.Contracts.dll</HintPath>
+    </Reference>
     <Reference Include="Profiling, Version=6.0.1.594, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Common\Profiling.dll</HintPath>
+    </Reference>
+    <Reference Include="Reporting.Contracts, Version=6.0.1.594, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Common\Reporting.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="ServiceHost.Contracts">
       <HintPath>..\Common\ServiceHost.Contracts.dll</HintPath>
