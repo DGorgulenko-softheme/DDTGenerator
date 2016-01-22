@@ -39,12 +39,13 @@ namespace ChangeGen_v2
         }
 
         // This method updates ListView with current state of each server
-        public static void UpdateListView(ListView listView, Label expectedRateLabel)
+        public static void UpdateListView(ListView listView, Label expectedRateLabel, Label amountOfActiveGeneraionsLabel)
         {
             var listViewAgents = listView.Items.Cast<ListViewItem>().ToList();
 
             for (int i = 0; i < listViewAgents.Count; i++)
             {
+
                 for (int j = 0; j < serversList.Count; j++)
                 {
                     if (listViewAgents[i].SubItems[1].Text == serversList[j].IP)
@@ -65,22 +66,25 @@ namespace ChangeGen_v2
                 }
             }
 
-            UpdateExpectedChangeRate(listViewAgents, expectedRateLabel);
+            UpdateExpectedChangeRateAndAmountOfActiveGenerations(listViewAgents, expectedRateLabel, amountOfActiveGeneraionsLabel);
         }
 
-        private static void UpdateExpectedChangeRate(List<ListViewItem> listViewAgents, Label expectedRateLabel)
+        private static void UpdateExpectedChangeRateAndAmountOfActiveGenerations(List<ListViewItem> listViewAgents, Label expectedRateLabel, Label amountOfRunningLabel)
         {
             double expectedChRate = 0;
+            int amountOfActiveGenerations = 0;
             for (int i = 0; i < listViewAgents.Count; i++)
             {
 
                 if (listViewAgents[i].SubItems[3].Text == "Running")
                 {
                     expectedChRate += Convert.ToDouble(listViewAgents[i].SubItems[4].Text) / Convert.ToDouble(listViewAgents[i].SubItems[6].Text) * 60.0 / 1024.0;
+                    amountOfActiveGenerations += 1;
                 }
             }
 
             expectedRateLabel.Text = expectedChRate.ToString();
+            amountOfRunningLabel.Text = amountOfActiveGenerations.ToString();
         }
 
         // This method used to create columns in ListView

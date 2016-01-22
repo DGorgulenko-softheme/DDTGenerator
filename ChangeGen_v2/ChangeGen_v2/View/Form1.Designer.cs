@@ -61,6 +61,10 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.lbl_ChangeRateLabel = new System.Windows.Forms.Label();
             this.lbl_ChangeRateValue = new System.Windows.Forms.Label();
+            this.lbl_totalAgentsRunningValue = new System.Windows.Forms.Label();
+            this.lbl_totalAgentsRunninglabel = new System.Windows.Forms.Label();
+            this.lbl_TotalAmountLabel = new System.Windows.Forms.Label();
+            this.lbl_TotalAmountValue = new System.Windows.Forms.Label();
             this.gb_customcreds.SuspendLayout();
             this.gb_ddtparams.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -385,7 +389,7 @@
             // lbl_ChangeRateLabel
             // 
             this.lbl_ChangeRateLabel.AutoSize = true;
-            this.lbl_ChangeRateLabel.Location = new System.Drawing.Point(670, 352);
+            this.lbl_ChangeRateLabel.Location = new System.Drawing.Point(670, 372);
             this.lbl_ChangeRateLabel.Name = "lbl_ChangeRateLabel";
             this.lbl_ChangeRateLabel.Size = new System.Drawing.Size(128, 13);
             this.lbl_ChangeRateLabel.TabIndex = 35;
@@ -395,17 +399,59 @@
             // 
             this.lbl_ChangeRateValue.AutoSize = true;
             this.lbl_ChangeRateValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_ChangeRateValue.Location = new System.Drawing.Point(712, 370);
+            this.lbl_ChangeRateValue.Location = new System.Drawing.Point(712, 390);
             this.lbl_ChangeRateValue.Name = "lbl_ChangeRateValue";
             this.lbl_ChangeRateValue.Size = new System.Drawing.Size(15, 15);
             this.lbl_ChangeRateValue.TabIndex = 36;
             this.lbl_ChangeRateValue.Text = "0";
+            // 
+            // lbl_totalAgentsRunningValue
+            // 
+            this.lbl_totalAgentsRunningValue.AutoSize = true;
+            this.lbl_totalAgentsRunningValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_totalAgentsRunningValue.Location = new System.Drawing.Point(712, 357);
+            this.lbl_totalAgentsRunningValue.Name = "lbl_totalAgentsRunningValue";
+            this.lbl_totalAgentsRunningValue.Size = new System.Drawing.Size(15, 15);
+            this.lbl_totalAgentsRunningValue.TabIndex = 38;
+            this.lbl_totalAgentsRunningValue.Text = "0";
+            // 
+            // lbl_totalAgentsRunninglabel
+            // 
+            this.lbl_totalAgentsRunninglabel.AutoSize = true;
+            this.lbl_totalAgentsRunninglabel.Location = new System.Drawing.Point(670, 344);
+            this.lbl_totalAgentsRunninglabel.Name = "lbl_totalAgentsRunninglabel";
+            this.lbl_totalAgentsRunninglabel.Size = new System.Drawing.Size(115, 13);
+            this.lbl_totalAgentsRunninglabel.TabIndex = 37;
+            this.lbl_totalAgentsRunninglabel.Text = "Generation running for:";
+            // 
+            // lbl_TotalAmountLabel
+            // 
+            this.lbl_TotalAmountLabel.AutoSize = true;
+            this.lbl_TotalAmountLabel.Location = new System.Drawing.Point(13, 385);
+            this.lbl_TotalAmountLabel.Name = "lbl_TotalAmountLabel";
+            this.lbl_TotalAmountLabel.Size = new System.Drawing.Size(69, 13);
+            this.lbl_TotalAmountLabel.TabIndex = 39;
+            this.lbl_TotalAmountLabel.Text = "Total agents:";
+            // 
+            // lbl_TotalAmountValue
+            // 
+            this.lbl_TotalAmountValue.AutoSize = true;
+            this.lbl_TotalAmountValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_TotalAmountValue.Location = new System.Drawing.Point(78, 385);
+            this.lbl_TotalAmountValue.Name = "lbl_TotalAmountValue";
+            this.lbl_TotalAmountValue.Size = new System.Drawing.Size(13, 13);
+            this.lbl_TotalAmountValue.TabIndex = 40;
+            this.lbl_TotalAmountValue.Text = "0";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(815, 428);
+            this.Controls.Add(this.lbl_TotalAmountValue);
+            this.Controls.Add(this.lbl_TotalAmountLabel);
+            this.Controls.Add(this.lbl_totalAgentsRunningValue);
+            this.Controls.Add(this.lbl_totalAgentsRunninglabel);
             this.Controls.Add(this.lbl_ChangeRateValue);
             this.Controls.Add(this.lbl_ChangeRateLabel);
             this.Controls.Add(this.gb_ddtparams);
@@ -472,6 +518,10 @@
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Label lbl_ChangeRateValue;
         private System.Windows.Forms.Label lbl_ChangeRateLabel;
+        private System.Windows.Forms.Label lbl_totalAgentsRunningValue;
+        private System.Windows.Forms.Label lbl_totalAgentsRunninglabel;
+        private System.Windows.Forms.Label lbl_TotalAmountValue;
+        private System.Windows.Forms.Label lbl_TotalAmountLabel;
     }
 }
 

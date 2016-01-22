@@ -67,7 +67,9 @@ namespace ChangeGen_v2
 
 
             // Hide Connection Page and displays ListView Page
-            displayListViewPage();          
+            displayListViewPage();
+
+            lbl_TotalAmountValue.Text = lv_AgentsList.Items.Count.ToString();         
         }
 
         private void lv_AgentsList_ColumnClick(object sender, ColumnClickEventArgs e)
@@ -88,7 +90,7 @@ namespace ChangeGen_v2
             DDTWrapper.StopDDT(lv_AgentsList, ServerWrapper.serversList);
 
             // Update ListView
-            ServerWrapper.UpdateListView(lv_AgentsList, lbl_ChangeRateValue);
+            ServerWrapper.UpdateListView(lv_AgentsList, lbl_ChangeRateValue, lbl_totalAgentsRunningValue);
         }
 
         private void btn_startDDT_Click(object sender, EventArgs e)
@@ -137,7 +139,7 @@ namespace ChangeGen_v2
                                 ddtParameters,
                                 serverCreds);
             // Update ListView
-            ServerWrapper.UpdateListView(lv_AgentsList, lbl_ChangeRateValue);
+            ServerWrapper.UpdateListView(lv_AgentsList, lbl_ChangeRateValue, lbl_totalAgentsRunningValue);
 
         }
 
@@ -153,7 +155,7 @@ namespace ChangeGen_v2
             ControlsImplementation.ChangePage(connectionPageControls, listviewPageControls);
         }
 
-        // This methdo add controls of Connection and ListView page to two separate collections
+        // This method adds controls of Connection and ListView page to two separate collections
         private void AddControlsToCollections()
         {
             connectionPageControls = new List<Control>();
@@ -190,6 +192,10 @@ namespace ChangeGen_v2
             listviewPageControls.Add(gb_ddtparams);
             listviewPageControls.Add(lbl_ChangeRateLabel);
             listviewPageControls.Add(lbl_ChangeRateValue);
+            listviewPageControls.Add(lbl_totalAgentsRunninglabel);
+            listviewPageControls.Add(lbl_totalAgentsRunningValue);
+            listviewPageControls.Add(lbl_TotalAmountLabel);
+            listviewPageControls.Add(lbl_TotalAmountValue);
         }
 
         private void GetCredsFromFileToGUI()
@@ -209,7 +215,7 @@ namespace ChangeGen_v2
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            ServerWrapper.UpdateListView(lv_AgentsList, lbl_ChangeRateValue);
+            ServerWrapper.UpdateListView(lv_AgentsList, lbl_ChangeRateValue, lbl_totalAgentsRunningValue);
         }
 
         private void GetDDTParamsFromFileToGUI()

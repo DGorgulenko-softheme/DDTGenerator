@@ -48,7 +48,9 @@ namespace ChangeGen_v2
                 if ((agent.AgentType != AgentType.EsxServer) && (agent.AgentType != AgentType.EsxVirtualMachine))
                 {
                     // This to hide linux agents from GUI, but it is dramatically reduce performance
-                    //if (!_coreClient.AgentsManagement.GetAgentMetadataById(agent.Id.ToString()).OSVersion.ToString().Contains("Linux"))   
+                    //if (!_coreClient.AgentsManagement.GetAgentMetadataById(agent.Id.ToString()).OSVersion.ToString().Contains("Linux")) 
+                    // Version with cached metadata
+                    //if (!_coreClient.AgentsManagement.GetCachedAgentMetadataById(agent.Id.ToString()).OSVersion.ToString().Contains("Linux"))  
                     serversList.Add(new Server(agent.Descriptor.HostUri.Host, agent.DisplayName, agent.RepositoryName));
                 }
             }
