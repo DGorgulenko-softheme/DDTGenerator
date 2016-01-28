@@ -45,7 +45,6 @@ namespace ChangeGen_v2
 
             for (int i = 0; i < listViewAgents.Count; i++)
             {
-
                 for (int j = 0; j < serversList.Count; j++)
                 {
                     if (listViewAgents[i].SubItems[1].Text == serversList[j].IP)

@@ -42,13 +42,13 @@ namespace ChangeGen_v2
         }
 
 
-        // Enumaraion of possible status for DDT tool on server
+        // Enumeraion of possible status for DDT tool on server
         public enum DDTStatus
         {
             Failed,
             Running,
-            Stopped
-            
+            Stopped,
+            WrongCredentials      
         }
 
         // Method used to run DDT on server side
@@ -64,7 +64,7 @@ namespace ChangeGen_v2
             }
             catch(System.UnauthorizedAccessException)
             {
-                DdtStatus = DDTStatus.Failed;
+                DdtStatus = DDTStatus.WrongCredentials;
             }
             catch (IOException)
             {

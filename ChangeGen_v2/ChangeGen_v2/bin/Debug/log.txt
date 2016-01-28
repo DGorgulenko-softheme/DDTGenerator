@@ -1,5 +1,5 @@
-[Info][localhost][1/22/2016 12:25:09 PM]: Successfully connected to Core Server: localhost
-[Error][10.23.21.35][1/22/2016 12:25:18 PM]: Cannot connect to remote RPC server. Retry in 30 seconds
+[Info][localhost][1/28/2016 11:07:47 AM]: Successfully connected to Core Server: localhost
+[Error][10.23.21.35][1/28/2016 11:08:29 AM]: Cannot connect to remote RPC server. Retry in 30 seconds
 System.Runtime.InteropServices.COMException
 The RPC server is unavailable. (Exception from HRESULT: 0x800706BA)
    at System.Runtime.InteropServices.Marshal.ThrowExceptionForHRInternal(Int32 errorCode, IntPtr errorInfo)
@@ -8,19 +8,15 @@ The RPC server is unavailable. (Exception from HRESULT: 0x800706BA)
    at System.Management.ManagementObjectSearcher.Initialize()
    at System.Management.ManagementObjectSearcher.Get()
    at ChangeGen_v2.DDT.WMIKillDDT(String ip, String username, String password) in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\DDT.cs:line 103
-[Info][10.23.21.39][1/22/2016 12:25:24 PM]: Successfully copied DDT to server
-[Info][10.23.21.38][1/22/2016 12:25:24 PM]: Successfully copied DDT to server
-[Info][10.23.21.39][1/22/2016 12:25:24 PM]: Successfully deleted files in folder for data generation
-[Info][10.23.21.38][1/22/2016 12:25:24 PM]: Successfully deleted files in folder for data generation
-[Info][10.23.21.38][1/22/2016 12:25:24 PM]: DDT succesfully performed data generation.
-[Info][10.23.21.38][1/22/2016 12:25:24 PM]: Waiting for 30 min. to create new datagen file.
-[Info][10.23.21.32][1/22/2016 12:25:24 PM]: Successfully copied DDT to server
-[Info][10.23.21.32][1/22/2016 12:25:24 PM]: Successfully deleted files in folder for data generation
-[Info][10.23.21.32][1/22/2016 12:25:24 PM]: DDT succesfully performed data generation.
-[Info][10.23.21.32][1/22/2016 12:25:24 PM]: Waiting for 30 min. to create new datagen file.
-[Info][10.23.21.39][1/22/2016 12:25:25 PM]: DDT succesfully performed data generation.
-[Info][10.23.21.39][1/22/2016 12:25:25 PM]: Waiting for 30 min. to create new datagen file.
-[Error][10.23.10.22][1/22/2016 12:25:29 PM]: Access denied to remote server. Possibly incorrect credentials.
+[Info][10.23.21.38][1/28/2016 11:08:34 AM]: Successfully copied DDT to server
+[Info][10.23.21.32][1/28/2016 11:08:34 AM]: Successfully copied DDT to server
+[Info][10.23.21.38][1/28/2016 11:08:34 AM]: Successfully deleted files in folder for data generation
+[Info][10.23.21.32][1/28/2016 11:08:34 AM]: Successfully deleted files in folder for data generation
+[Info][10.23.21.38][1/28/2016 11:08:34 AM]: DDT succesfully performed data generation.
+[Info][10.23.21.32][1/28/2016 11:08:34 AM]: DDT succesfully performed data generation.
+[Info][10.23.21.32][1/28/2016 11:08:34 AM]: Waiting for 30 min. to create new datagen file.
+[Info][10.23.21.38][1/28/2016 11:08:34 AM]: Waiting for 30 min. to create new datagen file.
+[Error][10.23.10.22][1/28/2016 11:08:37 AM]: Access denied to remote server. Possibly incorrect credentials.
 System.UnauthorizedAccessException
 Access is denied. (Exception from HRESULT: 0x80070005 (E_ACCESSDENIED))
    at System.Runtime.InteropServices.Marshal.ThrowExceptionForHRInternal(Int32 errorCode, IntPtr errorInfo)
@@ -29,7 +25,16 @@ Access is denied. (Exception from HRESULT: 0x80070005 (E_ACCESSDENIED))
    at System.Management.ManagementObjectSearcher.Initialize()
    at System.Management.ManagementObjectSearcher.Get()
    at ChangeGen_v2.DDT.WMIKillDDT(String ip, String username, String password) in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\DDT.cs:line 103
-[Error][10.23.21.35][1/22/2016 12:25:54 PM]: Cannot connect to remote RPC server. Retry in 30 seconds
+[Error][10.23.21.39][1/28/2016 11:08:38 AM]: Access denied to remote server. Possibly incorrect credentials.
+System.UnauthorizedAccessException
+Access is denied. (Exception from HRESULT: 0x80070005 (E_ACCESSDENIED))
+   at System.Runtime.InteropServices.Marshal.ThrowExceptionForHRInternal(Int32 errorCode, IntPtr errorInfo)
+   at System.Management.ManagementScope.InitializeGuts(Object o)
+   at System.Management.ManagementScope.Initialize()
+   at System.Management.ManagementObjectSearcher.Initialize()
+   at System.Management.ManagementObjectSearcher.Get()
+   at ChangeGen_v2.DDT.WMIKillDDT(String ip, String username, String password) in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\DDT.cs:line 103
+[Error][10.23.21.35][1/28/2016 11:09:04 AM]: Cannot connect to remote RPC server. Retry in 30 seconds
 System.Runtime.InteropServices.COMException
 The RPC server is unavailable. (Exception from HRESULT: 0x800706BA)
    at System.Runtime.InteropServices.Marshal.ThrowExceptionForHRInternal(Int32 errorCode, IntPtr errorInfo)
@@ -38,5 +43,3 @@ The RPC server is unavailable. (Exception from HRESULT: 0x800706BA)
    at System.Management.ManagementObjectSearcher.Initialize()
    at System.Management.ManagementObjectSearcher.Get()
    at ChangeGen_v2.DDT.WMIKillDDT(String ip, String username, String password) in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\DDT.cs:line 103
-[Info][localhost][1/22/2016 12:28:44 PM]: Successfully connected to Core Server: localhost
-[Info][localhost][1/22/2016 12:44:44 PM]: Successfully connected to Core Server: localhost
