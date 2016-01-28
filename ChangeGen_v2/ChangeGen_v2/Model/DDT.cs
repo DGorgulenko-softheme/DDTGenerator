@@ -21,7 +21,7 @@ namespace ChangeGen_v2
                     HelperMethods.DirectoryCopy("DDT", remotePath, true);
                 }
             }, serverCreds);
-            Logger.Log("Successfully copied DDT to server", Logger.LogLevel.Info, serverCreds.IP);
+            Logger.Log("Successfully copied DDT to remote server", Logger.LogLevel.Info, serverCreds.IP);
         }
 
         // This method runs DDT tool with specific parameters on remote server using WMI
@@ -34,6 +34,8 @@ namespace ChangeGen_v2
 
             CopyDDTtoRemoteMachine(serverCreds);
 
+            Logger.Log("Data generation started on remote server " + serverCreds.IP, Logger.LogLevel.Info, serverCreds.IP);
+
             while (true)
             {
                 if (token.IsCancellationRequested)
@@ -44,11 +46,7 @@ namespace ChangeGen_v2
 
                 cleanFilepathRemotely(serverCreds, remotePath);
 
-                Logger.Log("Successfully deleted files in folder for data generation", Logger.LogLevel.Info, serverCreds.IP);
-
                 WMIRunDDT(serverCreds, ddtParameters);
-
-                Logger.Log("Waiting for " + ddtParameters.Interval + " min. to create new datagen file.", Logger.LogLevel.Info, serverCreds.IP);
 
                 Thread.Sleep(ddtParameters.Interval * 60000);
             }
@@ -158,7 +156,6 @@ namespace ChangeGen_v2
                 try
                 {
                     theClass.InvokeMethod("Create", processToTun);
-                    Logger.Log("DDT succesfully performed data generation.", Logger.LogLevel.Info, serverCreds.IP);
                     break;
                 }
                 catch (COMException e)

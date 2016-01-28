@@ -115,6 +115,12 @@
     <Compile Include="Model\DDT.cs" />
     <Compile Include="Model\DDTParameters.cs" />
     <Compile Include="Model\ServerConnectionCredentials.cs" />
+    <Compile Include="View\AboutBox1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AboutBox1.Designer.cs">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +134,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\Server.cs" />
     <Compile Include="View\Validator.cs" />
+    <EmbeddedResource Include="View\AboutBox1.resx">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

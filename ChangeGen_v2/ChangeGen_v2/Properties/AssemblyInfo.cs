@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ChangeGen_v2")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("DDT Data Generator")]
+[assembly: AssemblyDescription("If you have questions, you want to report issues, bugs, or you have ideas for new features,please visit link below or send an email to artem.bezzubets@software.dell.com. https://docs.google.com/document/d/1mZUMl7JOvwqQ_AZS1wubY89uyoFP8BAwmu3Ubu4HnYs/edit?usp=sharing")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ChangeGen_v2")]
+[assembly: AssemblyProduct("DDT Data Generator")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyVersion("0.3.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]

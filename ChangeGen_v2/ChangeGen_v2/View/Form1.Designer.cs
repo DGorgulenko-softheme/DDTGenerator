@@ -59,6 +59,7 @@
             this.lbl_totalAgentsRunninglabel = new System.Windows.Forms.Label();
             this.lbl_TotalAmountLabel = new System.Windows.Forms.Label();
             this.lbl_TotalAmountValue = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.gb_ddtparams.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -302,7 +303,7 @@
             this.gb_ddtparams.Controls.Add(this.lbl_Path);
             this.gb_ddtparams.Controls.Add(this.lbl_Interval);
             this.gb_ddtparams.Controls.Add(this.tb_Interval);
-            this.gb_ddtparams.Location = new System.Drawing.Point(664, 11);
+            this.gb_ddtparams.Location = new System.Drawing.Point(664, 35);
             this.gb_ddtparams.Name = "gb_ddtparams";
             this.gb_ddtparams.Size = new System.Drawing.Size(144, 192);
             this.gb_ddtparams.TabIndex = 34;
@@ -374,11 +375,23 @@
             this.lbl_TotalAmountValue.TabIndex = 40;
             this.lbl_TotalAmountValue.Text = "0";
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(753, 11);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(54, 23);
+            this.button1.TabIndex = 41;
+            this.button1.Text = "About";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(815, 428);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.lbl_TotalAmountValue);
             this.Controls.Add(this.lbl_TotalAmountLabel);
             this.Controls.Add(this.lbl_totalAgentsRunningValue);
@@ -403,7 +416,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Data Generator 0.3";
+            this.Text = "DDT Data Generator";
             this.gb_ddtparams.ResumeLayout(false);
             this.gb_ddtparams.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
@@ -444,6 +457,7 @@
         private System.Windows.Forms.Label lbl_totalAgentsRunninglabel;
         private System.Windows.Forms.Label lbl_TotalAmountValue;
         private System.Windows.Forms.Label lbl_TotalAmountLabel;
+        private System.Windows.Forms.Button button1;
     }
 }
 

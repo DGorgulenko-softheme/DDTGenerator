@@ -277,5 +277,11 @@ namespace ChangeGen_v2
         {
             Validator.TextBox_Validated((TextBox)sender, errorProvider1);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AboutBox1 box = new AboutBox1();
+            box.Show();
+        }
     }
 }
