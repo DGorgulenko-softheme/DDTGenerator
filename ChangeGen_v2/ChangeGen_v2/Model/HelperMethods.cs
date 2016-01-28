@@ -13,7 +13,7 @@ namespace ChangeGen_v2
         public static extern int LogonUser(string lpszUsername, string lpszDomain, string lpszPassword, int dwLogonType, int dwLogonProvider, ref IntPtr phToken);
 
         // This method is used to perform action delegate remotely on CIFS Share
-        public static void PerformActionRemotely(Action action, ServerConnectionCredentials serverCreds, string ip)
+        public static void PerformActionRemotely(Action action, ServerConnectionCredentials serverCreds)
         {
             WindowsIdentity wid_current = WindowsIdentity.GetCurrent();
             WindowsImpersonationContext wic = null;
@@ -30,7 +30,7 @@ namespace ChangeGen_v2
             catch (Exception se)
             {
                 int ret = Marshal.GetLastWin32Error();
-                Logger.LogError("Invoking action on remote machine failed with Error code " + ret.ToString(), ip, se);
+                Logger.LogError("Invoking action on remote machine failed with Error code " + ret.ToString(), serverCreds.IP, se);
                 return;
             }
             finally

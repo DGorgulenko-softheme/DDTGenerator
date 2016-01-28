@@ -14,9 +14,6 @@ namespace ChangeGen_v2
         // Used to create separate async task for each server
         public Task Task { get; set; }
 
-        // Server ip address
-        public string IP { get; set; }
-
         // Server display name on Core if available
         public string DisplayName { get; set; }
 
@@ -32,15 +29,16 @@ namespace ChangeGen_v2
         // DDT Parameters for current server
         public DDTParameters DdtParameters { get; set; }
 
-
         // This construcor is using when creating new instance using data from Core.
-        public Server(string ip, string displayname, string repository)
+        public Server(string ip, string displayname, string repository, string username, string password)
         {
-            IP = ip;
             DisplayName = displayname;
             Repository = repository;
+            ServerCredentials = new ServerConnectionCredentials();
+            ServerCredentials.Username = username;
+            ServerCredentials.Password = password;
+            ServerCredentials.IP = ip;
         }
-
 
         // Enumeraion of possible status for DDT tool on server
         public enum DDTStatus
@@ -56,7 +54,9 @@ namespace ChangeGen_v2
         {
             try
             {
-                DDT.Runddtremotely(IP, ServerCredentials, DdtParameters, CTS.Token);
+                //DDT.Runddtremotely(IP, ServerCredentials, DdtParameters, CTS.Token);
+                DDT.Runddtremotely(ServerCredentials, DdtParameters, CTS.Token);
+
             }
             catch(COMException)
             {

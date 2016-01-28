@@ -27,7 +27,7 @@ namespace ChangeGen_v2
             foreach (var server in serversList)
             {
                 lvi_server = new ListViewItem(server.DisplayName);
-                lvi_server.SubItems.Add(server.IP);
+                lvi_server.SubItems.Add(server.ServerCredentials.IP);
                 lvi_server.SubItems.Add(server.Repository);
                 lvi_server.SubItems.Add(server.DdtStatus.ToString());
                 lvi_server.SubItems.Add("");
@@ -47,7 +47,7 @@ namespace ChangeGen_v2
             {
                 for (int j = 0; j < serversList.Count; j++)
                 {
-                    if (listViewAgents[i].SubItems[1].Text == serversList[j].IP)
+                    if (listViewAgents[i].SubItems[1].Text == serversList[j].ServerCredentials.IP)
                     {
                         listViewAgents[i].SubItems[3].Text = serversList[j].DdtStatus.ToString();   // DDT Status
                         if(serversList[j].DdtParameters == null)
@@ -99,9 +99,5 @@ namespace ChangeGen_v2
             listview.Columns.Add("Path", 100);
             listview.CheckBoxes = true;
         }
-
-       
-
-
     }
 }

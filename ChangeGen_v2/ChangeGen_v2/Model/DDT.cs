@@ -9,53 +9,53 @@ namespace ChangeGen_v2
     static class DDT
     {
         // This method copies the folder with DDT tools to cifs on the server using PerformActionRemotely method
-        public static void CopyDDTtoRemoteMachine(string ip, ServerConnectionCredentials serverCreds)
+        public static void CopyDDTtoRemoteMachine(ServerConnectionCredentials serverCreds)
         {
 
             HelperMethods.PerformActionRemotely(() =>
             {
-                string remotePath = "\\\\" + ip + "\\C$\\DDT";
+                string remotePath = "\\\\" + serverCreds.IP + "\\C$\\DDT";
                 if (!Directory.Exists(remotePath))
                 {
                     Directory.CreateDirectory(remotePath);
                     HelperMethods.DirectoryCopy("DDT", remotePath, true);
                 }
-            }, serverCreds, ip);
-            Logger.Log("Successfully copied DDT to server", Logger.LogLevel.Info, ip);
+            }, serverCreds);
+            Logger.Log("Successfully copied DDT to server", Logger.LogLevel.Info, serverCreds.IP);
         }
 
         // This method runs DDT tool with specific parameters on remote server using WMI
-        public static void Runddtremotely(string ip, ServerConnectionCredentials serverCreds, DDTParameters ddtParameters, CancellationToken token)
+        public static void Runddtremotely(ServerConnectionCredentials serverCreds, DDTParameters ddtParameters, CancellationToken token)
         {
-            string remotePath = "\\\\" + ip + "\\" + HelperMethods.separateVolumeAndFolder(ddtParameters.Filepath, HelperMethods.FilepathParts.volume)
+            string remotePath = "\\\\" + serverCreds.IP + "\\" + HelperMethods.separateVolumeAndFolder(ddtParameters.Filepath, HelperMethods.FilepathParts.volume)
                         + "$\\" + HelperMethods.separateVolumeAndFolder(ddtParameters.Filepath, HelperMethods.FilepathParts.folder);
 
-            WMIKillDDT(ip, serverCreds.Username, serverCreds.Password);
+            WMIKillDDT(serverCreds);
 
-            CopyDDTtoRemoteMachine(ip, serverCreds);
+            CopyDDTtoRemoteMachine(serverCreds);
 
             while (true)
             {
                 if (token.IsCancellationRequested)
                 {
-                    Logger.Log("DDT operation has been canceled by user", Logger.LogLevel.Info, ip);
+                    Logger.Log("DDT operation has been canceled by user", Logger.LogLevel.Info, serverCreds.IP);
                     break;
                 }
 
-                cleanFilepathRemotely(ip, serverCreds, remotePath);
+                cleanFilepathRemotely(serverCreds, remotePath);
 
-                Logger.Log("Successfully deleted files in folder for data generation", Logger.LogLevel.Info, ip);
+                Logger.Log("Successfully deleted files in folder for data generation", Logger.LogLevel.Info, serverCreds.IP);
 
-                WMIRunDDT(ip, serverCreds.Username, serverCreds.Password, ddtParameters);
+                WMIRunDDT(serverCreds, ddtParameters);
 
-                Logger.Log("Waiting for " + ddtParameters.Interval + " min. to create new datagen file.", Logger.LogLevel.Info, ip);
+                Logger.Log("Waiting for " + ddtParameters.Interval + " min. to create new datagen file.", Logger.LogLevel.Info, serverCreds.IP);
 
                 Thread.Sleep(ddtParameters.Interval * 60000);
             }
         }
 
         // This method clean the destination folder for data generation
-        private static void cleanFilepathRemotely(string ip, ServerConnectionCredentials serverCreds, string remotePath)
+        private static void cleanFilepathRemotely(ServerConnectionCredentials serverCreds, string remotePath)
         {
             HelperMethods.PerformActionRemotely(() =>
             {
@@ -65,9 +65,9 @@ namespace ChangeGen_v2
                     {
                         Directory.CreateDirectory(remotePath);
                     }
-                    catch(IOException e)
+                    catch (IOException e)
                     {
-                        Logger.LogError("Remote path doesn't exist", ip, e);
+                        Logger.LogError("Remote path doesn't exist", serverCreds.IP, e);
                         throw;
                     }
                 }
@@ -77,18 +77,18 @@ namespace ChangeGen_v2
                 {
                     file.Delete();
                 }
-            }, serverCreds, ip);
+            }, serverCreds);
         }
 
         // This method kills existing DDT process via WMI
-        public static void WMIKillDDT(string ip, string username, string password)
+        public static void WMIKillDDT(ServerConnectionCredentials serverCreds)
         {
             ConnectionOptions options = new ConnectionOptions();
 
-            options.Username = username;
-            options.Password = password;
+            options.Username = serverCreds.Username;
+            options.Password = serverCreds.Password;
 
-            ManagementScope scope = new ManagementScope("\\\\" + ip + "\\root\\cimv2", options);
+            ManagementScope scope = new ManagementScope("\\\\" + serverCreds.IP + "\\root\\cimv2", options);
 
             SelectQuery query = new SelectQuery("select * from Win32_Process Where Name='ddt.exe'");
 
@@ -97,7 +97,7 @@ namespace ChangeGen_v2
             while (true)
             {
                 using (ManagementObjectSearcher searcher = new ManagementObjectSearcher(scope, query))
-                {    
+                {
                     try
                     {
                         ManagementObjectCollection collection = searcher.Get();
@@ -116,27 +116,27 @@ namespace ChangeGen_v2
                         if (retries < 3)
                         {
                             retries++;
-                            Logger.LogError("Cannot connect to remote RPC server. Retry in 30 seconds", ip, e);
+                            Logger.LogError("Cannot connect to remote RPC server. Retry in 30 seconds", serverCreds.IP, e);
                             Thread.Sleep(30000);
                         }
                         else
                         {
-                            Logger.LogError("Cannot connect to remote RPC server.", ip, e);
+                            Logger.LogError("Cannot connect to remote RPC server.", serverCreds.IP, e);
 
                             throw;
                         }
                     }
-                    catch(UnauthorizedAccessException e)
+                    catch (UnauthorizedAccessException e)
                     {
-                        Logger.LogError("Access denied to remote server. Possibly incorrect credentials.", ip, e);
+                        Logger.LogError("Access denied to remote server. Possibly incorrect credentials.", serverCreds.IP, e);
                         throw;
                     }
-                }       
+                }
             }
         }
 
         // This methdo starts DDT on remote machine using WMI
-        public static void WMIRunDDT(string ip, string username, string password, DDTParameters ddtParameters)
+        public static void WMIRunDDT(ServerConnectionCredentials serverCreds, DDTParameters ddtParameters)
         {
             var seed = new Random().Next();
 
@@ -144,10 +144,10 @@ namespace ChangeGen_v2
                         + " blocksize=512 dup-percentage=" + ddtParameters.Compression + " buffering=direct io=sequential seed=" + seed + " no-ddt-hdr=yes" };
             ConnectionOptions options = new ConnectionOptions();
 
-            options.Username = username;
-            options.Password = password;
+            options.Username = serverCreds.Username;
+            options.Password = serverCreds.Password;
 
-            ManagementScope scope = new ManagementScope("\\\\" + ip + "\\root\\cimv2", options);
+            ManagementScope scope = new ManagementScope("\\\\" + serverCreds.IP + "\\root\\cimv2", options);
 
             ManagementClass theClass = new ManagementClass(scope, new ManagementPath("Win32_Process"), new ObjectGetOptions());
 
@@ -158,7 +158,7 @@ namespace ChangeGen_v2
                 try
                 {
                     theClass.InvokeMethod("Create", processToTun);
-                    Logger.Log("DDT succesfully performed data generation.", Logger.LogLevel.Info, ip);
+                    Logger.Log("DDT succesfully performed data generation.", Logger.LogLevel.Info, serverCreds.IP);
                     break;
                 }
                 catch (COMException e)
@@ -169,7 +169,7 @@ namespace ChangeGen_v2
                     }
                     else
                     {
-                        Logger.LogError("Starting DDT on remote machine failed with:", ip, e);
+                        Logger.LogError("Starting DDT on remote machine failed with:", serverCreds.IP, e);
                         throw;
                     }
                 }

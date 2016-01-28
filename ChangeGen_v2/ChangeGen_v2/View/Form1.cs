@@ -12,7 +12,6 @@ namespace ChangeGen_v2
         private List<Control> connectionPageControls;       // used for storing controls of Connection page
         private List<Control> listviewPageControls;         // used for storing controls of ListView page
         private CoreConnectionCredentials coreCreds;        // used for storing core API credentials
-        private ServerConnectionCredentials serverCreds;    // used for storing creds to servers
         private DDTParameters ddtParameters;                // used for storing DDT Parameters
 
         public Form1()
@@ -95,33 +94,6 @@ namespace ChangeGen_v2
 
         private void btn_startDDT_Click(object sender, EventArgs e)
         {
-            // checking if checkbox "Use Core credentials" checked,
-            // if so using core credentils to connect to each server,
-            // if no using custom credentials.
-
-            serverCreds = new ServerConnectionCredentials();
-
-            if (cb_useCoreCreds.Checked)
-            {
-                serverCreds.Username = coreCreds.Username;
-                serverCreds.Password = coreCreds.Password;
-            }
-            else
-            {
-                if(tb_customUsername.Text.Length != 0 || tb_customPassword.Text.Length != 0)
-                {
-                    serverCreds.Username = tb_customUsername.Text;
-                    serverCreds.Password = tb_customPassword.Text;
-                }
-                else
-                {
-                    MessageBox.Show("Please enter the username and password for server,"+Environment.NewLine+"or check 'Use Core Credentials' checkbox", "Enter credentials",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                
-            }
-
             ddtParameters = new DDTParameters()
             {
                 Filesize = Convert.ToInt32(tb_Size.Text),
@@ -132,12 +104,11 @@ namespace ChangeGen_v2
 
             ddtParameters.SerizalizeDDTParamsToFile();
 
-
             // Start DDT for selected servers with specific parameters
-                DDTWrapper.StartDDT(lv_AgentsList,
-                                ServerWrapper.serversList,
-                                ddtParameters,
-                                serverCreds);
+            DDTWrapper.StartDDT(lv_AgentsList,
+                            ServerWrapper.serversList,
+                            ddtParameters);
+
             // Update ListView
             ServerWrapper.UpdateListView(lv_AgentsList, lbl_ChangeRateValue, lbl_totalAgentsRunningValue);
 
@@ -183,12 +154,6 @@ namespace ChangeGen_v2
             listviewPageControls.Add(lbl_Interval);
             listviewPageControls.Add(lbl_Path);
             listviewPageControls.Add(lbl_Size);
-            listviewPageControls.Add(cb_useCoreCreds);
-            listviewPageControls.Add(lbl_customUsername);
-            listviewPageControls.Add(tb_customUsername);
-            listviewPageControls.Add(lbl_customPassword);
-            listviewPageControls.Add(tb_customPassword);
-            listviewPageControls.Add(gb_customcreds);
             listviewPageControls.Add(gb_ddtparams);
             listviewPageControls.Add(lbl_ChangeRateLabel);
             listviewPageControls.Add(lbl_ChangeRateValue);
@@ -311,20 +276,6 @@ namespace ChangeGen_v2
         private void tb_Compression_Validated(object sender, EventArgs e)
         {
             Validator.TextBox_Validated((TextBox)sender, errorProvider1);
-        }
-
-        private void cb_useCoreCreds_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!cb_useCoreCreds.Checked)
-            {
-                tb_customUsername.Enabled = true;
-                tb_customPassword.Enabled = true;
-            }
-            else
-            {
-                tb_customUsername.Enabled = false;
-                tb_customPassword.Enabled = false;
-            }
         }
     }
 }

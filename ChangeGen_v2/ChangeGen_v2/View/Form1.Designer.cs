@@ -48,14 +48,8 @@
             this.lbl_hostname = new System.Windows.Forms.Label();
             this.lbl_username = new System.Windows.Forms.Label();
             this.lbl_password = new System.Windows.Forms.Label();
-            this.cb_useCoreCreds = new System.Windows.Forms.CheckBox();
-            this.lbl_customUsername = new System.Windows.Forms.Label();
-            this.tb_customUsername = new System.Windows.Forms.TextBox();
-            this.tb_customPassword = new System.Windows.Forms.TextBox();
-            this.lbl_customPassword = new System.Windows.Forms.Label();
             this.tb_Port = new System.Windows.Forms.TextBox();
             this.lbl_Port = new System.Windows.Forms.Label();
-            this.gb_customcreds = new System.Windows.Forms.GroupBox();
             this.gb_ddtparams = new System.Windows.Forms.GroupBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
@@ -65,7 +59,6 @@
             this.lbl_totalAgentsRunninglabel = new System.Windows.Forms.Label();
             this.lbl_TotalAmountLabel = new System.Windows.Forms.Label();
             this.lbl_TotalAmountValue = new System.Windows.Forms.Label();
-            this.gb_customcreds.SuspendLayout();
             this.gb_ddtparams.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -279,54 +272,6 @@
             this.lbl_password.TabIndex = 24;
             this.lbl_password.Text = "Password";
             // 
-            // cb_useCoreCreds
-            // 
-            this.cb_useCoreCreds.AutoSize = true;
-            this.cb_useCoreCreds.Checked = true;
-            this.cb_useCoreCreds.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cb_useCoreCreds.Location = new System.Drawing.Point(6, 186);
-            this.cb_useCoreCreds.Name = "cb_useCoreCreds";
-            this.cb_useCoreCreds.Size = new System.Drawing.Size(125, 17);
-            this.cb_useCoreCreds.TabIndex = 25;
-            this.cb_useCoreCreds.Text = "Use Core Credentials";
-            this.cb_useCoreCreds.UseVisualStyleBackColor = true;
-            this.cb_useCoreCreds.CheckedChanged += new System.EventHandler(this.cb_useCoreCreds_CheckedChanged);
-            // 
-            // lbl_customUsername
-            // 
-            this.lbl_customUsername.AutoSize = true;
-            this.lbl_customUsername.Location = new System.Drawing.Point(6, 17);
-            this.lbl_customUsername.Name = "lbl_customUsername";
-            this.lbl_customUsername.Size = new System.Drawing.Size(55, 13);
-            this.lbl_customUsername.TabIndex = 27;
-            this.lbl_customUsername.Text = "Username";
-            // 
-            // tb_customUsername
-            // 
-            this.tb_customUsername.Enabled = false;
-            this.tb_customUsername.Location = new System.Drawing.Point(6, 34);
-            this.tb_customUsername.Name = "tb_customUsername";
-            this.tb_customUsername.Size = new System.Drawing.Size(120, 20);
-            this.tb_customUsername.TabIndex = 28;
-            // 
-            // tb_customPassword
-            // 
-            this.tb_customPassword.Enabled = false;
-            this.tb_customPassword.Location = new System.Drawing.Point(6, 74);
-            this.tb_customPassword.Name = "tb_customPassword";
-            this.tb_customPassword.Size = new System.Drawing.Size(120, 20);
-            this.tb_customPassword.TabIndex = 30;
-            this.tb_customPassword.UseSystemPasswordChar = true;
-            // 
-            // lbl_customPassword
-            // 
-            this.lbl_customPassword.AutoSize = true;
-            this.lbl_customPassword.Location = new System.Drawing.Point(6, 57);
-            this.lbl_customPassword.Name = "lbl_customPassword";
-            this.lbl_customPassword.Size = new System.Drawing.Size(53, 13);
-            this.lbl_customPassword.TabIndex = 29;
-            this.lbl_customPassword.Text = "Password";
-            // 
             // tb_Port
             // 
             this.tb_Port.Location = new System.Drawing.Point(460, 267);
@@ -347,33 +292,19 @@
             this.lbl_Port.TabIndex = 32;
             this.lbl_Port.Text = "Port";
             // 
-            // gb_customcreds
-            // 
-            this.gb_customcreds.Controls.Add(this.lbl_customUsername);
-            this.gb_customcreds.Controls.Add(this.tb_customUsername);
-            this.gb_customcreds.Controls.Add(this.lbl_customPassword);
-            this.gb_customcreds.Controls.Add(this.tb_customPassword);
-            this.gb_customcreds.Location = new System.Drawing.Point(663, 234);
-            this.gb_customcreds.Name = "gb_customcreds";
-            this.gb_customcreds.Size = new System.Drawing.Size(145, 100);
-            this.gb_customcreds.TabIndex = 33;
-            this.gb_customcreds.TabStop = false;
-            this.gb_customcreds.Text = "Custom Credentials";
-            // 
             // gb_ddtparams
             // 
             this.gb_ddtparams.Controls.Add(this.lbl_Size);
             this.gb_ddtparams.Controls.Add(this.tb_Size);
             this.gb_ddtparams.Controls.Add(this.lbl_Compression);
             this.gb_ddtparams.Controls.Add(this.tb_Compression);
-            this.gb_ddtparams.Controls.Add(this.cb_useCoreCreds);
             this.gb_ddtparams.Controls.Add(this.tb_Path);
             this.gb_ddtparams.Controls.Add(this.lbl_Path);
             this.gb_ddtparams.Controls.Add(this.lbl_Interval);
             this.gb_ddtparams.Controls.Add(this.tb_Interval);
             this.gb_ddtparams.Location = new System.Drawing.Point(664, 11);
             this.gb_ddtparams.Name = "gb_ddtparams";
-            this.gb_ddtparams.Size = new System.Drawing.Size(144, 217);
+            this.gb_ddtparams.Size = new System.Drawing.Size(144, 192);
             this.gb_ddtparams.TabIndex = 34;
             this.gb_ddtparams.TabStop = false;
             this.gb_ddtparams.Text = "DDT Parameters";
@@ -455,7 +386,6 @@
             this.Controls.Add(this.lbl_ChangeRateValue);
             this.Controls.Add(this.lbl_ChangeRateLabel);
             this.Controls.Add(this.gb_ddtparams);
-            this.Controls.Add(this.gb_customcreds);
             this.Controls.Add(this.lbl_Port);
             this.Controls.Add(this.tb_Port);
             this.Controls.Add(this.lbl_password);
@@ -474,8 +404,6 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Data Generator 0.3";
-            this.gb_customcreds.ResumeLayout(false);
-            this.gb_customcreds.PerformLayout();
             this.gb_ddtparams.ResumeLayout(false);
             this.gb_ddtparams.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
@@ -505,14 +433,8 @@
         private System.Windows.Forms.Label lbl_hostname;
         private System.Windows.Forms.Label lbl_username;
         private System.Windows.Forms.Label lbl_password;
-        private System.Windows.Forms.CheckBox cb_useCoreCreds;
-        private System.Windows.Forms.Label lbl_customUsername;
-        private System.Windows.Forms.TextBox tb_customUsername;
-        private System.Windows.Forms.TextBox tb_customPassword;
-        private System.Windows.Forms.Label lbl_customPassword;
         private System.Windows.Forms.TextBox tb_Port;
         private System.Windows.Forms.Label lbl_Port;
-        private System.Windows.Forms.GroupBox gb_customcreds;
         private System.Windows.Forms.GroupBox gb_ddtparams;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ErrorProvider errorProvider1;
