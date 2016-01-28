@@ -117,4 +117,3 @@ D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\bin\Debug\DatabaseClient.Con
 D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\bin\Debug\O3E.Contracts.dll
 D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\bin\Debug\Reporting.Contracts.dll
 D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\bin\Debug\Agent.Contracts.dll
-D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\obj\Debug\ChangeGen_v2.csprojResolveAssemblyReference.cache
