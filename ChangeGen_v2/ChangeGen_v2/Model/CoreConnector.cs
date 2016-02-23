@@ -5,12 +5,14 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Net;
+using System.Text;
 using System.Windows.Forms;
+using Replay.Core.Contracts.Events.EventDefinitions.Replication.Pairing;
 
 namespace ChangeGen_v2
 {
     // This class represents the object which used to connect to Core API anrd retrieve info about Agent's machines
-    static class CoreConnector
+    internal static class CoreConnector
     {
         // This method used to connect to Core API with creds from current active seesion
         public static ICoreClient GetDefaultCoreClient(CoreConnectionCredentials coreCredentials)
@@ -34,13 +36,13 @@ namespace ChangeGen_v2
             return coreClient;
         }
 
-        //This method returns collection of Agent's objects
+        //This method returns collection of all Agent's objects
         public static List<Server> GetServersToListFromCore(CoreConnectionCredentials coreCredentials)
         {
-            List<Server> serversList = new List<Server>();
-            ICoreClient _coreClient = CoreConnector.GetFullCoreClient(coreCredentials);
+            var serversList = new List<Server>();
+            var coreClient = CoreConnector.GetFullCoreClient(coreCredentials);
 
-            var protectedAgents = _coreClient.AgentsManagement.GetProtectedAgents();
+            var protectedAgents = coreClient.AgentsManagement.GetProtectedAgents();
            
 
             foreach (var agent in protectedAgents)
@@ -55,8 +57,40 @@ namespace ChangeGen_v2
                     serversList.Add(new Server(agent.Descriptor.HostUri.Host, agent.DisplayName, agent.RepositoryName, 
                         agent.Descriptor.MetadataCredentials.DefaultCredentials.UserName, agent.Descriptor.MetadataCredentials.DefaultCredentials.PasswordDecrypted));
                 }
+                //MessageBox.Show(
+                //   coreClient.AgentsManagement.GetAgentMetadataById(agent.Id.ToString()).IPAddresses.Count.ToString());
             }
             return serversList;
+        }
+
+        //This method returns collection of Agent's objects with Exchange Server only
+        public static List<ExchangeServer> GetExchangeServersToListFromCore(CoreConnectionCredentials coreCredentials)
+        {
+            var exchangeServersList = new List<ExchangeServer>();
+            var coreClient = CoreConnector.GetFullCoreClient(coreCredentials);
+
+            var protectedAgents = coreClient.AgentsManagement.GetProtectedAgents();
+
+
+            foreach (var agent in protectedAgents)
+            {
+                if ((agent.AgentType != AgentType.EsxServer) && (agent.AgentType != AgentType.EsxVirtualMachine) && agent.HasExchangeInstance)
+                {
+                    exchangeServersList.Add(new ExchangeServer(agent.Descriptor.HostUri.Host, agent.DisplayName,
+                        agent.RepositoryName,
+                        agent.Descriptor.MetadataCredentials.DefaultCredentials.UserName,
+                        agent.Descriptor.MetadataCredentials.DefaultCredentials.PasswordDecrypted)
+                    {
+                        ExchangeGenParameters = new ExchangeGeneratorParameters()
+                        {
+                            Recipient = agent.Descriptor.MetadataCredentials.DefaultCredentials.UserName + "@" +coreClient.AgentsManagement.GetCachedAgentMetadataById(agent.Id.ToString()).FullyQualifiedDomainName.Remove(0,coreClient.AgentsManagement.GetCachedAgentMetadataById(agent.Id.ToString()).HostName.Length+1),
+                            MessageSize = 10240
+                        }
+                    });
+                }
+               
+            }
+            return exchangeServersList;
         }
 
         // This method creats url for Core API

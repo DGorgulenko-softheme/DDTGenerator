@@ -3,17 +3,17 @@ using System.IO;
 
 namespace ChangeGen_v2
 {
-    static class Logger
+    internal static class Logger
     {
-        private static readonly object _lock = new object();
+        private static readonly object Lock = new object();
 
-        public static void Log(string logMessage, LogLevel level, string serverIP)
+        public static void Log(string logMessage, LogLevel level, string serverIp)
         {
-            lock (_lock)
+            lock (Lock)
             {
-                using (StreamWriter w = File.AppendText("log.txt"))
+                using (var w = File.AppendText("log.txt"))
                 {
-                    w.WriteLine("[{0}][{1}][{2}]: {3}", level.ToString(), serverIP, DateTime.Now.ToString(), logMessage);
+                    w.WriteLine("[{0}][{1}][{2}]: {3}", level.ToString(), serverIp, DateTime.Now.ToString(), logMessage);
                 }
             }
         }
@@ -27,21 +27,21 @@ namespace ChangeGen_v2
         {
             Log(logMessage, level, "");
         }
-        public static void Log(string logMessage, string serverIP)
+        public static void Log(string logMessage, string serverIp)
         {
-            Log(logMessage, LogLevel.Info, serverIP);
+            Log(logMessage, LogLevel.Info, serverIp);
         }
 
-        public static void LogError(string logMessage, string serverIP, Exception e)
+        public static void LogError(string logMessage, string serverIp, Exception e)
         {
-            lock (_lock)
+            lock (Lock)
             {
-                using (StreamWriter w = File.AppendText("log.txt"))
+                using (var w = File.AppendText("log.txt"))
                 {
                     w.WriteLine("[{0}][{1}][{2}]: {3}" + Environment.NewLine +
                         e.GetType() + Environment.NewLine+
                         e.Message + Environment.NewLine+
-                        e.StackTrace, LogLevel.Error, serverIP, DateTime.Now.ToString(), logMessage);
+                        e.StackTrace, LogLevel.Error, serverIp, DateTime.Now.ToString(), logMessage);
                 }
             }
         }

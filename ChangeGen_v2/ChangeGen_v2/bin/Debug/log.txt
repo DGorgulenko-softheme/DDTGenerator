@@ -1,2 +1,69 @@
 [Info][localhost][1/28/2016 5:05:25 PM]: Successfully connected to Core Server: localhost
 [Info][localhost][1/28/2016 5:07:56 PM]: Successfully connected to Core Server: localhost
+[Error][localhost][2/23/2016 11:19:47 AM]: Cannot connect to Core server localhost
+WCFClientBase.ClientServerErrorException
+Call to service method https://localhost:8006/apprecovery/api/core/agents/protected GET failed
+   at WCFClientBase.ClientBase.HandleServiceMethodCallException(Uri uri, String method, TimeSpan elapsedTime, Exception e)
+   at WCFClientBase.ClientBase.ExecuteAction(HttpClient client, Uri uri, String method)
+   at WCFClientBase.ClientBase.GetResponse(Uri uri, String method, String knownEtag)
+   at WCFClientBase.ClientBase.ExecuteServiceCall[T](Uri uri, String method, String knownETag)
+   at Replay.Core.Client.AgentsManagementCoreClient.GetProtectedAgents()
+   at ChangeGen_v2.CoreConnector.GetServersToListFromCore(CoreConnectionCredentials coreCredentials) in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\CoreConnector.cs:line 43
+   at ChangeGen_v2.ServerWrapper.ServersToListView(ListView listview, CoreConnectionCredentials coreCredentials) in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Controller\ServerWrapper.cs:line 17
+   at ChangeGen_v2.Form1.btn_Connect_Click(Object sender, EventArgs e) in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\View\Form1.cs:line 44
+[Info][10.23.10.25][2/23/2016 11:19:58 AM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/23/2016 11:20:21 AM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/23/2016 11:24:39 AM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/23/2016 11:25:56 AM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/23/2016 11:26:17 AM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/23/2016 11:26:58 AM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/23/2016 11:29:59 AM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/23/2016 11:54:00 AM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/23/2016 12:02:19 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/23/2016 12:04:45 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/23/2016 12:07:04 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/23/2016 12:12:53 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/23/2016 12:22:50 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/23/2016 12:23:06 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/23/2016 12:59:59 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.26][2/23/2016 1:00:15 PM]: Successfully copied DDT to remote server
+[Info][10.23.10.26][2/23/2016 1:00:15 PM]: Data generation started on remote server 10.23.10.26
+[Info][10.23.10.22][2/23/2016 1:00:18 PM]: Successfully copied DDT to remote server
+[Info][10.23.10.22][2/23/2016 1:00:18 PM]: Data generation started on remote server 10.23.10.22
+[Info][10.23.10.25][2/23/2016 1:19:27 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/23/2016 1:20:10 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/23/2016 1:20:25 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/23/2016 1:20:42 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.22][2/23/2016 1:21:03 PM]: Successfully copied DDT to remote server
+[Info][10.23.10.22][2/23/2016 1:21:03 PM]: Data generation started on remote server 10.23.10.22
+[Info][10.23.10.22][2/23/2016 1:21:03 PM]: DDT operation has been canceled by user
+[Info][10.23.10.26][2/23/2016 1:21:04 PM]: Successfully copied DDT to remote server
+[Info][10.23.10.26][2/23/2016 1:21:04 PM]: Data generation started on remote server 10.23.10.26
+[Info][10.23.10.26][2/23/2016 1:21:04 PM]: DDT operation has been canceled by user
+[Info][10.23.10.26][2/23/2016 1:21:18 PM]: Successfully copied DDT to remote server
+[Info][10.23.10.26][2/23/2016 1:21:18 PM]: Data generation started on remote server 10.23.10.26
+[Info][10.23.10.22][2/23/2016 1:21:20 PM]: Successfully copied DDT to remote server
+[Info][10.23.10.22][2/23/2016 1:21:20 PM]: Data generation started on remote server 10.23.10.22
+[Info][10.23.10.26][2/23/2016 1:21:36 PM]: Successfully copied DDT to remote server
+[Info][10.23.10.26][2/23/2016 1:21:36 PM]: Data generation started on remote server 10.23.10.26
+[Info][10.23.10.22][2/23/2016 1:21:40 PM]: Successfully copied DDT to remote server
+[Info][10.23.10.22][2/23/2016 1:21:40 PM]: Data generation started on remote server 10.23.10.22
+[Info][10.23.10.22][2/23/2016 1:22:40 PM]: DDT operation has been canceled by user
+[Info][10.23.10.25][2/23/2016 1:34:18 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/23/2016 1:34:51 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/23/2016 1:35:17 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/23/2016 1:36:47 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/23/2016 1:37:43 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/23/2016 1:38:25 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.26][2/23/2016 1:38:43 PM]: Successfully copied DDT to remote server
+[Info][10.23.10.26][2/23/2016 1:38:43 PM]: Data generation started on remote server 10.23.10.26
+[Info][10.23.10.22][2/23/2016 1:38:46 PM]: Successfully copied DDT to remote server
+[Info][10.23.10.22][2/23/2016 1:38:46 PM]: Data generation started on remote server 10.23.10.22
+[Info][10.23.10.25][2/23/2016 2:16:43 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/23/2016 2:18:49 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/23/2016 4:24:23 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/23/2016 5:07:51 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/23/2016 5:09:59 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/23/2016 5:11:31 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/23/2016 5:12:57 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/23/2016 5:16:17 PM]: Successfully connected to Core Server: 10.23.10.25

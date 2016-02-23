@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ChangeGen_v2
 {
     [DataContract(Name = "DDTParametersContract")]
-    class DDTParameters
+    internal class DdtParameters
     {
         [DataMember(Name ="filepathMember")]
         private string _filepath;
@@ -39,24 +34,24 @@ namespace ChangeGen_v2
             }
         }
 
-        public void SerizalizeDDTParamsToFile()
+        public void SerizalizeDdtParamsToFile()
         {
-            DataContractSerializer dcs = new DataContractSerializer(typeof(DDTParameters));
+            var dcs = new DataContractSerializer(typeof(DdtParameters));
             using (var fs = new FileStream("DDTParams.xml", FileMode.Create))
             {
                 dcs.WriteObject(fs, this);
             }
         }
 
-        public static DDTParameters DeserializeDDTParamsFromFile()
+        public static DdtParameters DeserializeDdtParamsFromFile()
         {
-            DDTParameters deserializedDDTparams = null;
-            DataContractSerializer dcs = new DataContractSerializer(typeof(DDTParameters));
+            DdtParameters deserializedDdTparams = null;
+            var dcs = new DataContractSerializer(typeof(DdtParameters));
             try
             {
                 using (var fs = new FileStream("DDTParams.xml", FileMode.Open))
                 {
-                    deserializedDDTparams = (DDTParameters)dcs.ReadObject(fs);
+                    deserializedDdTparams = (DdtParameters)dcs.ReadObject(fs);
                 }
             }
             catch (FileNotFoundException)
@@ -64,7 +59,7 @@ namespace ChangeGen_v2
                 return null;
             }
 
-            return deserializedDDTparams;
+            return deserializedDdTparams;
         }
     }
 }

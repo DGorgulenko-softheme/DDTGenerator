@@ -6,35 +6,50 @@ using System.Windows.Forms;
 namespace ChangeGen_v2
 {
     // This class store methods which update ListView with servers current state
-    static class ServerWrapper
+    internal static class ServerWrapper
     {
-        public static List<Server> serversList; // store list of servers
+        public static List<Server> ServersList; // store list of servers
+        public static List<ExchangeServer> ExchangeServersList; //store list of exchange servers 
 
         // This method displays servers received from Core API to ListView
-        public static void ServersToListView(ListView listview, CoreConnectionCredentials coreCredentials)
+        public static void ServersToListView(ListView serverslistview, ListView exchangeServersListView, CoreConnectionCredentials coreCredentials)
         {
 
-            serversList = CoreConnector.GetServersToListFromCore(coreCredentials);
+            ServersList = CoreConnector.GetServersToListFromCore(coreCredentials);
+            ExchangeServersList = CoreConnector.GetExchangeServersToListFromCore(coreCredentials);
               
-            ListViewCreateColumns(listview);
+            ServersListViewCreateColumns(serverslistview);
+            serverslistview.Items.Clear();
+            serverslistview.View = View.Details;
 
-            listview.Items.Clear();
-
-            ListViewItem lvi_server;
-
-            listview.View = View.Details;
-
-            foreach (var server in serversList)
+            foreach (var server in ServersList)
             {
-                lvi_server = new ListViewItem(server.DisplayName);
-                lvi_server.SubItems.Add(server.ServerCredentials.IP);
-                lvi_server.SubItems.Add(server.Repository);
-                lvi_server.SubItems.Add(server.DdtStatus.ToString());
-                lvi_server.SubItems.Add("");
-                lvi_server.SubItems.Add("");
-                lvi_server.SubItems.Add("");
-                lvi_server.SubItems.Add("");
-                listview.Items.Add(lvi_server);
+                var lviServer = new ListViewItem(server.DisplayName);
+                lviServer.SubItems.Add(server.ServerCredentials.Ip);
+                lviServer.SubItems.Add(server.Repository);
+                lviServer.SubItems.Add(server.ServerGeneratorStatus.ToString());
+                lviServer.SubItems.Add("");
+                lviServer.SubItems.Add("");
+                lviServer.SubItems.Add("");
+                lviServer.SubItems.Add("");
+                serverslistview.Items.Add(lviServer);
+            }
+
+            ExchangeListViewCreateColumns(exchangeServersListView);
+            exchangeServersListView.Items.Clear();
+            exchangeServersListView.View = View.Details;
+
+            foreach (var server in ExchangeServersList)
+            {
+                var lviServer = new ListViewItem(server.DisplayName);
+                lviServer.SubItems.Add(server.ServerCredentials.Ip);
+                lviServer.SubItems.Add(server.Repository);
+                lviServer.SubItems.Add(server.ServerGeneratorStatus.ToString());
+                lviServer.SubItems.Add("");
+                lviServer.SubItems.Add("");
+                lviServer.SubItems.Add("");
+                lviServer.SubItems.Add("");
+                exchangeServersListView.Items.Add(lviServer);
             }
         }
 
@@ -43,24 +58,21 @@ namespace ChangeGen_v2
         {
             var listViewAgents = listView.Items.Cast<ListViewItem>().ToList();
 
-            for (int i = 0; i < listViewAgents.Count; i++)
+            foreach (var agent in listViewAgents)
             {
-                for (int j = 0; j < serversList.Count; j++)
+                foreach (var server in ServersList.Where(server => agent.SubItems[1].Text == server.ServerCredentials.Ip))
                 {
-                    if (listViewAgents[i].SubItems[1].Text == serversList[j].ServerCredentials.IP)
+                    agent.SubItems[3].Text = server.ServerGeneratorStatus.ToString();   // DDT Status
+                    if(server.DdtParameters == null)
                     {
-                        listViewAgents[i].SubItems[3].Text = serversList[j].DdtStatus.ToString();   // DDT Status
-                        if(serversList[j].DdtParameters == null)
-                        {
-                            break;
-                        }
-                        else
-                        {
-                            listViewAgents[i].SubItems[4].Text = serversList[j].DdtParameters.Filesize.ToString();   // Filesize
-                            listViewAgents[i].SubItems[5].Text = serversList[j].DdtParameters.Compression.ToString(); // Compression
-                            listViewAgents[i].SubItems[6].Text = serversList[j].DdtParameters.Interval.ToString();    // Interval
-                            listViewAgents[i].SubItems[7].Text = serversList[j].DdtParameters.Filepath;               // Path
-                        }                       
+                        break;
+                    }
+                    else
+                    {
+                        agent.SubItems[4].Text = server.DdtParameters.Filesize.ToString();   // Filesize
+                        agent.SubItems[5].Text = server.DdtParameters.Compression.ToString(); // Compression
+                        agent.SubItems[6].Text = server.DdtParameters.Interval.ToString();    // Interval
+                        agent.SubItems[7].Text = server.DdtParameters.Filepath;               // Path
                     }
                 }
             }
@@ -68,18 +80,27 @@ namespace ChangeGen_v2
             UpdateExpectedChangeRateAndAmountOfActiveGenerations(listViewAgents, expectedRateLabel, amountOfActiveGeneraionsLabel);
         }
 
-        private static void UpdateExpectedChangeRateAndAmountOfActiveGenerations(List<ListViewItem> listViewAgents, Label expectedRateLabel, Label amountOfRunningLabel)
+        public static void UpdateExchangeListView(ListView listView)
+        {
+            var listViewAgents = listView.Items.Cast<ListViewItem>().ToList();
+
+            foreach (var agent in listViewAgents)
+            {
+                foreach (var server in ExchangeServersList.Where(server => agent.SubItems[1].Text == server.ServerCredentials.Ip))
+                {
+                    agent.SubItems[3].Text = server.ServerGeneratorStatus.ToString();   // DDT Status
+                }
+            }
+        }
+
+        private static void UpdateExpectedChangeRateAndAmountOfActiveGenerations(IEnumerable<ListViewItem> listViewAgents, Control expectedRateLabel, Control amountOfRunningLabel)
         {
             double expectedChRate = 0;
-            int amountOfActiveGenerations = 0;
-            for (int i = 0; i < listViewAgents.Count; i++)
+            var amountOfActiveGenerations = 0;
+            foreach (var agent in listViewAgents.Where(agent => agent.SubItems[3].Text == "Running"))
             {
-
-                if (listViewAgents[i].SubItems[3].Text == "Running")
-                {
-                    expectedChRate += Convert.ToDouble(listViewAgents[i].SubItems[4].Text) / Convert.ToDouble(listViewAgents[i].SubItems[6].Text) * 60.0 / 1024.0;
-                    amountOfActiveGenerations += 1;
-                }
+                expectedChRate += Convert.ToDouble(agent.SubItems[4].Text) / Convert.ToDouble(agent.SubItems[6].Text) * 60.0 / 1024.0;
+                amountOfActiveGenerations += 1;
             }
 
             expectedRateLabel.Text = expectedChRate.ToString();
@@ -87,7 +108,7 @@ namespace ChangeGen_v2
         }
 
         // This method used to create columns in ListView
-        private static void ListViewCreateColumns(ListView listview)
+        private static void ServersListViewCreateColumns(ListView listview)
         {
             listview.Columns.Add("     Display Name", 100);
             listview.Columns.Add("IP", 100);
@@ -97,6 +118,15 @@ namespace ChangeGen_v2
             listview.Columns.Add("Compression", 75);
             listview.Columns.Add("Interval", 50);
             listview.Columns.Add("Path", 100);
+            listview.CheckBoxes = true;
+        }
+
+        private static void ExchangeListViewCreateColumns(ListView listview)
+        {
+            listview.Columns.Add("     Display Name", 100);
+            listview.Columns.Add("IP", 100);
+            listview.Columns.Add("Repository", 100);
+            listview.Columns.Add("Generation Status", 70);
             listview.CheckBoxes = true;
         }
     }

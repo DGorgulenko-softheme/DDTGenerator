@@ -9,51 +9,43 @@ using System.Windows.Forms;
 
 namespace ChangeGen_v2
 {
-    class Validator
+    internal class Validator
     {
 
         public static void TextBox_ValidatingEmpty(CancelEventArgs e, TextBox textBox, ErrorProvider errorProvider)
         {          
             string errorMsg;
-            if (!StringNotEmpty(textBox.Text, out errorMsg))
-            {
-                e.Cancel = true;
+            if (StringNotEmpty(textBox.Text, out errorMsg)) return;
+            e.Cancel = true;
 
-                errorProvider.SetError(textBox, errorMsg);
-            }
+            errorProvider.SetError(textBox, errorMsg);
         }
 
         public static void TextBox_ValidatingPort(CancelEventArgs e, TextBox textBox, ErrorProvider errorProvider)
         {
             string errorMsg;
-            if (!StringNotEmpty(textBox.Text, out errorMsg) || !ValidPort(textBox.Text, out errorMsg))
-            {
-                e.Cancel = true;
+            if (StringNotEmpty(textBox.Text, out errorMsg) && ValidPort(textBox.Text, out errorMsg)) return;
+            e.Cancel = true;
 
-                errorProvider.SetError(textBox, errorMsg);
-            }
+            errorProvider.SetError(textBox, errorMsg);
         }
 
         public static void TextBox_ValidatingNumeric(CancelEventArgs e, TextBox textBox, ErrorProvider errorProvider)
         {
             string errorMsg;
-            if (!StringNotEmpty(textBox.Text, out errorMsg) || !ValueNotNegative(textBox.Text, out errorMsg))
-            {
-                e.Cancel = true;
+            if (StringNotEmpty(textBox.Text, out errorMsg) && ValueNotNegative(textBox.Text, out errorMsg)) return;
+            e.Cancel = true;
 
-                errorProvider.SetError(textBox, errorMsg);
-            }
+            errorProvider.SetError(textBox, errorMsg);
         }
 
         public static void TextBox_ValidatingCompression(CancelEventArgs e, TextBox textBox, ErrorProvider errorProvider)
         {
             string errorMsg;
-            if (!StringNotEmpty(textBox.Text, out errorMsg) || !ValidCompression(textBox.Text, out errorMsg))
-            {
-                e.Cancel = true;
+            if (StringNotEmpty(textBox.Text, out errorMsg) && ValidCompression(textBox.Text, out errorMsg)) return;
+            e.Cancel = true;
 
-                errorProvider.SetError(textBox, errorMsg);
-            }
+            errorProvider.SetError(textBox, errorMsg);
         }
 
         public static void TextBox_Validated(TextBox textBox, ErrorProvider errorProvider)

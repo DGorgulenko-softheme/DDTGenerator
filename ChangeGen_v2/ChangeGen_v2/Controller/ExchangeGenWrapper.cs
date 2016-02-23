@@ -1,15 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ChangeGen_v2
 {
-    internal class DdtWrapper
+    class ExchangeGenWrapper
     {
         // This method used to initiate start of DDT on remote machine
-        public static void StartDdt(ListView listview, List<Server> serversList, DdtParameters ddtparameters)
+        public static void StartExchangeGenerator(ListView listview, List<ExchangeServer> serversList)
         {
             var selectedServers = listview.Items.Cast<ListViewItem>().Where(item => item.Checked).ToList(); // Creating list of selected servers
 
@@ -27,27 +29,25 @@ namespace ChangeGen_v2
 
                     serversList[y].ServerGeneratorStatus = Server.GeneratorStatus.Running;
                     serversList[y].Cts = new CancellationTokenSource();
-                    serversList[y].DdtParameters = ddtparameters;
-                     
-                    serversList[y].Task = new Task(() => serversList[index].Runddt());
+                    serversList[y].Task = new Task(() => serversList[index].StartExchangeGenerator());
                     serversList[y].Task.Start();
                 }
             }
         }
 
         // Cancel DDT for selected server
-        public static void StopDdt(ListView listview, List<Server> serversList)
+        public static void StopExchangeGenerator(ListView listview, List<ExchangeServer> serversList)
         {
             var selectedServers = listview.Items.Cast<ListViewItem>().Where(item => item.Checked).ToList();
 
             foreach (var server in selectedServers)
             {
-                for (var y = 0; y < serversList.Count; y++)
+                foreach (var exchangeServer in serversList)
                 {
-                    if (server.SubItems[1].Text != serversList[y].ServerCredentials.Ip) continue;
+                    if (server.SubItems[1].Text != exchangeServer.ServerCredentials.Ip) continue;
 
-                    serversList[y].ServerGeneratorStatus = Server.GeneratorStatus.Stopped;
-                    serversList[y].Cts.Cancel();
+                    exchangeServer.ServerGeneratorStatus = Server.GeneratorStatus.Stopped;
+                    exchangeServer.Cts.Cancel();
                 }
             }
         }

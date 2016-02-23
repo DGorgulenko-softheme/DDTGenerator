@@ -25,7 +25,7 @@ namespace ChangeGen_v2
 
         public void SerizalizeCredsToFile ()
         {
-            DataContractSerializer dcs = new DataContractSerializer(typeof(CoreConnectionCredentials));
+            var dcs = new DataContractSerializer(typeof(CoreConnectionCredentials));
             using (var fs = new FileStream("CoreCreds.xml", FileMode.Create))
             {
                 dcs.WriteObject(fs, this);
@@ -35,7 +35,7 @@ namespace ChangeGen_v2
         public static CoreConnectionCredentials DeserializeCredsFromFile()
         {
             CoreConnectionCredentials deserializedCreds = null;
-            DataContractSerializer dcs = new DataContractSerializer(typeof(CoreConnectionCredentials));
+            var dcs = new DataContractSerializer(typeof(CoreConnectionCredentials));
             try
             {
                 using (var fs = new FileStream("CoreCreds.xml", FileMode.Open))

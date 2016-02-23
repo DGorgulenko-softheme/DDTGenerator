@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 namespace ChangeGen_v2
 {
     // This class represents the Server object, which used to store information about remote machine, parameters and current state of DDT
-    class Server
+    internal class Server
     {
         // Cancelation token to cancel DDT operations on server
-        public CancellationTokenSource CTS { get; set; }
+        public CancellationTokenSource Cts { get; set; }
 
         // Used to create separate async task for each server
         public Task Task { get; set; }
@@ -21,32 +21,34 @@ namespace ChangeGen_v2
         public string Repository { get; set; }
 
         // Current status of DDT on server
-        public DDTStatus DdtStatus { get; set; } = DDTStatus.Stopped;
+        public GeneratorStatus ServerGeneratorStatus { get; set; } = GeneratorStatus.Stopped;
 
         // Server username and password for connection
         public ServerConnectionCredentials ServerCredentials { get; set; }
 
         // DDT Parameters for current server
-        public DDTParameters DdtParameters { get; set; }
+        public DdtParameters DdtParameters { get; set; }
 
-        // This construcor is using when creating new instance using data from Core.
+        // This constructor is using when creating new instance using data from Core.
         public Server(string ip, string displayname, string repository, string username, string password)
         {
             DisplayName = displayname;
             Repository = repository;
-            ServerCredentials = new ServerConnectionCredentials();
-            ServerCredentials.Username = username;
-            ServerCredentials.Password = password;
-            ServerCredentials.IP = ip;
+            ServerCredentials = new ServerConnectionCredentials
+            {
+                Username = username,
+                Password = password,
+                Ip = ip
+            };
         }
 
-        // Enumeraion of possible status for DDT tool on server
-        public enum DDTStatus
+        // Enumeration of possible status for DDT tool on server
+        public enum GeneratorStatus
         {
-            Failed,
-            Running,
-            Stopped,
-            WrongCredentials      
+            Failed = 0,
+            Running = 1,
+            Stopped = 2,
+            WrongCredentials = 3
         }
 
         // Method used to run DDT on server side
@@ -54,21 +56,19 @@ namespace ChangeGen_v2
         {
             try
             {
-                //DDT.Runddtremotely(IP, ServerCredentials, DdtParameters, CTS.Token);
-                DDT.Runddtremotely(ServerCredentials, DdtParameters, CTS.Token);
-
+                Ddt.Runddtremotely(ServerCredentials, DdtParameters, Cts.Token);
             }
             catch(COMException)
             {
-                DdtStatus = DDTStatus.Failed;
+                ServerGeneratorStatus = GeneratorStatus.Failed;
             }
             catch(System.UnauthorizedAccessException)
             {
-                DdtStatus = DDTStatus.WrongCredentials;
+                ServerGeneratorStatus = GeneratorStatus.WrongCredentials;
             }
             catch (IOException)
             {
-                DdtStatus = DDTStatus.Failed;
+                ServerGeneratorStatus = GeneratorStatus.Failed;
             }
         }
     }

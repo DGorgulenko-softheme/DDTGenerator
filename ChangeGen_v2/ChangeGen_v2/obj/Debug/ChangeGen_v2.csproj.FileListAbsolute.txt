@@ -118,3 +118,11 @@ D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\bin\Debug\O3E.Contracts.dll
 D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\bin\Debug\Reporting.Contracts.dll
 D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\bin\Debug\Agent.Contracts.dll
 D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\obj\Debug\ChangeGen_v2.AboutBox1.resources
+D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\obj\Debug\ChangeGen_v2.csprojResolveAssemblyReference.cache
+D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\bin\Debug\Microsoft.Exchange.WebServices.Auth.dll
+D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\bin\Debug\Microsoft.Exchange.WebServices.dll
+D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\bin\Debug\Microsoft.IdentityModel.Extensions.dll
+D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\bin\Debug\Microsoft.Exchange.WebServices.pdb
+D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\bin\Debug\Microsoft.Exchange.WebServices.xml
+D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\bin\Debug\Microsoft.Exchange.WebServices.Auth.pdb
+D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\bin\Debug\Microsoft.Exchange.WebServices.Auth.xml

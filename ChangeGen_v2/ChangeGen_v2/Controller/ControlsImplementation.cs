@@ -3,9 +3,8 @@ using System.Windows.Forms;
 
 namespace ChangeGen_v2
 {
-    static class ControlsImplementation
+    internal static class ControlsImplementation
     {
-
         // This method displays controls for ListView Page
         public static void ChangePage(List<Control> pageToHide, List<Control> pageToShow)
         {
@@ -20,18 +19,18 @@ namespace ChangeGen_v2
             }
         }
 
-        public static void selectUnselectAll(ListView listview, bool selectAll)
+        public static void SelectUnselectAll(ListView listview, bool selectAll)
         {
             if (selectAll)
             {
-                for (int i = 0; i < listview.Items.Count; i++)
+                for (var i = 0; i < listview.Items.Count; i++)
                 {
                     listview.Items[i].Checked = true;
                 }
             }
             else
             {
-                for (int i = 0; i < listview.Items.Count; i++)
+                for (var i = 0; i < listview.Items.Count; i++)
                 {
                     listview.Items[i].Checked = false;
                 }

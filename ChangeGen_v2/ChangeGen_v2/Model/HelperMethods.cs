@@ -5,7 +5,7 @@ using System.Security.Principal;
 
 namespace ChangeGen_v2
 {
-    static class HelperMethods
+    internal static class HelperMethods
     {
 
         // This method is using for connection to the remote CIFS share with specific credentials
@@ -15,69 +15,64 @@ namespace ChangeGen_v2
         // This method is used to perform action delegate remotely on CIFS Share
         public static void PerformActionRemotely(Action action, ServerConnectionCredentials serverCreds)
         {
-            WindowsIdentity wid_current = WindowsIdentity.GetCurrent();
+            WindowsIdentity.GetCurrent();
             WindowsImpersonationContext wic = null;
             try
             {
-                IntPtr admin_token = new IntPtr();
-                if (LogonUser(serverCreds.Username, ".", serverCreds.Password, 9, 0, ref admin_token) != 0)
-                {
-                    wic = new WindowsIdentity(admin_token).Impersonate();
+                var adminToken = new IntPtr();
+                if (LogonUser(serverCreds.Username, ".", serverCreds.Password, 9, 0, ref adminToken) == 0) return;
+                wic = new WindowsIdentity(adminToken).Impersonate();
 
-                    action();
-                }
+                action();
             }
             catch (Exception se)
             {
-                int ret = Marshal.GetLastWin32Error();
-                Logger.LogError("Invoking action on remote machine failed with Error code " + ret.ToString(), serverCreds.IP, se);
+                var ret = Marshal.GetLastWin32Error();
+                Logger.LogError("Invoking action on remote machine failed with Error code " + ret.ToString(), serverCreds.Ip, se);
                 return;
             }
             finally
             {
-                if (wic != null)
-                {
-                    wic.Undo();
-                }
+                wic?.Undo();
             }
         }
 
         // This method implements copying of folders
         public static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
         {
-            DirectoryInfo dir = new DirectoryInfo(sourceDirName);
+            var dir = new DirectoryInfo(sourceDirName);
 
-            DirectoryInfo[] dirs = dir.GetDirectories();
+            var dirs = dir.GetDirectories();
 
-            FileInfo[] files = dir.GetFiles();
+            var files = dir.GetFiles();
 
-            foreach (FileInfo file in files)
+            foreach (var file in files)
             {
-                string temppath = Path.Combine(destDirName, file.Name);
+                var temppath = Path.Combine(destDirName, file.Name);
 
 
                 file.CopyTo(temppath, true);
                 
             }
 
-            if (copySubDirs)
+            if (!copySubDirs) return;
             {
-                foreach (DirectoryInfo subdir in dirs)
+                foreach (var subdir in dirs)
                 {
-                    string temppath = Path.Combine(destDirName, subdir.Name);
-                    DirectoryCopy(subdir.FullName, temppath, copySubDirs);
+                    var temppath = Path.Combine(destDirName, subdir.Name);
+                    DirectoryCopy(subdir.FullName, temppath, true);
                 }
             }
         }
 
-        public static String separateVolumeAndFolder(string stringToSeparate, FilepathParts partToSeparate)
+        public static string SeparateVolumeAndFolder(string stringToSeparate, FilepathParts partToSeparate)
         {
             var separatorIndex = stringToSeparate.IndexOf(':');
             switch (partToSeparate)
             {
-                case FilepathParts.volume:
+                case FilepathParts.Volume:
                     return stringToSeparate.Remove(separatorIndex);
-                case FilepathParts.folder:
+                case FilepathParts.Folder:
                     return stringToSeparate.Remove(0, separatorIndex + 1);
                 default:
                     return null;
@@ -86,8 +81,8 @@ namespace ChangeGen_v2
 
         public enum FilepathParts
         {
-            volume,
-            folder
+            Volume,
+            Folder
         }
 
 
