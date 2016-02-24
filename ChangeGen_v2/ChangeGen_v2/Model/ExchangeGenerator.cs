@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading;
 using Microsoft.Exchange.WebServices.Data;
+using NLog;
 
 namespace ChangeGen_v2
 {
@@ -15,6 +16,8 @@ namespace ChangeGen_v2
                 Url = new Uri("https://" + serverCredentials.Ip + "/EWS/Exchange.asmx"),
                 Timeout = 300000
             };
+
+            Logger.Log("Exchange data generation started for server: " + serverCredentials.Ip + " . With mail size: " + genParameters.MessageSize.ToString(), Logger.LogLevel.Info, serverCredentials.Ip);
 
             while (true)
             {

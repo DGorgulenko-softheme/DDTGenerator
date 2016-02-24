@@ -45,6 +45,7 @@ namespace ChangeGen_v2
                 {
                     if (server.SubItems[1].Text != exchangeServer.ServerCredentials.Ip) continue;
 
+                    Logger.Log("Exchange generation has been canceled by user.",Logger.LogLevel.Info,exchangeServer.ServerCredentials.Ip);
                     exchangeServer.ServerGeneratorStatus = Server.GeneratorStatus.Stopped;
                     exchangeServer.Cts.Cancel();
                 }

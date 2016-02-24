@@ -42,12 +42,13 @@ namespace ChangeGen_v2
 
             foreach (var server in selectedServers)
             {
-                foreach (var t in serversList)
+                foreach (var agent in serversList)
                 {
-                    if (server.SubItems[1].Text != t.ServerCredentials.Ip) continue;
+                    if (server.SubItems[1].Text != agent.ServerCredentials.Ip) continue;
 
-                    t.ServerGeneratorStatus = Server.GeneratorStatus.Stopped;
-                    t.Cts.Cancel();
+                    Logger.Log("Data generation has been canceled by user.", Logger.LogLevel.Info, agent.ServerCredentials.Ip);
+                    agent.ServerGeneratorStatus = Server.GeneratorStatus.Stopped;
+                    agent.Cts.Cancel();
                 }
             }
         }

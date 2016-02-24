@@ -192,3 +192,63 @@ The message exceeds the maximum supported size.
 [Info][10.23.10.25][2/24/2016 5:13:17 PM]: Successfully connected to Core Server: 10.23.10.25
 [Info][10.23.10.25][2/24/2016 5:13:58 PM]: Successfully connected to Core Server: 10.23.10.25
 [Info][10.23.10.25][2/24/2016 5:14:34 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 5:20:01 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][][2/24/2016 5:20:05 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:05 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:05 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:05 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:05 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:05 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:06 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:06 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:06 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:06 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:06 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:07 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:07 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:07 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:07 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:08 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:08 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:08 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:08 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:08 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:09 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:09 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:09 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:09 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:09 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:10 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:10 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:10 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:10 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:10 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:11 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:11 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:11 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:11 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:12 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:12 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:12 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:12 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:12 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:13 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:13 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:13 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][][2/24/2016 5:20:14 PM]: Exchange data generation successfully started for server: 10.23.10.26 . With mail size: Medium
+[Info][10.23.10.25][2/24/2016 5:20:40 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][][2/24/2016 5:20:42 PM]: Exchange data generation started for server: 10.23.10.26 . With mail size: Medium
+[Info][10.23.10.25][2/24/2016 5:21:27 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.26][2/24/2016 5:21:31 PM]: Exchange data generation started for server: 10.23.10.26 . With mail size: Medium
+[Info][10.23.10.25][2/24/2016 5:22:23 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.26][2/24/2016 5:22:27 PM]: Exchange data generation started for server: 10.23.10.26 . With mail size: Medium
+[Info][10.23.10.25][2/24/2016 5:25:36 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.26][2/24/2016 5:25:40 PM]: Exchange data generation started for server: 10.23.10.26 . With mail size: Medium
+[Info][10.23.10.26][2/24/2016 5:25:45 PM]: Exchange generation has been canceled by user.
+[Info][10.23.10.25][2/24/2016 5:27:47 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.26][2/24/2016 5:28:09 PM]: Successfully copied DDT to remote server
+[Info][10.23.10.26][2/24/2016 5:28:09 PM]: Data generation started on remote server 10.23.10.26
+[Info][10.23.10.22][2/24/2016 5:28:12 PM]: Successfully copied DDT to remote server
+[Info][10.23.10.22][2/24/2016 5:28:12 PM]: Data generation started on remote server 10.23.10.22
+[Info][10.23.10.26][2/24/2016 5:30:20 PM]: Data generation has been canceled by user.
+[Info][10.23.10.22][2/24/2016 5:30:20 PM]: Data generation has been canceled by user.
