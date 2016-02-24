@@ -63,15 +63,19 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.lv_ExchangeServers = new System.Windows.Forms.ListView();
-            this.btn_startExchangeGeneration = new System.Windows.Forms.Button();
+            this.gb_ExchangeParameters = new System.Windows.Forms.GroupBox();
+            this.lbl_MessageSize = new System.Windows.Forms.Label();
+            this.tb_MessageSize = new System.Windows.Forms.TextBox();
             this.btn_stopExchangeGeneration = new System.Windows.Forms.Button();
+            this.btn_startExchangeGeneration = new System.Windows.Forms.Button();
+            this.cb_SelAllExchange = new System.Windows.Forms.CheckBox();
+            this.lv_ExchangeServers = new System.Windows.Forms.ListView();
             this.gb_ddtparams.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.gb_ExchangeParameters.SuspendLayout();
             this.SuspendLayout();
             // 
             // tb_hostname
@@ -417,9 +421,10 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.gb_ExchangeParameters);
             this.tabPage2.Controls.Add(this.btn_stopExchangeGeneration);
             this.tabPage2.Controls.Add(this.btn_startExchangeGeneration);
-            this.tabPage2.Controls.Add(this.checkBox1);
+            this.tabPage2.Controls.Add(this.cb_SelAllExchange);
             this.tabPage2.Controls.Add(this.lv_ExchangeServers);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
@@ -429,24 +434,47 @@
             this.tabPage2.Text = "Exchange";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // gb_ExchangeParameters
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(10, 10);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(15, 14);
-            this.checkBox1.TabIndex = 5;
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.gb_ExchangeParameters.Controls.Add(this.lbl_MessageSize);
+            this.gb_ExchangeParameters.Controls.Add(this.tb_MessageSize);
+            this.gb_ExchangeParameters.Location = new System.Drawing.Point(794, 10);
+            this.gb_ExchangeParameters.Name = "gb_ExchangeParameters";
+            this.gb_ExchangeParameters.Size = new System.Drawing.Size(144, 192);
+            this.gb_ExchangeParameters.TabIndex = 35;
+            this.gb_ExchangeParameters.TabStop = false;
+            this.gb_ExchangeParameters.Text = "Parameters";
             // 
-            // lv_ExchangeServers
+            // lbl_MessageSize
             // 
-            this.lv_ExchangeServers.Location = new System.Drawing.Point(5, 5);
-            this.lv_ExchangeServers.Margin = new System.Windows.Forms.Padding(2);
-            this.lv_ExchangeServers.Name = "lv_ExchangeServers";
-            this.lv_ExchangeServers.Size = new System.Drawing.Size(784, 379);
-            this.lv_ExchangeServers.TabIndex = 4;
-            this.lv_ExchangeServers.UseCompatibleStateImageBehavior = false;
+            this.lbl_MessageSize.AutoSize = true;
+            this.lbl_MessageSize.Location = new System.Drawing.Point(6, 16);
+            this.lbl_MessageSize.Name = "lbl_MessageSize";
+            this.lbl_MessageSize.Size = new System.Drawing.Size(139, 13);
+            this.lbl_MessageSize.TabIndex = 14;
+            this.lbl_MessageSize.Text = "Message size (char amount)";
+            // 
+            // tb_MessageSize
+            // 
+            this.tb_MessageSize.Location = new System.Drawing.Point(6, 33);
+            this.tb_MessageSize.Margin = new System.Windows.Forms.Padding(2);
+            this.tb_MessageSize.Name = "tb_MessageSize";
+            this.tb_MessageSize.Size = new System.Drawing.Size(115, 20);
+            this.tb_MessageSize.TabIndex = 7;
+            this.tb_MessageSize.Text = "10240";
+            this.tb_MessageSize.Validating += new System.ComponentModel.CancelEventHandler(this.tb_MessageSize_Validating);
+            this.tb_MessageSize.Validated += new System.EventHandler(this.tb_MessageSize_Validated);
+            // 
+            // btn_stopExchangeGeneration
+            // 
+            this.btn_stopExchangeGeneration.Location = new System.Drawing.Point(429, 388);
+            this.btn_stopExchangeGeneration.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_stopExchangeGeneration.Name = "btn_stopExchangeGeneration";
+            this.btn_stopExchangeGeneration.Size = new System.Drawing.Size(202, 34);
+            this.btn_stopExchangeGeneration.TabIndex = 12;
+            this.btn_stopExchangeGeneration.Text = "Stop Exchange Generation";
+            this.btn_stopExchangeGeneration.UseVisualStyleBackColor = true;
+            this.btn_stopExchangeGeneration.Click += new System.EventHandler(this.btn_stopExchangeGeneration_Click);
             // 
             // btn_startExchangeGeneration
             // 
@@ -459,16 +487,25 @@
             this.btn_startExchangeGeneration.UseVisualStyleBackColor = true;
             this.btn_startExchangeGeneration.Click += new System.EventHandler(this.btn_startExchangeGeneration_Click);
             // 
-            // btn_stopExchangeGeneration
+            // cb_SelAllExchange
             // 
-            this.btn_stopExchangeGeneration.Location = new System.Drawing.Point(429, 388);
-            this.btn_stopExchangeGeneration.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_stopExchangeGeneration.Name = "btn_stopExchangeGeneration";
-            this.btn_stopExchangeGeneration.Size = new System.Drawing.Size(202, 34);
-            this.btn_stopExchangeGeneration.TabIndex = 12;
-            this.btn_stopExchangeGeneration.Text = "Stop Exchange Generation";
-            this.btn_stopExchangeGeneration.UseVisualStyleBackColor = true;
-            this.btn_stopExchangeGeneration.Click += new System.EventHandler(this.btn_stopExchangeGeneration_Click);
+            this.cb_SelAllExchange.AutoSize = true;
+            this.cb_SelAllExchange.Location = new System.Drawing.Point(10, 10);
+            this.cb_SelAllExchange.Margin = new System.Windows.Forms.Padding(2);
+            this.cb_SelAllExchange.Name = "cb_SelAllExchange";
+            this.cb_SelAllExchange.Size = new System.Drawing.Size(15, 14);
+            this.cb_SelAllExchange.TabIndex = 5;
+            this.cb_SelAllExchange.UseVisualStyleBackColor = true;
+            this.cb_SelAllExchange.CheckedChanged += new System.EventHandler(this.cb_SelAllExchange_CheckedChanged);
+            // 
+            // lv_ExchangeServers
+            // 
+            this.lv_ExchangeServers.Location = new System.Drawing.Point(5, 5);
+            this.lv_ExchangeServers.Margin = new System.Windows.Forms.Padding(2);
+            this.lv_ExchangeServers.Name = "lv_ExchangeServers";
+            this.lv_ExchangeServers.Size = new System.Drawing.Size(784, 379);
+            this.lv_ExchangeServers.TabIndex = 4;
+            this.lv_ExchangeServers.UseCompatibleStateImageBehavior = false;
             // 
             // Form1
             // 
@@ -499,6 +536,8 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.gb_ExchangeParameters.ResumeLayout(false);
+            this.gb_ExchangeParameters.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -540,10 +579,13 @@
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox cb_SelAllExchange;
         private System.Windows.Forms.ListView lv_ExchangeServers;
         private System.Windows.Forms.Button btn_startExchangeGeneration;
         private System.Windows.Forms.Button btn_stopExchangeGeneration;
+        private System.Windows.Forms.GroupBox gb_ExchangeParameters;
+        private System.Windows.Forms.Label lbl_MessageSize;
+        private System.Windows.Forms.TextBox tb_MessageSize;
     }
 }
 

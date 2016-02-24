@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.Exchange.WebServices.Data;
 
 namespace ChangeGen_v2
@@ -32,9 +29,10 @@ namespace ChangeGen_v2
         {
             var email = new EmailMessage(service);
 
-            email.ToRecipients.Add(genParameters.Recipient);
-            email.Subject = "Exchange Generator";
+            email.ToRecipients.Add(genParameters.Recipient);            
             email.Body = new MessageBody(RandomString(genParameters.MessageSize));
+            email.Subject = "Exchange Generator " + genParameters.MessageSize;
+
 
             email.Send();
         }

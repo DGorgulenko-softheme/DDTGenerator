@@ -13,7 +13,7 @@ namespace ChangeGen_v2
             {
                 using (var w = File.AppendText("log.txt"))
                 {
-                    w.WriteLine("[{0}][{1}][{2}]: {3}", level.ToString(), serverIp, DateTime.Now.ToString(), logMessage);
+                    w.WriteLine("[{0}][{1}][{2}]: {3}", level, serverIp, DateTime.Now, logMessage);
                 }
             }
         }
@@ -41,7 +41,7 @@ namespace ChangeGen_v2
                     w.WriteLine("[{0}][{1}][{2}]: {3}" + Environment.NewLine +
                         e.GetType() + Environment.NewLine+
                         e.Message + Environment.NewLine+
-                        e.StackTrace, LogLevel.Error, serverIp, DateTime.Now.ToString(), logMessage);
+                        e.StackTrace, LogLevel.Error, serverIp, DateTime.Now, logMessage);
                 }
             }
         }

@@ -33,7 +33,7 @@ namespace ChangeGen_v2
         public static void TextBox_ValidatingNumeric(CancelEventArgs e, TextBox textBox, ErrorProvider errorProvider)
         {
             string errorMsg;
-            if (StringNotEmpty(textBox.Text, out errorMsg) && ValueNotNegative(textBox.Text, out errorMsg)) return;
+            if (ValueIsNumeric(textBox.Text, out errorMsg) && StringNotEmpty(textBox.Text, out errorMsg) && ValueNotNegative(textBox.Text, out errorMsg)) return;
             e.Cancel = true;
 
             errorProvider.SetError(textBox, errorMsg);
@@ -93,6 +93,19 @@ namespace ChangeGen_v2
             if (Convert.ToInt32(compression) < 0 || Convert.ToInt32(compression) > 100)
             {
                 errorMessage = "Compression parameter should be between 0-100";
+                return false;
+            }
+
+            errorMessage = "";
+            return true;
+        }
+
+        private static bool ValueIsNumeric(string message, out string errorMessage)
+        {
+            int result;
+            if (!int.TryParse(message, out result))
+            {
+                errorMessage = "Value should be a number.";
                 return false;
             }
 

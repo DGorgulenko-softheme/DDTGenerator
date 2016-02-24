@@ -42,12 +42,12 @@ namespace ChangeGen_v2
 
             foreach (var server in selectedServers)
             {
-                for (var y = 0; y < serversList.Count; y++)
+                foreach (var t in serversList)
                 {
-                    if (server.SubItems[1].Text != serversList[y].ServerCredentials.Ip) continue;
+                    if (server.SubItems[1].Text != t.ServerCredentials.Ip) continue;
 
-                    serversList[y].ServerGeneratorStatus = Server.GeneratorStatus.Stopped;
-                    serversList[y].Cts.Cancel();
+                    t.ServerGeneratorStatus = Server.GeneratorStatus.Stopped;
+                    t.Cts.Cancel();
                 }
             }
         }

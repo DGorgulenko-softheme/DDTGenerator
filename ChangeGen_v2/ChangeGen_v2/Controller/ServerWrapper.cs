@@ -16,7 +16,6 @@ namespace ChangeGen_v2
         {
 
             ServersList = CoreConnector.GetServersToListFromCore(coreCredentials);
-            ExchangeServersList = CoreConnector.GetExchangeServersToListFromCore(coreCredentials);
               
             ServersListViewCreateColumns(serverslistview);
             serverslistview.Items.Clear();
@@ -35,6 +34,8 @@ namespace ChangeGen_v2
                 serverslistview.Items.Add(lviServer);
             }
 
+            ExchangeServersList = CoreConnector.GetExchangeServersToListFromCore(coreCredentials);
+
             ExchangeListViewCreateColumns(exchangeServersListView);
             exchangeServersListView.Items.Clear();
             exchangeServersListView.View = View.Details;
@@ -45,9 +46,6 @@ namespace ChangeGen_v2
                 lviServer.SubItems.Add(server.ServerCredentials.Ip);
                 lviServer.SubItems.Add(server.Repository);
                 lviServer.SubItems.Add(server.ServerGeneratorStatus.ToString());
-                lviServer.SubItems.Add("");
-                lviServer.SubItems.Add("");
-                lviServer.SubItems.Add("");
                 lviServer.SubItems.Add("");
                 exchangeServersListView.Items.Add(lviServer);
             }
@@ -67,13 +65,10 @@ namespace ChangeGen_v2
                     {
                         break;
                     }
-                    else
-                    {
-                        agent.SubItems[4].Text = server.DdtParameters.Filesize.ToString();   // Filesize
-                        agent.SubItems[5].Text = server.DdtParameters.Compression.ToString(); // Compression
-                        agent.SubItems[6].Text = server.DdtParameters.Interval.ToString();    // Interval
-                        agent.SubItems[7].Text = server.DdtParameters.Filepath;               // Path
-                    }
+                    agent.SubItems[4].Text = server.DdtParameters.Filesize.ToString();   // Filesize
+                    agent.SubItems[5].Text = server.DdtParameters.Compression.ToString(); // Compression
+                    agent.SubItems[6].Text = server.DdtParameters.Interval.ToString();    // Interval
+                    agent.SubItems[7].Text = server.DdtParameters.Filepath;               // Path
                 }
             }
 
@@ -89,6 +84,8 @@ namespace ChangeGen_v2
                 foreach (var server in ExchangeServersList.Where(server => agent.SubItems[1].Text == server.ServerCredentials.Ip))
                 {
                     agent.SubItems[3].Text = server.ServerGeneratorStatus.ToString();   // DDT Status
+                    if (server.ExchangeGenParameters.MessageSize != 0)
+                        agent.SubItems[4].Text = server.ExchangeGenParameters.MessageSize.ToString();
                 }
             }
         }
@@ -126,7 +123,8 @@ namespace ChangeGen_v2
             listview.Columns.Add("     Display Name", 100);
             listview.Columns.Add("IP", 100);
             listview.Columns.Add("Repository", 100);
-            listview.Columns.Add("Generation Status", 70);
+            listview.Columns.Add("Generation Status", 100);
+            listview.Columns.Add("Message Size", 80);
             listview.CheckBoxes = true;
         }
     }

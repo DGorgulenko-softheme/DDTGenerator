@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ChangeGen_v2
 {
-    class ExchangeGenWrapper
+    internal class ExchangeGenWrapper
     {
         // This method used to initiate start of DDT on remote machine
-        public static void StartExchangeGenerator(ListView listview, List<ExchangeServer> serversList)
+        public static void StartExchangeGenerator(ListView listview, List<ExchangeServer> serversList, int messageSize)
         {
             var selectedServers = listview.Items.Cast<ListViewItem>().Where(item => item.Checked).ToList(); // Creating list of selected servers
 
@@ -28,6 +26,7 @@ namespace ChangeGen_v2
                     }
 
                     serversList[y].ServerGeneratorStatus = Server.GeneratorStatus.Running;
+                    serversList[y].ExchangeGenParameters.MessageSize = messageSize;
                     serversList[y].Cts = new CancellationTokenSource();
                     serversList[y].Task = new Task(() => serversList[index].StartExchangeGenerator());
                     serversList[y].Task.Start();

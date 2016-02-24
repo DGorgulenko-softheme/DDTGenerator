@@ -35,12 +35,12 @@ namespace ChangeGen_v2
             };
 
             _coreCreds.SerizalizeCredsToFile();
-            GetDdtParamsFromFileToGui();
+            GetGenParamsFromFileToGui();
 
             // Displays list of servers received from Core API to ListView
             try
             {
-                ServerWrapper.ServersToListView(lv_AgentsList, lv_ExchangeServers,_coreCreds);
+                ServerWrapper.ServersToListView(lv_AgentsList, lv_ExchangeServers, _coreCreds);
                 Logger.Log("Successfully connected to Core Server: " + tb_hostname.Text, Logger.LogLevel.Info, tb_hostname.Text);
             }
             catch (WCFClientBase.ClientServerErrorException exception)
@@ -165,18 +165,23 @@ namespace ChangeGen_v2
             ServerWrapper.UpdateExchangeListView(lv_ExchangeServers);
         }
 
-        private void GetDdtParamsFromFileToGui()
+        private void GetGenParamsFromFileToGui()
         {
             var ddtParams = DdtParameters.DeserializeDdtParamsFromFile();
-            if (ddtParams == null)
+            if (ddtParams != null)
             {
-                return;
+                tb_Size.Text = ddtParams.Filesize.ToString();
+                tb_Compression.Text = ddtParams.Compression.ToString();
+                tb_Path.Text = ddtParams.Filepath;
+                tb_Interval.Text = ddtParams.Interval.ToString();
             }
 
-            tb_Size.Text = ddtParams.Filesize.ToString();
-            tb_Compression.Text = ddtParams.Compression.ToString();
-            tb_Path.Text = ddtParams.Filepath;
-            tb_Interval.Text = ddtParams.Interval.ToString();
+            var exchangeParams = ExchangeGeneratorParameters.DeserializeExchangeParamsFromFile();
+
+            if (exchangeParams != null)
+            {
+                tb_MessageSize.Text = exchangeParams.MessageSize.ToString();
+            }
 
         }
 
@@ -268,13 +273,17 @@ namespace ChangeGen_v2
 
         private void btn_startExchangeGeneration_Click(object sender, EventArgs e)
         {
-            //_ddtParameters.SerizalizeDdtParamsToFile();
+            var messageSize = Convert.ToInt32(tb_MessageSize.Text);
+
 
             // Start DDT for selected servers with specific parameters
-           ExchangeGenWrapper.StartExchangeGenerator(lv_ExchangeServers, ServerWrapper.ExchangeServersList);
+           ExchangeGenWrapper.StartExchangeGenerator(lv_ExchangeServers, ServerWrapper.ExchangeServersList, messageSize);
 
             // Update ListView
            ServerWrapper.UpdateExchangeListView(lv_ExchangeServers);
+
+            var exchangeParmsToSerialize = new ExchangeGeneratorParameters() {MessageSize = messageSize};
+            exchangeParmsToSerialize.SerizalizeExchangeParamsToFile();
         }
 
         private void btn_stopExchangeGeneration_Click(object sender, EventArgs e)
@@ -284,6 +293,21 @@ namespace ChangeGen_v2
 
             // Update ListView
             ServerWrapper.UpdateExchangeListView(lv_ExchangeServers);
+        }
+
+        private void cb_SelAllExchange_CheckedChanged(object sender, EventArgs e)
+        {
+            ControlsImplementation.SelectUnselectAll(lv_ExchangeServers, cb_SelAllExchange.Checked);
+        }
+
+        private void tb_MessageSize_Validated(object sender, EventArgs e)
+        {
+            Validator.TextBox_Validated((TextBox)sender, errorProvider1);
+        }
+
+        private void tb_MessageSize_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validator.TextBox_ValidatingNumeric(e, (TextBox)sender, errorProvider1);
         }
     }
 }

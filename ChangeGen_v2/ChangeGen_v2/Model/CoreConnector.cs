@@ -5,9 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Net;
-using System.Text;
-using System.Windows.Forms;
-using Replay.Core.Contracts.Events.EventDefinitions.Replication.Pairing;
 
 namespace ChangeGen_v2
 {
@@ -83,8 +80,8 @@ namespace ChangeGen_v2
                     {
                         ExchangeGenParameters = new ExchangeGeneratorParameters()
                         {
-                            Recipient = agent.Descriptor.MetadataCredentials.DefaultCredentials.UserName + "@" +coreClient.AgentsManagement.GetCachedAgentMetadataById(agent.Id.ToString()).FullyQualifiedDomainName.Remove(0,coreClient.AgentsManagement.GetCachedAgentMetadataById(agent.Id.ToString()).HostName.Length+1),
-                            MessageSize = 10240
+                            Recipient = agent.Descriptor.MetadataCredentials.DefaultCredentials.UserName + "@" 
+                                + coreClient.AgentsManagement.GetCachedAgentMetadataById(agent.Id.ToString()).FullyQualifiedDomainName.Remove(0,coreClient.AgentsManagement.GetCachedAgentMetadataById(agent.Id.ToString()).HostName.Length+1),
                         }
                     });
                 }
