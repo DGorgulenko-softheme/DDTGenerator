@@ -1,4 +1,6 @@
-﻿namespace ChangeGen_v2
+﻿using Microsoft.Exchange.WebServices.Data;
+
+namespace ChangeGen_v2
 {
     internal class ExchangeServer : Server
     {
@@ -9,7 +11,18 @@
 
         public void StartExchangeGenerator()
         {
-            ExchangeGenerator.StartGenerator(this.ServerCredentials, ExchangeGenParameters, this.Cts.Token);
+            try
+            {
+                ExchangeGenerator.StartGenerator(ServerCredentials, ExchangeGenParameters, Cts.Token);
+            }
+            catch (ServiceRequestException)
+            {
+                ServerGeneratorStatus = GeneratorStatus.Failed;
+            }
+            catch (ServiceResponseException)
+            {
+                ServerGeneratorStatus = GeneratorStatus.Failed;
+            }
         }
     }
 }

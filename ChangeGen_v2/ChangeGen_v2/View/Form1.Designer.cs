@@ -65,11 +65,11 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.gb_ExchangeParameters = new System.Windows.Forms.GroupBox();
             this.lbl_MessageSize = new System.Windows.Forms.Label();
-            this.tb_MessageSize = new System.Windows.Forms.TextBox();
             this.btn_stopExchangeGeneration = new System.Windows.Forms.Button();
             this.btn_startExchangeGeneration = new System.Windows.Forms.Button();
             this.cb_SelAllExchange = new System.Windows.Forms.CheckBox();
             this.lv_ExchangeServers = new System.Windows.Forms.ListView();
+            this.cb_MailSize = new System.Windows.Forms.ComboBox();
             this.gb_ddtparams.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabControl.SuspendLayout();
@@ -436,8 +436,8 @@
             // 
             // gb_ExchangeParameters
             // 
+            this.gb_ExchangeParameters.Controls.Add(this.cb_MailSize);
             this.gb_ExchangeParameters.Controls.Add(this.lbl_MessageSize);
-            this.gb_ExchangeParameters.Controls.Add(this.tb_MessageSize);
             this.gb_ExchangeParameters.Location = new System.Drawing.Point(794, 10);
             this.gb_ExchangeParameters.Name = "gb_ExchangeParameters";
             this.gb_ExchangeParameters.Size = new System.Drawing.Size(144, 192);
@@ -450,20 +450,9 @@
             this.lbl_MessageSize.AutoSize = true;
             this.lbl_MessageSize.Location = new System.Drawing.Point(6, 16);
             this.lbl_MessageSize.Name = "lbl_MessageSize";
-            this.lbl_MessageSize.Size = new System.Drawing.Size(139, 13);
+            this.lbl_MessageSize.Size = new System.Drawing.Size(47, 13);
             this.lbl_MessageSize.TabIndex = 14;
-            this.lbl_MessageSize.Text = "Message size (char amount)";
-            // 
-            // tb_MessageSize
-            // 
-            this.tb_MessageSize.Location = new System.Drawing.Point(6, 33);
-            this.tb_MessageSize.Margin = new System.Windows.Forms.Padding(2);
-            this.tb_MessageSize.Name = "tb_MessageSize";
-            this.tb_MessageSize.Size = new System.Drawing.Size(115, 20);
-            this.tb_MessageSize.TabIndex = 7;
-            this.tb_MessageSize.Text = "10240";
-            this.tb_MessageSize.Validating += new System.ComponentModel.CancelEventHandler(this.tb_MessageSize_Validating);
-            this.tb_MessageSize.Validated += new System.EventHandler(this.tb_MessageSize_Validated);
+            this.lbl_MessageSize.Text = "Mail size";
             // 
             // btn_stopExchangeGeneration
             // 
@@ -506,6 +495,15 @@
             this.lv_ExchangeServers.Size = new System.Drawing.Size(784, 379);
             this.lv_ExchangeServers.TabIndex = 4;
             this.lv_ExchangeServers.UseCompatibleStateImageBehavior = false;
+            // 
+            // cb_MailSize
+            // 
+            this.cb_MailSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_MailSize.FormattingEnabled = true;
+            this.cb_MailSize.Location = new System.Drawing.Point(9, 33);
+            this.cb_MailSize.Name = "cb_MailSize";
+            this.cb_MailSize.Size = new System.Drawing.Size(121, 21);
+            this.cb_MailSize.TabIndex = 15;
             // 
             // Form1
             // 
@@ -585,7 +583,7 @@
         private System.Windows.Forms.Button btn_stopExchangeGeneration;
         private System.Windows.Forms.GroupBox gb_ExchangeParameters;
         private System.Windows.Forms.Label lbl_MessageSize;
-        private System.Windows.Forms.TextBox tb_MessageSize;
+        private System.Windows.Forms.ComboBox cb_MailSize;
     }
 }
 

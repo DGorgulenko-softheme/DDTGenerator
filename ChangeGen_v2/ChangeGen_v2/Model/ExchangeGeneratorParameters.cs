@@ -9,7 +9,7 @@ namespace ChangeGen_v2
         public string Recipient { get; set; }
 
         [DataMember(Name = "MessageSizeMember")]
-        public int MessageSize { get; set; }
+        public MailSize MessageSize { get; set; }
 
         public void SerizalizeExchangeParamsToFile()
         {
@@ -37,6 +37,17 @@ namespace ChangeGen_v2
             }
 
             return deserializedExchangeParams;
+        }
+
+        public enum MailSize
+        {
+            Tiny = 1800,
+            Small = 18400,
+            Medium = 95200,
+            Large = 504800,
+            VeryLarge = 1041400,
+            Huge = 5235700,
+            Enormous = 10480000
         }
     }
 }

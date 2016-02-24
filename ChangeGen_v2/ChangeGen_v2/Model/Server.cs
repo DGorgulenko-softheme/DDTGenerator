@@ -45,10 +45,10 @@ namespace ChangeGen_v2
         // Enumeration of possible status for DDT tool on server
         public enum GeneratorStatus
         {
-            Failed = 0,
-            Running = 1,
-            Stopped = 2,
-            WrongCredentials = 3
+            Failed,
+            Running,
+            Stopped,
+            WrongCredentials
         }
 
         // Method used to run DDT on server side

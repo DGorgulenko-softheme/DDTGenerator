@@ -93,3 +93,97 @@ Call to service method https://localhost:8006/apprecovery/api/core/agents/protec
 [Info][10.23.10.25][2/24/2016 11:18:50 AM]: Successfully connected to Core Server: 10.23.10.25
 [Info][10.23.10.25][2/24/2016 11:24:00 AM]: Successfully connected to Core Server: 10.23.10.25
 [Info][10.23.10.25][2/24/2016 11:24:39 AM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 11:46:36 AM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 12:06:33 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 12:09:43 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 12:13:46 PM]: Successfully connected to Core Server: 10.23.10.25
+[Error][10.23.10.26][2/24/2016 12:46:47 PM]: Exchange server {0} not available
+Microsoft.Exchange.WebServices.Data.ServiceRequestException
+The request failed. The remote server returned an error: (507) Insufficient Storage.
+   at Microsoft.Exchange.WebServices.Data.ServiceRequestBase.GetEwsHttpWebResponse(IEwsHttpWebRequest request)
+   at Microsoft.Exchange.WebServices.Data.ServiceRequestBase.ValidateAndEmitRequest(IEwsHttpWebRequest& request)
+   at Microsoft.Exchange.WebServices.Data.MultiResponseServiceRequest`1.Execute()
+   at Microsoft.Exchange.WebServices.Data.ExchangeService.InternalCreateItems(IEnumerable`1 items, FolderId parentFolderId, Nullable`1 messageDisposition, Nullable`1 sendInvitationsMode, ServiceErrorHandling errorHandling)
+   at Microsoft.Exchange.WebServices.Data.Item.InternalCreate(FolderId parentFolderId, Nullable`1 messageDisposition, Nullable`1 sendInvitationsMode)
+   at Microsoft.Exchange.WebServices.Data.EmailMessage.InternalSend(FolderId parentFolderId, MessageDisposition messageDisposition)
+   at Microsoft.Exchange.WebServices.Data.EmailMessage.Send()
+   at ChangeGen_v2.ExchangeGenerator.SendMessages(ExchangeService service, ExchangeGeneratorParameters genParameters, ServerConnectionCredentials serverCreds) in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\ExchangeGenerator.cs:line 38
+[Info][10.23.10.25][2/24/2016 12:47:53 PM]: Successfully connected to Core Server: 10.23.10.25
+[Error][10.23.10.26][2/24/2016 12:48:07 PM]: Something wrong with exchange server {0}.
+Microsoft.Exchange.WebServices.Data.ServiceRequestException
+The request failed. The remote server returned an error: (507) Insufficient Storage.
+   at Microsoft.Exchange.WebServices.Data.ServiceRequestBase.GetEwsHttpWebResponse(IEwsHttpWebRequest request)
+   at Microsoft.Exchange.WebServices.Data.ServiceRequestBase.ValidateAndEmitRequest(IEwsHttpWebRequest& request)
+   at Microsoft.Exchange.WebServices.Data.MultiResponseServiceRequest`1.Execute()
+   at Microsoft.Exchange.WebServices.Data.ExchangeService.InternalCreateItems(IEnumerable`1 items, FolderId parentFolderId, Nullable`1 messageDisposition, Nullable`1 sendInvitationsMode, ServiceErrorHandling errorHandling)
+   at Microsoft.Exchange.WebServices.Data.Item.InternalCreate(FolderId parentFolderId, Nullable`1 messageDisposition, Nullable`1 sendInvitationsMode)
+   at Microsoft.Exchange.WebServices.Data.EmailMessage.InternalSend(FolderId parentFolderId, MessageDisposition messageDisposition)
+   at Microsoft.Exchange.WebServices.Data.EmailMessage.Send()
+   at ChangeGen_v2.ExchangeGenerator.SendMessages(ExchangeService service, ExchangeGeneratorParameters genParameters, ServerConnectionCredentials serverCreds) in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\ExchangeGenerator.cs:line 38
+[Info][10.23.10.25][2/24/2016 12:52:04 PM]: Successfully connected to Core Server: 10.23.10.25
+[Error][10.23.10.26][2/24/2016 12:52:17 PM]: Something wrong with exchange server.
+Microsoft.Exchange.WebServices.Data.ServiceRequestException
+The request failed. The remote server returned an error: (507) Insufficient Storage.
+   at Microsoft.Exchange.WebServices.Data.ServiceRequestBase.GetEwsHttpWebResponse(IEwsHttpWebRequest request)
+   at Microsoft.Exchange.WebServices.Data.ServiceRequestBase.ValidateAndEmitRequest(IEwsHttpWebRequest& request)
+   at Microsoft.Exchange.WebServices.Data.MultiResponseServiceRequest`1.Execute()
+   at Microsoft.Exchange.WebServices.Data.ExchangeService.InternalCreateItems(IEnumerable`1 items, FolderId parentFolderId, Nullable`1 messageDisposition, Nullable`1 sendInvitationsMode, ServiceErrorHandling errorHandling)
+   at Microsoft.Exchange.WebServices.Data.Item.InternalCreate(FolderId parentFolderId, Nullable`1 messageDisposition, Nullable`1 sendInvitationsMode)
+   at Microsoft.Exchange.WebServices.Data.EmailMessage.InternalSend(FolderId parentFolderId, MessageDisposition messageDisposition)
+   at Microsoft.Exchange.WebServices.Data.EmailMessage.Send()
+   at ChangeGen_v2.ExchangeGenerator.SendMessages(ExchangeService service, ExchangeGeneratorParameters genParameters, ServerConnectionCredentials serverCreds) in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\ExchangeGenerator.cs:line 38
+[Info][10.23.10.25][2/24/2016 12:53:47 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 12:56:03 PM]: Successfully connected to Core Server: 10.23.10.25
+[Error][10.23.10.26][2/24/2016 12:56:12 PM]: Something wrong with exchange server.
+Microsoft.Exchange.WebServices.Data.ServiceResponseException
+The message exceeds the maximum supported size.
+   at Microsoft.Exchange.WebServices.Data.ServiceResponse.InternalThrowIfNecessary()
+   at Microsoft.Exchange.WebServices.Data.MultiResponseServiceRequest`1.Execute()
+   at Microsoft.Exchange.WebServices.Data.ExchangeService.InternalCreateItems(IEnumerable`1 items, FolderId parentFolderId, Nullable`1 messageDisposition, Nullable`1 sendInvitationsMode, ServiceErrorHandling errorHandling)
+   at Microsoft.Exchange.WebServices.Data.Item.InternalCreate(FolderId parentFolderId, Nullable`1 messageDisposition, Nullable`1 sendInvitationsMode)
+   at Microsoft.Exchange.WebServices.Data.EmailMessage.InternalSend(FolderId parentFolderId, MessageDisposition messageDisposition)
+   at Microsoft.Exchange.WebServices.Data.EmailMessage.Send()
+   at ChangeGen_v2.ExchangeGenerator.SendMessages(ExchangeService service, ExchangeGeneratorParameters genParameters, ServerConnectionCredentials serverCreds) in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\ExchangeGenerator.cs:line 38
+[Info][10.23.10.25][2/24/2016 12:57:07 PM]: Successfully connected to Core Server: 10.23.10.25
+[Error][10.23.10.26][2/24/2016 12:57:19 PM]: Something wrong with exchange server.
+Microsoft.Exchange.WebServices.Data.ServiceResponseException
+The message exceeds the maximum supported size.
+   at Microsoft.Exchange.WebServices.Data.ServiceResponse.InternalThrowIfNecessary()
+   at Microsoft.Exchange.WebServices.Data.MultiResponseServiceRequest`1.Execute()
+   at Microsoft.Exchange.WebServices.Data.ExchangeService.InternalCreateItems(IEnumerable`1 items, FolderId parentFolderId, Nullable`1 messageDisposition, Nullable`1 sendInvitationsMode, ServiceErrorHandling errorHandling)
+   at Microsoft.Exchange.WebServices.Data.Item.InternalCreate(FolderId parentFolderId, Nullable`1 messageDisposition, Nullable`1 sendInvitationsMode)
+   at Microsoft.Exchange.WebServices.Data.EmailMessage.InternalSend(FolderId parentFolderId, MessageDisposition messageDisposition)
+   at Microsoft.Exchange.WebServices.Data.EmailMessage.Send()
+   at ChangeGen_v2.ExchangeGenerator.SendMessages(ExchangeService service, ExchangeGeneratorParameters genParameters, ServerConnectionCredentials serverCreds) in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\ExchangeGenerator.cs:line 38
+[Info][10.23.10.25][2/24/2016 1:12:37 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 2:24:49 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 2:38:49 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 2:58:31 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 3:14:23 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 3:16:27 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 3:18:37 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 3:54:18 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 3:54:48 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 4:03:28 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 4:04:01 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 4:05:34 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 4:05:57 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 4:17:58 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 4:22:48 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 4:24:24 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 4:28:54 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 4:29:20 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 4:31:04 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 4:32:42 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 4:34:23 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 4:34:51 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 4:39:50 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 4:56:45 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 4:57:41 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 4:58:05 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 4:59:32 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 5:00:04 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 5:03:40 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 5:04:04 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 5:04:26 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/24/2016 5:05:15 PM]: Successfully connected to Core Server: 10.23.10.25

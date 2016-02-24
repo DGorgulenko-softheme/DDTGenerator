@@ -14,27 +14,40 @@ namespace ChangeGen_v2
                 Credentials = new WebCredentials(serverCredentials.Username, serverCredentials.Password),
                 Url = new Uri("https://" + serverCredentials.Ip + "/EWS/Exchange.asmx"),
                 Timeout = 300000
-            }; 
+            };
 
             while (true)
             {
-                SendMessages(service, genParameters);
-                if(token.IsCancellationRequested)
+                SendMessages(service, genParameters, serverCredentials);
+                if (token.IsCancellationRequested)
                     break;
             }
-           
+
         }
 
-        private static void SendMessages(ExchangeService service, ExchangeGeneratorParameters genParameters)
+        private static void SendMessages(ExchangeService service, ExchangeGeneratorParameters genParameters, ServerConnectionCredentials serverCreds)
         {
             var email = new EmailMessage(service);
 
             email.ToRecipients.Add(genParameters.Recipient);            
-            email.Body = new MessageBody(RandomString(genParameters.MessageSize));
-            email.Subject = "Exchange Generator " + genParameters.MessageSize;
+            email.Body = new MessageBody(RandomString((int)genParameters.MessageSize));
+            email.Subject = "Exchange Generator (" + genParameters.MessageSize+")";
 
-
-            email.Send();
+            try
+            {
+                email.Send();
+            }
+            catch (ServiceRequestException e)
+            {
+                Logger.LogError("Something wrong with exchange server.", serverCreds.Ip, e);
+                throw;
+            }
+            catch (ServiceResponseException e)
+            {
+                Logger.LogError("Something wrong with exchange server.", serverCreds.Ip, e);
+                throw;
+            }
+            
         }
 
         public static string RandomString(int length)

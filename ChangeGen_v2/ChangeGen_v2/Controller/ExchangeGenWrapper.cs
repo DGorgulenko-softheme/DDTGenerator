@@ -9,7 +9,7 @@ namespace ChangeGen_v2
     internal class ExchangeGenWrapper
     {
         // This method used to initiate start of DDT on remote machine
-        public static void StartExchangeGenerator(ListView listview, List<ExchangeServer> serversList, int messageSize)
+        public static void StartExchangeGenerator(ListView listview, List<ExchangeServer> serversList, ExchangeGeneratorParameters.MailSize messageSize)
         {
             var selectedServers = listview.Items.Cast<ListViewItem>().Where(item => item.Checked).ToList(); // Creating list of selected servers
 
