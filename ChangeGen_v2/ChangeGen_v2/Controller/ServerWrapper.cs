@@ -84,7 +84,7 @@ namespace ChangeGen_v2
                 foreach (var server in ExchangeServersList.Where(server => agent.SubItems[1].Text == server.ServerCredentials.Ip))
                 {
                     agent.SubItems[3].Text = server.ServerGeneratorStatus.ToString();   // DDT Status
-                    if (server.ExchangeGenParameters.MessageSize != 0)
+                    if (server.ExchangeGenParameters != null)
                         agent.SubItems[4].Text = server.ExchangeGenParameters.MessageSize.ToString();
                 }
             }
