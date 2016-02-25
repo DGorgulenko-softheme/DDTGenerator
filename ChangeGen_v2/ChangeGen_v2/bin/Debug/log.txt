@@ -252,3 +252,9 @@ The message exceeds the maximum supported size.
 [Info][10.23.10.22][2/24/2016 5:28:12 PM]: Data generation started on remote server 10.23.10.22
 [Info][10.23.10.26][2/24/2016 5:30:20 PM]: Data generation has been canceled by user.
 [Info][10.23.10.22][2/24/2016 5:30:20 PM]: Data generation has been canceled by user.
+[Info][10.23.10.25][2/24/2016 5:31:44 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.26][2/24/2016 5:31:46 PM]: Exchange data generation started for server: 10.23.10.26 . With mail size: Medium
+[Info][10.23.10.26][2/25/2016 11:11:27 AM]: Exchange data generation started for server: 10.23.10.26 . With mail size: Small
+[Info][10.23.10.26][2/25/2016 11:12:50 AM]: Exchange generation has been canceled by user.
+[Info][10.23.10.25][2/25/2016 12:09:06 PM]: Successfully connected to Core Server: 10.23.10.25
+[Info][10.23.10.25][2/25/2016 12:09:44 PM]: Successfully connected to Core Server: 10.23.10.25
