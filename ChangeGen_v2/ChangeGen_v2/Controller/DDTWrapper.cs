@@ -35,6 +35,26 @@ namespace ChangeGen_v2
             }
         }
 
+        public static void StartDdt(ListView listview, List<Server> serversList, DdtParameters ddtparameters, string username, string password)
+        {
+            var selectedServers = listview.Items.Cast<ListViewItem>().Where(item => item.Checked).ToList(); // Creating list of selected servers
+
+            foreach (var server in selectedServers)
+            {
+                foreach (Server t in serversList)
+                {
+                    if (server.SubItems[1].Text != t.ServerCredentials.Ip) continue;
+
+                    t.ServerCredentials.Username = username;
+                    t.ServerCredentials.Password = password;
+                }
+            }
+
+            StartDdt(listview,serversList,ddtparameters);
+        }
+
+
+
         // Cancel DDT for selected server
         public static void StopDdt(ListView listview, List<Server> serversList)
         {

@@ -46,6 +46,7 @@
             this.tb_IP.Name = "tb_IP";
             this.tb_IP.Size = new System.Drawing.Size(100, 20);
             this.tb_IP.TabIndex = 0;
+            this.tb_IP.TextChanged += new System.EventHandler(this.tb_IP_TextChanged);
             this.tb_IP.Validating += new System.ComponentModel.CancelEventHandler(this.tb_IP_Validating);
             this.tb_IP.Validated += new System.EventHandler(this.tb_IP_Validated);
             // 
@@ -55,6 +56,7 @@
             this.tb_UserName.Name = "tb_UserName";
             this.tb_UserName.Size = new System.Drawing.Size(151, 20);
             this.tb_UserName.TabIndex = 1;
+            this.tb_UserName.TextChanged += new System.EventHandler(this.tb_UserName_TextChanged);
             this.tb_UserName.Validating += new System.ComponentModel.CancelEventHandler(this.tb_UserName_Validating);
             this.tb_UserName.Validated += new System.EventHandler(this.tb_UserName_Validated);
             // 
@@ -65,11 +67,13 @@
             this.tb_Password.Size = new System.Drawing.Size(165, 20);
             this.tb_Password.TabIndex = 2;
             this.tb_Password.UseSystemPasswordChar = true;
+            this.tb_Password.TextChanged += new System.EventHandler(this.tb_Password_TextChanged);
             this.tb_Password.Validating += new System.ComponentModel.CancelEventHandler(this.tb_Password_Validating);
             this.tb_Password.Validated += new System.EventHandler(this.tb_Password_Validated);
             // 
             // btn_Add
             // 
+            this.btn_Add.Enabled = false;
             this.btn_Add.Location = new System.Drawing.Point(212, 51);
             this.btn_Add.Name = "btn_Add";
             this.btn_Add.Size = new System.Drawing.Size(75, 23);
@@ -111,8 +115,10 @@
             // 
             // AddServerManually
             // 
+            this.AcceptButton = this.btn_Add;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.ClientSize = new System.Drawing.Size(475, 81);
             this.Controls.Add(this.lbl_Password);
             this.Controls.Add(this.lbl_UserName);

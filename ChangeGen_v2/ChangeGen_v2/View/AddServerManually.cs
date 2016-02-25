@@ -50,6 +50,31 @@ namespace ChangeGen_v2
         private void btn_Add_Click(object sender, EventArgs e)
         {
             ServerWrapper.AddServerManually(tb_IP.Text,tb_UserName.Text,tb_Password.Text);
+            tb_IP.Clear();
+            tb_UserName.Clear();
+            tb_Password.Clear();
+        }
+
+        private void tb_IP_TextChanged(object sender, EventArgs e)
+        {
+            UpdateAddButtonState();
+        }
+
+        private void UpdateAddButtonState()
+        {
+            this.btn_Add.Enabled = !string.IsNullOrWhiteSpace(tb_IP.Text) &&
+                                   !string.IsNullOrWhiteSpace(tb_UserName.Text) &&
+                                   !string.IsNullOrWhiteSpace(tb_Password.Text);
+        }
+
+        private void tb_UserName_TextChanged(object sender, EventArgs e)
+        {
+            UpdateAddButtonState();
+        }
+
+        private void tb_Password_TextChanged(object sender, EventArgs e)
+        {
+            UpdateAddButtonState();
         }
     }
 }

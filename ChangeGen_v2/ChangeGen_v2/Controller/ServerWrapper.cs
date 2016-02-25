@@ -16,22 +16,6 @@ namespace ChangeGen_v2
         {
 
             ServersList = CoreConnector.GetServersToListFromCore(coreCredentials);
-              
-            ServersListViewCreateColumns(serverslistview);
-            serverslistview.Items.Clear();
-
-            //foreach (var server in ServersList)
-            //{
-            //    var lviServer = new ListViewItem(server.DisplayName);
-            //    lviServer.SubItems.Add(server.ServerCredentials.Ip);
-            //    lviServer.SubItems.Add(server.Repository);
-            //    lviServer.SubItems.Add(server.ServerGeneratorStatus.ToString());
-            //    lviServer.SubItems.Add(server.DdtParameters?.Filesize.ToString() ?? "");
-            //    lviServer.SubItems.Add(server.DdtParameters?.Compression.ToString() ?? "");
-            //    lviServer.SubItems.Add(server.DdtParameters?.Interval.ToString() ?? "");
-            //    lviServer.SubItems.Add(server.DdtParameters?.Filepath ?? "");
-            //    serverslistview.Items.Add(lviServer);
-            //}
 
             ExchangeServersList = CoreConnector.GetExchangeServersToListFromCore(coreCredentials);
 
@@ -60,59 +44,31 @@ namespace ChangeGen_v2
         // This method updates ListView with current state of each server
         public static void UpdateListView(ListView listView, Label expectedRateLabel, Label amountOfActiveGeneraionsLabel)
         {
-            var listViewAgents = listView.Items.Cast<ListViewItem>().ToList();
-
-            foreach (var server in ServersList)
+            if (ServersList != null)
             {
-                bool isNew = true;
-                foreach (var lvServer in listViewAgents)
+                var listViewAgents = listView.Items.Cast<ListViewItem>().ToList();
+
+                foreach (var server in ServersList)
                 {
-                    if (lvServer.SubItems[1].Text == server.ServerCredentials.Ip)
+                    bool isNew = true;
+                    foreach (var lvServer in listViewAgents)
                     {
-                        isNew = false;
-                        lvServer.SubItems[3].Text = server.ServerGeneratorStatus.ToString();   // DDT Status
-                        lvServer.SubItems[4].Text = server.DdtParameters?.Filesize.ToString() ?? "";   // Filesize  
-                        lvServer.SubItems[5].Text = server.DdtParameters?.Compression.ToString() ?? ""; // Compression
-                        lvServer.SubItems[6].Text = server.DdtParameters?.Interval.ToString() ?? "";    // Interval
-                        lvServer.SubItems[7].Text = server.DdtParameters?.Filepath ?? "";               // Path
+                        if (lvServer.SubItems[1].Text == server.ServerCredentials.Ip)
+                        {
+                            isNew = false;
+                            lvServer.SubItems[3].Text = server.ServerGeneratorStatus.ToString();   // DDT Status
+                            lvServer.SubItems[4].Text = server.DdtParameters?.Filesize.ToString() ?? "";   // Filesize  
+                            lvServer.SubItems[5].Text = server.DdtParameters?.Compression.ToString() ?? ""; // Compression
+                            lvServer.SubItems[6].Text = server.DdtParameters?.Interval.ToString() ?? "";    // Interval
+                            lvServer.SubItems[7].Text = server.DdtParameters?.Filepath ?? "";               // Path
+                        }
                     }
+                    if (isNew)
+                        AddNewServerToListView(listView, server);
                 }
-                if (isNew)
-                    AddNewServerToListView(listView, server);
-            }
 
-            //foreach (var server in ServersList)
-            //{
-            //    var lviServer = new ListViewItem(server.DisplayName);
-            //    lviServer.SubItems.Add(server.ServerCredentials.Ip);
-            //    lviServer.SubItems.Add(server.Repository);
-            //    lviServer.SubItems.Add(server.ServerGeneratorStatus.ToString());
-            //    lviServer.SubItems.Add(server.DdtParameters?.Filesize.ToString() ?? "");
-            //    lviServer.SubItems.Add(server.DdtParameters?.Compression.ToString() ?? "");
-            //    lviServer.SubItems.Add(server.DdtParameters?.Interval.ToString() ?? "");
-            //    lviServer.SubItems.Add(server.DdtParameters?.Filepath ?? "");
-            //    listView.Items.Add(lviServer);
-            //}
-
-
-
-            //foreach (var agent in listViewAgents)
-            //{
-            //    foreach (var server in ServersList.Where(server => agent.SubItems[1].Text == server.ServerCredentials.Ip))
-            //    {
-            //        agent.SubItems[3].Text = server.ServerGeneratorStatus.ToString();   // DDT Status
-            //        if (server.DdtParameters == null)
-            //        {
-            //            break;
-            //        }
-            //        agent.SubItems[4].Text = server.DdtParameters.Filesize.ToString();   // Filesize
-            //        agent.SubItems[5].Text = server.DdtParameters.Compression.ToString(); // Compression
-            //        agent.SubItems[6].Text = server.DdtParameters.Interval.ToString();    // Interval
-            //        agent.SubItems[7].Text = server.DdtParameters.Filepath;               // Path
-            //    }
-            //}
-
-            UpdateExpectedChangeRateAndAmountOfActiveGenerations(listViewAgents, expectedRateLabel, amountOfActiveGeneraionsLabel);
+                UpdateExpectedChangeRateAndAmountOfActiveGenerations(listViewAgents, expectedRateLabel, amountOfActiveGeneraionsLabel);
+            }       
         }
 
         private static void AddNewServerToListView(ListView listView, Server server)
@@ -158,7 +114,7 @@ namespace ChangeGen_v2
         }
 
         // This method used to create columns in ListView
-        private static void ServersListViewCreateColumns(ListView listview)
+        public static void ServersListViewCreateColumns(ListView listview)
         {
             listview.Columns.Add("     Display Name", 100);
             listview.Columns.Add("IP", 100);

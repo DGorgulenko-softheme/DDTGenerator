@@ -62,6 +62,8 @@
             this.btn_About = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btn_ExportCSV = new System.Windows.Forms.Button();
+            this.btn_ImportCSV = new System.Windows.Forms.Button();
             this.btn_addServerManually = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.gb_ExchangeParameters = new System.Windows.Forms.GroupBox();
@@ -74,14 +76,20 @@
             this.lbl_SelectMode = new System.Windows.Forms.Label();
             this.rb_Core = new System.Windows.Forms.RadioButton();
             this.rb_Manually = new System.Windows.Forms.RadioButton();
-            this.btn_ImportCSV = new System.Windows.Forms.Button();
-            this.btn_ExportCSV = new System.Windows.Forms.Button();
+            this.cb_UseCustomCredentials = new System.Windows.Forms.CheckBox();
+            this.gb_customCredentials = new System.Windows.Forms.GroupBox();
+            this.tb_customUsername = new System.Windows.Forms.TextBox();
+            this.tb_customPassword = new System.Windows.Forms.TextBox();
+            this.lbl_customUserName = new System.Windows.Forms.Label();
+            this.lbl_customPassword = new System.Windows.Forms.Label();
+            this.btn_deleteSelectedServers = new System.Windows.Forms.Button();
             this.gb_ddtparams.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.gb_ExchangeParameters.SuspendLayout();
+            this.gb_customCredentials.SuspendLayout();
             this.SuspendLayout();
             // 
             // tb_hostname
@@ -91,6 +99,7 @@
             this.tb_hostname.Name = "tb_hostname";
             this.tb_hostname.Size = new System.Drawing.Size(115, 20);
             this.tb_hostname.TabIndex = 0;
+            this.tb_hostname.TextChanged += new System.EventHandler(this.tb_hostname_TextChanged);
             this.tb_hostname.Validating += new System.ComponentModel.CancelEventHandler(this.tb_hostname_Validating);
             this.tb_hostname.Validated += new System.EventHandler(this.tb_hostname_Validated);
             // 
@@ -101,6 +110,7 @@
             this.tb_userName.Name = "tb_userName";
             this.tb_userName.Size = new System.Drawing.Size(174, 20);
             this.tb_userName.TabIndex = 1;
+            this.tb_userName.TextChanged += new System.EventHandler(this.tb_userName_TextChanged);
             this.tb_userName.Validating += new System.ComponentModel.CancelEventHandler(this.tb_userName_Validating);
             this.tb_userName.Validated += new System.EventHandler(this.tb_userName_Validated);
             // 
@@ -113,18 +123,20 @@
             this.tb_password.Size = new System.Drawing.Size(174, 20);
             this.tb_password.TabIndex = 2;
             this.tb_password.UseSystemPasswordChar = true;
+            this.tb_password.TextChanged += new System.EventHandler(this.tb_password_TextChanged);
             this.tb_password.Validating += new System.ComponentModel.CancelEventHandler(this.tb_password_Validating);
             this.tb_password.Validated += new System.EventHandler(this.tb_password_Validated);
             // 
             // btn_Connect
             // 
+            this.btn_Connect.Enabled = false;
             this.btn_Connect.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Connect.Location = new System.Drawing.Point(470, 368);
             this.btn_Connect.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Connect.Name = "btn_Connect";
             this.btn_Connect.Size = new System.Drawing.Size(75, 29);
             this.btn_Connect.TabIndex = 3;
-            this.btn_Connect.Text = "Connect";
+            this.btn_Connect.Text = "Next";
             this.btn_Connect.UseVisualStyleBackColor = true;
             this.btn_Connect.Click += new System.EventHandler(this.btn_Connect_Click);
             // 
@@ -329,7 +341,7 @@
             // lbl_ChangeRateLabel
             // 
             this.lbl_ChangeRateLabel.AutoSize = true;
-            this.lbl_ChangeRateLabel.Location = new System.Drawing.Point(800, 257);
+            this.lbl_ChangeRateLabel.Location = new System.Drawing.Point(804, 387);
             this.lbl_ChangeRateLabel.Name = "lbl_ChangeRateLabel";
             this.lbl_ChangeRateLabel.Size = new System.Drawing.Size(128, 13);
             this.lbl_ChangeRateLabel.TabIndex = 35;
@@ -339,7 +351,7 @@
             // 
             this.lbl_ChangeRateValue.AutoSize = true;
             this.lbl_ChangeRateValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_ChangeRateValue.Location = new System.Drawing.Point(842, 275);
+            this.lbl_ChangeRateValue.Location = new System.Drawing.Point(846, 405);
             this.lbl_ChangeRateValue.Name = "lbl_ChangeRateValue";
             this.lbl_ChangeRateValue.Size = new System.Drawing.Size(15, 15);
             this.lbl_ChangeRateValue.TabIndex = 36;
@@ -349,7 +361,7 @@
             // 
             this.lbl_totalAgentsRunningValue.AutoSize = true;
             this.lbl_totalAgentsRunningValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_totalAgentsRunningValue.Location = new System.Drawing.Point(842, 242);
+            this.lbl_totalAgentsRunningValue.Location = new System.Drawing.Point(846, 372);
             this.lbl_totalAgentsRunningValue.Name = "lbl_totalAgentsRunningValue";
             this.lbl_totalAgentsRunningValue.Size = new System.Drawing.Size(15, 15);
             this.lbl_totalAgentsRunningValue.TabIndex = 38;
@@ -358,7 +370,7 @@
             // lbl_totalAgentsRunninglabel
             // 
             this.lbl_totalAgentsRunninglabel.AutoSize = true;
-            this.lbl_totalAgentsRunninglabel.Location = new System.Drawing.Point(800, 229);
+            this.lbl_totalAgentsRunninglabel.Location = new System.Drawing.Point(804, 359);
             this.lbl_totalAgentsRunninglabel.Name = "lbl_totalAgentsRunninglabel";
             this.lbl_totalAgentsRunninglabel.Size = new System.Drawing.Size(115, 13);
             this.lbl_totalAgentsRunninglabel.TabIndex = 37;
@@ -406,6 +418,9 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btn_deleteSelectedServers);
+            this.tabPage1.Controls.Add(this.gb_customCredentials);
+            this.tabPage1.Controls.Add(this.cb_UseCustomCredentials);
             this.tabPage1.Controls.Add(this.btn_ExportCSV);
             this.tabPage1.Controls.Add(this.btn_ImportCSV);
             this.tabPage1.Controls.Add(this.btn_addServerManually);
@@ -427,6 +442,24 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "DDT";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btn_ExportCSV
+            // 
+            this.btn_ExportCSV.Location = new System.Drawing.Point(159, 386);
+            this.btn_ExportCSV.Name = "btn_ExportCSV";
+            this.btn_ExportCSV.Size = new System.Drawing.Size(86, 27);
+            this.btn_ExportCSV.TabIndex = 43;
+            this.btn_ExportCSV.Text = "Export CSV";
+            this.btn_ExportCSV.UseVisualStyleBackColor = true;
+            // 
+            // btn_ImportCSV
+            // 
+            this.btn_ImportCSV.Location = new System.Drawing.Point(63, 386);
+            this.btn_ImportCSV.Name = "btn_ImportCSV";
+            this.btn_ImportCSV.Size = new System.Drawing.Size(90, 27);
+            this.btn_ImportCSV.TabIndex = 42;
+            this.btn_ImportCSV.Text = "Import CSV";
+            this.btn_ImportCSV.UseVisualStyleBackColor = true;
             // 
             // btn_addServerManually
             // 
@@ -563,28 +596,89 @@
             this.rb_Manually.UseVisualStyleBackColor = true;
             this.rb_Manually.CheckedChanged += new System.EventHandler(this.rb_Manually_CheckedChanged);
             // 
-            // btn_ImportCSV
+            // cb_UseCustomCredentials
             // 
-            this.btn_ImportCSV.Location = new System.Drawing.Point(42, 386);
-            this.btn_ImportCSV.Name = "btn_ImportCSV";
-            this.btn_ImportCSV.Size = new System.Drawing.Size(90, 27);
-            this.btn_ImportCSV.TabIndex = 42;
-            this.btn_ImportCSV.Text = "Import CSV";
-            this.btn_ImportCSV.UseVisualStyleBackColor = true;
+            this.cb_UseCustomCredentials.AutoSize = true;
+            this.cb_UseCustomCredentials.Location = new System.Drawing.Point(794, 209);
+            this.cb_UseCustomCredentials.Name = "cb_UseCustomCredentials";
+            this.cb_UseCustomCredentials.Size = new System.Drawing.Size(138, 17);
+            this.cb_UseCustomCredentials.TabIndex = 44;
+            this.cb_UseCustomCredentials.Text = "Use Custom Credentials";
+            this.cb_UseCustomCredentials.UseVisualStyleBackColor = true;
+            this.cb_UseCustomCredentials.CheckedChanged += new System.EventHandler(this.cb_UseCustomCredentials_CheckedChanged);
             // 
-            // btn_ExportCSV
+            // gb_customCredentials
             // 
-            this.btn_ExportCSV.Location = new System.Drawing.Point(138, 386);
-            this.btn_ExportCSV.Name = "btn_ExportCSV";
-            this.btn_ExportCSV.Size = new System.Drawing.Size(86, 27);
-            this.btn_ExportCSV.TabIndex = 43;
-            this.btn_ExportCSV.Text = "Export CSV";
-            this.btn_ExportCSV.UseVisualStyleBackColor = true;
+            this.gb_customCredentials.Controls.Add(this.lbl_customPassword);
+            this.gb_customCredentials.Controls.Add(this.lbl_customUserName);
+            this.gb_customCredentials.Controls.Add(this.tb_customPassword);
+            this.gb_customCredentials.Controls.Add(this.tb_customUsername);
+            this.gb_customCredentials.Location = new System.Drawing.Point(794, 232);
+            this.gb_customCredentials.Name = "gb_customCredentials";
+            this.gb_customCredentials.Size = new System.Drawing.Size(147, 100);
+            this.gb_customCredentials.TabIndex = 45;
+            this.gb_customCredentials.TabStop = false;
+            // 
+            // tb_customUsername
+            // 
+            this.tb_customUsername.Enabled = false;
+            this.tb_customUsername.Location = new System.Drawing.Point(6, 30);
+            this.tb_customUsername.Name = "tb_customUsername";
+            this.tb_customUsername.Size = new System.Drawing.Size(119, 20);
+            this.tb_customUsername.TabIndex = 0;
+            this.tb_customUsername.TextChanged += new System.EventHandler(this.tb_customUsername_TextChanged);
+            this.tb_customUsername.Validating += new System.ComponentModel.CancelEventHandler(this.tb_customUsername_Validating);
+            this.tb_customUsername.Validated += new System.EventHandler(this.tb_customUsername_Validated);
+            // 
+            // tb_customPassword
+            // 
+            this.tb_customPassword.Enabled = false;
+            this.tb_customPassword.Location = new System.Drawing.Point(6, 69);
+            this.tb_customPassword.Name = "tb_customPassword";
+            this.tb_customPassword.Size = new System.Drawing.Size(119, 20);
+            this.tb_customPassword.TabIndex = 1;
+            this.tb_customPassword.UseSystemPasswordChar = true;
+            this.tb_customPassword.TextChanged += new System.EventHandler(this.tb_customPassword_TextChanged);
+            this.tb_customPassword.Validating += new System.ComponentModel.CancelEventHandler(this.tb_customPassword_Validating);
+            this.tb_customPassword.Validated += new System.EventHandler(this.tb_customPassword_Validated);
+            // 
+            // lbl_customUserName
+            // 
+            this.lbl_customUserName.AutoSize = true;
+            this.lbl_customUserName.Enabled = false;
+            this.lbl_customUserName.Location = new System.Drawing.Point(6, 14);
+            this.lbl_customUserName.Name = "lbl_customUserName";
+            this.lbl_customUserName.Size = new System.Drawing.Size(55, 13);
+            this.lbl_customUserName.TabIndex = 2;
+            this.lbl_customUserName.Text = "Username";
+            // 
+            // lbl_customPassword
+            // 
+            this.lbl_customPassword.AutoSize = true;
+            this.lbl_customPassword.Enabled = false;
+            this.lbl_customPassword.Location = new System.Drawing.Point(8, 53);
+            this.lbl_customPassword.Name = "lbl_customPassword";
+            this.lbl_customPassword.Size = new System.Drawing.Size(53, 13);
+            this.lbl_customPassword.TabIndex = 3;
+            this.lbl_customPassword.Text = "Password";
+            // 
+            // btn_deleteSelectedServers
+            // 
+            this.btn_deleteSelectedServers.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_deleteSelectedServers.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btn_deleteSelectedServers.Location = new System.Drawing.Point(34, 386);
+            this.btn_deleteSelectedServers.Name = "btn_deleteSelectedServers";
+            this.btn_deleteSelectedServers.Size = new System.Drawing.Size(30, 27);
+            this.btn_deleteSelectedServers.TabIndex = 46;
+            this.btn_deleteSelectedServers.Text = "-";
+            this.btn_deleteSelectedServers.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
+            this.AcceptButton = this.btn_Connect;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.ClientSize = new System.Drawing.Size(977, 519);
             this.Controls.Add(this.lbl_SelectMode);
             this.Controls.Add(this.rb_Core);
@@ -615,6 +709,8 @@
             this.tabPage2.PerformLayout();
             this.gb_ExchangeParameters.ResumeLayout(false);
             this.gb_ExchangeParameters.PerformLayout();
+            this.gb_customCredentials.ResumeLayout(false);
+            this.gb_customCredentials.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -669,6 +765,13 @@
         private System.Windows.Forms.Button btn_addServerManually;
         private System.Windows.Forms.Button btn_ExportCSV;
         private System.Windows.Forms.Button btn_ImportCSV;
+        private System.Windows.Forms.GroupBox gb_customCredentials;
+        private System.Windows.Forms.CheckBox cb_UseCustomCredentials;
+        private System.Windows.Forms.Label lbl_customPassword;
+        private System.Windows.Forms.Label lbl_customUserName;
+        private System.Windows.Forms.TextBox tb_customPassword;
+        private System.Windows.Forms.TextBox tb_customUsername;
+        private System.Windows.Forms.Button btn_deleteSelectedServers;
     }
 }
 

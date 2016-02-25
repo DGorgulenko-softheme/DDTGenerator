@@ -130,6 +130,8 @@ namespace ChangeGen_v2
                 }     
             }
 
+            ServerWrapper.ServersListViewCreateColumns(lv_AgentsList);
+            lv_AgentsList.Items.Clear();
             AddItemsToCbMailSize();
             GetGenParamsFromFileToGui();
             timer1.Interval = 3000; // Timer for UI update
@@ -173,7 +175,14 @@ namespace ChangeGen_v2
             _ddtParameters.SerizalizeDdtParamsToFile();
 
             // Start DDT for selected servers with specific parameters
-            DdtWrapper.StartDdt(lv_AgentsList, ServerWrapper.ServersList, _ddtParameters);
+            if (cb_UseCustomCredentials.Checked)
+            {
+                DdtWrapper.StartDdt(lv_AgentsList, ServerWrapper.ServersList, _ddtParameters, tb_customUsername.Text, tb_customPassword.Text);
+            }
+            else
+            {
+                DdtWrapper.StartDdt(lv_AgentsList, ServerWrapper.ServersList, _ddtParameters);
+            }
 
             // Update ListView
             ServerWrapper.UpdateListView(lv_AgentsList, lbl_ChangeRateValue, lbl_totalAgentsRunningValue);
@@ -382,6 +391,7 @@ namespace ChangeGen_v2
 
         private void rb_Manually_CheckedChanged(object sender, EventArgs e)
         {
+            btn_Connect.Enabled = true;
             tb_hostname.Enabled = false;
             tb_password.Enabled = false;
             tb_Port.Enabled = false;
@@ -390,6 +400,9 @@ namespace ChangeGen_v2
 
         private void rb_Core_CheckedChanged(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(tb_hostname.Text) || string.IsNullOrWhiteSpace(tb_userName.Text) ||
+                string.IsNullOrWhiteSpace(tb_password.Text))
+                btn_Connect.Enabled = false;
             tb_hostname.Enabled = true;
             tb_password.Enabled = true;
             tb_Port.Enabled = true;
@@ -400,6 +413,73 @@ namespace ChangeGen_v2
         {
             var addServerManuallyForm = new AddServerManually();
             addServerManuallyForm.Show();
+        }
+
+        private void UpdateConnectButtonState()
+        {
+            btn_Connect.Enabled = !string.IsNullOrWhiteSpace(tb_hostname.Text) &&
+                                   !string.IsNullOrWhiteSpace(tb_userName.Text) &&
+                                   !string.IsNullOrWhiteSpace(tb_password.Text);
+        }
+
+        private void tb_hostname_TextChanged(object sender, EventArgs e)
+        {
+            UpdateConnectButtonState();
+        }
+
+        private void tb_userName_TextChanged(object sender, EventArgs e)
+        {
+            UpdateConnectButtonState();
+        }
+
+        private void tb_password_TextChanged(object sender, EventArgs e)
+        {
+            UpdateConnectButtonState();
+        }
+
+        private void cb_UseCustomCredentials_CheckedChanged(object sender, EventArgs e)
+        {
+            lbl_customUserName.Enabled = cb_UseCustomCredentials.Checked;
+            lbl_customPassword.Enabled = cb_UseCustomCredentials.Checked;
+            tb_customUsername.Enabled = cb_UseCustomCredentials.Checked;
+            tb_customPassword.Enabled = cb_UseCustomCredentials.Checked;
+            btn_StartDDT.Enabled = !cb_UseCustomCredentials.Checked;
+        }
+
+        private void UpdateStartDdtButtonState()
+        {
+            btn_StartDDT.Enabled = !string.IsNullOrWhiteSpace(tb_customUsername.Text) &&
+                                   !string.IsNullOrWhiteSpace(tb_customPassword.Text);
+        }
+
+        private void tb_customUsername_TextChanged(object sender, EventArgs e)
+        {
+            UpdateStartDdtButtonState();
+        }
+
+        private void tb_customPassword_TextChanged(object sender, EventArgs e)
+        {
+            UpdateStartDdtButtonState();
+        }
+
+        private void tb_customUsername_Validated(object sender, EventArgs e)
+        {
+            Validator.TextBox_Validated((TextBox)sender, errorProvider1);
+        }
+
+        private void tb_customUsername_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validator.TextBox_ValidatingEmpty(e, (TextBox)sender, errorProvider1);
+        }
+
+        private void tb_customPassword_Validated(object sender, EventArgs e)
+        {
+            Validator.TextBox_Validated((TextBox)sender, errorProvider1);
+        }
+
+        private void tb_customPassword_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validator.TextBox_ValidatingEmpty(e, (TextBox)sender, errorProvider1);
         }
     }
 }

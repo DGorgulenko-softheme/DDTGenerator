@@ -18,6 +18,7 @@ namespace ChangeGen_v2
             if (StringNotEmpty(textBox.Text, out errorMsg)) return;
             e.Cancel = true;
 
+
             errorProvider.SetError(textBox, errorMsg);
         }
 
