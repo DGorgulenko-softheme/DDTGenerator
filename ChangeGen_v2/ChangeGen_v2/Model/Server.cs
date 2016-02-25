@@ -42,6 +42,16 @@ namespace ChangeGen_v2
             };
         }
 
+        public Server(string ip, string username, string password)
+        {
+            ServerCredentials = new ServerConnectionCredentials
+            {
+                Username = username,
+                Password = password,
+                Ip = ip
+            };
+        }
+
         // Enumeration of possible status for DDT tool on server
         public enum GeneratorStatus
         {

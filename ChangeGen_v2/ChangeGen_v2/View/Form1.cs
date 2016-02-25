@@ -25,6 +25,8 @@ namespace ChangeGen_v2
             _lvwColumnSorter = new ListViewColumnSorter();
             lv_AgentsList.ListViewItemSorter = _lvwColumnSorter;
 
+            lv_AgentsList.Items.Clear();
+            lv_AgentsList.View = View.Details;
         }
 
         private void AddItemsToCbMailSize()
@@ -392,6 +394,12 @@ namespace ChangeGen_v2
             tb_password.Enabled = true;
             tb_Port.Enabled = true;
             tb_userName.Enabled = true;
+        }
+
+        private void btn_addServerManually_Click(object sender, EventArgs e)
+        {
+            var addServerManuallyForm = new AddServerManually();
+            addServerManuallyForm.Show();
         }
     }
 }

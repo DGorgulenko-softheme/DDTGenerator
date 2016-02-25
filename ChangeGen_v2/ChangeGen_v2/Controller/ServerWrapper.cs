@@ -19,20 +19,19 @@ namespace ChangeGen_v2
               
             ServersListViewCreateColumns(serverslistview);
             serverslistview.Items.Clear();
-            serverslistview.View = View.Details;
 
-            foreach (var server in ServersList)
-            {
-                var lviServer = new ListViewItem(server.DisplayName);
-                lviServer.SubItems.Add(server.ServerCredentials.Ip);
-                lviServer.SubItems.Add(server.Repository);
-                lviServer.SubItems.Add(server.ServerGeneratorStatus.ToString());
-                lviServer.SubItems.Add("");
-                lviServer.SubItems.Add("");
-                lviServer.SubItems.Add("");
-                lviServer.SubItems.Add("");
-                serverslistview.Items.Add(lviServer);
-            }
+            //foreach (var server in ServersList)
+            //{
+            //    var lviServer = new ListViewItem(server.DisplayName);
+            //    lviServer.SubItems.Add(server.ServerCredentials.Ip);
+            //    lviServer.SubItems.Add(server.Repository);
+            //    lviServer.SubItems.Add(server.ServerGeneratorStatus.ToString());
+            //    lviServer.SubItems.Add(server.DdtParameters?.Filesize.ToString() ?? "");
+            //    lviServer.SubItems.Add(server.DdtParameters?.Compression.ToString() ?? "");
+            //    lviServer.SubItems.Add(server.DdtParameters?.Interval.ToString() ?? "");
+            //    lviServer.SubItems.Add(server.DdtParameters?.Filepath ?? "");
+            //    serverslistview.Items.Add(lviServer);
+            //}
 
             ExchangeServersList = CoreConnector.GetExchangeServersToListFromCore(coreCredentials);
 
@@ -51,28 +50,82 @@ namespace ChangeGen_v2
             }
         }
 
+        public static void AddServerManually(string hostname, string username, string password)
+        {
+            if (ServersList == null)
+                ServersList = new List<Server>();
+            ServersList.Add(new Server(hostname, username, password));
+        }
+
         // This method updates ListView with current state of each server
         public static void UpdateListView(ListView listView, Label expectedRateLabel, Label amountOfActiveGeneraionsLabel)
         {
             var listViewAgents = listView.Items.Cast<ListViewItem>().ToList();
 
-            foreach (var agent in listViewAgents)
+            foreach (var server in ServersList)
             {
-                foreach (var server in ServersList.Where(server => agent.SubItems[1].Text == server.ServerCredentials.Ip))
+                bool isNew = true;
+                foreach (var lvServer in listViewAgents)
                 {
-                    agent.SubItems[3].Text = server.ServerGeneratorStatus.ToString();   // DDT Status
-                    if(server.DdtParameters == null)
+                    if (lvServer.SubItems[1].Text == server.ServerCredentials.Ip)
                     {
-                        break;
+                        isNew = false;
+                        lvServer.SubItems[3].Text = server.ServerGeneratorStatus.ToString();   // DDT Status
+                        lvServer.SubItems[4].Text = server.DdtParameters?.Filesize.ToString() ?? "";   // Filesize  
+                        lvServer.SubItems[5].Text = server.DdtParameters?.Compression.ToString() ?? ""; // Compression
+                        lvServer.SubItems[6].Text = server.DdtParameters?.Interval.ToString() ?? "";    // Interval
+                        lvServer.SubItems[7].Text = server.DdtParameters?.Filepath ?? "";               // Path
                     }
-                    agent.SubItems[4].Text = server.DdtParameters.Filesize.ToString();   // Filesize
-                    agent.SubItems[5].Text = server.DdtParameters.Compression.ToString(); // Compression
-                    agent.SubItems[6].Text = server.DdtParameters.Interval.ToString();    // Interval
-                    agent.SubItems[7].Text = server.DdtParameters.Filepath;               // Path
                 }
+                if (isNew)
+                    AddNewServerToListView(listView, server);
             }
 
+            //foreach (var server in ServersList)
+            //{
+            //    var lviServer = new ListViewItem(server.DisplayName);
+            //    lviServer.SubItems.Add(server.ServerCredentials.Ip);
+            //    lviServer.SubItems.Add(server.Repository);
+            //    lviServer.SubItems.Add(server.ServerGeneratorStatus.ToString());
+            //    lviServer.SubItems.Add(server.DdtParameters?.Filesize.ToString() ?? "");
+            //    lviServer.SubItems.Add(server.DdtParameters?.Compression.ToString() ?? "");
+            //    lviServer.SubItems.Add(server.DdtParameters?.Interval.ToString() ?? "");
+            //    lviServer.SubItems.Add(server.DdtParameters?.Filepath ?? "");
+            //    listView.Items.Add(lviServer);
+            //}
+
+
+
+            //foreach (var agent in listViewAgents)
+            //{
+            //    foreach (var server in ServersList.Where(server => agent.SubItems[1].Text == server.ServerCredentials.Ip))
+            //    {
+            //        agent.SubItems[3].Text = server.ServerGeneratorStatus.ToString();   // DDT Status
+            //        if (server.DdtParameters == null)
+            //        {
+            //            break;
+            //        }
+            //        agent.SubItems[4].Text = server.DdtParameters.Filesize.ToString();   // Filesize
+            //        agent.SubItems[5].Text = server.DdtParameters.Compression.ToString(); // Compression
+            //        agent.SubItems[6].Text = server.DdtParameters.Interval.ToString();    // Interval
+            //        agent.SubItems[7].Text = server.DdtParameters.Filepath;               // Path
+            //    }
+            //}
+
             UpdateExpectedChangeRateAndAmountOfActiveGenerations(listViewAgents, expectedRateLabel, amountOfActiveGeneraionsLabel);
+        }
+
+        private static void AddNewServerToListView(ListView listView, Server server)
+        {
+            var lviNewServer = new ListViewItem(server.DisplayName);
+            lviNewServer.SubItems.Add(server.ServerCredentials.Ip);
+            lviNewServer.SubItems.Add(server.Repository);
+            lviNewServer.SubItems.Add(server.ServerGeneratorStatus.ToString());
+            lviNewServer.SubItems.Add(server.DdtParameters?.Filesize.ToString() ?? "");
+            lviNewServer.SubItems.Add(server.DdtParameters?.Compression.ToString() ?? "");
+            lviNewServer.SubItems.Add(server.DdtParameters?.Interval.ToString() ?? "");
+            lviNewServer.SubItems.Add(server.DdtParameters?.Filepath ?? "");
+            listView.Items.Add(lviNewServer);
         }
 
         public static void UpdateExchangeListView(ListView listView)

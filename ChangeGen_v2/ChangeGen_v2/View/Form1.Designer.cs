@@ -62,6 +62,7 @@
             this.btn_About = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btn_addServerManually = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.gb_ExchangeParameters = new System.Windows.Forms.GroupBox();
             this.cb_MailSize = new System.Windows.Forms.ComboBox();
@@ -73,6 +74,8 @@
             this.lbl_SelectMode = new System.Windows.Forms.Label();
             this.rb_Core = new System.Windows.Forms.RadioButton();
             this.rb_Manually = new System.Windows.Forms.RadioButton();
+            this.btn_ImportCSV = new System.Windows.Forms.Button();
+            this.btn_ExportCSV = new System.Windows.Forms.Button();
             this.gb_ddtparams.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabControl.SuspendLayout();
@@ -148,7 +151,7 @@
             // 
             // btn_StartDDT
             // 
-            this.btn_StartDDT.Location = new System.Drawing.Point(273, 399);
+            this.btn_StartDDT.Location = new System.Drawing.Point(369, 388);
             this.btn_StartDDT.Margin = new System.Windows.Forms.Padding(2);
             this.btn_StartDDT.Name = "btn_StartDDT";
             this.btn_StartDDT.Size = new System.Drawing.Size(218, 34);
@@ -170,7 +173,7 @@
             // 
             // btn_StopDDT
             // 
-            this.btn_StopDDT.Location = new System.Drawing.Point(495, 399);
+            this.btn_StopDDT.Location = new System.Drawing.Point(591, 388);
             this.btn_StopDDT.Margin = new System.Windows.Forms.Padding(2);
             this.btn_StopDDT.Name = "btn_StopDDT";
             this.btn_StopDDT.Size = new System.Drawing.Size(202, 34);
@@ -364,7 +367,7 @@
             // lbl_TotalAmountLabel
             // 
             this.lbl_TotalAmountLabel.AutoSize = true;
-            this.lbl_TotalAmountLabel.Location = new System.Drawing.Point(6, 399);
+            this.lbl_TotalAmountLabel.Location = new System.Drawing.Point(7, 420);
             this.lbl_TotalAmountLabel.Name = "lbl_TotalAmountLabel";
             this.lbl_TotalAmountLabel.Size = new System.Drawing.Size(69, 13);
             this.lbl_TotalAmountLabel.TabIndex = 39;
@@ -374,7 +377,7 @@
             // 
             this.lbl_TotalAmountValue.AutoSize = true;
             this.lbl_TotalAmountValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_TotalAmountValue.Location = new System.Drawing.Point(81, 399);
+            this.lbl_TotalAmountValue.Location = new System.Drawing.Point(82, 420);
             this.lbl_TotalAmountValue.Name = "lbl_TotalAmountValue";
             this.lbl_TotalAmountValue.Size = new System.Drawing.Size(13, 13);
             this.lbl_TotalAmountValue.TabIndex = 40;
@@ -403,6 +406,9 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btn_ExportCSV);
+            this.tabPage1.Controls.Add(this.btn_ImportCSV);
+            this.tabPage1.Controls.Add(this.btn_addServerManually);
             this.tabPage1.Controls.Add(this.cb_selectAllAgents);
             this.tabPage1.Controls.Add(this.lv_AgentsList);
             this.tabPage1.Controls.Add(this.gb_ddtparams);
@@ -421,6 +427,18 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "DDT";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btn_addServerManually
+            // 
+            this.btn_addServerManually.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_addServerManually.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btn_addServerManually.Location = new System.Drawing.Point(5, 386);
+            this.btn_addServerManually.Name = "btn_addServerManually";
+            this.btn_addServerManually.Size = new System.Drawing.Size(30, 27);
+            this.btn_addServerManually.TabIndex = 41;
+            this.btn_addServerManually.Text = "+";
+            this.btn_addServerManually.UseVisualStyleBackColor = true;
+            this.btn_addServerManually.Click += new System.EventHandler(this.btn_addServerManually_Click);
             // 
             // tabPage2
             // 
@@ -468,7 +486,7 @@
             // 
             // btn_stopExchangeGeneration
             // 
-            this.btn_stopExchangeGeneration.Location = new System.Drawing.Point(429, 388);
+            this.btn_stopExchangeGeneration.Location = new System.Drawing.Point(591, 388);
             this.btn_stopExchangeGeneration.Margin = new System.Windows.Forms.Padding(2);
             this.btn_stopExchangeGeneration.Name = "btn_stopExchangeGeneration";
             this.btn_stopExchangeGeneration.Size = new System.Drawing.Size(202, 34);
@@ -479,7 +497,7 @@
             // 
             // btn_startExchangeGeneration
             // 
-            this.btn_startExchangeGeneration.Location = new System.Drawing.Point(207, 388);
+            this.btn_startExchangeGeneration.Location = new System.Drawing.Point(369, 388);
             this.btn_startExchangeGeneration.Margin = new System.Windows.Forms.Padding(2);
             this.btn_startExchangeGeneration.Name = "btn_startExchangeGeneration";
             this.btn_startExchangeGeneration.Size = new System.Drawing.Size(218, 34);
@@ -544,6 +562,24 @@
             this.rb_Manually.Text = "Add servers manually";
             this.rb_Manually.UseVisualStyleBackColor = true;
             this.rb_Manually.CheckedChanged += new System.EventHandler(this.rb_Manually_CheckedChanged);
+            // 
+            // btn_ImportCSV
+            // 
+            this.btn_ImportCSV.Location = new System.Drawing.Point(42, 386);
+            this.btn_ImportCSV.Name = "btn_ImportCSV";
+            this.btn_ImportCSV.Size = new System.Drawing.Size(90, 27);
+            this.btn_ImportCSV.TabIndex = 42;
+            this.btn_ImportCSV.Text = "Import CSV";
+            this.btn_ImportCSV.UseVisualStyleBackColor = true;
+            // 
+            // btn_ExportCSV
+            // 
+            this.btn_ExportCSV.Location = new System.Drawing.Point(138, 386);
+            this.btn_ExportCSV.Name = "btn_ExportCSV";
+            this.btn_ExportCSV.Size = new System.Drawing.Size(86, 27);
+            this.btn_ExportCSV.TabIndex = 43;
+            this.btn_ExportCSV.Text = "Export CSV";
+            this.btn_ExportCSV.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -630,6 +666,9 @@
         private System.Windows.Forms.Label lbl_SelectMode;
         private System.Windows.Forms.RadioButton rb_Core;
         private System.Windows.Forms.RadioButton rb_Manually;
+        private System.Windows.Forms.Button btn_addServerManually;
+        private System.Windows.Forms.Button btn_ExportCSV;
+        private System.Windows.Forms.Button btn_ImportCSV;
     }
 }
 

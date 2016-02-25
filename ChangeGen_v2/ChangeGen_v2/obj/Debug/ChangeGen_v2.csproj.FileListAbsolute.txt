@@ -125,3 +125,5 @@ D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\obj\Debug\ChangeGen_v2.Prope
 D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\obj\Debug\ChangeGen_v2.csproj.GenerateResource.Cache
 D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\obj\Debug\ChangeGen_v2.exe
 D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\obj\Debug\ChangeGen_v2.pdb
+D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\obj\Debug\ChangeGen_v2.csprojResolveAssemblyReference.cache
+D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\obj\Debug\ChangeGen_v2.AddServerManually.resources
