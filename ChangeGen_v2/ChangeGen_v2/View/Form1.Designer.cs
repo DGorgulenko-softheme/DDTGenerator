@@ -64,12 +64,12 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.gb_ExchangeParameters = new System.Windows.Forms.GroupBox();
+            this.cb_MailSize = new System.Windows.Forms.ComboBox();
             this.lbl_MessageSize = new System.Windows.Forms.Label();
             this.btn_stopExchangeGeneration = new System.Windows.Forms.Button();
             this.btn_startExchangeGeneration = new System.Windows.Forms.Button();
             this.cb_SelAllExchange = new System.Windows.Forms.CheckBox();
             this.lv_ExchangeServers = new System.Windows.Forms.ListView();
-            this.cb_MailSize = new System.Windows.Forms.ComboBox();
             this.gb_ddtparams.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabControl.SuspendLayout();
@@ -445,6 +445,15 @@
             this.gb_ExchangeParameters.TabStop = false;
             this.gb_ExchangeParameters.Text = "Parameters";
             // 
+            // cb_MailSize
+            // 
+            this.cb_MailSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_MailSize.FormattingEnabled = true;
+            this.cb_MailSize.Location = new System.Drawing.Point(9, 33);
+            this.cb_MailSize.Name = "cb_MailSize";
+            this.cb_MailSize.Size = new System.Drawing.Size(121, 21);
+            this.cb_MailSize.TabIndex = 15;
+            // 
             // lbl_MessageSize
             // 
             this.lbl_MessageSize.AutoSize = true;
@@ -495,15 +504,7 @@
             this.lv_ExchangeServers.Size = new System.Drawing.Size(784, 379);
             this.lv_ExchangeServers.TabIndex = 4;
             this.lv_ExchangeServers.UseCompatibleStateImageBehavior = false;
-            // 
-            // cb_MailSize
-            // 
-            this.cb_MailSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_MailSize.FormattingEnabled = true;
-            this.cb_MailSize.Location = new System.Drawing.Point(9, 33);
-            this.cb_MailSize.Name = "cb_MailSize";
-            this.cb_MailSize.Size = new System.Drawing.Size(121, 21);
-            this.cb_MailSize.TabIndex = 15;
+            this.lv_ExchangeServers.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lv_ExchangeServers_ColumnClick);
             // 
             // Form1
             // 

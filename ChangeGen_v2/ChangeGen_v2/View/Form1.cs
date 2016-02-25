@@ -340,5 +340,11 @@ namespace ChangeGen_v2
         {
             ControlsImplementation.SelectUnselectAll(lv_ExchangeServers, cb_SelAllExchange.Checked);
         }
+
+        private void lv_ExchangeServers_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            // Sort ListView by clicked column
+            _lvwColumnSorter.SortColumn(e, lv_ExchangeServers);
+        }
     }
 }
