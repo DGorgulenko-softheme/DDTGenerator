@@ -70,6 +70,9 @@
             this.btn_startExchangeGeneration = new System.Windows.Forms.Button();
             this.cb_SelAllExchange = new System.Windows.Forms.CheckBox();
             this.lv_ExchangeServers = new System.Windows.Forms.ListView();
+            this.lbl_SelectMode = new System.Windows.Forms.Label();
+            this.rb_Core = new System.Windows.Forms.RadioButton();
+            this.rb_Manually = new System.Windows.Forms.RadioButton();
             this.gb_ddtparams.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabControl.SuspendLayout();
@@ -506,13 +509,52 @@
             this.lv_ExchangeServers.UseCompatibleStateImageBehavior = false;
             this.lv_ExchangeServers.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lv_ExchangeServers_ColumnClick);
             // 
+            // lbl_SelectMode
+            // 
+            this.lbl_SelectMode.AutoSize = true;
+            this.lbl_SelectMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_SelectMode.Location = new System.Drawing.Point(368, 210);
+            this.lbl_SelectMode.Name = "lbl_SelectMode";
+            this.lbl_SelectMode.Size = new System.Drawing.Size(225, 18);
+            this.lbl_SelectMode.TabIndex = 45;
+            this.lbl_SelectMode.Text = "Please select servers list source:";
+            // 
+            // rb_Core
+            // 
+            this.rb_Core.AutoSize = true;
+            this.rb_Core.Checked = true;
+            this.rb_Core.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rb_Core.Location = new System.Drawing.Point(338, 266);
+            this.rb_Core.Name = "rb_Core";
+            this.rb_Core.Size = new System.Drawing.Size(265, 20);
+            this.rb_Core.TabIndex = 44;
+            this.rb_Core.TabStop = true;
+            this.rb_Core.Text = "Add servers automatically from RR Core";
+            this.rb_Core.UseVisualStyleBackColor = true;
+            this.rb_Core.CheckedChanged += new System.EventHandler(this.rb_Core_CheckedChanged);
+            // 
+            // rb_Manually
+            // 
+            this.rb_Manually.AutoSize = true;
+            this.rb_Manually.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rb_Manually.Location = new System.Drawing.Point(338, 243);
+            this.rb_Manually.Name = "rb_Manually";
+            this.rb_Manually.Size = new System.Drawing.Size(156, 20);
+            this.rb_Manually.TabIndex = 43;
+            this.rb_Manually.Text = "Add servers manually";
+            this.rb_Manually.UseVisualStyleBackColor = true;
+            this.rb_Manually.CheckedChanged += new System.EventHandler(this.rb_Manually_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(976, 512);
+            this.ClientSize = new System.Drawing.Size(977, 519);
+            this.Controls.Add(this.lbl_SelectMode);
+            this.Controls.Add(this.rb_Core);
             this.Controls.Add(this.btn_About);
             this.Controls.Add(this.lbl_Port);
+            this.Controls.Add(this.rb_Manually);
             this.Controls.Add(this.tb_Port);
             this.Controls.Add(this.lbl_password);
             this.Controls.Add(this.lbl_username);
@@ -585,6 +627,9 @@
         private System.Windows.Forms.GroupBox gb_ExchangeParameters;
         private System.Windows.Forms.Label lbl_MessageSize;
         private System.Windows.Forms.ComboBox cb_MailSize;
+        private System.Windows.Forms.Label lbl_SelectMode;
+        private System.Windows.Forms.RadioButton rb_Core;
+        private System.Windows.Forms.RadioButton rb_Manually;
     }
 }
 

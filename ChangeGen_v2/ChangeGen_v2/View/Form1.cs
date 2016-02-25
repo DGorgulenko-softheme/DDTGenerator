@@ -24,7 +24,7 @@ namespace ChangeGen_v2
 
             _lvwColumnSorter = new ListViewColumnSorter();
             lv_AgentsList.ListViewItemSorter = _lvwColumnSorter;
-            
+
         }
 
         private void AddItemsToCbMailSize()
@@ -69,39 +69,67 @@ namespace ChangeGen_v2
             cb_MailSize.SelectedIndex = 0;
         }
 
-        private void btn_Connect_Click(object sender, EventArgs e)
+        public void TryCoreConnect(CoreConnectionCredentials coreCreds)
         {
-            _coreCreds = new CoreConnectionCredentials
-            {
-                Hostname = tb_hostname.Text, Port = Convert.ToInt32(tb_Port.Text), Username = tb_userName.Text, Password = tb_password.Text
-            };
-
-            AddItemsToCbMailSize();
-
-            _coreCreds.SerizalizeCredsToFile();
-            GetGenParamsFromFileToGui();
-
-            // Displays list of servers received from Core API to ListView
             try
             {
-                ServerWrapper.ServersToListView(lv_AgentsList, lv_ExchangeServers, _coreCreds);
+                ServerWrapper.ServersToListView(lv_AgentsList, lv_ExchangeServers, coreCreds);
                 Logger.Log("Successfully connected to Core Server: " + tb_hostname.Text, Logger.LogLevel.Info, tb_hostname.Text);
             }
             catch (WCFClientBase.ClientServerErrorException exception)
             {
-                Logger.LogError("Cannot connect to Core server " + _coreCreds.Hostname, _coreCreds.Hostname, exception);
+                Logger.LogError("Cannot connect to Core server " + coreCreds.Hostname, coreCreds.Hostname, exception);
                 MessageBox.Show("Cannot connect to Core server." + Environment.NewLine + exception.Message, "Connection Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 return;
             }
             catch (WCFClientBase.HttpUnauthorizedRequestException exception)
             {
-                Logger.LogError("Cannot connect to Core server " + _coreCreds.Hostname + " Wrong credentials.", _coreCreds.Hostname, exception);
+                Logger.LogError("Cannot connect to Core server " + coreCreds.Hostname + " Wrong credentials.", coreCreds.Hostname, exception);
                 MessageBox.Show("Cannot connect to Core server. Incorrect credentials." + Environment.NewLine + exception.Message, "Connection Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 return;
             }
+        }
 
+        private void btn_Connect_Click(object sender, EventArgs e)
+        {
+            if (rb_Core.Checked)
+            {
+                _coreCreds = new CoreConnectionCredentials
+                {
+                    Hostname = tb_hostname.Text,
+                    Port = Convert.ToInt32(tb_Port.Text),
+                    Username = tb_userName.Text,
+                    Password = tb_password.Text
+                };
+
+                _coreCreds.SerizalizeCredsToFile();
+               
+                // Displays list of servers received from Core API to ListView
+                try
+                {
+                    ServerWrapper.ServersToListView(lv_AgentsList, lv_ExchangeServers, _coreCreds);
+                    Logger.Log("Successfully connected to Core Server: " + tb_hostname.Text, Logger.LogLevel.Info, tb_hostname.Text);
+                }
+                catch (WCFClientBase.ClientServerErrorException exception)
+                {
+                    Logger.LogError("Cannot connect to Core server " + _coreCreds.Hostname, _coreCreds.Hostname, exception);
+                    MessageBox.Show("Cannot connect to Core server." + Environment.NewLine + exception.Message, "Connection Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    return;
+                }
+                catch (WCFClientBase.HttpUnauthorizedRequestException exception)
+                {
+                    Logger.LogError("Cannot connect to Core server " + _coreCreds.Hostname + " Wrong credentials.", _coreCreds.Hostname, exception);
+                    MessageBox.Show("Cannot connect to Core server. Incorrect credentials." + Environment.NewLine + exception.Message, "Connection Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    return;
+                }     
+            }
+
+            AddItemsToCbMailSize();
+            GetGenParamsFromFileToGui();
             timer1.Interval = 3000; // Timer for UI update
             timer1.Start();
 
@@ -176,6 +204,9 @@ namespace ChangeGen_v2
             _connectionPageControls.Add(lbl_password);
             _connectionPageControls.Add(tb_Port);
             _connectionPageControls.Add(lbl_Port);
+            _connectionPageControls.Add(lbl_SelectMode);
+            _connectionPageControls.Add(rb_Core);
+            _connectionPageControls.Add(rb_Manually);
 
             _listviewPageControls.Add(tabControl);
         }
@@ -345,6 +376,22 @@ namespace ChangeGen_v2
         {
             // Sort ListView by clicked column
             _lvwColumnSorter.SortColumn(e, lv_ExchangeServers);
+        }
+
+        private void rb_Manually_CheckedChanged(object sender, EventArgs e)
+        {
+            tb_hostname.Enabled = false;
+            tb_password.Enabled = false;
+            tb_Port.Enabled = false;
+            tb_userName.Enabled = false;
+        }
+
+        private void rb_Core_CheckedChanged(object sender, EventArgs e)
+        {
+            tb_hostname.Enabled = true;
+            tb_password.Enabled = true;
+            tb_Port.Enabled = true;
+            tb_userName.Enabled = true;
         }
     }
 }
