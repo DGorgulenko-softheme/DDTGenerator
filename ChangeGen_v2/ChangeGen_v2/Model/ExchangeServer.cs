@@ -9,15 +9,22 @@ namespace ChangeGen_v2
         {
         }
 
+        public ExchangeServer(string ip, string domain, string username, string password) : base(ip, username, password)
+        {
+            if (ExchangeGenParameters == null)
+                ExchangeGenParameters = new ExchangeGeneratorParameters();
+            ExchangeGenParameters.Recipient = username + '@' + domain;
+        }
+
         public void StartExchangeGenerator()
         {
             try
             {
                 ExchangeGenerator.StartGenerator(ServerCredentials, ExchangeGenParameters, Cts.Token);
             }
-            catch (ServiceRequestException)
+            catch (ServiceRequestException e)
             {
-                ServerGeneratorStatus = GeneratorStatus.Failed;
+                ServerGeneratorStatus = e.Message.Contains("401") ? GeneratorStatus.WrongCredentials : GeneratorStatus.Failed;             
             }
             catch (ServiceResponseException)
             {

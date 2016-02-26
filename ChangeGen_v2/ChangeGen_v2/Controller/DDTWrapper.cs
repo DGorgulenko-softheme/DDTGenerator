@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace ChangeGen_v2
 {
-    internal class DdtWrapper
+    internal static class DdtWrapper
     {
         // This method used to initiate start of DDT on remote machine
         public static void StartDdt(ListView listview, List<Server> serversList, DdtParameters ddtparameters)
@@ -41,7 +41,7 @@ namespace ChangeGen_v2
 
             foreach (var server in selectedServers)
             {
-                foreach (Server t in serversList)
+                foreach (var t in serversList)
                 {
                     if (server.SubItems[1].Text != t.ServerCredentials.Ip) continue;
 

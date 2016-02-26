@@ -7,7 +7,7 @@ namespace ChangeGen_v2
     {
         private static readonly object Lock = new object();
 
-        public static void Log(string logMessage, LogLevel level, string serverIp)
+        public static void Log(string logMessage, LogLevel level = LogLevel.Info, string serverIp = "")
         {
             lock (Lock)
             {
@@ -16,20 +16,6 @@ namespace ChangeGen_v2
                     w.WriteLine("[{0}][{1}][{2}]: {3}", level, serverIp, DateTime.Now, logMessage);
                 }
             }
-        }
-
-        public static void Log(string logMessage)
-        {
-            Log(logMessage, LogLevel.Info, "");
-        }
-
-        public static void Log(string logMessage, LogLevel level)
-        {
-            Log(logMessage, level, "");
-        }
-        public static void Log(string logMessage, string serverIp)
-        {
-            Log(logMessage, LogLevel.Info, serverIp);
         }
 
         public static void LogError(string logMessage, string serverIp, Exception e)

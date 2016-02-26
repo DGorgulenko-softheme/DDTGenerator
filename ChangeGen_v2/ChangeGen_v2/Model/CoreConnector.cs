@@ -23,7 +23,7 @@ namespace ChangeGen_v2
         }
 
         // This method is used to connect to Core API with specific credentials
-        public static ICoreClient GetFullCoreClient(CoreConnectionCredentials coreCredentials)
+        private static ICoreClient GetFullCoreClient(CoreConnectionCredentials coreCredentials)
         {
             var networkCreds = new NetworkCredential(coreCredentials.Username, coreCredentials.Password);
             var factory = new CoreClientFactory();
@@ -37,11 +37,9 @@ namespace ChangeGen_v2
         public static List<Server> GetServersToListFromCore(CoreConnectionCredentials coreCredentials)
         {
             var serversList = new List<Server>();
-            var coreClient = CoreConnector.GetFullCoreClient(coreCredentials);
-
+            var coreClient = GetFullCoreClient(coreCredentials);
             var protectedAgents = coreClient.AgentsManagement.GetProtectedAgents();
            
-
             foreach (var agent in protectedAgents)
             {
                 if ((agent.AgentType != AgentType.EsxServer) && (agent.AgentType != AgentType.EsxVirtualMachine))
@@ -65,9 +63,7 @@ namespace ChangeGen_v2
         {
             var exchangeServersList = new List<ExchangeServer>();
             var coreClient = CoreConnector.GetFullCoreClient(coreCredentials);
-
             var protectedAgents = coreClient.AgentsManagement.GetProtectedAgents();
-
 
             foreach (var agent in protectedAgents)
             {

@@ -10,9 +10,8 @@ namespace ChangeGen_v2
     internal static class Ddt
     {
         // This method copies the folder with DDT tools to cifs on the server using PerformActionRemotely method
-        public static void CopyDdTtoRemoteMachine(ServerConnectionCredentials serverCreds)
+        private static void CopyDdTtoRemoteMachine(ServerConnectionCredentials serverCreds)
         {
-
             HelperMethods.PerformActionRemotely(() =>
             {
                 var remotePath = "\\\\" + serverCreds.Ip + "\\C$\\DDT";
@@ -78,7 +77,7 @@ namespace ChangeGen_v2
         }
 
         // This method kills existing DDT process via WMI
-        public static void WmiKillDdt(ServerConnectionCredentials serverCreds)
+        private static void WmiKillDdt(ServerConnectionCredentials serverCreds)
         {
             var options = new ConnectionOptions
             {
@@ -135,7 +134,7 @@ namespace ChangeGen_v2
         }
 
         // This methdo starts DDT on remote machine using WMI
-        public static void WmiRunDdt(ServerConnectionCredentials serverCreds, DdtParameters ddtParameters)
+        private static void WmiRunDdt(ServerConnectionCredentials serverCreds, DdtParameters ddtParameters)
         {
             var seed = new Random().Next();
 

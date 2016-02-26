@@ -7,10 +7,9 @@ namespace ChangeGen_v2
 {
     internal static class HelperMethods
     {
-
         // This method is using for connection to the remote CIFS share with specific credentials
         [DllImport("advapi32.DLL", SetLastError = true)]
-        public static extern int LogonUser(string lpszUsername, string lpszDomain, string lpszPassword, int dwLogonType, int dwLogonProvider, ref IntPtr phToken);
+        private static extern int LogonUser(string lpszUsername, string lpszDomain, string lpszPassword, int dwLogonType, int dwLogonProvider, ref IntPtr phToken);
 
         // This method is used to perform action delegate remotely on CIFS Share
         public static void PerformActionRemotely(Action action, ServerConnectionCredentials serverCreds)
@@ -84,9 +83,5 @@ namespace ChangeGen_v2
             Volume,
             Folder
         }
-
-
     }
-
-
 }

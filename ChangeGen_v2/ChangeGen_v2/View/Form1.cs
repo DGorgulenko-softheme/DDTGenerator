@@ -27,6 +27,10 @@ namespace ChangeGen_v2
 
             lv_AgentsList.Items.Clear();
             lv_AgentsList.View = View.Details;
+
+            
+            lv_ExchangeServers.Items.Clear();
+            lv_ExchangeServers.View = View.Details;
         }
 
         private void AddItemsToCbMailSize()
@@ -71,29 +75,6 @@ namespace ChangeGen_v2
             cb_MailSize.SelectedIndex = 0;
         }
 
-        public void TryCoreConnect(CoreConnectionCredentials coreCreds)
-        {
-            try
-            {
-                ServerWrapper.ServersToListView(lv_AgentsList, lv_ExchangeServers, coreCreds);
-                Logger.Log("Successfully connected to Core Server: " + tb_hostname.Text, Logger.LogLevel.Info, tb_hostname.Text);
-            }
-            catch (WCFClientBase.ClientServerErrorException exception)
-            {
-                Logger.LogError("Cannot connect to Core server " + coreCreds.Hostname, coreCreds.Hostname, exception);
-                MessageBox.Show("Cannot connect to Core server." + Environment.NewLine + exception.Message, "Connection Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return;
-            }
-            catch (WCFClientBase.HttpUnauthorizedRequestException exception)
-            {
-                Logger.LogError("Cannot connect to Core server " + coreCreds.Hostname + " Wrong credentials.", coreCreds.Hostname, exception);
-                MessageBox.Show("Cannot connect to Core server. Incorrect credentials." + Environment.NewLine + exception.Message, "Connection Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return;
-            }
-        }
-
         private void btn_Connect_Click(object sender, EventArgs e)
         {
             if (rb_Core.Checked)
@@ -111,7 +92,7 @@ namespace ChangeGen_v2
                 // Displays list of servers received from Core API to ListView
                 try
                 {
-                    ServerWrapper.ServersToListView(lv_AgentsList, lv_ExchangeServers, _coreCreds);
+                    ServerWrapper.ServersToListView(_coreCreds);
                     Logger.Log("Successfully connected to Core Server: " + tb_hostname.Text, Logger.LogLevel.Info, tb_hostname.Text);
                 }
                 catch (WCFClientBase.ClientServerErrorException exception)
@@ -131,17 +112,15 @@ namespace ChangeGen_v2
             }
 
             ServerWrapper.ServersListViewCreateColumns(lv_AgentsList);
-            lv_AgentsList.Items.Clear();
+            ServerWrapper.ExchangeListViewCreateColumns(lv_ExchangeServers);
+
             AddItemsToCbMailSize();
             GetGenParamsFromFileToGui();
             timer1.Interval = 3000; // Timer for UI update
             timer1.Start();
 
-
             // Hide Connection Page and displays ListView Page
-            DisplayListViewPage();
-
-            lbl_TotalAmountValue.Text = lv_AgentsList.Items.Count.ToString();
+            DisplayListViewPage();     
         }
 
         private void lv_AgentsList_ColumnClick(object sender, ColumnClickEventArgs e)
@@ -189,13 +168,13 @@ namespace ChangeGen_v2
         }
 
         // This method displays controls for connection page
-        public void DisplayConnectionPage()
+        private void DisplayConnectionPage()
         {
             ControlsImplementation.ChangePage(_listviewPageControls, _connectionPageControls);
         }
 
         // This method displays controls for ListView Page
-        public void DisplayListViewPage()
+        private void DisplayListViewPage()
         {
             ControlsImplementation.ChangePage(_connectionPageControls, _listviewPageControls);
         }
@@ -239,7 +218,9 @@ namespace ChangeGen_v2
         private void timer1_Tick(object sender, EventArgs e)
         {
             ServerWrapper.UpdateListView(lv_AgentsList, lbl_ChangeRateValue, lbl_totalAgentsRunningValue);
-            ServerWrapper.UpdateExchangeListView(lv_ExchangeServers);
+            ServerWrapper.UpdateExchangeListView(lv_ExchangeServers, lbl_exchangeGenerationRunningValue);
+            lbl_TotalAmountValue.Text = lv_AgentsList.Items.Count.ToString();
+            lbl_exchangeTotalAgentsValue.Text = lv_ExchangeServers.Items.Count.ToString();
         }
 
         private void GetGenParamsFromFileToGui()
@@ -257,7 +238,7 @@ namespace ChangeGen_v2
 
             if (exchangeParams != null)
             {
-                int i = 0;
+                var i = 0;
                 foreach (var item in cb_MailSize.Items)
                 {
 
@@ -358,12 +339,19 @@ namespace ChangeGen_v2
         {
             var messageSize = _mailSizeDictionary.FirstOrDefault(x => x.Value == cb_MailSize.SelectedItem.ToString()).Key;
 
+            // Start Exchange Generation for selected servers with specific parameters
 
-            // Start DDT for selected servers with specific parameters
-            ExchangeGenWrapper.StartExchangeGenerator(lv_ExchangeServers, ServerWrapper.ExchangeServersList, messageSize);
-
+            if (cb_ExchangeUseCustomCreds.Checked)
+            {
+                ExchangeGenWrapper.StartExchangeGenerator(lv_ExchangeServers, ServerWrapper.ExchangeServersList, messageSize, tb_exchangeCustomUsername.Text, tb_exchangeCustomDomain.Text, tb_exchangeCustomPassword.Text);
+            }
+            else
+            {
+                ExchangeGenWrapper.StartExchangeGenerator(lv_ExchangeServers, ServerWrapper.ExchangeServersList, messageSize);
+            }
+            
             // Update ListView
-            ServerWrapper.UpdateExchangeListView(lv_ExchangeServers);
+            ServerWrapper.UpdateExchangeListView(lv_ExchangeServers, lbl_exchangeGenerationRunningValue);
 
             var exchangeParmsToSerialize = new ExchangeGeneratorParameters() {MessageSize = messageSize};
             exchangeParmsToSerialize.SerizalizeExchangeParamsToFile();
@@ -375,7 +363,7 @@ namespace ChangeGen_v2
             ExchangeGenWrapper.StopExchangeGenerator(lv_ExchangeServers, ServerWrapper.ExchangeServersList);
 
             // Update ListView
-            ServerWrapper.UpdateExchangeListView(lv_ExchangeServers);
+            ServerWrapper.UpdateExchangeListView(lv_ExchangeServers, lbl_exchangeGenerationRunningValue);
         }
 
         private void cb_SelAllExchange_CheckedChanged(object sender, EventArgs e)
@@ -480,6 +468,84 @@ namespace ChangeGen_v2
         private void tb_customPassword_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Validator.TextBox_ValidatingEmpty(e, (TextBox)sender, errorProvider1);
+        }
+
+        private void btn_deleteSelectedServers_Click(object sender, EventArgs e)
+        {
+            ServerWrapper.DeleteServerManually(lv_AgentsList);
+        }
+
+        private void btn_AddExchangeServerManually_Click(object sender, EventArgs e)
+        {
+            var addExchangeServerManuallyForm = new AddExchangeServerManually();
+            addExchangeServerManuallyForm.Show();
+        }
+
+        private void btn_deleteExchangeServer_Click(object sender, EventArgs e)
+        {
+            ServerWrapper.DeleteExchangeServerManually(lv_ExchangeServers);
+        }
+
+        private void cb_ExchangeUseCustomCreds_CheckedChanged(object sender, EventArgs e)
+        {
+            lbl_exchangeCustomUsername.Enabled = cb_ExchangeUseCustomCreds.Checked;
+            lbl_exchangeCustomDomain.Enabled = cb_ExchangeUseCustomCreds.Checked;
+            lbl_exchangeCustomPassword.Enabled = cb_ExchangeUseCustomCreds.Checked;
+            tb_exchangeCustomUsername.Enabled = cb_ExchangeUseCustomCreds.Checked;
+            tb_exchangeCustomDomain.Enabled = cb_ExchangeUseCustomCreds.Checked;
+            tb_exchangeCustomPassword.Enabled = cb_ExchangeUseCustomCreds.Checked;
+            btn_startExchangeGeneration.Enabled = !cb_ExchangeUseCustomCreds.Checked;
+        }
+
+        private void tb_exchangeCustomUsername_Validated(object sender, EventArgs e)
+        {
+            Validator.TextBox_Validated((TextBox)sender, errorProvider1);
+        }
+
+        private void tb_exchangeCustomUsername_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validator.TextBox_ValidatingEmpty(e, (TextBox)sender, errorProvider1);
+        }
+
+        private void tb_exchangeCustomDomain_Validated(object sender, EventArgs e)
+        {
+            Validator.TextBox_Validated((TextBox)sender, errorProvider1);
+        }
+
+        private void tb_exchangeCustomDomain_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validator.TextBox_ValidatingEmpty(e, (TextBox)sender, errorProvider1);
+        }
+
+        private void tb_exchangeCustomPassword_Validated(object sender, EventArgs e)
+        {
+            Validator.TextBox_Validated((TextBox)sender, errorProvider1);
+        }
+
+        private void tb_exchangeCustomPassword_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validator.TextBox_ValidatingEmpty(e, (TextBox)sender, errorProvider1);
+        }
+
+        private void tb_exchangeCustomUsername_TextChanged(object sender, EventArgs e)
+        {
+            UpdateStartExchangeButtonState();
+        }
+
+        private void tb_exchangeCustomDomain_TextChanged(object sender, EventArgs e)
+        {
+            UpdateStartExchangeButtonState();
+        }
+
+        private void tb_exchangeCustomPassword_TextChanged(object sender, EventArgs e)
+        {
+            UpdateStartExchangeButtonState();
+        }
+        private void UpdateStartExchangeButtonState()
+        {
+            btn_startExchangeGeneration.Enabled = !string.IsNullOrWhiteSpace(tb_exchangeCustomUsername.Text) &&
+                                                  !string.IsNullOrWhiteSpace(tb_exchangeCustomDomain.Text) &&
+                                                  !string.IsNullOrWhiteSpace(tb_exchangeCustomPassword.Text);
         }
     }
 }

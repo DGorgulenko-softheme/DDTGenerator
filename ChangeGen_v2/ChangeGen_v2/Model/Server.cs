@@ -15,16 +15,16 @@ namespace ChangeGen_v2
         public Task Task { get; set; }
 
         // Server display name on Core if available
-        public string DisplayName { get; set; }
+        public string DisplayName { get; private set; }
 
         // Server repository on Core if available
-        public string Repository { get; set; }
+        public string Repository { get; private set; }
 
         // Current status of DDT on server
         public GeneratorStatus ServerGeneratorStatus { get; set; } = GeneratorStatus.Stopped;
 
         // Server username and password for connection
-        public ServerConnectionCredentials ServerCredentials { get; set; }
+        public ServerConnectionCredentials ServerCredentials { get; private set; }
 
         // DDT Parameters for current server
         public DdtParameters DdtParameters { get; set; }

@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using Microsoft.Exchange.WebServices.Data;
-using NLog;
 
 namespace ChangeGen_v2
 {
-    internal class ExchangeGenerator
+    internal static class ExchangeGenerator
     {
         public static void StartGenerator(ServerConnectionCredentials serverCredentials, ExchangeGeneratorParameters genParameters, CancellationToken token)
         {
+            ServicePointManager.ServerCertificateValidationCallback = OnValidationCallback;
             var service = new ExchangeService(ExchangeVersion.Exchange2007_SP1)
             {
                 Credentials = new WebCredentials(serverCredentials.Username, serverCredentials.Password),
@@ -17,7 +20,7 @@ namespace ChangeGen_v2
                 Timeout = 300000
             };
 
-            Logger.Log("Exchange data generation started for server: " + serverCredentials.Ip + " . With mail size: " + genParameters.MessageSize.ToString(), Logger.LogLevel.Info, serverCredentials.Ip);
+            Logger.Log("Exchange data generation started for server: " + serverCredentials.Ip + " . With mail size: " + genParameters.MessageSize, Logger.LogLevel.Info, serverCredentials.Ip);
 
             while (true)
             {
@@ -25,7 +28,6 @@ namespace ChangeGen_v2
                 if (token.IsCancellationRequested)
                     break;
             }
-
         }
 
         private static void SendMessages(ExchangeService service, ExchangeGeneratorParameters genParameters, ServerConnectionCredentials serverCreds)
@@ -53,12 +55,17 @@ namespace ChangeGen_v2
             
         }
 
-        public static string RandomString(int length)
+        private static string RandomString(int length)
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             var random = new Random();
             return new string(Enumerable.Repeat(chars, length)
                 .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
+        private static bool OnValidationCallback(object sender, X509Certificate cert, X509Chain chain, SslPolicyErrors errors)
+        {
+            return true;
         }
     }
 }

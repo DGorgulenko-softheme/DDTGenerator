@@ -83,6 +83,22 @@
             this.lbl_customUserName = new System.Windows.Forms.Label();
             this.lbl_customPassword = new System.Windows.Forms.Label();
             this.btn_deleteSelectedServers = new System.Windows.Forms.Button();
+            this.btn_deleteExchangeServer = new System.Windows.Forms.Button();
+            this.gb_ExchangeCustomCreds = new System.Windows.Forms.GroupBox();
+            this.lbl_exchangeCustomPassword = new System.Windows.Forms.Label();
+            this.lbl_exchangeCustomUsername = new System.Windows.Forms.Label();
+            this.tb_exchangeCustomPassword = new System.Windows.Forms.TextBox();
+            this.tb_exchangeCustomUsername = new System.Windows.Forms.TextBox();
+            this.cb_ExchangeUseCustomCreds = new System.Windows.Forms.CheckBox();
+            this.btn_ExchangeExportCSV = new System.Windows.Forms.Button();
+            this.btn_ExchangeImportCSV = new System.Windows.Forms.Button();
+            this.btn_AddExchangeServerManually = new System.Windows.Forms.Button();
+            this.lbl_exchangeGenerationRunningValue = new System.Windows.Forms.Label();
+            this.lbl_exchangeTotalAgentsValue = new System.Windows.Forms.Label();
+            this.lbl_exchangeGenerationRunningLabel = new System.Windows.Forms.Label();
+            this.lbl_exchangeTotalAgentsLabel = new System.Windows.Forms.Label();
+            this.lbl_exchangeCustomDomain = new System.Windows.Forms.Label();
+            this.tb_exchangeCustomDomain = new System.Windows.Forms.TextBox();
             this.gb_ddtparams.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabControl.SuspendLayout();
@@ -90,6 +106,7 @@
             this.tabPage2.SuspendLayout();
             this.gb_ExchangeParameters.SuspendLayout();
             this.gb_customCredentials.SuspendLayout();
+            this.gb_ExchangeCustomCreds.SuspendLayout();
             this.SuspendLayout();
             // 
             // tb_hostname
@@ -163,7 +180,7 @@
             // 
             // btn_StartDDT
             // 
-            this.btn_StartDDT.Location = new System.Drawing.Point(369, 388);
+            this.btn_StartDDT.Location = new System.Drawing.Point(369, 389);
             this.btn_StartDDT.Margin = new System.Windows.Forms.Padding(2);
             this.btn_StartDDT.Name = "btn_StartDDT";
             this.btn_StartDDT.Size = new System.Drawing.Size(218, 34);
@@ -185,10 +202,10 @@
             // 
             // btn_StopDDT
             // 
-            this.btn_StopDDT.Location = new System.Drawing.Point(591, 388);
+            this.btn_StopDDT.Location = new System.Drawing.Point(591, 389);
             this.btn_StopDDT.Margin = new System.Windows.Forms.Padding(2);
             this.btn_StopDDT.Name = "btn_StopDDT";
-            this.btn_StopDDT.Size = new System.Drawing.Size(202, 34);
+            this.btn_StopDDT.Size = new System.Drawing.Size(198, 34);
             this.btn_StopDDT.TabIndex = 11;
             this.btn_StopDDT.Text = "Stop Data Generation";
             this.btn_StopDDT.UseVisualStyleBackColor = true;
@@ -351,7 +368,7 @@
             // 
             this.lbl_ChangeRateValue.AutoSize = true;
             this.lbl_ChangeRateValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_ChangeRateValue.Location = new System.Drawing.Point(846, 405);
+            this.lbl_ChangeRateValue.Location = new System.Drawing.Point(846, 403);
             this.lbl_ChangeRateValue.Name = "lbl_ChangeRateValue";
             this.lbl_ChangeRateValue.Size = new System.Drawing.Size(15, 15);
             this.lbl_ChangeRateValue.TabIndex = 36;
@@ -361,7 +378,7 @@
             // 
             this.lbl_totalAgentsRunningValue.AutoSize = true;
             this.lbl_totalAgentsRunningValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_totalAgentsRunningValue.Location = new System.Drawing.Point(846, 372);
+            this.lbl_totalAgentsRunningValue.Location = new System.Drawing.Point(846, 363);
             this.lbl_totalAgentsRunningValue.Name = "lbl_totalAgentsRunningValue";
             this.lbl_totalAgentsRunningValue.Size = new System.Drawing.Size(15, 15);
             this.lbl_totalAgentsRunningValue.TabIndex = 38;
@@ -370,7 +387,7 @@
             // lbl_totalAgentsRunninglabel
             // 
             this.lbl_totalAgentsRunninglabel.AutoSize = true;
-            this.lbl_totalAgentsRunninglabel.Location = new System.Drawing.Point(804, 359);
+            this.lbl_totalAgentsRunninglabel.Location = new System.Drawing.Point(804, 350);
             this.lbl_totalAgentsRunninglabel.Name = "lbl_totalAgentsRunninglabel";
             this.lbl_totalAgentsRunninglabel.Size = new System.Drawing.Size(115, 13);
             this.lbl_totalAgentsRunninglabel.TabIndex = 37;
@@ -379,17 +396,17 @@
             // lbl_TotalAmountLabel
             // 
             this.lbl_TotalAmountLabel.AutoSize = true;
-            this.lbl_TotalAmountLabel.Location = new System.Drawing.Point(7, 420);
+            this.lbl_TotalAmountLabel.Location = new System.Drawing.Point(7, 423);
             this.lbl_TotalAmountLabel.Name = "lbl_TotalAmountLabel";
-            this.lbl_TotalAmountLabel.Size = new System.Drawing.Size(69, 13);
+            this.lbl_TotalAmountLabel.Size = new System.Drawing.Size(71, 13);
             this.lbl_TotalAmountLabel.TabIndex = 39;
-            this.lbl_TotalAmountLabel.Text = "Total agents:";
+            this.lbl_TotalAmountLabel.Text = "Total servers:";
             // 
             // lbl_TotalAmountValue
             // 
             this.lbl_TotalAmountValue.AutoSize = true;
             this.lbl_TotalAmountValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_TotalAmountValue.Location = new System.Drawing.Point(82, 420);
+            this.lbl_TotalAmountValue.Location = new System.Drawing.Point(82, 423);
             this.lbl_TotalAmountValue.Name = "lbl_TotalAmountValue";
             this.lbl_TotalAmountValue.Size = new System.Drawing.Size(13, 13);
             this.lbl_TotalAmountValue.TabIndex = 40;
@@ -445,7 +462,7 @@
             // 
             // btn_ExportCSV
             // 
-            this.btn_ExportCSV.Location = new System.Drawing.Point(159, 386);
+            this.btn_ExportCSV.Location = new System.Drawing.Point(154, 389);
             this.btn_ExportCSV.Name = "btn_ExportCSV";
             this.btn_ExportCSV.Size = new System.Drawing.Size(86, 27);
             this.btn_ExportCSV.TabIndex = 43;
@@ -454,7 +471,7 @@
             // 
             // btn_ImportCSV
             // 
-            this.btn_ImportCSV.Location = new System.Drawing.Point(63, 386);
+            this.btn_ImportCSV.Location = new System.Drawing.Point(63, 389);
             this.btn_ImportCSV.Name = "btn_ImportCSV";
             this.btn_ImportCSV.Size = new System.Drawing.Size(90, 27);
             this.btn_ImportCSV.TabIndex = 42;
@@ -465,7 +482,7 @@
             // 
             this.btn_addServerManually.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_addServerManually.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btn_addServerManually.Location = new System.Drawing.Point(5, 386);
+            this.btn_addServerManually.Location = new System.Drawing.Point(5, 389);
             this.btn_addServerManually.Name = "btn_addServerManually";
             this.btn_addServerManually.Size = new System.Drawing.Size(30, 27);
             this.btn_addServerManually.TabIndex = 41;
@@ -475,6 +492,16 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btn_deleteExchangeServer);
+            this.tabPage2.Controls.Add(this.gb_ExchangeCustomCreds);
+            this.tabPage2.Controls.Add(this.cb_ExchangeUseCustomCreds);
+            this.tabPage2.Controls.Add(this.btn_ExchangeExportCSV);
+            this.tabPage2.Controls.Add(this.btn_ExchangeImportCSV);
+            this.tabPage2.Controls.Add(this.btn_AddExchangeServerManually);
+            this.tabPage2.Controls.Add(this.lbl_exchangeGenerationRunningValue);
+            this.tabPage2.Controls.Add(this.lbl_exchangeTotalAgentsValue);
+            this.tabPage2.Controls.Add(this.lbl_exchangeGenerationRunningLabel);
+            this.tabPage2.Controls.Add(this.lbl_exchangeTotalAgentsLabel);
             this.tabPage2.Controls.Add(this.gb_ExchangeParameters);
             this.tabPage2.Controls.Add(this.btn_stopExchangeGeneration);
             this.tabPage2.Controls.Add(this.btn_startExchangeGeneration);
@@ -492,7 +519,7 @@
             // 
             this.gb_ExchangeParameters.Controls.Add(this.cb_MailSize);
             this.gb_ExchangeParameters.Controls.Add(this.lbl_MessageSize);
-            this.gb_ExchangeParameters.Location = new System.Drawing.Point(794, 10);
+            this.gb_ExchangeParameters.Location = new System.Drawing.Point(794, 12);
             this.gb_ExchangeParameters.Name = "gb_ExchangeParameters";
             this.gb_ExchangeParameters.Size = new System.Drawing.Size(144, 192);
             this.gb_ExchangeParameters.TabIndex = 35;
@@ -519,10 +546,10 @@
             // 
             // btn_stopExchangeGeneration
             // 
-            this.btn_stopExchangeGeneration.Location = new System.Drawing.Point(591, 388);
+            this.btn_stopExchangeGeneration.Location = new System.Drawing.Point(591, 389);
             this.btn_stopExchangeGeneration.Margin = new System.Windows.Forms.Padding(2);
             this.btn_stopExchangeGeneration.Name = "btn_stopExchangeGeneration";
-            this.btn_stopExchangeGeneration.Size = new System.Drawing.Size(202, 34);
+            this.btn_stopExchangeGeneration.Size = new System.Drawing.Size(198, 34);
             this.btn_stopExchangeGeneration.TabIndex = 12;
             this.btn_stopExchangeGeneration.Text = "Stop Exchange Generation";
             this.btn_stopExchangeGeneration.UseVisualStyleBackColor = true;
@@ -530,7 +557,7 @@
             // 
             // btn_startExchangeGeneration
             // 
-            this.btn_startExchangeGeneration.Location = new System.Drawing.Point(369, 388);
+            this.btn_startExchangeGeneration.Location = new System.Drawing.Point(369, 389);
             this.btn_startExchangeGeneration.Margin = new System.Windows.Forms.Padding(2);
             this.btn_startExchangeGeneration.Name = "btn_startExchangeGeneration";
             this.btn_startExchangeGeneration.Size = new System.Drawing.Size(218, 34);
@@ -656,7 +683,7 @@
             // 
             this.lbl_customPassword.AutoSize = true;
             this.lbl_customPassword.Enabled = false;
-            this.lbl_customPassword.Location = new System.Drawing.Point(8, 53);
+            this.lbl_customPassword.Location = new System.Drawing.Point(6, 53);
             this.lbl_customPassword.Name = "lbl_customPassword";
             this.lbl_customPassword.Size = new System.Drawing.Size(53, 13);
             this.lbl_customPassword.TabIndex = 3;
@@ -666,12 +693,182 @@
             // 
             this.btn_deleteSelectedServers.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_deleteSelectedServers.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btn_deleteSelectedServers.Location = new System.Drawing.Point(34, 386);
+            this.btn_deleteSelectedServers.Location = new System.Drawing.Point(34, 389);
             this.btn_deleteSelectedServers.Name = "btn_deleteSelectedServers";
             this.btn_deleteSelectedServers.Size = new System.Drawing.Size(30, 27);
             this.btn_deleteSelectedServers.TabIndex = 46;
             this.btn_deleteSelectedServers.Text = "-";
             this.btn_deleteSelectedServers.UseVisualStyleBackColor = true;
+            this.btn_deleteSelectedServers.Click += new System.EventHandler(this.btn_deleteSelectedServers_Click);
+            // 
+            // btn_deleteExchangeServer
+            // 
+            this.btn_deleteExchangeServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_deleteExchangeServer.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btn_deleteExchangeServer.Location = new System.Drawing.Point(34, 389);
+            this.btn_deleteExchangeServer.Name = "btn_deleteExchangeServer";
+            this.btn_deleteExchangeServer.Size = new System.Drawing.Size(30, 27);
+            this.btn_deleteExchangeServer.TabIndex = 56;
+            this.btn_deleteExchangeServer.Text = "-";
+            this.btn_deleteExchangeServer.UseVisualStyleBackColor = true;
+            this.btn_deleteExchangeServer.Click += new System.EventHandler(this.btn_deleteExchangeServer_Click);
+            // 
+            // gb_ExchangeCustomCreds
+            // 
+            this.gb_ExchangeCustomCreds.Controls.Add(this.lbl_exchangeCustomDomain);
+            this.gb_ExchangeCustomCreds.Controls.Add(this.tb_exchangeCustomDomain);
+            this.gb_ExchangeCustomCreds.Controls.Add(this.lbl_exchangeCustomPassword);
+            this.gb_ExchangeCustomCreds.Controls.Add(this.lbl_exchangeCustomUsername);
+            this.gb_ExchangeCustomCreds.Controls.Add(this.tb_exchangeCustomPassword);
+            this.gb_ExchangeCustomCreds.Controls.Add(this.tb_exchangeCustomUsername);
+            this.gb_ExchangeCustomCreds.Location = new System.Drawing.Point(794, 232);
+            this.gb_ExchangeCustomCreds.Name = "gb_ExchangeCustomCreds";
+            this.gb_ExchangeCustomCreds.Size = new System.Drawing.Size(147, 152);
+            this.gb_ExchangeCustomCreds.TabIndex = 55;
+            this.gb_ExchangeCustomCreds.TabStop = false;
+            // 
+            // lbl_exchangeCustomPassword
+            // 
+            this.lbl_exchangeCustomPassword.AutoSize = true;
+            this.lbl_exchangeCustomPassword.Enabled = false;
+            this.lbl_exchangeCustomPassword.Location = new System.Drawing.Point(6, 94);
+            this.lbl_exchangeCustomPassword.Name = "lbl_exchangeCustomPassword";
+            this.lbl_exchangeCustomPassword.Size = new System.Drawing.Size(53, 13);
+            this.lbl_exchangeCustomPassword.TabIndex = 3;
+            this.lbl_exchangeCustomPassword.Text = "Password";
+            // 
+            // lbl_exchangeCustomUsername
+            // 
+            this.lbl_exchangeCustomUsername.AutoSize = true;
+            this.lbl_exchangeCustomUsername.Enabled = false;
+            this.lbl_exchangeCustomUsername.Location = new System.Drawing.Point(6, 14);
+            this.lbl_exchangeCustomUsername.Name = "lbl_exchangeCustomUsername";
+            this.lbl_exchangeCustomUsername.Size = new System.Drawing.Size(55, 13);
+            this.lbl_exchangeCustomUsername.TabIndex = 2;
+            this.lbl_exchangeCustomUsername.Text = "Username";
+            // 
+            // tb_exchangeCustomPassword
+            // 
+            this.tb_exchangeCustomPassword.Enabled = false;
+            this.tb_exchangeCustomPassword.Location = new System.Drawing.Point(6, 111);
+            this.tb_exchangeCustomPassword.Name = "tb_exchangeCustomPassword";
+            this.tb_exchangeCustomPassword.Size = new System.Drawing.Size(119, 20);
+            this.tb_exchangeCustomPassword.TabIndex = 2;
+            this.tb_exchangeCustomPassword.UseSystemPasswordChar = true;
+            this.tb_exchangeCustomPassword.TextChanged += new System.EventHandler(this.tb_exchangeCustomPassword_TextChanged);
+            this.tb_exchangeCustomPassword.Validating += new System.ComponentModel.CancelEventHandler(this.tb_exchangeCustomPassword_Validating);
+            this.tb_exchangeCustomPassword.Validated += new System.EventHandler(this.tb_exchangeCustomPassword_Validated);
+            // 
+            // tb_exchangeCustomUsername
+            // 
+            this.tb_exchangeCustomUsername.Enabled = false;
+            this.tb_exchangeCustomUsername.Location = new System.Drawing.Point(6, 30);
+            this.tb_exchangeCustomUsername.Name = "tb_exchangeCustomUsername";
+            this.tb_exchangeCustomUsername.Size = new System.Drawing.Size(119, 20);
+            this.tb_exchangeCustomUsername.TabIndex = 0;
+            this.tb_exchangeCustomUsername.TextChanged += new System.EventHandler(this.tb_exchangeCustomUsername_TextChanged);
+            this.tb_exchangeCustomUsername.Validating += new System.ComponentModel.CancelEventHandler(this.tb_exchangeCustomUsername_Validating);
+            this.tb_exchangeCustomUsername.Validated += new System.EventHandler(this.tb_exchangeCustomUsername_Validated);
+            // 
+            // cb_ExchangeUseCustomCreds
+            // 
+            this.cb_ExchangeUseCustomCreds.AutoSize = true;
+            this.cb_ExchangeUseCustomCreds.Location = new System.Drawing.Point(794, 209);
+            this.cb_ExchangeUseCustomCreds.Name = "cb_ExchangeUseCustomCreds";
+            this.cb_ExchangeUseCustomCreds.Size = new System.Drawing.Size(138, 17);
+            this.cb_ExchangeUseCustomCreds.TabIndex = 54;
+            this.cb_ExchangeUseCustomCreds.Text = "Use Custom Credentials";
+            this.cb_ExchangeUseCustomCreds.UseVisualStyleBackColor = true;
+            this.cb_ExchangeUseCustomCreds.CheckedChanged += new System.EventHandler(this.cb_ExchangeUseCustomCreds_CheckedChanged);
+            // 
+            // btn_ExchangeExportCSV
+            // 
+            this.btn_ExchangeExportCSV.Location = new System.Drawing.Point(154, 389);
+            this.btn_ExchangeExportCSV.Name = "btn_ExchangeExportCSV";
+            this.btn_ExchangeExportCSV.Size = new System.Drawing.Size(86, 27);
+            this.btn_ExchangeExportCSV.TabIndex = 53;
+            this.btn_ExchangeExportCSV.Text = "Export CSV";
+            this.btn_ExchangeExportCSV.UseVisualStyleBackColor = true;
+            // 
+            // btn_ExchangeImportCSV
+            // 
+            this.btn_ExchangeImportCSV.Location = new System.Drawing.Point(63, 389);
+            this.btn_ExchangeImportCSV.Name = "btn_ExchangeImportCSV";
+            this.btn_ExchangeImportCSV.Size = new System.Drawing.Size(90, 27);
+            this.btn_ExchangeImportCSV.TabIndex = 52;
+            this.btn_ExchangeImportCSV.Text = "Import CSV";
+            this.btn_ExchangeImportCSV.UseVisualStyleBackColor = true;
+            // 
+            // btn_AddExchangeServerManually
+            // 
+            this.btn_AddExchangeServerManually.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_AddExchangeServerManually.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btn_AddExchangeServerManually.Location = new System.Drawing.Point(5, 389);
+            this.btn_AddExchangeServerManually.Name = "btn_AddExchangeServerManually";
+            this.btn_AddExchangeServerManually.Size = new System.Drawing.Size(30, 27);
+            this.btn_AddExchangeServerManually.TabIndex = 51;
+            this.btn_AddExchangeServerManually.Text = "+";
+            this.btn_AddExchangeServerManually.UseVisualStyleBackColor = true;
+            this.btn_AddExchangeServerManually.Click += new System.EventHandler(this.btn_AddExchangeServerManually_Click);
+            // 
+            // lbl_exchangeGenerationRunningValue
+            // 
+            this.lbl_exchangeGenerationRunningValue.AutoSize = true;
+            this.lbl_exchangeGenerationRunningValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_exchangeGenerationRunningValue.Location = new System.Drawing.Point(846, 402);
+            this.lbl_exchangeGenerationRunningValue.Name = "lbl_exchangeGenerationRunningValue";
+            this.lbl_exchangeGenerationRunningValue.Size = new System.Drawing.Size(15, 15);
+            this.lbl_exchangeGenerationRunningValue.TabIndex = 48;
+            this.lbl_exchangeGenerationRunningValue.Text = "0";
+            // 
+            // lbl_exchangeTotalAgentsValue
+            // 
+            this.lbl_exchangeTotalAgentsValue.AutoSize = true;
+            this.lbl_exchangeTotalAgentsValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_exchangeTotalAgentsValue.Location = new System.Drawing.Point(82, 423);
+            this.lbl_exchangeTotalAgentsValue.Name = "lbl_exchangeTotalAgentsValue";
+            this.lbl_exchangeTotalAgentsValue.Size = new System.Drawing.Size(13, 13);
+            this.lbl_exchangeTotalAgentsValue.TabIndex = 50;
+            this.lbl_exchangeTotalAgentsValue.Text = "0";
+            // 
+            // lbl_exchangeGenerationRunningLabel
+            // 
+            this.lbl_exchangeGenerationRunningLabel.AutoSize = true;
+            this.lbl_exchangeGenerationRunningLabel.Location = new System.Drawing.Point(804, 389);
+            this.lbl_exchangeGenerationRunningLabel.Name = "lbl_exchangeGenerationRunningLabel";
+            this.lbl_exchangeGenerationRunningLabel.Size = new System.Drawing.Size(115, 13);
+            this.lbl_exchangeGenerationRunningLabel.TabIndex = 47;
+            this.lbl_exchangeGenerationRunningLabel.Text = "Generation running for:";
+            // 
+            // lbl_exchangeTotalAgentsLabel
+            // 
+            this.lbl_exchangeTotalAgentsLabel.AutoSize = true;
+            this.lbl_exchangeTotalAgentsLabel.Location = new System.Drawing.Point(7, 423);
+            this.lbl_exchangeTotalAgentsLabel.Name = "lbl_exchangeTotalAgentsLabel";
+            this.lbl_exchangeTotalAgentsLabel.Size = new System.Drawing.Size(71, 13);
+            this.lbl_exchangeTotalAgentsLabel.TabIndex = 49;
+            this.lbl_exchangeTotalAgentsLabel.Text = "Total servers:";
+            // 
+            // lbl_exchangeCustomDomain
+            // 
+            this.lbl_exchangeCustomDomain.AutoSize = true;
+            this.lbl_exchangeCustomDomain.Enabled = false;
+            this.lbl_exchangeCustomDomain.Location = new System.Drawing.Point(6, 54);
+            this.lbl_exchangeCustomDomain.Name = "lbl_exchangeCustomDomain";
+            this.lbl_exchangeCustomDomain.Size = new System.Drawing.Size(43, 13);
+            this.lbl_exchangeCustomDomain.TabIndex = 5;
+            this.lbl_exchangeCustomDomain.Text = "Domain";
+            // 
+            // tb_exchangeCustomDomain
+            // 
+            this.tb_exchangeCustomDomain.Enabled = false;
+            this.tb_exchangeCustomDomain.Location = new System.Drawing.Point(6, 69);
+            this.tb_exchangeCustomDomain.Name = "tb_exchangeCustomDomain";
+            this.tb_exchangeCustomDomain.Size = new System.Drawing.Size(119, 20);
+            this.tb_exchangeCustomDomain.TabIndex = 1;
+            this.tb_exchangeCustomDomain.TextChanged += new System.EventHandler(this.tb_exchangeCustomDomain_TextChanged);
+            this.tb_exchangeCustomDomain.Validating += new System.ComponentModel.CancelEventHandler(this.tb_exchangeCustomDomain_Validating);
+            this.tb_exchangeCustomDomain.Validated += new System.EventHandler(this.tb_exchangeCustomDomain_Validated);
             // 
             // Form1
             // 
@@ -711,6 +908,8 @@
             this.gb_ExchangeParameters.PerformLayout();
             this.gb_customCredentials.ResumeLayout(false);
             this.gb_customCredentials.PerformLayout();
+            this.gb_ExchangeCustomCreds.ResumeLayout(false);
+            this.gb_ExchangeCustomCreds.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -772,6 +971,22 @@
         private System.Windows.Forms.TextBox tb_customPassword;
         private System.Windows.Forms.TextBox tb_customUsername;
         private System.Windows.Forms.Button btn_deleteSelectedServers;
+        private System.Windows.Forms.Button btn_deleteExchangeServer;
+        private System.Windows.Forms.GroupBox gb_ExchangeCustomCreds;
+        private System.Windows.Forms.Label lbl_exchangeCustomPassword;
+        private System.Windows.Forms.Label lbl_exchangeCustomUsername;
+        private System.Windows.Forms.TextBox tb_exchangeCustomPassword;
+        private System.Windows.Forms.TextBox tb_exchangeCustomUsername;
+        private System.Windows.Forms.CheckBox cb_ExchangeUseCustomCreds;
+        private System.Windows.Forms.Button btn_ExchangeExportCSV;
+        private System.Windows.Forms.Button btn_ExchangeImportCSV;
+        private System.Windows.Forms.Button btn_AddExchangeServerManually;
+        private System.Windows.Forms.Label lbl_exchangeGenerationRunningValue;
+        private System.Windows.Forms.Label lbl_exchangeTotalAgentsValue;
+        private System.Windows.Forms.Label lbl_exchangeGenerationRunningLabel;
+        private System.Windows.Forms.Label lbl_exchangeTotalAgentsLabel;
+        private System.Windows.Forms.Label lbl_exchangeCustomDomain;
+        private System.Windows.Forms.TextBox tb_exchangeCustomDomain;
     }
 }
 

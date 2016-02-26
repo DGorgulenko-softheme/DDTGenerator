@@ -35,7 +35,6 @@ namespace ChangeGen_v2
             {
                 return null;
             }
-
             return deserializedExchangeParams;
         }
 

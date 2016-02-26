@@ -133,6 +133,12 @@
     <Compile Include="View\AboutBox1.Designer.cs">
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\AddExchangeServerManually.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AddExchangeServerManually.Designer.cs">
+      <DependentUpon>AddExchangeServerManually.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\AddServerManually.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +160,9 @@
     <Compile Include="View\Validator.cs" />
     <EmbeddedResource Include="View\AboutBox1.resx">
       <DependentUpon>AboutBox1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\AddExchangeServerManually.resx">
+      <DependentUpon>AddExchangeServerManually.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\AddServerManually.resx">
       <DependentUpon>AddServerManually.cs</DependentUpon>

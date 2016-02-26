@@ -41,8 +41,7 @@ namespace ChangeGen_v2
             catch (FileNotFoundException)
             {
                 return null;
-            }
-            
+            }          
             return deserializedCreds;
         }
     }

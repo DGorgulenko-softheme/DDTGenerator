@@ -58,12 +58,12 @@ namespace ChangeGen_v2
         /// <summary>
         /// Gets or sets the number of the column to which to apply the sorting operation (Defaults to '0').
         /// </summary>
-        public int SortColumnAmount { set; get; }
+        private int SortColumnAmount { set; get; }
 
         /// <summary>
         /// Gets or sets the order of sorting to apply (for example, 'Ascending' or 'Descending').
         /// </summary>
-        public SortOrder Order { set; get; }
+        private SortOrder Order { set; get; }
 
         public void SortColumn(ColumnClickEventArgs e, ListView listview)
         {

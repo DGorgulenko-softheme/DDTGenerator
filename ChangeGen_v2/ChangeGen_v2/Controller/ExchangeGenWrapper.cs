@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace ChangeGen_v2
 {
-    internal class ExchangeGenWrapper
+    internal static class ExchangeGenWrapper
     {
         // This method used to initiate start of DDT on remote machine
         public static void StartExchangeGenerator(ListView listview, List<ExchangeServer> serversList, ExchangeGeneratorParameters.MailSize messageSize)
@@ -32,6 +32,26 @@ namespace ChangeGen_v2
                     serversList[y].Task.Start();
                 }
             }
+        }
+
+        public static void StartExchangeGenerator(ListView listview, List<ExchangeServer> serversList,
+            ExchangeGeneratorParameters.MailSize messageSize, string username, string domain, string password)
+        {
+            var selectedServers = listview.Items.Cast<ListViewItem>().Where(item => item.Checked).ToList(); // Creating list of selected servers
+
+            foreach (var server in selectedServers)
+            {
+                foreach (var t in serversList)
+                {
+                    if (server.SubItems[1].Text != t.ServerCredentials.Ip) continue;
+
+                    t.ServerCredentials.Username = username;
+                    t.ServerCredentials.Password = password;
+                    t.ExchangeGenParameters.Recipient = username + '@' + domain;
+                }
+            }
+
+            StartExchangeGenerator(listview, serversList, messageSize);
         }
 
         // Cancel DDT for selected server
