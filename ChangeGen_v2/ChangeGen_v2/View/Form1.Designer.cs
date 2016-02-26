@@ -99,6 +99,7 @@
             this.lbl_exchangeTotalAgentsLabel = new System.Windows.Forms.Label();
             this.lbl_exchangeCustomDomain = new System.Windows.Forms.Label();
             this.tb_exchangeCustomDomain = new System.Windows.Forms.TextBox();
+            this.lbl_MailSizeNote = new System.Windows.Forms.Label();
             this.gb_ddtparams.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabControl.SuspendLayout();
@@ -457,7 +458,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(944, 465);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "DDT";
+            this.tabPage1.Text = "Data";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // btn_ExportCSV
@@ -517,6 +518,7 @@
             // 
             // gb_ExchangeParameters
             // 
+            this.gb_ExchangeParameters.Controls.Add(this.lbl_MailSizeNote);
             this.gb_ExchangeParameters.Controls.Add(this.cb_MailSize);
             this.gb_ExchangeParameters.Controls.Add(this.lbl_MessageSize);
             this.gb_ExchangeParameters.Location = new System.Drawing.Point(794, 12);
@@ -870,6 +872,15 @@
             this.tb_exchangeCustomDomain.Validating += new System.ComponentModel.CancelEventHandler(this.tb_exchangeCustomDomain_Validating);
             this.tb_exchangeCustomDomain.Validated += new System.EventHandler(this.tb_exchangeCustomDomain_Validated);
             // 
+            // lbl_MailSizeNote
+            // 
+            this.lbl_MailSizeNote.AutoSize = true;
+            this.lbl_MailSizeNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_MailSizeNote.Location = new System.Drawing.Point(9, 61);
+            this.lbl_MailSizeNote.Name = "lbl_MailSizeNote";
+            this.lbl_MailSizeNote.Size = new System.Drawing.Size(0, 12);
+            this.lbl_MailSizeNote.TabIndex = 16;
+            // 
             // Form1
             // 
             this.AcceptButton = this.btn_Connect;
@@ -987,6 +998,7 @@
         private System.Windows.Forms.Label lbl_exchangeTotalAgentsLabel;
         private System.Windows.Forms.Label lbl_exchangeCustomDomain;
         private System.Windows.Forms.TextBox tb_exchangeCustomDomain;
+        private System.Windows.Forms.Label lbl_MailSizeNote;
     }
 }
 

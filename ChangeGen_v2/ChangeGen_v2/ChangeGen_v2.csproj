@@ -145,6 +145,12 @@
     <Compile Include="View\AddServerManually.Designer.cs">
       <DependentUpon>AddServerManually.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\ExchangePrerequisites.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ExchangePrerequisites.Designer.cs">
+      <DependentUpon>ExchangePrerequisites.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\AddServerManually.resx">
       <DependentUpon>AddServerManually.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ExchangePrerequisites.resx">
+      <DependentUpon>ExchangePrerequisites.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

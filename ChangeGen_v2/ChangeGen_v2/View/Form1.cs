@@ -12,7 +12,8 @@ namespace ChangeGen_v2
         private List<Control> _listviewPageControls;         // used for storing controls of ListView page
         private CoreConnectionCredentials _coreCreds;        // used for storing core API credentials
         private DdtParameters _ddtParameters;                // used for storing DDT Parameters
-        private Dictionary<ExchangeGeneratorParameters.MailSize, string> _mailSizeDictionary; 
+        private Dictionary<ExchangeGeneratorParameters.MailSize, string> _mailSizeDictionary;
+        
 
         public Form1()
         {
@@ -31,6 +32,9 @@ namespace ChangeGen_v2
             
             lv_ExchangeServers.Items.Clear();
             lv_ExchangeServers.View = View.Details;
+
+            lbl_MailSizeNote.Text =
+                "*Mail size value can impact\nCore repository compression.\nRecommended value is 'Small'.";
         }
 
         private void AddItemsToCbMailSize()
@@ -337,6 +341,13 @@ namespace ChangeGen_v2
 
         private void btn_startExchangeGeneration_Click(object sender, EventArgs e)
         {
+            if (!ExchangeGenWrapper.doNotShowExchangePrerequisites)
+            {
+                var prerequisitesForm = new ExchangePrerequisites();
+                prerequisitesForm.Show();
+            }
+                
+
             var messageSize = _mailSizeDictionary.FirstOrDefault(x => x.Value == cb_MailSize.SelectedItem.ToString()).Key;
 
             // Start Exchange Generation for selected servers with specific parameters
