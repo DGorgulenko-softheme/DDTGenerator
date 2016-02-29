@@ -121,6 +121,7 @@
     <Compile Include="Model\CoreConnector.cs" />
     <Compile Include="Controller\DDTWrapper.cs" />
     <Compile Include="Controller\ServerWrapper.cs" />
+    <Compile Include="Model\CSV.cs" />
     <Compile Include="Model\DDT.cs" />
     <Compile Include="Model\DDTParameters.cs" />
     <Compile Include="Model\ExchangeGenerator.cs" />

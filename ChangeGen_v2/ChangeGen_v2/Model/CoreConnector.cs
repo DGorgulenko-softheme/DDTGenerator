@@ -72,14 +72,8 @@ namespace ChangeGen_v2
                     exchangeServersList.Add(new ExchangeServer(agent.Descriptor.HostUri.Host, agent.DisplayName,
                         agent.RepositoryName,
                         agent.Descriptor.MetadataCredentials.DefaultCredentials.UserName,
-                        agent.Descriptor.MetadataCredentials.DefaultCredentials.PasswordDecrypted)
-                    {
-                        ExchangeGenParameters = new ExchangeGeneratorParameters()
-                        {
-                            Recipient = agent.Descriptor.MetadataCredentials.DefaultCredentials.UserName + "@" 
-                                + coreClient.AgentsManagement.GetCachedAgentMetadataById(agent.Id.ToString()).FullyQualifiedDomainName.Remove(0,coreClient.AgentsManagement.GetCachedAgentMetadataById(agent.Id.ToString()).HostName.Length+1),
-                        }
-                    });
+                        coreClient.AgentsManagement.GetCachedAgentMetadataById(agent.Id.ToString()).FullyQualifiedDomainName.Remove(0, coreClient.AgentsManagement.GetCachedAgentMetadataById(agent.Id.ToString()).HostName.Length + 1),
+                        agent.Descriptor.MetadataCredentials.DefaultCredentials.PasswordDecrypted));
                 }
                
             }

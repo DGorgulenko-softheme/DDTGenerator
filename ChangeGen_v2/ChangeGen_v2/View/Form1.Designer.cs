@@ -469,6 +469,7 @@
             this.btn_ExportCSV.TabIndex = 43;
             this.btn_ExportCSV.Text = "Export CSV";
             this.btn_ExportCSV.UseVisualStyleBackColor = true;
+            this.btn_ExportCSV.Click += new System.EventHandler(this.btn_ExportCSV_Click);
             // 
             // btn_ImportCSV
             // 
@@ -478,6 +479,7 @@
             this.btn_ImportCSV.TabIndex = 42;
             this.btn_ImportCSV.Text = "Import CSV";
             this.btn_ImportCSV.UseVisualStyleBackColor = true;
+            this.btn_ImportCSV.Click += new System.EventHandler(this.btn_ImportCSV_Click);
             // 
             // btn_addServerManually
             // 
@@ -791,6 +793,7 @@
             this.btn_ExchangeExportCSV.TabIndex = 53;
             this.btn_ExchangeExportCSV.Text = "Export CSV";
             this.btn_ExchangeExportCSV.UseVisualStyleBackColor = true;
+            this.btn_ExchangeExportCSV.Click += new System.EventHandler(this.btn_ExchangeExportCSV_Click);
             // 
             // btn_ExchangeImportCSV
             // 
@@ -800,6 +803,7 @@
             this.btn_ExchangeImportCSV.TabIndex = 52;
             this.btn_ExchangeImportCSV.Text = "Import CSV";
             this.btn_ExchangeImportCSV.UseVisualStyleBackColor = true;
+            this.btn_ExchangeImportCSV.Click += new System.EventHandler(this.btn_ExchangeImportCSV_Click);
             // 
             // btn_AddExchangeServerManually
             // 

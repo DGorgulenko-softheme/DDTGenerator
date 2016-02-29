@@ -558,5 +558,63 @@ namespace ChangeGen_v2
                                                   !string.IsNullOrWhiteSpace(tb_exchangeCustomDomain.Text) &&
                                                   !string.IsNullOrWhiteSpace(tb_exchangeCustomPassword.Text);
         }
+
+        private void btn_ExchangeImportCSV_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "CSV File|*.csv";
+            openFileDialog1.Title = "Open a CSV File";
+            openFileDialog1.ShowDialog();
+
+            if (openFileDialog1.FileName != "")
+            {
+                CSV.CSVtoExchangeServersList(openFileDialog1.FileName);
+            }
+        }
+
+        private void btn_ExportCSV_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog()
+            {
+                Filter = "CSV File|*.csv",
+                Title = "Save a CSV File",
+                FileName = "Servers.csv"
+            };
+            saveFileDialog1.ShowDialog();
+
+            if (saveFileDialog1.FileName != "")
+            {
+                ServerWrapper.ServersList.ServersToCSV(saveFileDialog1.FileName);
+            }
+        }
+
+        private void btn_ExchangeExportCSV_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog()
+            {
+                Filter = "CSV File|*.csv",
+                Title = "Save a CSV File",
+                FileName = "ExchangeServers.csv"
+            };
+            saveFileDialog1.ShowDialog();
+
+            if (saveFileDialog1.FileName != "")
+            {
+                ServerWrapper.ExchangeServersList.ExchangeServersToCSV(saveFileDialog1.FileName);
+            }
+        }
+
+        private void btn_ImportCSV_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "CSV File|*.csv";
+            openFileDialog1.Title = "Open a CSV File";
+            openFileDialog1.ShowDialog();
+
+            if (openFileDialog1.FileName != "")
+            {
+                CSV.CSVtoServersList(openFileDialog1.FileName);
+            }
+        }
     }
 }

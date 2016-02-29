@@ -153,7 +153,7 @@ namespace ChangeGen_v2
                 expectedChRate += Convert.ToDouble(agent.SubItems[4].Text) / Convert.ToDouble(agent.SubItems[6].Text) * 60.0 / 1024.0;
                 amountOfActiveGenerations += 1;
             }
-            expectedRateLabel.Text = expectedChRate.ToString();
+            expectedRateLabel.Text = Math.Round(expectedChRate,2).ToString();
             amountOfRunningLabel.Text = amountOfActiveGenerations.ToString();
         }
 

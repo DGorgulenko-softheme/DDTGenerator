@@ -4,9 +4,13 @@ namespace ChangeGen_v2
 {
     internal class ExchangeServer : Server
     {
-        public ExchangeGeneratorParameters ExchangeGenParameters { get; set; }
-        public ExchangeServer(string ip, string displayname, string repository, string username, string password) : base(ip, displayname, repository, username, password)
+        public ExchangeGeneratorParameters ExchangeGenParameters { get; private set; }
+        public ExchangeServer(string ip, string displayname, string repository, string username, string domain, string password) : base(ip, displayname, repository, username, password)
         {
+            ServerCredentials.Domain = domain;
+            if (ExchangeGenParameters == null)
+                ExchangeGenParameters = new ExchangeGeneratorParameters();
+            ExchangeGenParameters.Recipient = username + '@' + domain;
         }
 
         public ExchangeServer(string ip, string domain, string username, string password) : base(ip, username, password)
@@ -14,6 +18,7 @@ namespace ChangeGen_v2
             if (ExchangeGenParameters == null)
                 ExchangeGenParameters = new ExchangeGeneratorParameters();
             ExchangeGenParameters.Recipient = username + '@' + domain;
+            ServerCredentials.Domain = domain;
         }
 
         public void StartExchangeGenerator()
