@@ -22,14 +22,21 @@ namespace ChangeGen_v2
         {
             if (ServersList == null)
                 ServersList = new List<Server>();
-            ServersList.Add(new Server(hostname, username, password));
+            var alreadyAdded = ServersList.Any(server => server.ServerCredentials.Ip == hostname);
+
+            if (!alreadyAdded)
+                ServersList.Add(new Server(hostname, username, password));
         }
 
         public static void AddExchangeServerManually(string ip, string domain, string username, string password)
         {
             if (ExchangeServersList == null)
                 ExchangeServersList = new List<ExchangeServer>();
-            ExchangeServersList.Add(new ExchangeServer(ip,domain,username,password));
+
+            var alreadyAdded = ExchangeServersList.Any(server => server.ServerCredentials.Ip == ip);
+
+            if (!alreadyAdded)
+                ExchangeServersList.Add(new ExchangeServer(ip,domain,username,password));
         }
 
         public static void DeleteServerManually(ListView listView)
