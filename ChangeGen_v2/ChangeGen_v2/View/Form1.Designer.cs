@@ -62,29 +62,21 @@
             this.btn_About = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btn_deleteSelectedServers = new System.Windows.Forms.Button();
+            this.gb_customCredentials = new System.Windows.Forms.GroupBox();
+            this.lbl_customPassword = new System.Windows.Forms.Label();
+            this.lbl_customUserName = new System.Windows.Forms.Label();
+            this.tb_customPassword = new System.Windows.Forms.TextBox();
+            this.tb_customUsername = new System.Windows.Forms.TextBox();
+            this.cb_UseCustomCredentials = new System.Windows.Forms.CheckBox();
             this.btn_ExportCSV = new System.Windows.Forms.Button();
             this.btn_ImportCSV = new System.Windows.Forms.Button();
             this.btn_addServerManually = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.gb_ExchangeParameters = new System.Windows.Forms.GroupBox();
-            this.cb_MailSize = new System.Windows.Forms.ComboBox();
-            this.lbl_MessageSize = new System.Windows.Forms.Label();
-            this.btn_stopExchangeGeneration = new System.Windows.Forms.Button();
-            this.btn_startExchangeGeneration = new System.Windows.Forms.Button();
-            this.cb_SelAllExchange = new System.Windows.Forms.CheckBox();
-            this.lv_ExchangeServers = new System.Windows.Forms.ListView();
-            this.lbl_SelectMode = new System.Windows.Forms.Label();
-            this.rb_Core = new System.Windows.Forms.RadioButton();
-            this.rb_Manually = new System.Windows.Forms.RadioButton();
-            this.cb_UseCustomCredentials = new System.Windows.Forms.CheckBox();
-            this.gb_customCredentials = new System.Windows.Forms.GroupBox();
-            this.tb_customUsername = new System.Windows.Forms.TextBox();
-            this.tb_customPassword = new System.Windows.Forms.TextBox();
-            this.lbl_customUserName = new System.Windows.Forms.Label();
-            this.lbl_customPassword = new System.Windows.Forms.Label();
-            this.btn_deleteSelectedServers = new System.Windows.Forms.Button();
             this.btn_deleteExchangeServer = new System.Windows.Forms.Button();
             this.gb_ExchangeCustomCreds = new System.Windows.Forms.GroupBox();
+            this.lbl_exchangeCustomDomain = new System.Windows.Forms.Label();
+            this.tb_exchangeCustomDomain = new System.Windows.Forms.TextBox();
             this.lbl_exchangeCustomPassword = new System.Windows.Forms.Label();
             this.lbl_exchangeCustomUsername = new System.Windows.Forms.Label();
             this.tb_exchangeCustomPassword = new System.Windows.Forms.TextBox();
@@ -97,17 +89,26 @@
             this.lbl_exchangeTotalAgentsValue = new System.Windows.Forms.Label();
             this.lbl_exchangeGenerationRunningLabel = new System.Windows.Forms.Label();
             this.lbl_exchangeTotalAgentsLabel = new System.Windows.Forms.Label();
-            this.lbl_exchangeCustomDomain = new System.Windows.Forms.Label();
-            this.tb_exchangeCustomDomain = new System.Windows.Forms.TextBox();
+            this.gb_ExchangeParameters = new System.Windows.Forms.GroupBox();
             this.lbl_MailSizeNote = new System.Windows.Forms.Label();
+            this.cb_MailSize = new System.Windows.Forms.ComboBox();
+            this.lbl_MessageSize = new System.Windows.Forms.Label();
+            this.btn_stopExchangeGeneration = new System.Windows.Forms.Button();
+            this.btn_startExchangeGeneration = new System.Windows.Forms.Button();
+            this.cb_SelAllExchange = new System.Windows.Forms.CheckBox();
+            this.lv_ExchangeServers = new System.Windows.Forms.ListView();
+            this.lbl_SelectMode = new System.Windows.Forms.Label();
+            this.rb_Core = new System.Windows.Forms.RadioButton();
+            this.rb_Manually = new System.Windows.Forms.RadioButton();
+            this.lbl_Loading = new System.Windows.Forms.Label();
             this.gb_ddtparams.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.gb_ExchangeParameters.SuspendLayout();
             this.gb_customCredentials.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.gb_ExchangeCustomCreds.SuspendLayout();
+            this.gb_ExchangeParameters.SuspendLayout();
             this.SuspendLayout();
             // 
             // tb_hostname
@@ -416,7 +417,7 @@
             // btn_About
             // 
             this.btn_About.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_About.Location = new System.Drawing.Point(903, 5);
+            this.btn_About.Location = new System.Drawing.Point(903, 1);
             this.btn_About.Name = "btn_About";
             this.btn_About.Size = new System.Drawing.Size(54, 23);
             this.btn_About.TabIndex = 41;
@@ -428,7 +429,7 @@
             // 
             this.tabControl.Controls.Add(this.tabPage1);
             this.tabControl.Controls.Add(this.tabPage2);
-            this.tabControl.Location = new System.Drawing.Point(12, 12);
+            this.tabControl.Location = new System.Drawing.Point(5, 6);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(952, 491);
@@ -460,6 +461,84 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Data";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btn_deleteSelectedServers
+            // 
+            this.btn_deleteSelectedServers.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_deleteSelectedServers.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btn_deleteSelectedServers.Location = new System.Drawing.Point(34, 389);
+            this.btn_deleteSelectedServers.Name = "btn_deleteSelectedServers";
+            this.btn_deleteSelectedServers.Size = new System.Drawing.Size(30, 27);
+            this.btn_deleteSelectedServers.TabIndex = 46;
+            this.btn_deleteSelectedServers.Text = "-";
+            this.btn_deleteSelectedServers.UseVisualStyleBackColor = true;
+            this.btn_deleteSelectedServers.Click += new System.EventHandler(this.btn_deleteSelectedServers_Click);
+            // 
+            // gb_customCredentials
+            // 
+            this.gb_customCredentials.Controls.Add(this.lbl_customPassword);
+            this.gb_customCredentials.Controls.Add(this.lbl_customUserName);
+            this.gb_customCredentials.Controls.Add(this.tb_customPassword);
+            this.gb_customCredentials.Controls.Add(this.tb_customUsername);
+            this.gb_customCredentials.Location = new System.Drawing.Point(794, 232);
+            this.gb_customCredentials.Name = "gb_customCredentials";
+            this.gb_customCredentials.Size = new System.Drawing.Size(147, 100);
+            this.gb_customCredentials.TabIndex = 45;
+            this.gb_customCredentials.TabStop = false;
+            // 
+            // lbl_customPassword
+            // 
+            this.lbl_customPassword.AutoSize = true;
+            this.lbl_customPassword.Enabled = false;
+            this.lbl_customPassword.Location = new System.Drawing.Point(6, 53);
+            this.lbl_customPassword.Name = "lbl_customPassword";
+            this.lbl_customPassword.Size = new System.Drawing.Size(53, 13);
+            this.lbl_customPassword.TabIndex = 3;
+            this.lbl_customPassword.Text = "Password";
+            // 
+            // lbl_customUserName
+            // 
+            this.lbl_customUserName.AutoSize = true;
+            this.lbl_customUserName.Enabled = false;
+            this.lbl_customUserName.Location = new System.Drawing.Point(6, 14);
+            this.lbl_customUserName.Name = "lbl_customUserName";
+            this.lbl_customUserName.Size = new System.Drawing.Size(55, 13);
+            this.lbl_customUserName.TabIndex = 2;
+            this.lbl_customUserName.Text = "Username";
+            // 
+            // tb_customPassword
+            // 
+            this.tb_customPassword.Enabled = false;
+            this.tb_customPassword.Location = new System.Drawing.Point(6, 69);
+            this.tb_customPassword.Name = "tb_customPassword";
+            this.tb_customPassword.Size = new System.Drawing.Size(119, 20);
+            this.tb_customPassword.TabIndex = 1;
+            this.tb_customPassword.UseSystemPasswordChar = true;
+            this.tb_customPassword.TextChanged += new System.EventHandler(this.tb_customPassword_TextChanged);
+            this.tb_customPassword.Validating += new System.ComponentModel.CancelEventHandler(this.tb_customPassword_Validating);
+            this.tb_customPassword.Validated += new System.EventHandler(this.tb_customPassword_Validated);
+            // 
+            // tb_customUsername
+            // 
+            this.tb_customUsername.Enabled = false;
+            this.tb_customUsername.Location = new System.Drawing.Point(6, 30);
+            this.tb_customUsername.Name = "tb_customUsername";
+            this.tb_customUsername.Size = new System.Drawing.Size(119, 20);
+            this.tb_customUsername.TabIndex = 0;
+            this.tb_customUsername.TextChanged += new System.EventHandler(this.tb_customUsername_TextChanged);
+            this.tb_customUsername.Validating += new System.ComponentModel.CancelEventHandler(this.tb_customUsername_Validating);
+            this.tb_customUsername.Validated += new System.EventHandler(this.tb_customUsername_Validated);
+            // 
+            // cb_UseCustomCredentials
+            // 
+            this.cb_UseCustomCredentials.AutoSize = true;
+            this.cb_UseCustomCredentials.Location = new System.Drawing.Point(794, 209);
+            this.cb_UseCustomCredentials.Name = "cb_UseCustomCredentials";
+            this.cb_UseCustomCredentials.Size = new System.Drawing.Size(138, 17);
+            this.cb_UseCustomCredentials.TabIndex = 44;
+            this.cb_UseCustomCredentials.Text = "Use Custom Credentials";
+            this.cb_UseCustomCredentials.UseVisualStyleBackColor = true;
+            this.cb_UseCustomCredentials.CheckedChanged += new System.EventHandler(this.cb_UseCustomCredentials_CheckedChanged);
             // 
             // btn_ExportCSV
             // 
@@ -518,193 +597,6 @@
             this.tabPage2.Text = "Exchange";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // gb_ExchangeParameters
-            // 
-            this.gb_ExchangeParameters.Controls.Add(this.lbl_MailSizeNote);
-            this.gb_ExchangeParameters.Controls.Add(this.cb_MailSize);
-            this.gb_ExchangeParameters.Controls.Add(this.lbl_MessageSize);
-            this.gb_ExchangeParameters.Location = new System.Drawing.Point(794, 12);
-            this.gb_ExchangeParameters.Name = "gb_ExchangeParameters";
-            this.gb_ExchangeParameters.Size = new System.Drawing.Size(144, 192);
-            this.gb_ExchangeParameters.TabIndex = 35;
-            this.gb_ExchangeParameters.TabStop = false;
-            this.gb_ExchangeParameters.Text = "Parameters";
-            // 
-            // cb_MailSize
-            // 
-            this.cb_MailSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_MailSize.FormattingEnabled = true;
-            this.cb_MailSize.Location = new System.Drawing.Point(9, 33);
-            this.cb_MailSize.Name = "cb_MailSize";
-            this.cb_MailSize.Size = new System.Drawing.Size(121, 21);
-            this.cb_MailSize.TabIndex = 15;
-            // 
-            // lbl_MessageSize
-            // 
-            this.lbl_MessageSize.AutoSize = true;
-            this.lbl_MessageSize.Location = new System.Drawing.Point(6, 16);
-            this.lbl_MessageSize.Name = "lbl_MessageSize";
-            this.lbl_MessageSize.Size = new System.Drawing.Size(47, 13);
-            this.lbl_MessageSize.TabIndex = 14;
-            this.lbl_MessageSize.Text = "Mail size";
-            // 
-            // btn_stopExchangeGeneration
-            // 
-            this.btn_stopExchangeGeneration.Location = new System.Drawing.Point(591, 389);
-            this.btn_stopExchangeGeneration.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_stopExchangeGeneration.Name = "btn_stopExchangeGeneration";
-            this.btn_stopExchangeGeneration.Size = new System.Drawing.Size(198, 34);
-            this.btn_stopExchangeGeneration.TabIndex = 12;
-            this.btn_stopExchangeGeneration.Text = "Stop Exchange Generation";
-            this.btn_stopExchangeGeneration.UseVisualStyleBackColor = true;
-            this.btn_stopExchangeGeneration.Click += new System.EventHandler(this.btn_stopExchangeGeneration_Click);
-            // 
-            // btn_startExchangeGeneration
-            // 
-            this.btn_startExchangeGeneration.Location = new System.Drawing.Point(369, 389);
-            this.btn_startExchangeGeneration.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_startExchangeGeneration.Name = "btn_startExchangeGeneration";
-            this.btn_startExchangeGeneration.Size = new System.Drawing.Size(218, 34);
-            this.btn_startExchangeGeneration.TabIndex = 7;
-            this.btn_startExchangeGeneration.Text = "Start Exchange Generation";
-            this.btn_startExchangeGeneration.UseVisualStyleBackColor = true;
-            this.btn_startExchangeGeneration.Click += new System.EventHandler(this.btn_startExchangeGeneration_Click);
-            // 
-            // cb_SelAllExchange
-            // 
-            this.cb_SelAllExchange.AutoSize = true;
-            this.cb_SelAllExchange.Location = new System.Drawing.Point(10, 10);
-            this.cb_SelAllExchange.Margin = new System.Windows.Forms.Padding(2);
-            this.cb_SelAllExchange.Name = "cb_SelAllExchange";
-            this.cb_SelAllExchange.Size = new System.Drawing.Size(15, 14);
-            this.cb_SelAllExchange.TabIndex = 5;
-            this.cb_SelAllExchange.UseVisualStyleBackColor = true;
-            this.cb_SelAllExchange.CheckedChanged += new System.EventHandler(this.cb_SelAllExchange_CheckedChanged);
-            // 
-            // lv_ExchangeServers
-            // 
-            this.lv_ExchangeServers.Location = new System.Drawing.Point(5, 5);
-            this.lv_ExchangeServers.Margin = new System.Windows.Forms.Padding(2);
-            this.lv_ExchangeServers.Name = "lv_ExchangeServers";
-            this.lv_ExchangeServers.Size = new System.Drawing.Size(784, 379);
-            this.lv_ExchangeServers.TabIndex = 4;
-            this.lv_ExchangeServers.UseCompatibleStateImageBehavior = false;
-            this.lv_ExchangeServers.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lv_ExchangeServers_ColumnClick);
-            // 
-            // lbl_SelectMode
-            // 
-            this.lbl_SelectMode.AutoSize = true;
-            this.lbl_SelectMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_SelectMode.Location = new System.Drawing.Point(368, 210);
-            this.lbl_SelectMode.Name = "lbl_SelectMode";
-            this.lbl_SelectMode.Size = new System.Drawing.Size(225, 18);
-            this.lbl_SelectMode.TabIndex = 45;
-            this.lbl_SelectMode.Text = "Please select servers list source:";
-            // 
-            // rb_Core
-            // 
-            this.rb_Core.AutoSize = true;
-            this.rb_Core.Checked = true;
-            this.rb_Core.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rb_Core.Location = new System.Drawing.Point(338, 266);
-            this.rb_Core.Name = "rb_Core";
-            this.rb_Core.Size = new System.Drawing.Size(265, 20);
-            this.rb_Core.TabIndex = 44;
-            this.rb_Core.TabStop = true;
-            this.rb_Core.Text = "Add servers automatically from RR Core";
-            this.rb_Core.UseVisualStyleBackColor = true;
-            this.rb_Core.CheckedChanged += new System.EventHandler(this.rb_Core_CheckedChanged);
-            // 
-            // rb_Manually
-            // 
-            this.rb_Manually.AutoSize = true;
-            this.rb_Manually.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rb_Manually.Location = new System.Drawing.Point(338, 243);
-            this.rb_Manually.Name = "rb_Manually";
-            this.rb_Manually.Size = new System.Drawing.Size(156, 20);
-            this.rb_Manually.TabIndex = 43;
-            this.rb_Manually.Text = "Add servers manually";
-            this.rb_Manually.UseVisualStyleBackColor = true;
-            this.rb_Manually.CheckedChanged += new System.EventHandler(this.rb_Manually_CheckedChanged);
-            // 
-            // cb_UseCustomCredentials
-            // 
-            this.cb_UseCustomCredentials.AutoSize = true;
-            this.cb_UseCustomCredentials.Location = new System.Drawing.Point(794, 209);
-            this.cb_UseCustomCredentials.Name = "cb_UseCustomCredentials";
-            this.cb_UseCustomCredentials.Size = new System.Drawing.Size(138, 17);
-            this.cb_UseCustomCredentials.TabIndex = 44;
-            this.cb_UseCustomCredentials.Text = "Use Custom Credentials";
-            this.cb_UseCustomCredentials.UseVisualStyleBackColor = true;
-            this.cb_UseCustomCredentials.CheckedChanged += new System.EventHandler(this.cb_UseCustomCredentials_CheckedChanged);
-            // 
-            // gb_customCredentials
-            // 
-            this.gb_customCredentials.Controls.Add(this.lbl_customPassword);
-            this.gb_customCredentials.Controls.Add(this.lbl_customUserName);
-            this.gb_customCredentials.Controls.Add(this.tb_customPassword);
-            this.gb_customCredentials.Controls.Add(this.tb_customUsername);
-            this.gb_customCredentials.Location = new System.Drawing.Point(794, 232);
-            this.gb_customCredentials.Name = "gb_customCredentials";
-            this.gb_customCredentials.Size = new System.Drawing.Size(147, 100);
-            this.gb_customCredentials.TabIndex = 45;
-            this.gb_customCredentials.TabStop = false;
-            // 
-            // tb_customUsername
-            // 
-            this.tb_customUsername.Enabled = false;
-            this.tb_customUsername.Location = new System.Drawing.Point(6, 30);
-            this.tb_customUsername.Name = "tb_customUsername";
-            this.tb_customUsername.Size = new System.Drawing.Size(119, 20);
-            this.tb_customUsername.TabIndex = 0;
-            this.tb_customUsername.TextChanged += new System.EventHandler(this.tb_customUsername_TextChanged);
-            this.tb_customUsername.Validating += new System.ComponentModel.CancelEventHandler(this.tb_customUsername_Validating);
-            this.tb_customUsername.Validated += new System.EventHandler(this.tb_customUsername_Validated);
-            // 
-            // tb_customPassword
-            // 
-            this.tb_customPassword.Enabled = false;
-            this.tb_customPassword.Location = new System.Drawing.Point(6, 69);
-            this.tb_customPassword.Name = "tb_customPassword";
-            this.tb_customPassword.Size = new System.Drawing.Size(119, 20);
-            this.tb_customPassword.TabIndex = 1;
-            this.tb_customPassword.UseSystemPasswordChar = true;
-            this.tb_customPassword.TextChanged += new System.EventHandler(this.tb_customPassword_TextChanged);
-            this.tb_customPassword.Validating += new System.ComponentModel.CancelEventHandler(this.tb_customPassword_Validating);
-            this.tb_customPassword.Validated += new System.EventHandler(this.tb_customPassword_Validated);
-            // 
-            // lbl_customUserName
-            // 
-            this.lbl_customUserName.AutoSize = true;
-            this.lbl_customUserName.Enabled = false;
-            this.lbl_customUserName.Location = new System.Drawing.Point(6, 14);
-            this.lbl_customUserName.Name = "lbl_customUserName";
-            this.lbl_customUserName.Size = new System.Drawing.Size(55, 13);
-            this.lbl_customUserName.TabIndex = 2;
-            this.lbl_customUserName.Text = "Username";
-            // 
-            // lbl_customPassword
-            // 
-            this.lbl_customPassword.AutoSize = true;
-            this.lbl_customPassword.Enabled = false;
-            this.lbl_customPassword.Location = new System.Drawing.Point(6, 53);
-            this.lbl_customPassword.Name = "lbl_customPassword";
-            this.lbl_customPassword.Size = new System.Drawing.Size(53, 13);
-            this.lbl_customPassword.TabIndex = 3;
-            this.lbl_customPassword.Text = "Password";
-            // 
-            // btn_deleteSelectedServers
-            // 
-            this.btn_deleteSelectedServers.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_deleteSelectedServers.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btn_deleteSelectedServers.Location = new System.Drawing.Point(34, 389);
-            this.btn_deleteSelectedServers.Name = "btn_deleteSelectedServers";
-            this.btn_deleteSelectedServers.Size = new System.Drawing.Size(30, 27);
-            this.btn_deleteSelectedServers.TabIndex = 46;
-            this.btn_deleteSelectedServers.Text = "-";
-            this.btn_deleteSelectedServers.UseVisualStyleBackColor = true;
-            this.btn_deleteSelectedServers.Click += new System.EventHandler(this.btn_deleteSelectedServers_Click);
-            // 
             // btn_deleteExchangeServer
             // 
             this.btn_deleteExchangeServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -730,6 +622,27 @@
             this.gb_ExchangeCustomCreds.Size = new System.Drawing.Size(147, 152);
             this.gb_ExchangeCustomCreds.TabIndex = 55;
             this.gb_ExchangeCustomCreds.TabStop = false;
+            // 
+            // lbl_exchangeCustomDomain
+            // 
+            this.lbl_exchangeCustomDomain.AutoSize = true;
+            this.lbl_exchangeCustomDomain.Enabled = false;
+            this.lbl_exchangeCustomDomain.Location = new System.Drawing.Point(6, 54);
+            this.lbl_exchangeCustomDomain.Name = "lbl_exchangeCustomDomain";
+            this.lbl_exchangeCustomDomain.Size = new System.Drawing.Size(43, 13);
+            this.lbl_exchangeCustomDomain.TabIndex = 5;
+            this.lbl_exchangeCustomDomain.Text = "Domain";
+            // 
+            // tb_exchangeCustomDomain
+            // 
+            this.tb_exchangeCustomDomain.Enabled = false;
+            this.tb_exchangeCustomDomain.Location = new System.Drawing.Point(6, 69);
+            this.tb_exchangeCustomDomain.Name = "tb_exchangeCustomDomain";
+            this.tb_exchangeCustomDomain.Size = new System.Drawing.Size(119, 20);
+            this.tb_exchangeCustomDomain.TabIndex = 1;
+            this.tb_exchangeCustomDomain.TextChanged += new System.EventHandler(this.tb_exchangeCustomDomain_TextChanged);
+            this.tb_exchangeCustomDomain.Validating += new System.ComponentModel.CancelEventHandler(this.tb_exchangeCustomDomain_Validating);
+            this.tb_exchangeCustomDomain.Validated += new System.EventHandler(this.tb_exchangeCustomDomain_Validated);
             // 
             // lbl_exchangeCustomPassword
             // 
@@ -855,26 +768,17 @@
             this.lbl_exchangeTotalAgentsLabel.TabIndex = 49;
             this.lbl_exchangeTotalAgentsLabel.Text = "Total servers:";
             // 
-            // lbl_exchangeCustomDomain
+            // gb_ExchangeParameters
             // 
-            this.lbl_exchangeCustomDomain.AutoSize = true;
-            this.lbl_exchangeCustomDomain.Enabled = false;
-            this.lbl_exchangeCustomDomain.Location = new System.Drawing.Point(6, 54);
-            this.lbl_exchangeCustomDomain.Name = "lbl_exchangeCustomDomain";
-            this.lbl_exchangeCustomDomain.Size = new System.Drawing.Size(43, 13);
-            this.lbl_exchangeCustomDomain.TabIndex = 5;
-            this.lbl_exchangeCustomDomain.Text = "Domain";
-            // 
-            // tb_exchangeCustomDomain
-            // 
-            this.tb_exchangeCustomDomain.Enabled = false;
-            this.tb_exchangeCustomDomain.Location = new System.Drawing.Point(6, 69);
-            this.tb_exchangeCustomDomain.Name = "tb_exchangeCustomDomain";
-            this.tb_exchangeCustomDomain.Size = new System.Drawing.Size(119, 20);
-            this.tb_exchangeCustomDomain.TabIndex = 1;
-            this.tb_exchangeCustomDomain.TextChanged += new System.EventHandler(this.tb_exchangeCustomDomain_TextChanged);
-            this.tb_exchangeCustomDomain.Validating += new System.ComponentModel.CancelEventHandler(this.tb_exchangeCustomDomain_Validating);
-            this.tb_exchangeCustomDomain.Validated += new System.EventHandler(this.tb_exchangeCustomDomain_Validated);
+            this.gb_ExchangeParameters.Controls.Add(this.lbl_MailSizeNote);
+            this.gb_ExchangeParameters.Controls.Add(this.cb_MailSize);
+            this.gb_ExchangeParameters.Controls.Add(this.lbl_MessageSize);
+            this.gb_ExchangeParameters.Location = new System.Drawing.Point(794, 12);
+            this.gb_ExchangeParameters.Name = "gb_ExchangeParameters";
+            this.gb_ExchangeParameters.Size = new System.Drawing.Size(144, 192);
+            this.gb_ExchangeParameters.TabIndex = 35;
+            this.gb_ExchangeParameters.TabStop = false;
+            this.gb_ExchangeParameters.Text = "Parameters";
             // 
             // lbl_MailSizeNote
             // 
@@ -885,13 +789,122 @@
             this.lbl_MailSizeNote.Size = new System.Drawing.Size(0, 12);
             this.lbl_MailSizeNote.TabIndex = 16;
             // 
+            // cb_MailSize
+            // 
+            this.cb_MailSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_MailSize.FormattingEnabled = true;
+            this.cb_MailSize.Location = new System.Drawing.Point(9, 33);
+            this.cb_MailSize.Name = "cb_MailSize";
+            this.cb_MailSize.Size = new System.Drawing.Size(121, 21);
+            this.cb_MailSize.TabIndex = 15;
+            // 
+            // lbl_MessageSize
+            // 
+            this.lbl_MessageSize.AutoSize = true;
+            this.lbl_MessageSize.Location = new System.Drawing.Point(6, 16);
+            this.lbl_MessageSize.Name = "lbl_MessageSize";
+            this.lbl_MessageSize.Size = new System.Drawing.Size(47, 13);
+            this.lbl_MessageSize.TabIndex = 14;
+            this.lbl_MessageSize.Text = "Mail size";
+            // 
+            // btn_stopExchangeGeneration
+            // 
+            this.btn_stopExchangeGeneration.Location = new System.Drawing.Point(591, 389);
+            this.btn_stopExchangeGeneration.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_stopExchangeGeneration.Name = "btn_stopExchangeGeneration";
+            this.btn_stopExchangeGeneration.Size = new System.Drawing.Size(198, 34);
+            this.btn_stopExchangeGeneration.TabIndex = 12;
+            this.btn_stopExchangeGeneration.Text = "Stop Exchange Generation";
+            this.btn_stopExchangeGeneration.UseVisualStyleBackColor = true;
+            this.btn_stopExchangeGeneration.Click += new System.EventHandler(this.btn_stopExchangeGeneration_Click);
+            // 
+            // btn_startExchangeGeneration
+            // 
+            this.btn_startExchangeGeneration.Location = new System.Drawing.Point(369, 389);
+            this.btn_startExchangeGeneration.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_startExchangeGeneration.Name = "btn_startExchangeGeneration";
+            this.btn_startExchangeGeneration.Size = new System.Drawing.Size(218, 34);
+            this.btn_startExchangeGeneration.TabIndex = 7;
+            this.btn_startExchangeGeneration.Text = "Start Exchange Generation";
+            this.btn_startExchangeGeneration.UseVisualStyleBackColor = true;
+            this.btn_startExchangeGeneration.Click += new System.EventHandler(this.btn_startExchangeGeneration_Click);
+            // 
+            // cb_SelAllExchange
+            // 
+            this.cb_SelAllExchange.AutoSize = true;
+            this.cb_SelAllExchange.Location = new System.Drawing.Point(10, 10);
+            this.cb_SelAllExchange.Margin = new System.Windows.Forms.Padding(2);
+            this.cb_SelAllExchange.Name = "cb_SelAllExchange";
+            this.cb_SelAllExchange.Size = new System.Drawing.Size(15, 14);
+            this.cb_SelAllExchange.TabIndex = 5;
+            this.cb_SelAllExchange.UseVisualStyleBackColor = true;
+            this.cb_SelAllExchange.CheckedChanged += new System.EventHandler(this.cb_SelAllExchange_CheckedChanged);
+            // 
+            // lv_ExchangeServers
+            // 
+            this.lv_ExchangeServers.Location = new System.Drawing.Point(5, 5);
+            this.lv_ExchangeServers.Margin = new System.Windows.Forms.Padding(2);
+            this.lv_ExchangeServers.Name = "lv_ExchangeServers";
+            this.lv_ExchangeServers.Size = new System.Drawing.Size(784, 379);
+            this.lv_ExchangeServers.TabIndex = 4;
+            this.lv_ExchangeServers.UseCompatibleStateImageBehavior = false;
+            this.lv_ExchangeServers.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lv_ExchangeServers_ColumnClick);
+            // 
+            // lbl_SelectMode
+            // 
+            this.lbl_SelectMode.AutoSize = true;
+            this.lbl_SelectMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_SelectMode.Location = new System.Drawing.Point(368, 210);
+            this.lbl_SelectMode.Name = "lbl_SelectMode";
+            this.lbl_SelectMode.Size = new System.Drawing.Size(225, 18);
+            this.lbl_SelectMode.TabIndex = 45;
+            this.lbl_SelectMode.Text = "Please select servers list source:";
+            // 
+            // rb_Core
+            // 
+            this.rb_Core.AutoSize = true;
+            this.rb_Core.Checked = true;
+            this.rb_Core.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rb_Core.Location = new System.Drawing.Point(338, 266);
+            this.rb_Core.Name = "rb_Core";
+            this.rb_Core.Size = new System.Drawing.Size(265, 20);
+            this.rb_Core.TabIndex = 44;
+            this.rb_Core.TabStop = true;
+            this.rb_Core.Text = "Add servers automatically from RR Core";
+            this.rb_Core.UseVisualStyleBackColor = true;
+            this.rb_Core.CheckedChanged += new System.EventHandler(this.rb_Core_CheckedChanged);
+            // 
+            // rb_Manually
+            // 
+            this.rb_Manually.AutoSize = true;
+            this.rb_Manually.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rb_Manually.Location = new System.Drawing.Point(338, 243);
+            this.rb_Manually.Name = "rb_Manually";
+            this.rb_Manually.Size = new System.Drawing.Size(156, 20);
+            this.rb_Manually.TabIndex = 43;
+            this.rb_Manually.Text = "Add servers manually";
+            this.rb_Manually.UseVisualStyleBackColor = true;
+            this.rb_Manually.CheckedChanged += new System.EventHandler(this.rb_Manually_CheckedChanged);
+            // 
+            // lbl_Loading
+            // 
+            this.lbl_Loading.AutoSize = true;
+            this.lbl_Loading.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Loading.Location = new System.Drawing.Point(312, 414);
+            this.lbl_Loading.Name = "lbl_Loading";
+            this.lbl_Loading.Size = new System.Drawing.Size(372, 16);
+            this.lbl_Loading.TabIndex = 57;
+            this.lbl_Loading.Text = "Loading... Please wait... It can take several minutes...";
+            this.lbl_Loading.Visible = false;
+            // 
             // Form1
             // 
             this.AcceptButton = this.btn_Connect;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ClientSize = new System.Drawing.Size(977, 519);
+            this.ClientSize = new System.Drawing.Size(964, 502);
+            this.Controls.Add(this.lbl_Loading);
             this.Controls.Add(this.lbl_SelectMode);
             this.Controls.Add(this.rb_Core);
             this.Controls.Add(this.btn_About);
@@ -917,14 +930,14 @@
             this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            this.gb_ExchangeParameters.ResumeLayout(false);
-            this.gb_ExchangeParameters.PerformLayout();
             this.gb_customCredentials.ResumeLayout(false);
             this.gb_customCredentials.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.gb_ExchangeCustomCreds.ResumeLayout(false);
             this.gb_ExchangeCustomCreds.PerformLayout();
+            this.gb_ExchangeParameters.ResumeLayout(false);
+            this.gb_ExchangeParameters.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1003,6 +1016,7 @@
         private System.Windows.Forms.Label lbl_exchangeCustomDomain;
         private System.Windows.Forms.TextBox tb_exchangeCustomDomain;
         private System.Windows.Forms.Label lbl_MailSizeNote;
+        private System.Windows.Forms.Label lbl_Loading;
     }
 }
 
