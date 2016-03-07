@@ -38,21 +38,47 @@ namespace ChangeGen_v2
             email.Body = new MessageBody(RandomString((int)genParameters.MessageSize));
             email.Subject = "Exchange Generator (" + genParameters.MessageSize+")";
 
-            try
+            var serviceRequestRetryCount = 0;
+            var serviceResponseRetryCount = 0;
+
+            while (true)
             {
-                email.Send();
-            }
-            catch (ServiceRequestException e)
-            {
-                Logger.LogError("Something wrong with exchange server.", serverCreds.Ip, e);
-                throw;
-            }
-            catch (ServiceResponseException e)
-            {
-                Logger.LogError("Something wrong with exchange server.", serverCreds.Ip, e);
-                throw;
-            }
-            
+                try
+                {
+                    email.Send();
+                    break;
+                }
+                catch (ServiceRequestException e)
+                {
+                    if (serviceRequestRetryCount < 3)
+                    {
+                        serviceRequestRetryCount++;
+                        Logger.Log("ServiceRequestException has been caught, retry in 15 seconds.", Logger.LogLevel.Warning, serverCreds.Ip);
+                        Thread.Sleep(15000);
+                        
+                    }
+                    else
+                    {
+                        Logger.LogError("Something wrong with exchange server.", serverCreds.Ip, e);
+                        throw;
+                    }
+                    
+                }
+                catch (ServiceResponseException e)
+                {
+                    if (serviceResponseRetryCount < 3)
+                    {
+                        serviceResponseRetryCount++;
+                        Logger.Log("ServiceResponseException has been caught, retry in 15 seconds.", Logger.LogLevel.Warning, serverCreds.Ip);
+                        Thread.Sleep(15000);
+                    }
+                    else
+                    {
+                        Logger.LogError("Something wrong with exchange server.", serverCreds.Ip, e);
+                        throw;
+                    }
+                }
+            }                     
         }
 
         private static string RandomString(int length)

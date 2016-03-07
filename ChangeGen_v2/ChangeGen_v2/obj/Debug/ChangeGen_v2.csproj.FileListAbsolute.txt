@@ -128,3 +128,4 @@ D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\obj\Debug\ChangeGen_v2.pdb
 D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\obj\Debug\ChangeGen_v2.AddServerManually.resources
 D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\obj\Debug\ChangeGen_v2.AddExchangeServerManually.resources
 D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\obj\Debug\ChangeGen_v2.ExchangePrerequisites.resources
+D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\obj\Debug\ChangeGen_v2.csprojResolveAssemblyReference.cache
