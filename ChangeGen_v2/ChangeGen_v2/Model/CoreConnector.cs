@@ -75,6 +75,27 @@ namespace ChangeGen_v2
             return exchangeServersList;
         }
 
+        //This method returns collection of Agent's objects with SQL Server only
+        public static List<SQLServer> GetSQLServersToListFromCore(CoreConnectionCredentials coreCredentials)
+        {
+            var sqlServersList = new List<SQLServer>();
+            var coreClient = CoreConnector.GetFullCoreClient(coreCredentials);
+            var protectedAgents = coreClient.AgentsManagement.GetProtectedAgents();
+
+            foreach (var agent in protectedAgents)
+            {
+                if ((agent.AgentType != AgentType.EsxServer) && (agent.AgentType != AgentType.EsxVirtualMachine) && agent.HasSqlInstance)
+                {
+                    sqlServersList.Add(new SQLServer(agent.Descriptor.HostUri.Host, agent.DisplayName,
+                        agent.RepositoryName,
+                        agent.Descriptor.MetadataCredentials.DefaultCredentials.UserName,
+                        agent.Descriptor.MetadataCredentials.DefaultCredentials.PasswordDecrypted));
+                }
+
+            }
+            return sqlServersList;
+        }
+
         // This method creats url for Core API
         private static Uri CreateApiUri(string host, int port)
         {

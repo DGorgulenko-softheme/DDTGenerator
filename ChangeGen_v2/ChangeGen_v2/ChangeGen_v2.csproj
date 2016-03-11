@@ -116,6 +116,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\ExchangeGenWrapper.cs" />
+    <Compile Include="Controller\SQLGenWrapper.cs" />
     <Compile Include="Model\CoreConnectionCredentials.cs" />
     <Compile Include="Controller\ControlsImplementation.cs" />
     <Compile Include="Model\CoreConnector.cs" />
@@ -128,6 +129,8 @@
     <Compile Include="Model\ExchangeGeneratorParameters.cs" />
     <Compile Include="Model\ExchangeServer.cs" />
     <Compile Include="Model\ServerConnectionCredentials.cs" />
+    <Compile Include="Model\SQLGeneratorParameters.cs" />
+    <Compile Include="Model\SQLServer.cs" />
     <Compile Include="View\AboutBox1.cs">
       <SubType>Form</SubType>
     </Compile>

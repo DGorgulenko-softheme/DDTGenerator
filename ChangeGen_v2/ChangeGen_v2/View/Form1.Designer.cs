@@ -61,7 +61,7 @@
             this.lbl_TotalAmountValue = new System.Windows.Forms.Label();
             this.btn_About = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tab_Data = new System.Windows.Forms.TabPage();
             this.btn_deleteSelectedServers = new System.Windows.Forms.Button();
             this.gb_customCredentials = new System.Windows.Forms.GroupBox();
             this.lbl_customPassword = new System.Windows.Forms.Label();
@@ -72,7 +72,7 @@
             this.btn_ExportCSV = new System.Windows.Forms.Button();
             this.btn_ImportCSV = new System.Windows.Forms.Button();
             this.btn_addServerManually = new System.Windows.Forms.Button();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tab_Exchange = new System.Windows.Forms.TabPage();
             this.btn_deleteExchangeServer = new System.Windows.Forms.Button();
             this.gb_ExchangeCustomCreds = new System.Windows.Forms.GroupBox();
             this.lbl_exchangeCustomDomain = new System.Windows.Forms.Label();
@@ -101,14 +101,42 @@
             this.rb_Core = new System.Windows.Forms.RadioButton();
             this.rb_Manually = new System.Windows.Forms.RadioButton();
             this.lbl_Loading = new System.Windows.Forms.Label();
+            this.tabSQL = new System.Windows.Forms.TabPage();
+            this.btn_RemoveSQLManually = new System.Windows.Forms.Button();
+            this.gb_SQLCustomCreds = new System.Windows.Forms.GroupBox();
+            this.lbl_SQLCustomDomain = new System.Windows.Forms.Label();
+            this.tb_SQLCustomDomain = new System.Windows.Forms.TextBox();
+            this.lbl_SQLCustomPassword = new System.Windows.Forms.Label();
+            this.lbl_SQLCustomUsername = new System.Windows.Forms.Label();
+            this.tb_SQLCustomPassword = new System.Windows.Forms.TextBox();
+            this.tb_SQLCustomUsername = new System.Windows.Forms.TextBox();
+            this.cb_UseCustomCredsSQL = new System.Windows.Forms.CheckBox();
+            this.btn_ExportCSVSQL = new System.Windows.Forms.Button();
+            this.btn_ImportCSVSQL = new System.Windows.Forms.Button();
+            this.btn_AddSQLManually = new System.Windows.Forms.Button();
+            this.lbl_SQLGenerationRunningvalue = new System.Windows.Forms.Label();
+            this.lbl_TotalSQLServersValue = new System.Windows.Forms.Label();
+            this.lbl_SQLGenerationRunninglbl = new System.Windows.Forms.Label();
+            this.lbl_TotalSQLServerslbl = new System.Windows.Forms.Label();
+            this.gb_SQLParams = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lbl_AddRows = new System.Windows.Forms.Label();
+            this.btn_StopSQLGeneration = new System.Windows.Forms.Button();
+            this.btn_StartSQLGeneration = new System.Windows.Forms.Button();
+            this.cb_SelectAllSQL = new System.Windows.Forms.CheckBox();
+            this.lv_SQL = new System.Windows.Forms.ListView();
+            this.tb_SQLAmountRows = new System.Windows.Forms.TextBox();
             this.gb_ddtparams.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabControl.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.tab_Data.SuspendLayout();
             this.gb_customCredentials.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tab_Exchange.SuspendLayout();
             this.gb_ExchangeCustomCreds.SuspendLayout();
             this.gb_ExchangeParameters.SuspendLayout();
+            this.tabSQL.SuspendLayout();
+            this.gb_SQLCustomCreds.SuspendLayout();
+            this.gb_SQLParams.SuspendLayout();
             this.SuspendLayout();
             // 
             // tb_hostname
@@ -427,40 +455,41 @@
             // 
             // tabControl
             // 
-            this.tabControl.Controls.Add(this.tabPage1);
-            this.tabControl.Controls.Add(this.tabPage2);
+            this.tabControl.Controls.Add(this.tab_Data);
+            this.tabControl.Controls.Add(this.tab_Exchange);
+            this.tabControl.Controls.Add(this.tabSQL);
             this.tabControl.Location = new System.Drawing.Point(5, 6);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(952, 491);
             this.tabControl.TabIndex = 42;
             // 
-            // tabPage1
+            // tab_Data
             // 
-            this.tabPage1.Controls.Add(this.btn_deleteSelectedServers);
-            this.tabPage1.Controls.Add(this.gb_customCredentials);
-            this.tabPage1.Controls.Add(this.cb_UseCustomCredentials);
-            this.tabPage1.Controls.Add(this.btn_ExportCSV);
-            this.tabPage1.Controls.Add(this.btn_ImportCSV);
-            this.tabPage1.Controls.Add(this.btn_addServerManually);
-            this.tabPage1.Controls.Add(this.cb_selectAllAgents);
-            this.tabPage1.Controls.Add(this.lv_AgentsList);
-            this.tabPage1.Controls.Add(this.gb_ddtparams);
-            this.tabPage1.Controls.Add(this.lbl_totalAgentsRunningValue);
-            this.tabPage1.Controls.Add(this.lbl_TotalAmountValue);
-            this.tabPage1.Controls.Add(this.lbl_totalAgentsRunninglabel);
-            this.tabPage1.Controls.Add(this.lbl_ChangeRateValue);
-            this.tabPage1.Controls.Add(this.lbl_TotalAmountLabel);
-            this.tabPage1.Controls.Add(this.lbl_ChangeRateLabel);
-            this.tabPage1.Controls.Add(this.btn_StartDDT);
-            this.tabPage1.Controls.Add(this.btn_StopDDT);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(944, 465);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Data";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tab_Data.Controls.Add(this.btn_deleteSelectedServers);
+            this.tab_Data.Controls.Add(this.gb_customCredentials);
+            this.tab_Data.Controls.Add(this.cb_UseCustomCredentials);
+            this.tab_Data.Controls.Add(this.btn_ExportCSV);
+            this.tab_Data.Controls.Add(this.btn_ImportCSV);
+            this.tab_Data.Controls.Add(this.btn_addServerManually);
+            this.tab_Data.Controls.Add(this.cb_selectAllAgents);
+            this.tab_Data.Controls.Add(this.lv_AgentsList);
+            this.tab_Data.Controls.Add(this.gb_ddtparams);
+            this.tab_Data.Controls.Add(this.lbl_totalAgentsRunningValue);
+            this.tab_Data.Controls.Add(this.lbl_TotalAmountValue);
+            this.tab_Data.Controls.Add(this.lbl_totalAgentsRunninglabel);
+            this.tab_Data.Controls.Add(this.lbl_ChangeRateValue);
+            this.tab_Data.Controls.Add(this.lbl_TotalAmountLabel);
+            this.tab_Data.Controls.Add(this.lbl_ChangeRateLabel);
+            this.tab_Data.Controls.Add(this.btn_StartDDT);
+            this.tab_Data.Controls.Add(this.btn_StopDDT);
+            this.tab_Data.Location = new System.Drawing.Point(4, 22);
+            this.tab_Data.Name = "tab_Data";
+            this.tab_Data.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_Data.Size = new System.Drawing.Size(944, 465);
+            this.tab_Data.TabIndex = 0;
+            this.tab_Data.Text = "Data";
+            this.tab_Data.UseVisualStyleBackColor = true;
             // 
             // btn_deleteSelectedServers
             // 
@@ -572,30 +601,30 @@
             this.btn_addServerManually.UseVisualStyleBackColor = true;
             this.btn_addServerManually.Click += new System.EventHandler(this.btn_addServerManually_Click);
             // 
-            // tabPage2
+            // tab_Exchange
             // 
-            this.tabPage2.Controls.Add(this.btn_deleteExchangeServer);
-            this.tabPage2.Controls.Add(this.gb_ExchangeCustomCreds);
-            this.tabPage2.Controls.Add(this.cb_ExchangeUseCustomCreds);
-            this.tabPage2.Controls.Add(this.btn_ExchangeExportCSV);
-            this.tabPage2.Controls.Add(this.btn_ExchangeImportCSV);
-            this.tabPage2.Controls.Add(this.btn_AddExchangeServerManually);
-            this.tabPage2.Controls.Add(this.lbl_exchangeGenerationRunningValue);
-            this.tabPage2.Controls.Add(this.lbl_exchangeTotalAgentsValue);
-            this.tabPage2.Controls.Add(this.lbl_exchangeGenerationRunningLabel);
-            this.tabPage2.Controls.Add(this.lbl_exchangeTotalAgentsLabel);
-            this.tabPage2.Controls.Add(this.gb_ExchangeParameters);
-            this.tabPage2.Controls.Add(this.btn_stopExchangeGeneration);
-            this.tabPage2.Controls.Add(this.btn_startExchangeGeneration);
-            this.tabPage2.Controls.Add(this.cb_SelAllExchange);
-            this.tabPage2.Controls.Add(this.lv_ExchangeServers);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(944, 465);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Exchange";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tab_Exchange.Controls.Add(this.btn_deleteExchangeServer);
+            this.tab_Exchange.Controls.Add(this.gb_ExchangeCustomCreds);
+            this.tab_Exchange.Controls.Add(this.cb_ExchangeUseCustomCreds);
+            this.tab_Exchange.Controls.Add(this.btn_ExchangeExportCSV);
+            this.tab_Exchange.Controls.Add(this.btn_ExchangeImportCSV);
+            this.tab_Exchange.Controls.Add(this.btn_AddExchangeServerManually);
+            this.tab_Exchange.Controls.Add(this.lbl_exchangeGenerationRunningValue);
+            this.tab_Exchange.Controls.Add(this.lbl_exchangeTotalAgentsValue);
+            this.tab_Exchange.Controls.Add(this.lbl_exchangeGenerationRunningLabel);
+            this.tab_Exchange.Controls.Add(this.lbl_exchangeTotalAgentsLabel);
+            this.tab_Exchange.Controls.Add(this.gb_ExchangeParameters);
+            this.tab_Exchange.Controls.Add(this.btn_stopExchangeGeneration);
+            this.tab_Exchange.Controls.Add(this.btn_startExchangeGeneration);
+            this.tab_Exchange.Controls.Add(this.cb_SelAllExchange);
+            this.tab_Exchange.Controls.Add(this.lv_ExchangeServers);
+            this.tab_Exchange.Location = new System.Drawing.Point(4, 22);
+            this.tab_Exchange.Name = "tab_Exchange";
+            this.tab_Exchange.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_Exchange.Size = new System.Drawing.Size(944, 465);
+            this.tab_Exchange.TabIndex = 1;
+            this.tab_Exchange.Text = "Exchange";
+            this.tab_Exchange.UseVisualStyleBackColor = true;
             // 
             // btn_deleteExchangeServer
             // 
@@ -897,6 +926,267 @@
             this.lbl_Loading.Text = "Loading... Please wait... It can take several minutes...";
             this.lbl_Loading.Visible = false;
             // 
+            // tabSQL
+            // 
+            this.tabSQL.Controls.Add(this.btn_RemoveSQLManually);
+            this.tabSQL.Controls.Add(this.gb_SQLCustomCreds);
+            this.tabSQL.Controls.Add(this.cb_UseCustomCredsSQL);
+            this.tabSQL.Controls.Add(this.btn_ExportCSVSQL);
+            this.tabSQL.Controls.Add(this.btn_ImportCSVSQL);
+            this.tabSQL.Controls.Add(this.btn_AddSQLManually);
+            this.tabSQL.Controls.Add(this.lbl_SQLGenerationRunningvalue);
+            this.tabSQL.Controls.Add(this.lbl_TotalSQLServersValue);
+            this.tabSQL.Controls.Add(this.lbl_SQLGenerationRunninglbl);
+            this.tabSQL.Controls.Add(this.lbl_TotalSQLServerslbl);
+            this.tabSQL.Controls.Add(this.gb_SQLParams);
+            this.tabSQL.Controls.Add(this.btn_StopSQLGeneration);
+            this.tabSQL.Controls.Add(this.btn_StartSQLGeneration);
+            this.tabSQL.Controls.Add(this.cb_SelectAllSQL);
+            this.tabSQL.Controls.Add(this.lv_SQL);
+            this.tabSQL.Location = new System.Drawing.Point(4, 22);
+            this.tabSQL.Name = "tabSQL";
+            this.tabSQL.Padding = new System.Windows.Forms.Padding(3);
+            this.tabSQL.Size = new System.Drawing.Size(944, 465);
+            this.tabSQL.TabIndex = 2;
+            this.tabSQL.Text = "SQL";
+            this.tabSQL.UseVisualStyleBackColor = true;
+            // 
+            // btn_RemoveSQLManually
+            // 
+            this.btn_RemoveSQLManually.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_RemoveSQLManually.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btn_RemoveSQLManually.Location = new System.Drawing.Point(34, 389);
+            this.btn_RemoveSQLManually.Name = "btn_RemoveSQLManually";
+            this.btn_RemoveSQLManually.Size = new System.Drawing.Size(30, 27);
+            this.btn_RemoveSQLManually.TabIndex = 71;
+            this.btn_RemoveSQLManually.Text = "-";
+            this.btn_RemoveSQLManually.UseVisualStyleBackColor = true;
+            // 
+            // gb_SQLCustomCreds
+            // 
+            this.gb_SQLCustomCreds.Controls.Add(this.lbl_SQLCustomDomain);
+            this.gb_SQLCustomCreds.Controls.Add(this.tb_SQLCustomDomain);
+            this.gb_SQLCustomCreds.Controls.Add(this.lbl_SQLCustomPassword);
+            this.gb_SQLCustomCreds.Controls.Add(this.lbl_SQLCustomUsername);
+            this.gb_SQLCustomCreds.Controls.Add(this.tb_SQLCustomPassword);
+            this.gb_SQLCustomCreds.Controls.Add(this.tb_SQLCustomUsername);
+            this.gb_SQLCustomCreds.Location = new System.Drawing.Point(794, 232);
+            this.gb_SQLCustomCreds.Name = "gb_SQLCustomCreds";
+            this.gb_SQLCustomCreds.Size = new System.Drawing.Size(147, 152);
+            this.gb_SQLCustomCreds.TabIndex = 70;
+            this.gb_SQLCustomCreds.TabStop = false;
+            // 
+            // lbl_SQLCustomDomain
+            // 
+            this.lbl_SQLCustomDomain.AutoSize = true;
+            this.lbl_SQLCustomDomain.Enabled = false;
+            this.lbl_SQLCustomDomain.Location = new System.Drawing.Point(6, 54);
+            this.lbl_SQLCustomDomain.Name = "lbl_SQLCustomDomain";
+            this.lbl_SQLCustomDomain.Size = new System.Drawing.Size(43, 13);
+            this.lbl_SQLCustomDomain.TabIndex = 5;
+            this.lbl_SQLCustomDomain.Text = "Domain";
+            // 
+            // tb_SQLCustomDomain
+            // 
+            this.tb_SQLCustomDomain.Enabled = false;
+            this.tb_SQLCustomDomain.Location = new System.Drawing.Point(6, 69);
+            this.tb_SQLCustomDomain.Name = "tb_SQLCustomDomain";
+            this.tb_SQLCustomDomain.Size = new System.Drawing.Size(119, 20);
+            this.tb_SQLCustomDomain.TabIndex = 1;
+            // 
+            // lbl_SQLCustomPassword
+            // 
+            this.lbl_SQLCustomPassword.AutoSize = true;
+            this.lbl_SQLCustomPassword.Enabled = false;
+            this.lbl_SQLCustomPassword.Location = new System.Drawing.Point(6, 94);
+            this.lbl_SQLCustomPassword.Name = "lbl_SQLCustomPassword";
+            this.lbl_SQLCustomPassword.Size = new System.Drawing.Size(53, 13);
+            this.lbl_SQLCustomPassword.TabIndex = 3;
+            this.lbl_SQLCustomPassword.Text = "Password";
+            // 
+            // lbl_SQLCustomUsername
+            // 
+            this.lbl_SQLCustomUsername.AutoSize = true;
+            this.lbl_SQLCustomUsername.Enabled = false;
+            this.lbl_SQLCustomUsername.Location = new System.Drawing.Point(6, 14);
+            this.lbl_SQLCustomUsername.Name = "lbl_SQLCustomUsername";
+            this.lbl_SQLCustomUsername.Size = new System.Drawing.Size(55, 13);
+            this.lbl_SQLCustomUsername.TabIndex = 2;
+            this.lbl_SQLCustomUsername.Text = "Username";
+            // 
+            // tb_SQLCustomPassword
+            // 
+            this.tb_SQLCustomPassword.Enabled = false;
+            this.tb_SQLCustomPassword.Location = new System.Drawing.Point(6, 111);
+            this.tb_SQLCustomPassword.Name = "tb_SQLCustomPassword";
+            this.tb_SQLCustomPassword.Size = new System.Drawing.Size(119, 20);
+            this.tb_SQLCustomPassword.TabIndex = 2;
+            this.tb_SQLCustomPassword.UseSystemPasswordChar = true;
+            // 
+            // tb_SQLCustomUsername
+            // 
+            this.tb_SQLCustomUsername.Enabled = false;
+            this.tb_SQLCustomUsername.Location = new System.Drawing.Point(6, 30);
+            this.tb_SQLCustomUsername.Name = "tb_SQLCustomUsername";
+            this.tb_SQLCustomUsername.Size = new System.Drawing.Size(119, 20);
+            this.tb_SQLCustomUsername.TabIndex = 0;
+            // 
+            // cb_UseCustomCredsSQL
+            // 
+            this.cb_UseCustomCredsSQL.AutoSize = true;
+            this.cb_UseCustomCredsSQL.Location = new System.Drawing.Point(794, 209);
+            this.cb_UseCustomCredsSQL.Name = "cb_UseCustomCredsSQL";
+            this.cb_UseCustomCredsSQL.Size = new System.Drawing.Size(138, 17);
+            this.cb_UseCustomCredsSQL.TabIndex = 69;
+            this.cb_UseCustomCredsSQL.Text = "Use Custom Credentials";
+            this.cb_UseCustomCredsSQL.UseVisualStyleBackColor = true;
+            // 
+            // btn_ExportCSVSQL
+            // 
+            this.btn_ExportCSVSQL.Location = new System.Drawing.Point(154, 389);
+            this.btn_ExportCSVSQL.Name = "btn_ExportCSVSQL";
+            this.btn_ExportCSVSQL.Size = new System.Drawing.Size(86, 27);
+            this.btn_ExportCSVSQL.TabIndex = 68;
+            this.btn_ExportCSVSQL.Text = "Export CSV";
+            this.btn_ExportCSVSQL.UseVisualStyleBackColor = true;
+            // 
+            // btn_ImportCSVSQL
+            // 
+            this.btn_ImportCSVSQL.Location = new System.Drawing.Point(63, 389);
+            this.btn_ImportCSVSQL.Name = "btn_ImportCSVSQL";
+            this.btn_ImportCSVSQL.Size = new System.Drawing.Size(90, 27);
+            this.btn_ImportCSVSQL.TabIndex = 67;
+            this.btn_ImportCSVSQL.Text = "Import CSV";
+            this.btn_ImportCSVSQL.UseVisualStyleBackColor = true;
+            // 
+            // btn_AddSQLManually
+            // 
+            this.btn_AddSQLManually.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_AddSQLManually.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btn_AddSQLManually.Location = new System.Drawing.Point(5, 389);
+            this.btn_AddSQLManually.Name = "btn_AddSQLManually";
+            this.btn_AddSQLManually.Size = new System.Drawing.Size(30, 27);
+            this.btn_AddSQLManually.TabIndex = 66;
+            this.btn_AddSQLManually.Text = "+";
+            this.btn_AddSQLManually.UseVisualStyleBackColor = true;
+            // 
+            // lbl_SQLGenerationRunningvalue
+            // 
+            this.lbl_SQLGenerationRunningvalue.AutoSize = true;
+            this.lbl_SQLGenerationRunningvalue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_SQLGenerationRunningvalue.Location = new System.Drawing.Point(846, 402);
+            this.lbl_SQLGenerationRunningvalue.Name = "lbl_SQLGenerationRunningvalue";
+            this.lbl_SQLGenerationRunningvalue.Size = new System.Drawing.Size(15, 15);
+            this.lbl_SQLGenerationRunningvalue.TabIndex = 63;
+            this.lbl_SQLGenerationRunningvalue.Text = "0";
+            // 
+            // lbl_TotalSQLServersValue
+            // 
+            this.lbl_TotalSQLServersValue.AutoSize = true;
+            this.lbl_TotalSQLServersValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_TotalSQLServersValue.Location = new System.Drawing.Point(82, 423);
+            this.lbl_TotalSQLServersValue.Name = "lbl_TotalSQLServersValue";
+            this.lbl_TotalSQLServersValue.Size = new System.Drawing.Size(13, 13);
+            this.lbl_TotalSQLServersValue.TabIndex = 65;
+            this.lbl_TotalSQLServersValue.Text = "0";
+            // 
+            // lbl_SQLGenerationRunninglbl
+            // 
+            this.lbl_SQLGenerationRunninglbl.AutoSize = true;
+            this.lbl_SQLGenerationRunninglbl.Location = new System.Drawing.Point(804, 389);
+            this.lbl_SQLGenerationRunninglbl.Name = "lbl_SQLGenerationRunninglbl";
+            this.lbl_SQLGenerationRunninglbl.Size = new System.Drawing.Size(115, 13);
+            this.lbl_SQLGenerationRunninglbl.TabIndex = 62;
+            this.lbl_SQLGenerationRunninglbl.Text = "Generation running for:";
+            // 
+            // lbl_TotalSQLServerslbl
+            // 
+            this.lbl_TotalSQLServerslbl.AutoSize = true;
+            this.lbl_TotalSQLServerslbl.Location = new System.Drawing.Point(7, 423);
+            this.lbl_TotalSQLServerslbl.Name = "lbl_TotalSQLServerslbl";
+            this.lbl_TotalSQLServerslbl.Size = new System.Drawing.Size(71, 13);
+            this.lbl_TotalSQLServerslbl.TabIndex = 64;
+            this.lbl_TotalSQLServerslbl.Text = "Total servers:";
+            // 
+            // gb_SQLParams
+            // 
+            this.gb_SQLParams.Controls.Add(this.tb_SQLAmountRows);
+            this.gb_SQLParams.Controls.Add(this.label8);
+            this.gb_SQLParams.Controls.Add(this.lbl_AddRows);
+            this.gb_SQLParams.Location = new System.Drawing.Point(794, 12);
+            this.gb_SQLParams.Name = "gb_SQLParams";
+            this.gb_SQLParams.Size = new System.Drawing.Size(144, 192);
+            this.gb_SQLParams.TabIndex = 61;
+            this.gb_SQLParams.TabStop = false;
+            this.gb_SQLParams.Text = "Parameters";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(9, 61);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(0, 12);
+            this.label8.TabIndex = 16;
+            // 
+            // lbl_AddRows
+            // 
+            this.lbl_AddRows.AutoSize = true;
+            this.lbl_AddRows.Location = new System.Drawing.Point(6, 16);
+            this.lbl_AddRows.Name = "lbl_AddRows";
+            this.lbl_AddRows.Size = new System.Drawing.Size(85, 13);
+            this.lbl_AddRows.TabIndex = 14;
+            this.lbl_AddRows.Text = "Amount of Rows";
+            // 
+            // btn_StopSQLGeneration
+            // 
+            this.btn_StopSQLGeneration.Location = new System.Drawing.Point(591, 389);
+            this.btn_StopSQLGeneration.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_StopSQLGeneration.Name = "btn_StopSQLGeneration";
+            this.btn_StopSQLGeneration.Size = new System.Drawing.Size(198, 34);
+            this.btn_StopSQLGeneration.TabIndex = 60;
+            this.btn_StopSQLGeneration.Text = "Stop SQL Generation";
+            this.btn_StopSQLGeneration.UseVisualStyleBackColor = true;
+            // 
+            // btn_StartSQLGeneration
+            // 
+            this.btn_StartSQLGeneration.Location = new System.Drawing.Point(369, 389);
+            this.btn_StartSQLGeneration.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_StartSQLGeneration.Name = "btn_StartSQLGeneration";
+            this.btn_StartSQLGeneration.Size = new System.Drawing.Size(218, 34);
+            this.btn_StartSQLGeneration.TabIndex = 59;
+            this.btn_StartSQLGeneration.Text = "Start SQL Generation";
+            this.btn_StartSQLGeneration.UseVisualStyleBackColor = true;
+            this.btn_StartSQLGeneration.Click += new System.EventHandler(this.btn_StartSQLGeneration_Click);
+            // 
+            // cb_SelectAllSQL
+            // 
+            this.cb_SelectAllSQL.AutoSize = true;
+            this.cb_SelectAllSQL.Location = new System.Drawing.Point(10, 10);
+            this.cb_SelectAllSQL.Margin = new System.Windows.Forms.Padding(2);
+            this.cb_SelectAllSQL.Name = "cb_SelectAllSQL";
+            this.cb_SelectAllSQL.Size = new System.Drawing.Size(15, 14);
+            this.cb_SelectAllSQL.TabIndex = 58;
+            this.cb_SelectAllSQL.UseVisualStyleBackColor = true;
+            // 
+            // lv_SQL
+            // 
+            this.lv_SQL.Location = new System.Drawing.Point(5, 5);
+            this.lv_SQL.Margin = new System.Windows.Forms.Padding(2);
+            this.lv_SQL.Name = "lv_SQL";
+            this.lv_SQL.Size = new System.Drawing.Size(784, 379);
+            this.lv_SQL.TabIndex = 57;
+            this.lv_SQL.UseCompatibleStateImageBehavior = false;
+            // 
+            // tb_SQLAmountRows
+            // 
+            this.tb_SQLAmountRows.Location = new System.Drawing.Point(9, 31);
+            this.tb_SQLAmountRows.Margin = new System.Windows.Forms.Padding(2);
+            this.tb_SQLAmountRows.Name = "tb_SQLAmountRows";
+            this.tb_SQLAmountRows.Size = new System.Drawing.Size(119, 20);
+            this.tb_SQLAmountRows.TabIndex = 17;
+            this.tb_SQLAmountRows.Text = "1000";
+            // 
             // Form1
             // 
             this.AcceptButton = this.btn_Connect;
@@ -928,16 +1218,22 @@
             this.gb_ddtparams.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.tabControl.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            this.tab_Data.ResumeLayout(false);
+            this.tab_Data.PerformLayout();
             this.gb_customCredentials.ResumeLayout(false);
             this.gb_customCredentials.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.tab_Exchange.ResumeLayout(false);
+            this.tab_Exchange.PerformLayout();
             this.gb_ExchangeCustomCreds.ResumeLayout(false);
             this.gb_ExchangeCustomCreds.PerformLayout();
             this.gb_ExchangeParameters.ResumeLayout(false);
             this.gb_ExchangeParameters.PerformLayout();
+            this.tabSQL.ResumeLayout(false);
+            this.tabSQL.PerformLayout();
+            this.gb_SQLCustomCreds.ResumeLayout(false);
+            this.gb_SQLCustomCreds.PerformLayout();
+            this.gb_SQLParams.ResumeLayout(false);
+            this.gb_SQLParams.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -977,8 +1273,8 @@
         private System.Windows.Forms.Label lbl_TotalAmountLabel;
         private System.Windows.Forms.Button btn_About;
         private System.Windows.Forms.TabControl tabControl;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tab_Data;
+        private System.Windows.Forms.TabPage tab_Exchange;
         private System.Windows.Forms.CheckBox cb_SelAllExchange;
         private System.Windows.Forms.ListView lv_ExchangeServers;
         private System.Windows.Forms.Button btn_startExchangeGeneration;
@@ -1017,6 +1313,31 @@
         private System.Windows.Forms.TextBox tb_exchangeCustomDomain;
         private System.Windows.Forms.Label lbl_MailSizeNote;
         private System.Windows.Forms.Label lbl_Loading;
+        private System.Windows.Forms.TabPage tabSQL;
+        private System.Windows.Forms.Button btn_RemoveSQLManually;
+        private System.Windows.Forms.GroupBox gb_SQLCustomCreds;
+        private System.Windows.Forms.Label lbl_SQLCustomDomain;
+        private System.Windows.Forms.TextBox tb_SQLCustomDomain;
+        private System.Windows.Forms.Label lbl_SQLCustomPassword;
+        private System.Windows.Forms.Label lbl_SQLCustomUsername;
+        private System.Windows.Forms.TextBox tb_SQLCustomPassword;
+        private System.Windows.Forms.TextBox tb_SQLCustomUsername;
+        private System.Windows.Forms.CheckBox cb_UseCustomCredsSQL;
+        private System.Windows.Forms.Button btn_ExportCSVSQL;
+        private System.Windows.Forms.Button btn_ImportCSVSQL;
+        private System.Windows.Forms.Button btn_AddSQLManually;
+        private System.Windows.Forms.Label lbl_SQLGenerationRunningvalue;
+        private System.Windows.Forms.Label lbl_TotalSQLServersValue;
+        private System.Windows.Forms.Label lbl_SQLGenerationRunninglbl;
+        private System.Windows.Forms.Label lbl_TotalSQLServerslbl;
+        private System.Windows.Forms.GroupBox gb_SQLParams;
+        private System.Windows.Forms.TextBox tb_SQLAmountRows;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lbl_AddRows;
+        private System.Windows.Forms.Button btn_StopSQLGeneration;
+        private System.Windows.Forms.Button btn_StartSQLGeneration;
+        private System.Windows.Forms.CheckBox cb_SelectAllSQL;
+        private System.Windows.Forms.ListView lv_SQL;
     }
 }
 

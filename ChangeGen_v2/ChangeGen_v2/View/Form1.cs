@@ -12,7 +12,7 @@ namespace ChangeGen_v2
         private List<Control> _listviewPageControls;         // used for storing controls of ListView page
         private CoreConnectionCredentials _coreCreds;        // used for storing core API credentials
         private DdtParameters _ddtParameters;                // used for storing DDT Parameters
-        private Dictionary<ExchangeGeneratorParameters.MailSize, string> _mailSizeDictionary;
+        private Dictionary<ExchangeGeneratorParameters.MailSize, string> _mailSizeDictionary; // used for storing Mail Size possible values
         
 
         public Form1()
@@ -26,13 +26,16 @@ namespace ChangeGen_v2
             _lvwColumnSorter = new ListViewColumnSorter();
             lv_AgentsList.ListViewItemSorter = _lvwColumnSorter;
             lv_ExchangeServers.ListViewItemSorter = _lvwColumnSorter;
+            lv_SQL.ListViewItemSorter = _lvwColumnSorter;
 
             lv_AgentsList.Items.Clear();
             lv_AgentsList.View = View.Details;
-
-            
+          
             lv_ExchangeServers.Items.Clear();
             lv_ExchangeServers.View = View.Details;
+
+            lv_SQL.Items.Clear();
+            lv_SQL.View = View.Details;
 
             lbl_MailSizeNote.Text =
                 "*Mail size value can impact\nCore repository compression.\nRecommended value is 'Small'.";
@@ -122,6 +125,8 @@ namespace ChangeGen_v2
 
             ServerWrapper.ServersListViewCreateColumns(lv_AgentsList);
             ServerWrapper.ExchangeListViewCreateColumns(lv_ExchangeServers);
+            ServerWrapper.SQLListViewCreateColumns(lv_SQL);
+            
 
             AddItemsToCbMailSize();
             GetGenParamsFromFileToGui();
@@ -230,8 +235,10 @@ namespace ChangeGen_v2
         {
             ServerWrapper.UpdateListView(lv_AgentsList, lbl_ChangeRateValue, lbl_totalAgentsRunningValue);
             ServerWrapper.UpdateExchangeListView(lv_ExchangeServers, lbl_exchangeGenerationRunningValue);
+            ServerWrapper.UpdateSQLListView(lv_SQL, lbl_SQLGenerationRunningvalue);
             lbl_TotalAmountValue.Text = lv_AgentsList.Items.Count.ToString();
             lbl_exchangeTotalAgentsValue.Text = lv_ExchangeServers.Items.Count.ToString();
+            lbl_TotalSQLServersValue.Text = lv_SQL.Items.Count.ToString();
         }
 
         private void GetGenParamsFromFileToGui()
@@ -257,6 +264,13 @@ namespace ChangeGen_v2
                         cb_MailSize.SelectedIndex = i;
                     i++;
                 }
+            }
+
+            var sqlParams = SQLGeneratorParameters.DeserializeSQLParamsFromFile();
+
+            if (sqlParams != null)
+            {
+                tb_Size.Text = sqlParams.RowsToInsert.ToString();
             }
         }
 
@@ -622,6 +636,37 @@ namespace ChangeGen_v2
             {
                 CSV.CSVtoServersList(openFileDialog1.FileName);
             }
+        }
+
+        private void btn_StartSQLGeneration_Click(object sender, EventArgs e)
+        {
+            //if (!ExchangeGenWrapper.doNotShowExchangePrerequisites)
+            //{
+            //    var prerequisitesForm = new ExchangePrerequisites();
+            //    prerequisitesForm.Show();
+            //}
+
+
+          //  var messageSize = _mailSizeDictionary.FirstOrDefault(x => x.Value == cb_MailSize.SelectedItem.ToString()).Key;
+
+            var rowsToInsert = Convert.ToInt32(tb_SQLAmountRows.Text);
+
+            // Start SQL Generation for selected servers with specific parameters
+
+            if (cb_UseCustomCredsSQL.Checked)
+            {
+                SQLGenWrapper.StartSQLGenerator(lv_SQL, ServerWrapper.SQLServersList, rowsToInsert, tb_exchangeCustomUsername.Text, tb_exchangeCustomPassword.Text);
+            }
+            else
+            {
+                SQLGenWrapper.StartSQLGenerator(lv_SQL, ServerWrapper.SQLServersList, rowsToInsert);
+            }
+
+            // Update ListView
+            ServerWrapper.UpdateSQLListView(lv_SQL, lbl_SQLGenerationRunningvalue);
+
+            var sqlParmsToSerialize = new SQLGeneratorParameters() { RowsToInsert = rowsToInsert };
+            sqlParmsToSerialize.SerizalizeSQLParamsToFile();
         }
     }
 }
