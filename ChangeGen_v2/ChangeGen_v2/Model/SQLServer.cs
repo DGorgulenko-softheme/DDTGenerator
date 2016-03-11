@@ -19,18 +19,7 @@ namespace ChangeGen_v2
 
         public void StartSQLGenerator()
         {
-            //try
-            //{
-            //    ExchangeGenerator.StartGenerator(ServerCredentials, ExchangeGenParameters, Cts.Token);
-            //}
-            //catch (ServiceRequestException e)
-            //{
-            //    ServerGeneratorStatus = e.Message.Contains("401") ? GeneratorStatus.WrongCredentials : GeneratorStatus.Failed;
-            //}
-            //catch (ServiceResponseException)
-            //{
-            //    ServerGeneratorStatus = GeneratorStatus.Failed;
-            //}
+            SqlGenerator.StartGenerator(ServerCredentials, SqlGeneratorParameters, Cts.Token);           
         }
     }
 }

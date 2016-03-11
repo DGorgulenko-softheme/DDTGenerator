@@ -129,6 +129,7 @@
     <Compile Include="Model\ExchangeGeneratorParameters.cs" />
     <Compile Include="Model\ExchangeServer.cs" />
     <Compile Include="Model\ServerConnectionCredentials.cs" />
+    <Compile Include="Model\SQLGenerator.cs" />
     <Compile Include="Model\SQLGeneratorParameters.cs" />
     <Compile Include="Model\SQLServer.cs" />
     <Compile Include="View\AboutBox1.cs">
