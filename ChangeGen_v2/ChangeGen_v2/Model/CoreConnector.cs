@@ -76,9 +76,9 @@ namespace ChangeGen_v2
         }
 
         //This method returns collection of Agent's objects with SQL Server only
-        public static List<SQLServer> GetSQLServersToListFromCore(CoreConnectionCredentials coreCredentials)
+        public static List<SqlServer> GetSQLServersToListFromCore(CoreConnectionCredentials coreCredentials)
         {
-            var sqlServersList = new List<SQLServer>();
+            var sqlServersList = new List<SqlServer>();
             var coreClient = CoreConnector.GetFullCoreClient(coreCredentials);
             var protectedAgents = coreClient.AgentsManagement.GetProtectedAgents();
 
@@ -86,7 +86,7 @@ namespace ChangeGen_v2
             {
                 if ((agent.AgentType != AgentType.EsxServer) && (agent.AgentType != AgentType.EsxVirtualMachine) && agent.HasSqlInstance)
                 {
-                    sqlServersList.Add(new SQLServer(agent.Descriptor.HostUri.Host, agent.DisplayName,
+                    sqlServersList.Add(new SqlServer(agent.Descriptor.HostUri.Host, agent.DisplayName,
                         agent.RepositoryName,
                         agent.Descriptor.MetadataCredentials.DefaultCredentials.UserName,
                         agent.Descriptor.MetadataCredentials.DefaultCredentials.PasswordDecrypted));

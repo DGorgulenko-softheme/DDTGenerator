@@ -119,3 +119,4 @@ Access is denied. (Exception from HRESULT: 0x80070005 (E_ACCESSDENIED))
    at System.Management.ManagementScope.Initialize()
    at System.Management.ManagementScope.Connect()
    at ChangeGen_v2.SqlGenerator.GetSqlInstanceNameFromService(String hostname, String username, String password) in D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\Model\SQLGenerator.cs:line 67
+[Info][10.23.10.20][3/14/2016 3:58:18 PM]: Successfully connected to Core Server: 10.23.10.20

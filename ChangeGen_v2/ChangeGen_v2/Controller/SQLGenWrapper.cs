@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ChangeGen_v2
 {
-    class SQLGenWrapper
+    internal static class SqlGenWrapper
     {
-        public static bool doNotShowSQLPrerequisites;
+        public static bool DoNotShowSqlPrerequisites;
         // This method used to initiate start of DDT on remote machine
-        public static void StartSQLGenerator(ListView listview, List<SQLServer> serversList, string dbName, int rowsToInsert)
+        public static void StartSqlGenerator(ListView listview, List<SqlServer> serversList, string dbName, int rowsToInsert)
         {
             var selectedServers = listview.Items.Cast<ListViewItem>().Where(item => item.Checked).ToList(); // Creating list of selected servers
 
@@ -29,16 +27,16 @@ namespace ChangeGen_v2
                     }
 
                     serversList[y].ServerGeneratorStatus = Server.GeneratorStatus.Running;
-                    serversList[y].SqlGeneratorParameters.DBName = dbName;
+                    serversList[y].SqlGeneratorParameters.DbName = dbName;
                     serversList[y].SqlGeneratorParameters.RowsToInsert = rowsToInsert;
                     serversList[y].Cts = new CancellationTokenSource();
-                    serversList[y].Task = new Task(() => serversList[index].StartSQLGenerator());
+                    serversList[y].Task = new Task(() => serversList[index].StartSqlGenerator());
                     serversList[y].Task.Start();
                 }
             }
         }
 
-        public static void StartSQLGenerator(ListView listview, List<SQLServer> serversList, string dbName,
+        public static void StartSqlGenerator(ListView listview, List<SqlServer> serversList, string dbName,
             int rowsToInser, string username, string password)
         {
             var selectedServers = listview.Items.Cast<ListViewItem>().Where(item => item.Checked).ToList(); // Creating list of selected servers
@@ -54,11 +52,11 @@ namespace ChangeGen_v2
                 }
             }
 
-            StartSQLGenerator(listview, serversList, dbName, rowsToInser);
+            StartSqlGenerator(listview, serversList, dbName, rowsToInser);
         }
 
         // Cancel DDT for selected server
-        public static void StopSQLGenerator(ListView listview, List<SQLServer> serversList)
+        public static void StopSqlGenerator(ListView listview, List<SqlServer> serversList)
         {
             var selectedServers = listview.Items.Cast<ListViewItem>().Where(item => item.Checked).ToList();
 

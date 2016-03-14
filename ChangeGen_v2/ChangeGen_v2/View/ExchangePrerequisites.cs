@@ -19,7 +19,7 @@ namespace ChangeGen_v2
 
         private void cb_doNotShow_CheckedChanged(object sender, EventArgs e)
         {
-           ExchangeGenWrapper.doNotShowExchangePrerequisites = cb_doNotShow.Checked;
+           ExchangeGenWrapper.DoNotShowExchangePrerequisites = cb_doNotShow.Checked;
         }
 
         private void btn_OK_Click(object sender, EventArgs e)

@@ -125,7 +125,7 @@ namespace ChangeGen_v2
 
             ServerWrapper.ServersListViewCreateColumns(lv_AgentsList);
             ServerWrapper.ExchangeListViewCreateColumns(lv_ExchangeServers);
-            ServerWrapper.SQLListViewCreateColumns(lv_SQL);
+            ServerWrapper.SqlListViewCreateColumns(lv_SQL);
             
 
             AddItemsToCbMailSize();
@@ -252,7 +252,7 @@ namespace ChangeGen_v2
         {
             ServerWrapper.UpdateListView(lv_AgentsList, lbl_ChangeRateValue, lbl_totalAgentsRunningValue);
             ServerWrapper.UpdateExchangeListView(lv_ExchangeServers, lbl_exchangeGenerationRunningValue);
-            ServerWrapper.UpdateSQLListView(lv_SQL, lbl_SQLGenerationRunningvalue);
+            ServerWrapper.UpdateSqlListView(lv_SQL, lbl_SQLGenerationRunningvalue);
             lbl_TotalAmountValue.Text = lv_AgentsList.Items.Count.ToString();
             lbl_exchangeTotalAgentsValue.Text = lv_ExchangeServers.Items.Count.ToString();
             lbl_TotalSQLServersValue.Text = lv_SQL.Items.Count.ToString();
@@ -283,11 +283,11 @@ namespace ChangeGen_v2
                 }
             }
 
-            var sqlParams = SQLGeneratorParameters.DeserializeSQLParamsFromFile();
+            var sqlParams = SqlGeneratorParameters.DeserializeSqlParamsFromFile();
 
             if (sqlParams != null)
             {
-                tb_dbName.Text = sqlParams.DBName;
+                tb_dbName.Text = sqlParams.DbName;
                 tb_SQLAmountRows.Text = sqlParams.RowsToInsert.ToString();
             }
         }
@@ -380,7 +380,7 @@ namespace ChangeGen_v2
 
         private void btn_startExchangeGeneration_Click(object sender, EventArgs e)
         {
-            if (!ExchangeGenWrapper.doNotShowExchangePrerequisites)
+            if (!ExchangeGenWrapper.DoNotShowExchangePrerequisites)
             {
                 var prerequisitesForm = new ExchangePrerequisites();
                 prerequisitesForm.Show();
@@ -572,7 +572,7 @@ namespace ChangeGen_v2
 
             if (openFileDialog1.FileName != "")
             {
-                CSV.CSVtoExchangeServersList(openFileDialog1.FileName);
+                Csv.CsVtoExchangeServersList(openFileDialog1.FileName);
             }
         }
 
@@ -588,7 +588,7 @@ namespace ChangeGen_v2
 
             if (saveFileDialog1.FileName != "")
             {
-                ServerWrapper.ServersList.ServersToCSV(saveFileDialog1.FileName);
+                ServerWrapper.ServersList.ServersToCsv(saveFileDialog1.FileName);
             }
         }
 
@@ -604,7 +604,7 @@ namespace ChangeGen_v2
 
             if (saveFileDialog1.FileName != "")
             {
-                ServerWrapper.ExchangeServersList.ExchangeServersToCSV(saveFileDialog1.FileName);
+                ServerWrapper.ExchangeServersList.ExchangeServersToCsv(saveFileDialog1.FileName);
             }
         }
 
@@ -617,7 +617,7 @@ namespace ChangeGen_v2
 
             if (openFileDialog1.FileName != "")
             {
-                CSV.CSVtoServersList(openFileDialog1.FileName);
+                Csv.CsVtoServersList(openFileDialog1.FileName);
             }
         }
 
@@ -638,7 +638,7 @@ namespace ChangeGen_v2
             if (failedValidation)
                 return;
 
-            if (!SQLGenWrapper.doNotShowSQLPrerequisites)
+            if (!SqlGenWrapper.DoNotShowSqlPrerequisites)
             {
                 var prerequisitesForm = new SQLPrerequisites();
                 prerequisitesForm.Show();
@@ -651,18 +651,18 @@ namespace ChangeGen_v2
 
             if (cb_UseCustomCredsSQL.Checked)
             {
-                SQLGenWrapper.StartSQLGenerator(lv_SQL, ServerWrapper.SQLServersList, tb_dbName.Text, rowsToInsert, tb_SQLCustomUsername.Text, tb_SQLCustomPassword.Text);
+                SqlGenWrapper.StartSqlGenerator(lv_SQL, ServerWrapper.SqlServersList, tb_dbName.Text, rowsToInsert, tb_SQLCustomUsername.Text, tb_SQLCustomPassword.Text);
             }
             else
             {
-                SQLGenWrapper.StartSQLGenerator(lv_SQL, ServerWrapper.SQLServersList, tb_dbName.Text, rowsToInsert);
+                SqlGenWrapper.StartSqlGenerator(lv_SQL, ServerWrapper.SqlServersList, tb_dbName.Text, rowsToInsert);
             }
 
             // Update ListView
-            ServerWrapper.UpdateSQLListView(lv_SQL, lbl_SQLGenerationRunningvalue);
+            ServerWrapper.UpdateSqlListView(lv_SQL, lbl_SQLGenerationRunningvalue);
 
-            var sqlParmsToSerialize = new SQLGeneratorParameters() { RowsToInsert = rowsToInsert, DBName = tb_dbName.Text};
-            sqlParmsToSerialize.SerizalizeSQLParamsToFile();
+            var sqlParmsToSerialize = new SqlGeneratorParameters() { RowsToInsert = rowsToInsert, DbName = tb_dbName.Text};
+            sqlParmsToSerialize.SerizalizeSqlParamsToFile();
         }
 
         private void btn_AddSQLManually_Click(object sender, EventArgs e)
@@ -678,7 +678,7 @@ namespace ChangeGen_v2
 
         private void btn_RemoveSQLManually_Click(object sender, EventArgs e)
         {
-            ServerWrapper.DeleteSQLServerManually(lv_SQL);
+            ServerWrapper.DeleteSqlServerManually(lv_SQL);
         }
 
         private void btn_ExportCSVSQL_Click(object sender, EventArgs e)
@@ -693,7 +693,7 @@ namespace ChangeGen_v2
 
             if (saveFileDialog1.FileName != "")
             {
-                ServerWrapper.SQLServersList.SQLServersToCSV(saveFileDialog1.FileName);
+                ServerWrapper.SqlServersList.SqlServersToCsv(saveFileDialog1.FileName);
             }
         }
 
@@ -706,17 +706,17 @@ namespace ChangeGen_v2
 
             if (openFileDialog1.FileName != "")
             {
-                CSV.CSVtoSQLServersList(openFileDialog1.FileName);
+                Csv.CsVtoSqlServersList(openFileDialog1.FileName);
             }
         }
 
         private void btn_StopSQLGeneration_Click(object sender, EventArgs e)
         {
             // Stop SQLGeneration for selected servers
-            SQLGenWrapper.StopSQLGenerator(lv_SQL,ServerWrapper.SQLServersList);
+            SqlGenWrapper.StopSqlGenerator(lv_SQL,ServerWrapper.SqlServersList);
 
             // Update ListView
-            ServerWrapper.UpdateSQLListView(lv_SQL,lbl_SQLGenerationRunningvalue);
+            ServerWrapper.UpdateSqlListView(lv_SQL,lbl_SQLGenerationRunningvalue);
         }
 
         private void cb_UseCustomCredsSQL_CheckedChanged(object sender, EventArgs e)

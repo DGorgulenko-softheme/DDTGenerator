@@ -10,13 +10,13 @@ namespace ChangeGen_v2
     {
         public static List<Server> ServersList; // store list of servers
         public static List<ExchangeServer> ExchangeServersList; //store list of exchange servers 
-        public static List<SQLServer> SQLServersList; //store list of sql servers
+        public static List<SqlServer> SqlServersList; //store list of sql servers
         // This method displays servers received from Core API to ListView
         public static void ServersToListView(CoreConnectionCredentials coreCredentials)
         {
             ServersList = CoreConnector.GetServersToListFromCore(coreCredentials);
             ExchangeServersList = CoreConnector.GetExchangeServersToListFromCore(coreCredentials);
-            SQLServersList = CoreConnector.GetSQLServersToListFromCore(coreCredentials);
+            SqlServersList = CoreConnector.GetSQLServersToListFromCore(coreCredentials);
         }
 
         public static void AddServerManually(string hostname, string username, string password)
@@ -29,14 +29,14 @@ namespace ChangeGen_v2
                 ServersList.Add(new Server(hostname, username, password));
         }
 
-        public static void AddSQLServerManually(string hostname, string username, string password)
+        public static void AddSqlServerManually(string hostname, string username, string password)
         {
-            if (SQLServersList == null)
-                SQLServersList = new List<SQLServer>();
-            var alreadyAdded = SQLServersList.Any(server => server.ServerCredentials.Ip == hostname);
+            if (SqlServersList == null)
+                SqlServersList = new List<SqlServer>();
+            var alreadyAdded = SqlServersList.Any(server => server.ServerCredentials.Ip == hostname);
 
             if (!alreadyAdded)
-                SQLServersList.Add(new SQLServer(hostname, username, password));
+                SqlServersList.Add(new SqlServer(hostname, username, password));
         }
 
         public static void AddExchangeServerManually(string ip, string domain, string username, string password)
@@ -78,16 +78,16 @@ namespace ChangeGen_v2
             }
         }
 
-        public static void DeleteSQLServerManually(ListView listView)
+        public static void DeleteSqlServerManually(ListView listView)
         {
             var selectedServers = listView.Items.Cast<ListViewItem>().Where(item => item.Checked).ToList(); // Creating list of selected servers
 
             foreach (var selectedServer in selectedServers)
             {
                 var sameServerInList =
-                    SQLServersList.Find(server => server.ServerCredentials.Ip == selectedServer.SubItems[1].Text);
+                    SqlServersList.Find(server => server.ServerCredentials.Ip == selectedServer.SubItems[1].Text);
                 sameServerInList.Cts?.Cancel();
-                SQLServersList.Remove(sameServerInList);
+                SqlServersList.Remove(sameServerInList);
                 selectedServer.Remove();
             }
         }
@@ -146,13 +146,13 @@ namespace ChangeGen_v2
             }
         }
 
-        public static void UpdateSQLListView(ListView sqllistView, Label amountOfActiveGeneration)
+        public static void UpdateSqlListView(ListView sqllistView, Label amountOfActiveGeneration)
         {
-            if (SQLServersList != null)
+            if (SqlServersList != null)
             {
                 var listViewAgents = sqllistView.Items.Cast<ListViewItem>().ToList();
 
-                foreach (var server in SQLServersList)
+                foreach (var server in SqlServersList)
                 {
                     bool isNew = true;
                     foreach (var lvServer in listViewAgents)
@@ -161,14 +161,14 @@ namespace ChangeGen_v2
                         {
                             isNew = false;
                             lvServer.SubItems[3].Text = server.ServerGeneratorStatus.ToString();   // Generator Status
-                            lvServer.SubItems[4].Text = server.SqlGeneratorParameters?.DBName ?? "";
+                            lvServer.SubItems[4].Text = server.SqlGeneratorParameters?.DbName ?? "";
                             lvServer.SubItems[5].Text = server.SqlGeneratorParameters?.RowsToInsert.ToString() ?? "";
                         }
                     }
                     if (isNew)
-                        AddNewSQLServerToListView(sqllistView, server);
+                        AddNewSqlServerToListView(sqllistView, server);
                 }
-                UpdateAmountOfActiveSQLGenerations(listViewAgents, amountOfActiveGeneration);
+                UpdateAmountOfActiveSqlGenerations(listViewAgents, amountOfActiveGeneration);
             }
         }
 
@@ -195,13 +195,13 @@ namespace ChangeGen_v2
             listView.Items.Add(lviNewServer);
         }
 
-        private static void AddNewSQLServerToListView(ListView listView, SQLServer server)
+        private static void AddNewSqlServerToListView(ListView listView, SqlServer server)
         {
             var lviNewServer = new ListViewItem(server.DisplayName);
             lviNewServer.SubItems.Add(server.ServerCredentials.Ip);
             lviNewServer.SubItems.Add(server.Repository);
             lviNewServer.SubItems.Add(server.ServerGeneratorStatus.ToString());
-            lviNewServer.SubItems.Add(server.SqlGeneratorParameters?.DBName ?? "");
+            lviNewServer.SubItems.Add(server.SqlGeneratorParameters?.DbName ?? "");
             lviNewServer.SubItems.Add(server.SqlGeneratorParameters?.RowsToInsert.ToString() ?? "");
             listView.Items.Add(lviNewServer);
         }
@@ -213,7 +213,7 @@ namespace ChangeGen_v2
             amountOfActiveGenerationsLabel.Text = amountOfActiveExchangeGenerations.ToString();
         }
 
-        private static void UpdateAmountOfActiveSQLGenerations(IEnumerable<ListViewItem> listViewAgents,
+        private static void UpdateAmountOfActiveSqlGenerations(IEnumerable<ListViewItem> listViewAgents,
            Control amountOfActiveGenerationsLabel)
         {
             var amountOfActiveExchangeGenerations = listViewAgents.Count(server => server.SubItems[3].Text == "Running");
@@ -257,7 +257,7 @@ namespace ChangeGen_v2
             listview.CheckBoxes = true;
         }
 
-        public static void SQLListViewCreateColumns(ListView listview)
+        public static void SqlListViewCreateColumns(ListView listview)
         {
             listview.Columns.Add("     Display Name", 100);
             listview.Columns.Add("IP", 100);

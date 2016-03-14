@@ -6,9 +6,9 @@ using System.Windows.Forms;
 
 namespace ChangeGen_v2
 {
-    internal static class CSV
+    internal static class Csv
     {
-        public static void ServersToCSV(this List<Server> serverList, string filePath)
+        public static void ServersToCsv(this List<Server> serverList, string filePath)
         {
             var sb = new StringBuilder();
 
@@ -38,7 +38,7 @@ namespace ChangeGen_v2
             
         }
 
-        public static void SQLServersToCSV(this List<SQLServer> serverList, string filePath)
+        public static void SqlServersToCsv(this List<SqlServer> serverList, string filePath)
         {
             var sb = new StringBuilder();
 
@@ -68,7 +68,7 @@ namespace ChangeGen_v2
 
         }
 
-        public static void ExchangeServersToCSV(this List<ExchangeServer> serverList, string filePath)
+        public static void ExchangeServersToCsv(this List<ExchangeServer> serverList, string filePath)
         {
             var sb = new StringBuilder();
  
@@ -100,7 +100,7 @@ namespace ChangeGen_v2
             }
         }
 
-        public static void CSVtoServersList(string filePath)
+        public static void CsVtoServersList(string filePath)
         {
             using (var sr = new StreamReader(filePath))
             {
@@ -125,7 +125,7 @@ namespace ChangeGen_v2
             }
         }
 
-        public static void CSVtoSQLServersList(string filePath)
+        public static void CsVtoSqlServersList(string filePath)
         {
             using (var sr = new StreamReader(filePath))
             {
@@ -139,7 +139,7 @@ namespace ChangeGen_v2
                         {
                             var values = line.Split(',');
 
-                            ServerWrapper.AddSQLServerManually(values[0], values[1], values[2]);
+                            ServerWrapper.AddSqlServerManually(values[0], values[1], values[2]);
                         }
                     }
                 }
@@ -150,7 +150,7 @@ namespace ChangeGen_v2
             }
         }
 
-        public static void CSVtoExchangeServersList(string filePath)
+        public static void CsVtoExchangeServersList(string filePath)
         {
             using (var sr = new StreamReader(filePath))
             {

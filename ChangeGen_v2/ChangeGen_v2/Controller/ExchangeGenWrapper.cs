@@ -8,7 +8,7 @@ namespace ChangeGen_v2
 {
     internal static class ExchangeGenWrapper
     {
-        public static bool doNotShowExchangePrerequisites;
+        public static bool DoNotShowExchangePrerequisites;
         // This method used to initiate start of DDT on remote machine
         public static void StartExchangeGenerator(ListView listview, List<ExchangeServer> serversList, ExchangeGeneratorParameters.MailSize messageSize)
         {
