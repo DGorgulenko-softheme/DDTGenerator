@@ -1,1 +1,0 @@
-<CoreConnectionCredentialsContract xmlns="http://schemas.datacontract.org/2004/07/ChangeGen_v2" xmlns:i="http://www.w3.org/2001/XMLSchema-instance"><HostnameMember>10.23.10.20</HostnameMember><PasswordMember>raid4us!</PasswordMember><PortMember>8006</PortMember><UsernameMember>administrator</UsernameMember></CoreConnectionCredentialsContract>

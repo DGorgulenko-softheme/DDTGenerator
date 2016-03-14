@@ -73,65 +73,48 @@ namespace ChangeGen_v2
 
             var scope = new ManagementScope(String.Format("\\\\{0}\\root\\CIMV2", hostname), connection);
 
-            try
-            {
-                scope.Connect();
-            }
-            catch (UnauthorizedAccessException e)
-            {
-                Logger.LogError("Unable to connect to WMI.", hostname, e);
-                throw;
-            }
-            catch (COMException e)
-            {
-                Logger.LogError("Unable to connect to WMI. RPC server is unavailable", hostname, e);
-                throw;
-            }
+            var retries = 0;
 
-
-                var query = new ObjectQuery("SELECT * FROM Win32_Service");
-                var searcher = new ManagementObjectSearcher(scope, query);
-
-                foreach (ManagementObject wmiObject in searcher.Get())
+            while (true)
+            {
+                try
                 {
-                    //if (wmiObject["Name"].ToString().Contains("MSSQL$") || wmiObject["Name"].ToString().Contains("MSSQLSERVER"))
-                    //{
-                    //    instanceName = GetInstanceNameFromServiceName(wmiObject["Name"].ToString());
-                    //}
-                    if (wmiObject["Caption"].ToString().Contains("SQL Server ("))
-                    {
-                        var servicename = wmiObject["Caption"].ToString();
-                        instanceName = servicename.Substring(servicename.IndexOf('(') + 1,
-                            servicename.Length - servicename.IndexOf('(') - 2);
-                    }
+                    scope.Connect();
+                    break;
                 }
-            //}
-            //catch (Exception e)
-            //{
-            //    Logger.LogError("SQL Service not found on the server.", hostname, e);
-            //}
-
-            return instanceName;
-        }
-
-        private static string GetInstanceNameFromServiceName(string serviceName)
-        {
-            if (!string.IsNullOrEmpty(serviceName))
-            {
-                return string.Equals(serviceName, "MSSQLSERVER", StringComparison.OrdinalIgnoreCase)
-                    ? serviceName
-                    : serviceName.Substring(serviceName.IndexOf('$') + 1,
-                        serviceName.Length - serviceName.IndexOf('$') - 1);
+                catch (UnauthorizedAccessException e)
+                {
+                    Logger.LogError("Unable to connect to WMI.", hostname, e);
+                    throw;
+                }
+                catch (COMException e)
+                {
+                    if (retries < 3)
+                    {
+                        retries++;
+                        Logger.LogError("Cannot connect to remote RPC server. Retry in 15 seconds", hostname, e);
+                        Thread.Sleep(15000);
+                    }
+                    else
+                    {
+                        Logger.LogError("Cannot connect to remote WMI. RPC server is unavailable", hostname, e);
+                        throw;
+                    }    
+                }
             }
-            return string.Empty;
-        }
+            var query = new ObjectQuery("SELECT * FROM Win32_Service");
+            var searcher = new ManagementObjectSearcher(scope, query);
 
-        private static void CreateDatabase(SqlConnection connection)
-        {            
-            using (var command = new SqlCommand("CREATE DATABASE GenerationDB", connection))
+            foreach (ManagementObject wmiObject in searcher.Get())
             {
-                command.ExecuteNonQuery();
-            }          
+                if (wmiObject["Caption"].ToString().Contains("SQL Server ("))
+                {
+                    var servicename = wmiObject["Caption"].ToString();
+                    instanceName = servicename.Substring(servicename.IndexOf('(') + 1,
+                        servicename.Length - servicename.IndexOf('(') - 2);
+                }
+            }
+            return instanceName;
         }
 
         private static void CreateTable(SqlConnection connection)
@@ -174,7 +157,7 @@ namespace ChangeGen_v2
             }
         }
 
-
+        // Not used methods
         static void GetDBList()
         {
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
@@ -206,6 +189,26 @@ namespace ChangeGen_v2
             foreach (var db in dbList)
             {
                 Console.WriteLine(db);
+            }
+        }
+
+        private static string GetInstanceNameFromServiceName(string serviceName)
+        {
+            if (!string.IsNullOrEmpty(serviceName))
+            {
+                return string.Equals(serviceName, "MSSQLSERVER", StringComparison.OrdinalIgnoreCase)
+                    ? serviceName
+                    : serviceName.Substring(serviceName.IndexOf('$') + 1,
+                        serviceName.Length - serviceName.IndexOf('$') - 1);
+            }
+            return string.Empty;
+        }
+
+        private static void CreateDatabase(SqlConnection connection)
+        {
+            using (var command = new SqlCommand("CREATE DATABASE GenerationDB", connection))
+            {
+                command.ExecuteNonQuery();
             }
         }
     }       
