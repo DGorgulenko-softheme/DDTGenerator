@@ -1,24 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Management;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace ChangeGen_v2
 {
     internal static class SqlGenerator
     {
-        public static void StartGenerator(ServerConnectionCredentials serverCreds, SQLGeneratorParameters sqlGenParams,
+        public static void StartGenerator(ServerConnectionCredentials serverCreds, SqlGeneratorParameters sqlGenParams,
             CancellationToken cancelToken)
         {
-
-                var instance = GetSqlInstanceNameFromService(serverCreds.Ip, serverCreds.Username, serverCreds.Password);
-
-
+            var instance = GetSqlInstanceNameFromService(serverCreds.Ip, serverCreds.Username, serverCreds.Password);
             var builder = new SqlConnectionStringBuilder
             {
                 DataSource = serverCreds.Ip +",1433" + "\\" + instance,
@@ -26,7 +20,7 @@ namespace ChangeGen_v2
                 UserID = serverCreds.Username,
                 Password = serverCreds.Password,
                 IntegratedSecurity = true,
-                InitialCatalog = sqlGenParams.DBName
+                InitialCatalog = sqlGenParams.DbName
             };
 
             using (var connection = new SqlConnection(builder.ConnectionString))
@@ -40,26 +34,42 @@ namespace ChangeGen_v2
                     Logger.LogError("Unable to open SQL connection to instance " + instance + ".",serverCreds.Ip,e);
                     throw;
                 }
-                
+                Logger.Log("Successfully connected to SQL server",Logger.LogLevel.Info,serverCreds.Ip);
+                try
+                {
+                    CreateTable(connection);
+                }
+                catch (SqlException e)
+                {
+                    if (!e.Message.Contains("There is already an object named"))
+                    {
+                        Logger.LogError("Unable to create table.", serverCreds.Ip, e);
+                        throw;
+                    }
+                }
+                try
+                {
+                    AddEntries(connection, sqlGenParams.RowsToInsert, cancelToken);
+                }
+                catch (SqlException e)
+                {
+                    Logger.LogError("Unable to insert data to the SQL table.", serverCreds.Ip,e);
+                    throw;
+                }
 
-                CreateTable(connection);
-                AddEntries(connection, sqlGenParams.RowsToInsert, cancelToken);
+                Logger.Log("Successfully completed SQL generation", Logger.LogLevel.Info, serverCreds.Ip);
             }
         }
 
         private static string GetSqlInstanceNameFromService(string hostname, string username, string password)
         {
             var instanceName = string.Empty;
-            //try
-            //{
-                var connection = new ConnectionOptions
-                {
-                    Username = username,
-                    Password = password,
-                    Authority = "ntlmdomain:"
-                };
-
-
+            var connection = new ConnectionOptions
+            {
+                Username = username,
+                Password = password,
+                Authority = "ntlmdomain:"
+            };
 
             var scope = new ManagementScope(String.Format("\\\\{0}\\root\\CIMV2", hostname), connection);
 
@@ -117,48 +127,15 @@ namespace ChangeGen_v2
         }
 
         private static void CreateDatabase(SqlConnection connection)
-        {
-            //SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-            //builder.DataSource = hostname + "\\" + instance;
-            //builder.UserID = username;
-            //builder.Password = password;
-
-            //builder.IntegratedSecurity = true;
-
-            //using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
-            //{
-            //    connection.Open();
-
-            //try
-            //{
+        {            
             using (var command = new SqlCommand("CREATE DATABASE GenerationDB", connection))
             {
                 command.ExecuteNonQuery();
-            }
-            //}
-            //catch (SqlException e)
-            //{
-            //    Logger.LogError("Creation of database failed.",);
-            //}
-            //}
+            }          
         }
 
-        static void CreateTable(SqlConnection connection)
+        private static void CreateTable(SqlConnection connection)
         {
-            //SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-            //builder.DataSource = hostname + "\\" + instance;
-            //builder.UserID = username;
-            //builder.Password = password;
-            //builder.InitialCatalog = "GenerationDB";
-            //builder.IntegratedSecurity = true;
-
-
-            //using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
-            //{
-            //    connection.Open();
-
-            //try
-            //{
             using (
                 var command =
                     new SqlCommand(
@@ -166,16 +143,10 @@ namespace ChangeGen_v2
                         connection))
             {
                 command.ExecuteNonQuery();
-            }
-            //}
-            //catch
-            //{
-            //    Console.WriteLine("Table not created.");
-            //}
-            //}
+            }        
         }
 
-        static void AddEntries(SqlConnection connection, int rowsToAdd, CancellationToken token)
+        private static void AddEntries(SqlConnection connection, int rowsToAdd, CancellationToken token)
         {
             var stringLength = new Random();
             for (int i = 0; i < rowsToAdd; i++)
@@ -186,16 +157,16 @@ namespace ChangeGen_v2
                             "INSERT INTO GeneratedTable VALUES(@Q, @W, @E, @R, @T, @Y, @U, @I, @O, @P)",
                             connection))
                 {
-                    command.Parameters.Add(new SqlParameter("Q", HelperMethods.RandomString(stringLength.Next(0, 100))));
-                    command.Parameters.Add(new SqlParameter("W", HelperMethods.RandomString(stringLength.Next(0, 100))));
-                    command.Parameters.Add(new SqlParameter("E", HelperMethods.RandomString(stringLength.Next(0, 100))));
-                    command.Parameters.Add(new SqlParameter("R", HelperMethods.RandomString(stringLength.Next(0, 100))));
-                    command.Parameters.Add(new SqlParameter("T", HelperMethods.RandomString(stringLength.Next(0, 100))));
-                    command.Parameters.Add(new SqlParameter("Y", HelperMethods.RandomString(stringLength.Next(0, 100))));
-                    command.Parameters.Add(new SqlParameter("U", HelperMethods.RandomString(stringLength.Next(0, 100))));
-                    command.Parameters.Add(new SqlParameter("I", HelperMethods.RandomString(stringLength.Next(0, 100))));
-                    command.Parameters.Add(new SqlParameter("O", HelperMethods.RandomString(stringLength.Next(0, 100))));
-                    command.Parameters.Add(new SqlParameter("P", HelperMethods.RandomString(stringLength.Next(0, 100))));
+                    command.Parameters.Add(new SqlParameter("Q", HelperMethods.RandomString(stringLength.Next(0, stringLength.Next(1, 100)))));
+                    command.Parameters.Add(new SqlParameter("W", HelperMethods.RandomString(stringLength.Next(0, stringLength.Next(1, 100)))));
+                    command.Parameters.Add(new SqlParameter("E", HelperMethods.RandomString(stringLength.Next(0, stringLength.Next(1, 100)))));
+                    command.Parameters.Add(new SqlParameter("R", HelperMethods.RandomString(stringLength.Next(0, stringLength.Next(1, 100)))));
+                    command.Parameters.Add(new SqlParameter("T", HelperMethods.RandomString(stringLength.Next(0, stringLength.Next(1, 100)))));
+                    command.Parameters.Add(new SqlParameter("Y", HelperMethods.RandomString(stringLength.Next(0, stringLength.Next(1, 100)))));
+                    command.Parameters.Add(new SqlParameter("U", HelperMethods.RandomString(stringLength.Next(0, stringLength.Next(1, 100)))));
+                    command.Parameters.Add(new SqlParameter("I", HelperMethods.RandomString(stringLength.Next(0, stringLength.Next(1, 100)))));
+                    command.Parameters.Add(new SqlParameter("O", HelperMethods.RandomString(stringLength.Next(0, stringLength.Next(1, 100)))));
+                    command.Parameters.Add(new SqlParameter("P", HelperMethods.RandomString(stringLength.Next(0, stringLength.Next(1, 100)))));
                     command.ExecuteNonQuery();
                     }
                 if (token.IsCancellationRequested)
@@ -237,13 +208,6 @@ namespace ChangeGen_v2
                 Console.WriteLine(db);
             }
         }
-
-        
-
-        
-
-        }
-
-        
+    }       
 }
 

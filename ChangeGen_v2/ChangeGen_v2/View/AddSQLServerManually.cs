@@ -19,10 +19,11 @@ namespace ChangeGen_v2
 
         private void btn_Add_Click(object sender, EventArgs e)
         {
-            ServerWrapper.AddSQLServerManually(tb_IP.Text,tb_UserName.Text,tb_Password.Text);
+            ServerWrapper.AddSqlServerManually(tb_IP.Text,tb_UserName.Text,tb_Password.Text);
             tb_IP.Clear();
             tb_UserName.Clear();
             tb_Password.Clear();
+            tb_IP.Focus();
         }
 
         private void tb_IP_Validated(object sender, EventArgs e)

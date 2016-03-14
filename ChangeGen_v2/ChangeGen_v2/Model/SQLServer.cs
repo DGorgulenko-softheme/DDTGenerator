@@ -1,29 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ChangeGen_v2
 {
-    class SQLServer : Server
+    internal class SqlServer : Server
     {
-        public SQLGeneratorParameters SqlGeneratorParameters { get; set; }
-        public SQLServer(string ip, string displayname, string repository, string username, string password) : base(ip, displayname, repository, username, password)
+        public SqlGeneratorParameters SqlGeneratorParameters { get; }
+        public SqlServer(string ip, string displayname, string repository, string username, string password) : base(ip, displayname, repository, username, password)
         {
             if (SqlGeneratorParameters == null)
-                SqlGeneratorParameters = new SQLGeneratorParameters();
+                SqlGeneratorParameters = new SqlGeneratorParameters();
         }
 
-        public SQLServer(string ip, string username, string password) : base(ip, username, password)
+        public SqlServer(string ip, string username, string password) : base(ip, username, password)
         {
             if (SqlGeneratorParameters == null)
-                SqlGeneratorParameters = new SQLGeneratorParameters();
+                SqlGeneratorParameters = new SqlGeneratorParameters();
         }
 
-        public void StartSQLGenerator()
+        public void StartSqlGenerator()
         {
             try
             {
@@ -32,15 +28,20 @@ namespace ChangeGen_v2
             catch (SqlException)
             {
                 ServerGeneratorStatus = GeneratorStatus.Failed;
+                return;
             }
             catch (UnauthorizedAccessException)
             {
                 ServerGeneratorStatus = GeneratorStatus.Failed;
+                return;
             }
             catch (COMException)
             {
                 ServerGeneratorStatus = GeneratorStatus.Failed;
-            }    
+                return;
+            }
+            
+            ServerGeneratorStatus =  GeneratorStatus.Completed;   
         }
     }
 }

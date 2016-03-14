@@ -47,6 +47,7 @@ namespace ChangeGen_v2
             tb_IP.Clear();
             tb_UserName.Clear();
             tb_Password.Clear();
+            tb_IP.Focus();
         }
 
         private void tb_IP_TextChanged(object sender, EventArgs e)

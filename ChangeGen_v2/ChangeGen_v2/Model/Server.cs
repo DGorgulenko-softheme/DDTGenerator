@@ -58,7 +58,8 @@ namespace ChangeGen_v2
             Failed,
             Running,
             Stopped,
-            WrongCredentials
+            WrongCredentials,
+            Completed
         }
 
         // Method used to run DDT on server side
