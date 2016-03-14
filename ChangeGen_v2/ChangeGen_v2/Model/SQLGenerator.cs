@@ -14,14 +14,18 @@ namespace ChangeGen_v2
         public static void StartGenerator(ServerConnectionCredentials serverCreds, SQLGeneratorParameters sqlGenParams,
             CancellationToken cancelToken)
         {
-            var instance = GetSqlInstanceNameFromService(serverCreds.Ip, serverCreds.Username, serverCreds.Password);
+
+                var instance = GetSqlInstanceNameFromService(serverCreds.Ip, serverCreds.Username, serverCreds.Password);
+
 
             var builder = new SqlConnectionStringBuilder
             {
-                DataSource = serverCreds.Ip + "\\" + instance,
+                DataSource = serverCreds.Ip +",1433" + "\\" + instance,
+                NetworkLibrary = "DBMSSOCN",
                 UserID = serverCreds.Username,
                 Password = serverCreds.Password,
-                IntegratedSecurity = true
+                IntegratedSecurity = true,
+                InitialCatalog = sqlGenParams.DBName
             };
 
             using (var connection = new SqlConnection(builder.ConnectionString))
@@ -32,48 +36,64 @@ namespace ChangeGen_v2
                 }
                 catch(SqlException e)
                 {
-                    Logger.LogError("Unable to open SQL connection.",serverCreds.Ip,e);
+                    Logger.LogError("Unable to open SQL connection to instance " + instance + ".",serverCreds.Ip,e);
                     throw;
                 }
                 
 
-                CreateTable(connection, sqlGenParams.DBName);
-                AddEntries(connection,sqlGenParams.RowsToInsert,sqlGenParams.DBName,cancelToken);
+                CreateTable(connection);
+                AddEntries(connection, sqlGenParams.RowsToInsert, cancelToken);
             }
         }
 
         private static string GetSqlInstanceNameFromService(string hostname, string username, string password)
         {
             var instanceName = string.Empty;
-            try
-            {
+            //try
+            //{
                 var connection = new ConnectionOptions
                 {
                     Username = username,
                     Password = password,
-                    //Authority = "ntlmdomain:";
+                    Authority = "ntlmdomain:"
                 };
 
-                var scope = new ManagementScope(String.Format("\\\\{0}\\root\\CIMV2", hostname), connection);
 
+
+            var scope = new ManagementScope(String.Format("\\\\{0}\\root\\CIMV2", hostname), connection);
+
+            try
+            {
                 scope.Connect();
+            }
+            catch (UnauthorizedAccessException e)
+            {
+                Logger.LogError("Unable to connect to WMI.", hostname, e);
+                throw;
+            }
+
 
                 var query = new ObjectQuery("SELECT * FROM Win32_Service");
                 var searcher = new ManagementObjectSearcher(scope, query);
 
                 foreach (ManagementObject wmiObject in searcher.Get())
                 {
-                    if (wmiObject["Name"].ToString().Contains("MSSQL"))
+                    //if (wmiObject["Name"].ToString().Contains("MSSQL$") || wmiObject["Name"].ToString().Contains("MSSQLSERVER"))
+                    //{
+                    //    instanceName = GetInstanceNameFromServiceName(wmiObject["Name"].ToString());
+                    //}
+                    if (wmiObject["Caption"].ToString().Contains("SQL Server ("))
                     {
-                        instanceName = GetInstanceNameFromServiceName(wmiObject["Name"].ToString());
+                        var servicename = wmiObject["Caption"].ToString();
+                        instanceName = servicename.Substring(servicename.IndexOf('(') + 1,
+                            servicename.Length - servicename.IndexOf('(') - 2);
                     }
-
                 }
-            }
-            catch (Exception e)
-            {
-                Logger.LogError("SQL Service not found on the server.", hostname, e);
-            }
+            //}
+            //catch (Exception e)
+            //{
+            //    Logger.LogError("SQL Service not found on the server.", hostname, e);
+            //}
 
             return instanceName;
         }
@@ -117,7 +137,7 @@ namespace ChangeGen_v2
             //}
         }
 
-        static void CreateTable(SqlConnection connection, string dbName)
+        static void CreateTable(SqlConnection connection)
         {
             //SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
             //builder.DataSource = hostname + "\\" + instance;
@@ -136,7 +156,7 @@ namespace ChangeGen_v2
             using (
                 var command =
                     new SqlCommand(
-                        "CREATE TABLE " + dbName + ".GeneratedTable (Q TEXT, W TEXT, E TEXT, R TEXT, T TEXT, Y TEXT, U TEXT, I TEXT, O TEXT, P TEXT)",
+                        "CREATE TABLE GeneratedTable (Q TEXT, W TEXT, E TEXT, R TEXT, T TEXT, Y TEXT, U TEXT, I TEXT, O TEXT, P TEXT)",
                         connection))
             {
                 command.ExecuteNonQuery();
@@ -149,7 +169,7 @@ namespace ChangeGen_v2
             //}
         }
 
-        static void AddEntries(SqlConnection connection, int rowsToAdd, string dbName, CancellationToken token)
+        static void AddEntries(SqlConnection connection, int rowsToAdd, CancellationToken token)
         {
             var stringLength = new Random();
             for (int i = 0; i < rowsToAdd; i++)
@@ -157,19 +177,19 @@ namespace ChangeGen_v2
                 using (
                     SqlCommand command =
                         new SqlCommand(
-                            "INSERT INTO "+dbName+".GeneratedTable VALUES(@Q, @W, @E, @R, @T, @Y, @U, @I, @O, @P)",
+                            "INSERT INTO GeneratedTable VALUES(@Q, @W, @E, @R, @T, @Y, @U, @I, @O, @P)",
                             connection))
                 {
-                    command.Parameters.Add(new SqlParameter("Q", HelperMethods.RandomString(stringLength.Next(0,1000))));
-                    command.Parameters.Add(new SqlParameter("W", HelperMethods.RandomString(stringLength.Next(0, 1000))));
-                    command.Parameters.Add(new SqlParameter("E", HelperMethods.RandomString(stringLength.Next(0, 1000))));
-                    command.Parameters.Add(new SqlParameter("R", HelperMethods.RandomString(stringLength.Next(0, 1000))));
-                    command.Parameters.Add(new SqlParameter("T", HelperMethods.RandomString(stringLength.Next(0, 1000))));
-                    command.Parameters.Add(new SqlParameter("Y", HelperMethods.RandomString(stringLength.Next(0, 1000))));
-                    command.Parameters.Add(new SqlParameter("U", HelperMethods.RandomString(stringLength.Next(0, 1000))));
-                    command.Parameters.Add(new SqlParameter("I", HelperMethods.RandomString(stringLength.Next(0, 1000))));
-                    command.Parameters.Add(new SqlParameter("O", HelperMethods.RandomString(stringLength.Next(0, 1000))));
-                    command.Parameters.Add(new SqlParameter("P", HelperMethods.RandomString(stringLength.Next(0, 1000))));
+                    command.Parameters.Add(new SqlParameter("Q", HelperMethods.RandomString(stringLength.Next(0, 100))));
+                    command.Parameters.Add(new SqlParameter("W", HelperMethods.RandomString(stringLength.Next(0, 100))));
+                    command.Parameters.Add(new SqlParameter("E", HelperMethods.RandomString(stringLength.Next(0, 100))));
+                    command.Parameters.Add(new SqlParameter("R", HelperMethods.RandomString(stringLength.Next(0, 100))));
+                    command.Parameters.Add(new SqlParameter("T", HelperMethods.RandomString(stringLength.Next(0, 100))));
+                    command.Parameters.Add(new SqlParameter("Y", HelperMethods.RandomString(stringLength.Next(0, 100))));
+                    command.Parameters.Add(new SqlParameter("U", HelperMethods.RandomString(stringLength.Next(0, 100))));
+                    command.Parameters.Add(new SqlParameter("I", HelperMethods.RandomString(stringLength.Next(0, 100))));
+                    command.Parameters.Add(new SqlParameter("O", HelperMethods.RandomString(stringLength.Next(0, 100))));
+                    command.Parameters.Add(new SqlParameter("P", HelperMethods.RandomString(stringLength.Next(0, 100))));
                     command.ExecuteNonQuery();
                     }
                 if (token.IsCancellationRequested)

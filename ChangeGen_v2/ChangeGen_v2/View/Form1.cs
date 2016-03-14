@@ -643,16 +643,7 @@ namespace ChangeGen_v2
                 var prerequisitesForm = new SQLPrerequisites();
                 prerequisitesForm.Show();
             }
-
-
-            //if (!ExchangeGenWrapper.doNotShowExchangePrerequisites)
-            //{
-            //    var prerequisitesForm = new ExchangePrerequisites();
-            //    prerequisitesForm.Show();
-            //}
-
-
-            //  var messageSize = _mailSizeDictionary.FirstOrDefault(x => x.Value == cb_MailSize.SelectedItem.ToString()).Key;
+ 
 
             var rowsToInsert = Convert.ToInt32(tb_SQLAmountRows.Text);
 
@@ -829,6 +820,12 @@ namespace ChangeGen_v2
         private void tb_SQLCustomPassword_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Validator.TextBox_ValidatingEmpty(e, (TextBox)sender, errorProvider1);
+        }
+
+        private void lv_SQL_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            // Sort ListView by clicked column
+            _lvwColumnSorter.SortColumn(e, lv_SQL);
         }
     }
 }

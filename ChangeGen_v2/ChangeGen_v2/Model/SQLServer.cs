@@ -31,7 +31,11 @@ namespace ChangeGen_v2
             catch (SqlException)
             {
                 ServerGeneratorStatus = GeneratorStatus.Failed;
-            }      
+            }
+            catch (UnauthorizedAccessException)
+            {
+                ServerGeneratorStatus = GeneratorStatus.Failed;
+            }     
         }
     }
 }

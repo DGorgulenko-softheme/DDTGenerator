@@ -1156,6 +1156,7 @@
             this.lv_SQL.Size = new System.Drawing.Size(784, 379);
             this.lv_SQL.TabIndex = 57;
             this.lv_SQL.UseCompatibleStateImageBehavior = false;
+            this.lv_SQL.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lv_SQL_ColumnClick);
             // 
             // lbl_SelectMode
             // 

@@ -130,3 +130,4 @@ D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\obj\Debug\ChangeGen_v2.AddEx
 D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\obj\Debug\ChangeGen_v2.ExchangePrerequisites.resources
 D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\obj\Debug\ChangeGen_v2.AddSQLServerManually.resources
 D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\obj\Debug\ChangeGen_v2.SQLPrerequisites.resources
+D:\Git_repos\DDTGenerator\ChangeGen_v2\ChangeGen_v2\obj\Debug\ChangeGen_v2.csprojResolveAssemblyReference.cache
