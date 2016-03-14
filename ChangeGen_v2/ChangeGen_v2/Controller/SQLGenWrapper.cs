@@ -68,7 +68,7 @@ namespace ChangeGen_v2
 
                     Logger.Log("SQL generation has been canceled by user.", Logger.LogLevel.Info, sqlServer.ServerCredentials.Ip);
                     sqlServer.ServerGeneratorStatus = Server.GeneratorStatus.Stopped;
-                    sqlServer.Cts.Cancel();
+                    sqlServer.Cts?.Cancel();
                 }
             }
         }

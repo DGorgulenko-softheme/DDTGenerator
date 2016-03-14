@@ -58,6 +58,7 @@ namespace ChangeGen_v2
         // Cancel DDT for selected server
         public static void StopDdt(ListView listview, List<Server> serversList)
         {
+
             var selectedServers = listview.Items.Cast<ListViewItem>().Where(item => item.Checked).ToList();
 
             foreach (var server in selectedServers)
@@ -68,7 +69,7 @@ namespace ChangeGen_v2
 
                     Logger.Log("Data generation has been canceled by user.", Logger.LogLevel.Info, agent.ServerCredentials.Ip);
                     agent.ServerGeneratorStatus = Server.GeneratorStatus.Stopped;
-                    agent.Cts.Cancel();
+                    agent.Cts?.Cancel();
                 }
             }
         }
