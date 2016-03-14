@@ -38,6 +38,36 @@ namespace ChangeGen_v2
             
         }
 
+        public static void SQLServersToCSV(this List<SQLServer> serverList, string filePath)
+        {
+            var sb = new StringBuilder();
+
+            sb.Append("IP,Username,Password");
+
+            sb.AppendLine();
+            if (serverList == null)
+            {
+                MessageBox.Show("There are no servers to export!", "Export Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            foreach (var server in serverList)
+            {
+                sb.Append(server.ServerCredentials.Ip + "," + server.ServerCredentials.Username + "," +
+                          server.ServerCredentials.Password);
+
+                sb.AppendLine();
+            }
+            try
+            {
+                File.WriteAllText(filePath, sb.ToString());
+            }
+            catch (IOException e)
+            {
+                MessageBox.Show(e.Message, "IO Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
         public static void ExchangeServersToCSV(this List<ExchangeServer> serverList, string filePath)
         {
             var sb = new StringBuilder();
@@ -85,6 +115,31 @@ namespace ChangeGen_v2
                             var values = line.Split(',');
 
                             ServerWrapper.AddServerManually(values[0], values[1], values[2]);
+                        }
+                    }
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    MessageBox.Show("Incorrect format of CSV File.\nPlease make sure that it has following format:\n{Ip,Userame,Password}", "CSV Import Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        public static void CSVtoSQLServersList(string filePath)
+        {
+            using (var sr = new StreamReader(filePath))
+            {
+                sr.ReadLine(); // to skip the line with headers
+                try
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        var line = sr.ReadLine();
+                        if (line != null)
+                        {
+                            var values = line.Split(',');
+
+                            ServerWrapper.AddSQLServerManually(values[0], values[1], values[2]);
                         }
                     }
                 }

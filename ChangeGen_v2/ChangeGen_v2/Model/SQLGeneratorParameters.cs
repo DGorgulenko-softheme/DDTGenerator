@@ -14,6 +14,9 @@ namespace ChangeGen_v2
         [DataMember(Name = "RowsToInsertMember")]
         public int RowsToInsert { get; set; }
 
+        [DataMember(Name = "DBNameMember")]
+        public string DBName { get; set; }
+
         public void SerizalizeSQLParamsToFile()
         {
             var dcs = new DataContractSerializer(typeof(SQLGeneratorParameters));

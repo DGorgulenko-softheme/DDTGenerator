@@ -162,6 +162,23 @@ namespace ChangeGen_v2
 
         private void btn_startDDT_Click(object sender, EventArgs e)
         {
+            var failedValidation = false;
+            var textBoxValidate = new List<TextBox> {tb_Size, tb_Path, tb_Compression, tb_Interval};
+
+            foreach (var textBox in textBoxValidate)
+            {
+                if (string.IsNullOrWhiteSpace(textBox.Text))
+                {
+                    errorProvider1.SetError(textBox,"Field cannot be empty");
+                    failedValidation = true;
+                }
+            }
+
+            if (failedValidation)
+                return;
+
+
+
             _ddtParameters = new DdtParameters()
             {
                 Filesize = Convert.ToInt32(tb_Size.Text), Compression = Convert.ToInt32(tb_Compression.Text), Interval = Convert.ToInt32(tb_Interval.Text), Filepath = tb_Path.Text
@@ -270,7 +287,8 @@ namespace ChangeGen_v2
 
             if (sqlParams != null)
             {
-                tb_Size.Text = sqlParams.RowsToInsert.ToString();
+                tb_dbName.Text = sqlParams.DBName;
+                tb_SQLAmountRows.Text = sqlParams.RowsToInsert.ToString();
             }
         }
 
@@ -394,6 +412,7 @@ namespace ChangeGen_v2
             // Stop DDT for selected servers
             ExchangeGenWrapper.StopExchangeGenerator(lv_ExchangeServers, ServerWrapper.ExchangeServersList);
 
+
             // Update ListView
             ServerWrapper.UpdateExchangeListView(lv_ExchangeServers, lbl_exchangeGenerationRunningValue);
         }
@@ -464,22 +483,6 @@ namespace ChangeGen_v2
             tb_customUsername.Enabled = cb_UseCustomCredentials.Checked;
             tb_customPassword.Enabled = cb_UseCustomCredentials.Checked;
             btn_StartDDT.Enabled = !cb_UseCustomCredentials.Checked;
-        }
-
-        private void UpdateStartDdtButtonState()
-        {
-            btn_StartDDT.Enabled = !string.IsNullOrWhiteSpace(tb_customUsername.Text) &&
-                                   !string.IsNullOrWhiteSpace(tb_customPassword.Text);
-        }
-
-        private void tb_customUsername_TextChanged(object sender, EventArgs e)
-        {
-            UpdateStartDdtButtonState();
-        }
-
-        private void tb_customPassword_TextChanged(object sender, EventArgs e)
-        {
-            UpdateStartDdtButtonState();
         }
 
         private void tb_customUsername_Validated(object sender, EventArgs e)
@@ -558,27 +561,7 @@ namespace ChangeGen_v2
         {
             Validator.TextBox_ValidatingEmpty(e, (TextBox)sender, errorProvider1);
         }
-
-        private void tb_exchangeCustomUsername_TextChanged(object sender, EventArgs e)
-        {
-            UpdateStartExchangeButtonState();
-        }
-
-        private void tb_exchangeCustomDomain_TextChanged(object sender, EventArgs e)
-        {
-            UpdateStartExchangeButtonState();
-        }
-
-        private void tb_exchangeCustomPassword_TextChanged(object sender, EventArgs e)
-        {
-            UpdateStartExchangeButtonState();
-        }
-        private void UpdateStartExchangeButtonState()
-        {
-            btn_startExchangeGeneration.Enabled = !string.IsNullOrWhiteSpace(tb_exchangeCustomUsername.Text) &&
-                                                  !string.IsNullOrWhiteSpace(tb_exchangeCustomDomain.Text) &&
-                                                  !string.IsNullOrWhiteSpace(tb_exchangeCustomPassword.Text);
-        }
+       
 
         private void btn_ExchangeImportCSV_Click(object sender, EventArgs e)
         {
@@ -640,6 +623,28 @@ namespace ChangeGen_v2
 
         private void btn_StartSQLGeneration_Click(object sender, EventArgs e)
         {
+            var failedValidation = false;
+            var textBoxValidate = new List<TextBox> { tb_dbName, tb_SQLAmountRows };
+
+            foreach (var textBox in textBoxValidate)
+            {
+                if (string.IsNullOrWhiteSpace(textBox.Text))
+                {
+                    errorProvider1.SetError(textBox, "Field cannot be empty");
+                    failedValidation = true;
+                }
+            }
+
+            if (failedValidation)
+                return;
+
+            if (!SQLGenWrapper.doNotShowSQLPrerequisites)
+            {
+                var prerequisitesForm = new SQLPrerequisites();
+                prerequisitesForm.Show();
+            }
+
+
             //if (!ExchangeGenWrapper.doNotShowExchangePrerequisites)
             //{
             //    var prerequisitesForm = new ExchangePrerequisites();
@@ -647,7 +652,7 @@ namespace ChangeGen_v2
             //}
 
 
-          //  var messageSize = _mailSizeDictionary.FirstOrDefault(x => x.Value == cb_MailSize.SelectedItem.ToString()).Key;
+            //  var messageSize = _mailSizeDictionary.FirstOrDefault(x => x.Value == cb_MailSize.SelectedItem.ToString()).Key;
 
             var rowsToInsert = Convert.ToInt32(tb_SQLAmountRows.Text);
 
@@ -655,18 +660,175 @@ namespace ChangeGen_v2
 
             if (cb_UseCustomCredsSQL.Checked)
             {
-                SQLGenWrapper.StartSQLGenerator(lv_SQL, ServerWrapper.SQLServersList, rowsToInsert, tb_exchangeCustomUsername.Text, tb_exchangeCustomPassword.Text);
+                SQLGenWrapper.StartSQLGenerator(lv_SQL, ServerWrapper.SQLServersList, tb_dbName.Text, rowsToInsert, tb_SQLCustomUsername.Text, tb_SQLCustomPassword.Text);
             }
             else
             {
-                SQLGenWrapper.StartSQLGenerator(lv_SQL, ServerWrapper.SQLServersList, rowsToInsert);
+                SQLGenWrapper.StartSQLGenerator(lv_SQL, ServerWrapper.SQLServersList, tb_dbName.Text, rowsToInsert);
             }
 
             // Update ListView
             ServerWrapper.UpdateSQLListView(lv_SQL, lbl_SQLGenerationRunningvalue);
 
-            var sqlParmsToSerialize = new SQLGeneratorParameters() { RowsToInsert = rowsToInsert };
+            var sqlParmsToSerialize = new SQLGeneratorParameters() { RowsToInsert = rowsToInsert, DBName = tb_dbName.Text};
             sqlParmsToSerialize.SerizalizeSQLParamsToFile();
+        }
+
+        private void btn_AddSQLManually_Click(object sender, EventArgs e)
+        {
+            var addSQLServerManuallyForm = new AddSQLServerManually();
+            addSQLServerManuallyForm.Show();
+        }
+
+        private void cb_SelectAllSQL_CheckedChanged(object sender, EventArgs e)
+        {
+            ControlsImplementation.SelectUnselectAll(lv_SQL, cb_SelectAllSQL.Checked);
+        }
+
+        private void btn_RemoveSQLManually_Click(object sender, EventArgs e)
+        {
+            ServerWrapper.DeleteSQLServerManually(lv_SQL);
+        }
+
+        private void btn_ExportCSVSQL_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog()
+            {
+                Filter = "CSV File|*.csv",
+                Title = "Save a CSV File",
+                FileName = "SQLServers.csv"
+            };
+            saveFileDialog1.ShowDialog();
+
+            if (saveFileDialog1.FileName != "")
+            {
+                ServerWrapper.SQLServersList.SQLServersToCSV(saveFileDialog1.FileName);
+            }
+        }
+
+        private void btn_ImportCSVSQL_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "CSV File|*.csv";
+            openFileDialog1.Title = "Open a CSV File";
+            openFileDialog1.ShowDialog();
+
+            if (openFileDialog1.FileName != "")
+            {
+                CSV.CSVtoSQLServersList(openFileDialog1.FileName);
+            }
+        }
+
+        private void btn_StopSQLGeneration_Click(object sender, EventArgs e)
+        {
+            // Stop SQLGeneration for selected servers
+            SQLGenWrapper.StopSQLGenerator(lv_SQL,ServerWrapper.SQLServersList);
+
+            // Update ListView
+            ServerWrapper.UpdateSQLListView(lv_SQL,lbl_SQLGenerationRunningvalue);
+        }
+
+        private void cb_UseCustomCredsSQL_CheckedChanged(object sender, EventArgs e)
+        {
+            lbl_SQLCustomUsername.Enabled = cb_UseCustomCredsSQL.Checked;
+            lbl_SQLCustomPassword.Enabled = cb_UseCustomCredsSQL.Checked;
+            tb_SQLCustomUsername.Enabled = cb_UseCustomCredsSQL.Checked;
+            tb_SQLCustomPassword.Enabled = cb_UseCustomCredsSQL.Checked;
+            btn_StartSQLGeneration.Enabled = !cb_UseCustomCredsSQL.Checked;
+        }
+
+        private void tb_customUsername_TextChanged(object sender, EventArgs e)
+        {
+            UpdateStartDdtButtonState();
+        }
+
+        private void tb_customPassword_TextChanged(object sender, EventArgs e)
+        {
+            UpdateStartDdtButtonState();
+        }
+
+        private void tb_exchangeCustomUsername_TextChanged(object sender, EventArgs e)
+        {
+            UpdateStartExchangeButtonState();
+        }
+
+        private void tb_exchangeCustomDomain_TextChanged(object sender, EventArgs e)
+        {
+            UpdateStartExchangeButtonState();
+        }
+
+        private void tb_exchangeCustomPassword_TextChanged(object sender, EventArgs e)
+        {
+            UpdateStartExchangeButtonState();
+        }
+
+        private void tb_SQLCustomUsername_TextChanged(object sender, EventArgs e)
+        {
+            UpdateStartSQLButtonState();
+        }
+
+        private void tb_SQLCustomPassword_TextChanged(object sender, EventArgs e)
+        {
+            UpdateStartSQLButtonState();
+        }
+
+        private void UpdateStartExchangeButtonState()
+        {
+            btn_startExchangeGeneration.Enabled = !string.IsNullOrWhiteSpace(tb_exchangeCustomUsername.Text) &&
+                                                  !string.IsNullOrWhiteSpace(tb_exchangeCustomDomain.Text) &&
+                                                  !string.IsNullOrWhiteSpace(tb_exchangeCustomPassword.Text);
+        }
+
+        private void UpdateStartDdtButtonState()
+        {
+            btn_StartDDT.Enabled = !string.IsNullOrWhiteSpace(tb_customUsername.Text) &&
+                                   !string.IsNullOrWhiteSpace(tb_customPassword.Text);
+        }
+
+        private void UpdateStartSQLButtonState()
+        {
+            btn_StartSQLGeneration.Enabled = !string.IsNullOrWhiteSpace(tb_SQLCustomUsername.Text) &&
+                                             !string.IsNullOrWhiteSpace(tb_SQLCustomPassword.Text);
+        }
+
+        private void tb_dbName_Validated(object sender, EventArgs e)
+        {
+            Validator.TextBox_Validated((TextBox)sender,errorProvider1);
+        }
+
+        private void tb_dbName_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validator.TextBox_ValidatingEmpty(e,(TextBox)sender,errorProvider1);
+        }
+
+        private void tb_SQLAmountRows_Validated(object sender, EventArgs e)
+        {
+            Validator.TextBox_Validated((TextBox)sender, errorProvider1);
+        }
+
+        private void tb_SQLAmountRows_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validator.TextBox_ValidatingNumeric(e, (TextBox)sender, errorProvider1);
+        }
+
+        private void tb_SQLCustomUsername_Validated(object sender, EventArgs e)
+        {
+            Validator.TextBox_Validated((TextBox)sender, errorProvider1);
+        }
+
+        private void tb_SQLCustomUsername_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validator.TextBox_ValidatingEmpty(e, (TextBox)sender, errorProvider1);
+        }
+
+        private void tb_SQLCustomPassword_Validated(object sender, EventArgs e)
+        {
+            Validator.TextBox_Validated((TextBox)sender, errorProvider1);
+        }
+
+        private void tb_SQLCustomPassword_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Validator.TextBox_ValidatingEmpty(e, (TextBox)sender, errorProvider1);
         }
     }
 }

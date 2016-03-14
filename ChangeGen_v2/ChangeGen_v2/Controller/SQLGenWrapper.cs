@@ -12,7 +12,7 @@ namespace ChangeGen_v2
     {
         public static bool doNotShowSQLPrerequisites;
         // This method used to initiate start of DDT on remote machine
-        public static void StartSQLGenerator(ListView listview, List<SQLServer> serversList, int rowsToInsert)
+        public static void StartSQLGenerator(ListView listview, List<SQLServer> serversList, string dbName, int rowsToInsert)
         {
             var selectedServers = listview.Items.Cast<ListViewItem>().Where(item => item.Checked).ToList(); // Creating list of selected servers
 
@@ -29,6 +29,7 @@ namespace ChangeGen_v2
                     }
 
                     serversList[y].ServerGeneratorStatus = Server.GeneratorStatus.Running;
+                    serversList[y].SqlGeneratorParameters.DBName = dbName;
                     serversList[y].SqlGeneratorParameters.RowsToInsert = rowsToInsert;
                     serversList[y].Cts = new CancellationTokenSource();
                     serversList[y].Task = new Task(() => serversList[index].StartSQLGenerator());
@@ -37,7 +38,7 @@ namespace ChangeGen_v2
             }
         }
 
-        public static void StartSQLGenerator(ListView listview, List<SQLServer> serversList,
+        public static void StartSQLGenerator(ListView listview, List<SQLServer> serversList, string dbName,
             int rowsToInser, string username, string password)
         {
             var selectedServers = listview.Items.Cast<ListViewItem>().Where(item => item.Checked).ToList(); // Creating list of selected servers
@@ -53,7 +54,7 @@ namespace ChangeGen_v2
                 }
             }
 
-            StartSQLGenerator(listview, serversList, rowsToInser);
+            StartSQLGenerator(listview, serversList, dbName, rowsToInser);
         }
 
         // Cancel DDT for selected server

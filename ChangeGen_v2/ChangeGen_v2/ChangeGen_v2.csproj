@@ -150,6 +150,12 @@
     <Compile Include="View\AddServerManually.Designer.cs">
       <DependentUpon>AddServerManually.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\AddSQLServerManually.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AddSQLServerManually.Designer.cs">
+      <DependentUpon>AddSQLServerManually.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\ExchangePrerequisites.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +174,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\Server.cs" />
+    <Compile Include="View\SQLPrerequisites.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\SQLPrerequisites.Designer.cs">
+      <DependentUpon>SQLPrerequisites.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Validator.cs" />
     <EmbeddedResource Include="View\AboutBox1.resx">
       <DependentUpon>AboutBox1.cs</DependentUpon>
@@ -177,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\AddServerManually.resx">
       <DependentUpon>AddServerManually.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\AddSQLServerManually.resx">
+      <DependentUpon>AddSQLServerManually.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\ExchangePrerequisites.resx">
       <DependentUpon>ExchangePrerequisites.cs</DependentUpon>
@@ -194,6 +209,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="View\SQLPrerequisites.resx">
+      <DependentUpon>SQLPrerequisites.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

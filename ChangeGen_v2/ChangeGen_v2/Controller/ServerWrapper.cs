@@ -29,6 +29,16 @@ namespace ChangeGen_v2
                 ServersList.Add(new Server(hostname, username, password));
         }
 
+        public static void AddSQLServerManually(string hostname, string username, string password)
+        {
+            if (SQLServersList == null)
+                SQLServersList = new List<SQLServer>();
+            var alreadyAdded = SQLServersList.Any(server => server.ServerCredentials.Ip == hostname);
+
+            if (!alreadyAdded)
+                SQLServersList.Add(new SQLServer(hostname, username, password));
+        }
+
         public static void AddExchangeServerManually(string ip, string domain, string username, string password)
         {
             if (ExchangeServersList == null)
@@ -64,6 +74,20 @@ namespace ChangeGen_v2
                     ExchangeServersList.Find(server => server.ServerCredentials.Ip == selectedServer.SubItems[1].Text);
                 sameServerInList.Cts?.Cancel();
                 ExchangeServersList.Remove(sameServerInList);
+                selectedServer.Remove();
+            }
+        }
+
+        public static void DeleteSQLServerManually(ListView listView)
+        {
+            var selectedServers = listView.Items.Cast<ListViewItem>().Where(item => item.Checked).ToList(); // Creating list of selected servers
+
+            foreach (var selectedServer in selectedServers)
+            {
+                var sameServerInList =
+                    SQLServersList.Find(server => server.ServerCredentials.Ip == selectedServer.SubItems[1].Text);
+                sameServerInList.Cts?.Cancel();
+                SQLServersList.Remove(sameServerInList);
                 selectedServer.Remove();
             }
         }
@@ -137,7 +161,8 @@ namespace ChangeGen_v2
                         {
                             isNew = false;
                             lvServer.SubItems[3].Text = server.ServerGeneratorStatus.ToString();   // Generator Status
-                            lvServer.SubItems[4].Text = server.SqlGeneratorParameters?.RowsToInsert.ToString() ?? ""; //Mail Size
+                            lvServer.SubItems[4].Text = server.SqlGeneratorParameters?.DBName ?? "";
+                            lvServer.SubItems[5].Text = server.SqlGeneratorParameters?.RowsToInsert.ToString() ?? "";
                         }
                     }
                     if (isNew)
@@ -176,6 +201,7 @@ namespace ChangeGen_v2
             lviNewServer.SubItems.Add(server.ServerCredentials.Ip);
             lviNewServer.SubItems.Add(server.Repository);
             lviNewServer.SubItems.Add(server.ServerGeneratorStatus.ToString());
+            lviNewServer.SubItems.Add(server.SqlGeneratorParameters?.DBName ?? "");
             lviNewServer.SubItems.Add(server.SqlGeneratorParameters?.RowsToInsert.ToString() ?? "");
             listView.Items.Add(lviNewServer);
         }
@@ -237,6 +263,7 @@ namespace ChangeGen_v2
             listview.Columns.Add("IP", 100);
             listview.Columns.Add("Repository", 100);
             listview.Columns.Add("Generation Status", 100);
+            listview.Columns.Add("DB Name", 100);
             listview.Columns.Add("Rows to Insert", 100);
             listview.CheckBoxes = true;
         }
