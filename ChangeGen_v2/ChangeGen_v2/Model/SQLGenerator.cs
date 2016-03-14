@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Management;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -69,6 +70,11 @@ namespace ChangeGen_v2
             catch (UnauthorizedAccessException e)
             {
                 Logger.LogError("Unable to connect to WMI.", hostname, e);
+                throw;
+            }
+            catch (COMException e)
+            {
+                Logger.LogError("Unable to connect to WMI. RPC server is unavailable", hostname, e);
                 throw;
             }
 

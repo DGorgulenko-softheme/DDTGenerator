@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -35,7 +36,11 @@ namespace ChangeGen_v2
             catch (UnauthorizedAccessException)
             {
                 ServerGeneratorStatus = GeneratorStatus.Failed;
-            }     
+            }
+            catch (COMException)
+            {
+                ServerGeneratorStatus = GeneratorStatus.Failed;
+            }    
         }
     }
 }
