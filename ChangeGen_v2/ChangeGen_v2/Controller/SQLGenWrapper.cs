@@ -6,11 +6,11 @@ using System.Windows.Forms;
 
 namespace ChangeGen_v2
 {
-    internal static class ExchangeGenWrapper
+    internal static class SqlGenWrapper
     {
-        public static bool DoNotShowExchangePrerequisites;
+        public static bool DoNotShowSqlPrerequisites;
         // This method used to initiate start of DDT on remote machine
-        public static void StartExchangeGenerator(ListView listview, List<ExchangeServer> serversList, ExchangeGeneratorParameters.MailSize messageSize)
+        public static void StartSqlGenerator(ListView listview, List<SqlServer> serversList, string dbName, int rowsToInsert)
         {
             var selectedServers = listview.Items.Cast<ListViewItem>().Where(item => item.Checked).ToList(); // Creating list of selected servers
 
@@ -27,16 +27,17 @@ namespace ChangeGen_v2
                     }
 
                     serversList[y].ServerGeneratorStatus = Server.GeneratorStatus.Running;
-                    serversList[y].ExchangeGenParameters.MessageSize = messageSize;
+                    serversList[y].SqlGeneratorParameters.DbName = dbName;
+                    serversList[y].SqlGeneratorParameters.RowsToInsert = rowsToInsert;
                     serversList[y].Cts = new CancellationTokenSource();
-                    serversList[y].Task = new Task(() => serversList[index].StartExchangeGenerator());
+                    serversList[y].Task = new Task(() => serversList[index].StartSqlGenerator());
                     serversList[y].Task.Start();
                 }
             }
         }
 
-        public static void StartExchangeGenerator(ListView listview, List<ExchangeServer> serversList,
-            ExchangeGeneratorParameters.MailSize messageSize, string username, string domain, string password)
+        public static void StartSqlGenerator(ListView listview, List<SqlServer> serversList, string dbName,
+            int rowsToInser, string username, string password)
         {
             var selectedServers = listview.Items.Cast<ListViewItem>().Where(item => item.Checked).ToList(); // Creating list of selected servers
 
@@ -48,27 +49,26 @@ namespace ChangeGen_v2
 
                     t.ServerCredentials.Username = username;
                     t.ServerCredentials.Password = password;
-                    t.ExchangeGenParameters.Recipient = username + '@' + domain;
                 }
             }
 
-            StartExchangeGenerator(listview, serversList, messageSize);
+            StartSqlGenerator(listview, serversList, dbName, rowsToInser);
         }
 
         // Cancel DDT for selected server
-        public static void StopExchangeGenerator(ListView listview, List<ExchangeServer> serversList)
+        public static void StopSqlGenerator(ListView listview, List<SqlServer> serversList)
         {
             var selectedServers = listview.Items.Cast<ListViewItem>().Where(item => item.Checked).ToList();
 
             foreach (var server in selectedServers)
             {
-                foreach (var exchangeServer in serversList)
+                foreach (var sqlServer in serversList)
                 {
-                    if (server.SubItems[1].Text != exchangeServer.ServerCredentials.Ip) continue;
+                    if (server.SubItems[1].Text != sqlServer.ServerCredentials.Ip) continue;
 
-                    Logger.Log("Exchange generation has been canceled by user.",Logger.LogLevel.Info,exchangeServer.ServerCredentials.Ip);
-                    exchangeServer.ServerGeneratorStatus = Server.GeneratorStatus.Stopped;
-                    exchangeServer.Cts.Cancel();
+                    Logger.Log("SQL generation has been canceled by user.", Logger.LogLevel.Info, sqlServer.ServerCredentials.Ip);
+                    sqlServer.ServerGeneratorStatus = Server.GeneratorStatus.Stopped;
+                    sqlServer.Cts.Cancel();
                 }
             }
         }

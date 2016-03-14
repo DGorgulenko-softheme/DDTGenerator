@@ -1,14 +1,29 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ChangeGen_v2
 {
-    public partial class AddServerManually : Form
+    public partial class AddSQLServerManually : Form
     {
-        public AddServerManually()
+        public AddSQLServerManually()
         {
             InitializeComponent();
+        }
+
+        private void btn_Add_Click(object sender, EventArgs e)
+        {
+            ServerWrapper.AddSqlServerManually(tb_IP.Text,tb_UserName.Text,tb_Password.Text);
+            tb_IP.Clear();
+            tb_UserName.Clear();
+            tb_Password.Clear();
+            tb_IP.Focus();
         }
 
         private void tb_IP_Validated(object sender, EventArgs e)
@@ -41,25 +56,9 @@ namespace ChangeGen_v2
             Validator.TextBox_ValidatingEmpty(e, (TextBox)sender, errorProvider1);
         }
 
-        private void btn_Add_Click(object sender, EventArgs e)
-        {
-            ServerWrapper.AddServerManually(tb_IP.Text,tb_UserName.Text,tb_Password.Text);
-            tb_IP.Clear();
-            tb_UserName.Clear();
-            tb_Password.Clear();
-            tb_IP.Focus();
-        }
-
         private void tb_IP_TextChanged(object sender, EventArgs e)
         {
             UpdateAddButtonState();
-        }
-
-        private void UpdateAddButtonState()
-        {
-            this.btn_Add.Enabled = !string.IsNullOrWhiteSpace(tb_IP.Text) &&
-                                   !string.IsNullOrWhiteSpace(tb_UserName.Text) &&
-                                   !string.IsNullOrWhiteSpace(tb_Password.Text);
         }
 
         private void tb_UserName_TextChanged(object sender, EventArgs e)
@@ -72,19 +71,11 @@ namespace ChangeGen_v2
             UpdateAddButtonState();
         }
 
-        private void lbl_UserName_Click(object sender, EventArgs e)
+        private void UpdateAddButtonState()
         {
-
-        }
-
-        private void lbl_IP_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbl_Password_Click(object sender, EventArgs e)
-        {
-
+            this.btn_Add.Enabled = !string.IsNullOrWhiteSpace(tb_IP.Text) &&
+                                   !string.IsNullOrWhiteSpace(tb_UserName.Text) &&
+                                   !string.IsNullOrWhiteSpace(tb_Password.Text);
         }
     }
 }

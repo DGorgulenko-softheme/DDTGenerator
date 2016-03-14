@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Net;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
@@ -35,7 +34,7 @@ namespace ChangeGen_v2
             var email = new EmailMessage(service);
 
             email.ToRecipients.Add(genParameters.Recipient);            
-            email.Body = new MessageBody(RandomString((int)genParameters.MessageSize));
+            email.Body = new MessageBody(HelperMethods.RandomString((int)genParameters.MessageSize));
             email.Subject = "Exchange Generator (" + genParameters.MessageSize+")";
 
             var serviceRequestRetryCount = 0;
@@ -81,13 +80,7 @@ namespace ChangeGen_v2
             }                     
         }
 
-        private static string RandomString(int length)
-        {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            var random = new Random();
-            return new string(Enumerable.Repeat(chars, length)
-                .Select(s => s[random.Next(s.Length)]).ToArray());
-        }
+        
 
         private static bool OnValidationCallback(object sender, X509Certificate cert, X509Chain chain, SslPolicyErrors errors)
         {

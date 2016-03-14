@@ -6,9 +6,9 @@ using System.Windows.Forms;
 
 namespace ChangeGen_v2
 {
-    internal static class CSV
+    internal static class Csv
     {
-        public static void ServersToCSV(this List<Server> serverList, string filePath)
+        public static void ServersToCsv(this List<Server> serverList, string filePath)
         {
             var sb = new StringBuilder();
 
@@ -38,7 +38,37 @@ namespace ChangeGen_v2
             
         }
 
-        public static void ExchangeServersToCSV(this List<ExchangeServer> serverList, string filePath)
+        public static void SqlServersToCsv(this List<SqlServer> serverList, string filePath)
+        {
+            var sb = new StringBuilder();
+
+            sb.Append("IP,Username,Password");
+
+            sb.AppendLine();
+            if (serverList == null)
+            {
+                MessageBox.Show("There are no servers to export!", "Export Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            foreach (var server in serverList)
+            {
+                sb.Append(server.ServerCredentials.Ip + "," + server.ServerCredentials.Username + "," +
+                          server.ServerCredentials.Password);
+
+                sb.AppendLine();
+            }
+            try
+            {
+                File.WriteAllText(filePath, sb.ToString());
+            }
+            catch (IOException e)
+            {
+                MessageBox.Show(e.Message, "IO Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        public static void ExchangeServersToCsv(this List<ExchangeServer> serverList, string filePath)
         {
             var sb = new StringBuilder();
  
@@ -70,7 +100,7 @@ namespace ChangeGen_v2
             }
         }
 
-        public static void CSVtoServersList(string filePath)
+        public static void CsVtoServersList(string filePath)
         {
             using (var sr = new StreamReader(filePath))
             {
@@ -95,7 +125,32 @@ namespace ChangeGen_v2
             }
         }
 
-        public static void CSVtoExchangeServersList(string filePath)
+        public static void CsVtoSqlServersList(string filePath)
+        {
+            using (var sr = new StreamReader(filePath))
+            {
+                sr.ReadLine(); // to skip the line with headers
+                try
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        var line = sr.ReadLine();
+                        if (line != null)
+                        {
+                            var values = line.Split(',');
+
+                            ServerWrapper.AddSqlServerManually(values[0], values[1], values[2]);
+                        }
+                    }
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    MessageBox.Show("Incorrect format of CSV File.\nPlease make sure that it has following format:\n{Ip,Userame,Password}", "CSV Import Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        public static void CsVtoExchangeServersList(string filePath)
         {
             using (var sr = new StreamReader(filePath))
             {

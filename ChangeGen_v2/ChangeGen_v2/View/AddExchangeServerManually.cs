@@ -38,6 +38,7 @@ namespace ChangeGen_v2
             tb_UserName.Clear();
             tb_Password.Clear();
             tb_domain.Clear();
+            tb_IP.Focus();
         }
 
         private void UpdateAddButtonState()

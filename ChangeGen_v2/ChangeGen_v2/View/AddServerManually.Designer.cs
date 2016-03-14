@@ -90,6 +90,7 @@
             this.lbl_IP.Size = new System.Drawing.Size(17, 13);
             this.lbl_IP.TabIndex = 5;
             this.lbl_IP.Text = "IP";
+            this.lbl_IP.Click += new System.EventHandler(this.lbl_IP_Click);
             // 
             // lbl_UserName
             // 
@@ -99,6 +100,7 @@
             this.lbl_UserName.Size = new System.Drawing.Size(55, 13);
             this.lbl_UserName.TabIndex = 6;
             this.lbl_UserName.Text = "Username";
+            this.lbl_UserName.Click += new System.EventHandler(this.lbl_UserName_Click);
             // 
             // lbl_Password
             // 
@@ -108,6 +110,7 @@
             this.lbl_Password.Size = new System.Drawing.Size(53, 13);
             this.lbl_Password.TabIndex = 7;
             this.lbl_Password.Text = "Password";
+            this.lbl_Password.Click += new System.EventHandler(this.lbl_Password_Click);
             // 
             // errorProvider1
             // 

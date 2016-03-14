@@ -4,7 +4,7 @@ namespace ChangeGen_v2
 {
     internal class ExchangeServer : Server
     {
-        public ExchangeGeneratorParameters ExchangeGenParameters { get; private set; }
+        public ExchangeGeneratorParameters ExchangeGenParameters { get; }
         public ExchangeServer(string ip, string displayname, string repository, string username, string domain, string password) : base(ip, displayname, repository, username, password)
         {
             ServerCredentials.Domain = domain;
@@ -29,7 +29,7 @@ namespace ChangeGen_v2
             }
             catch (ServiceRequestException e)
             {
-                ServerGeneratorStatus = e.Message.Contains("401") ? GeneratorStatus.WrongCredentials : GeneratorStatus.Failed;             
+                ServerGeneratorStatus = e.Message.Contains("401") ? GeneratorStatus.WrongCredentials : GeneratorStatus.Failed;            
             }
             catch (ServiceResponseException)
             {
