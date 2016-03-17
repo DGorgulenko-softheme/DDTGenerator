@@ -1,26 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Management;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ChangeGen_v2
 {
     internal static class SqlGenerator
     {
-        public static void StartGenerator(ServerConnectionCredentials serverCreds, SqlGeneratorParameters sqlGenParams,
-            CancellationToken cancelToken)
+        private static Random _random;
+
+        private static readonly object Lock = new object();
+        public static void StartGenerator(SqlServer sqlServer)
         {
-            var instance = GetSqlInstanceNameFromService(serverCreds.Ip, serverCreds.Username, serverCreds.Password);
+            int rowsAdded = 0;
+            var instance = GetSqlInstanceNameFromService(sqlServer.ServerCredentials.Ip, sqlServer.ServerCredentials.Username, sqlServer.ServerCredentials.Password);
             var builder = new SqlConnectionStringBuilder
             {
-                DataSource = serverCreds.Ip +",1433" + "\\" + instance,
+                DataSource = sqlServer.ServerCredentials.Ip +",1433" + "\\" + instance,
                 NetworkLibrary = "DBMSSOCN",
-                UserID = serverCreds.Username,
-                Password = serverCreds.Password,
+                UserID = sqlServer.ServerCredentials.Username,
+                Password = sqlServer.ServerCredentials.Password,
                 IntegratedSecurity = true,
-                InitialCatalog = sqlGenParams.DbName
+                InitialCatalog = sqlServer.SqlGeneratorParameters.DbName
             };
 
             using (var connection = new SqlConnection(builder.ConnectionString))
@@ -31,10 +37,10 @@ namespace ChangeGen_v2
                 }
                 catch(SqlException e)
                 {
-                    Logger.LogError("Unable to open SQL connection to instance " + instance + ".",serverCreds.Ip,e);
+                    Logger.LogError("Unable to open SQL connection to instance " + instance + ".", sqlServer.ServerCredentials.Ip,e);
                     throw;
                 }
-                Logger.Log("Successfully connected to SQL server",Logger.LogLevel.Info,serverCreds.Ip);
+                Logger.Log("Successfully connected to SQL server",Logger.LogLevel.Info, sqlServer.ServerCredentials.Ip);
                 try
                 {
                     CreateTable(connection);
@@ -43,22 +49,46 @@ namespace ChangeGen_v2
                 {
                     if (!e.Message.Contains("There is already an object named"))
                     {
-                        Logger.LogError("Unable to create table.", serverCreds.Ip, e);
+                        Logger.LogError("Unable to create table.", sqlServer.ServerCredentials.Ip, e);
                         throw;
                     }
                 }
                 try
                 {
-                    AddEntries(connection, sqlGenParams.RowsToInsert, cancelToken);
+                    _random = new Random();
+
+                    Parallel.For(0, sqlServer.SqlGeneratorParameters.RowsToInsert, (action, state) =>
+                    {
+                        if (sqlServer.Cts.IsCancellationRequested)
+                        {
+                            state.Break();
+                        }
+                        var connection1 = new SqlConnection(builder.ConnectionString);
+                        connection1.Open();
+                        AddEntries(connection1, _random);
+                        connection1.Close();
+                        lock (Lock)
+                        {
+                            rowsAdded++;
+                        }
+
+                        UpdateProgress(sqlServer,rowsAdded,sqlServer.SqlGeneratorParameters.RowsToInsert);
+                    });
+                    sqlServer.Cts.Token.ThrowIfCancellationRequested();
                 }
                 catch (SqlException e)
                 {
-                    Logger.LogError("Unable to insert data to the SQL table.", serverCreds.Ip,e);
+                    Logger.LogError("Unable to insert data to the SQL table.", sqlServer.ServerCredentials.Ip,e);
                     throw;
                 }
 
-                Logger.Log("Successfully completed SQL generation", Logger.LogLevel.Info, serverCreds.Ip);
+                Logger.Log("Successfully completed SQL generation", Logger.LogLevel.Info, sqlServer.ServerCredentials.Ip);
             }
+        }
+
+        private static void UpdateProgress(SqlServer sqlServer, int rowsAdded, int rowsToAdd)
+        {
+            sqlServer.Progress = rowsAdded*100/rowsToAdd;
         }
 
         private static string GetSqlInstanceNameFromService(string hostname, string username, string password)
@@ -81,6 +111,20 @@ namespace ChangeGen_v2
                 {
                     scope.Connect();
                     break;
+                }
+                catch (ManagementException e)
+                {
+                    if (e.Message.Contains("local connections"))
+                    {
+                        scope = new ManagementScope(String.Format("\\\\{0}\\root\\CIMV2", hostname));
+                        scope.Connect();
+                        break;
+                    }
+                    else
+                    {
+                        Logger.LogError("Unable to connect to WMI.", hostname, e);
+                        throw;
+                    }
                 }
                 catch (UnauthorizedAccessException e)
                 {
@@ -129,31 +173,28 @@ namespace ChangeGen_v2
             }        
         }
 
-        private static void AddEntries(SqlConnection connection, int rowsToAdd, CancellationToken token)
+        private static void AddEntries(SqlConnection connection, Random random1)
         {
-            var stringLength = new Random();
-            for (int i = 0; i < rowsToAdd; i++)
+            using (
+                var command =
+                    new SqlCommand(
+                        "INSERT INTO GeneratedTable VALUES(@Q, @W, @E, @R, @T, @Y, @U, @I, @O, @P)",
+                        connection))
             {
-                using (
-                    SqlCommand command =
-                        new SqlCommand(
-                            "INSERT INTO GeneratedTable VALUES(@Q, @W, @E, @R, @T, @Y, @U, @I, @O, @P)",
-                            connection))
+                lock (Lock)
                 {
-                    command.Parameters.Add(new SqlParameter("Q", HelperMethods.RandomString(stringLength.Next(0, stringLength.Next(1, 100)))));
-                    command.Parameters.Add(new SqlParameter("W", HelperMethods.RandomString(stringLength.Next(0, stringLength.Next(1, 100)))));
-                    command.Parameters.Add(new SqlParameter("E", HelperMethods.RandomString(stringLength.Next(0, stringLength.Next(1, 100)))));
-                    command.Parameters.Add(new SqlParameter("R", HelperMethods.RandomString(stringLength.Next(0, stringLength.Next(1, 100)))));
-                    command.Parameters.Add(new SqlParameter("T", HelperMethods.RandomString(stringLength.Next(0, stringLength.Next(1, 100)))));
-                    command.Parameters.Add(new SqlParameter("Y", HelperMethods.RandomString(stringLength.Next(0, stringLength.Next(1, 100)))));
-                    command.Parameters.Add(new SqlParameter("U", HelperMethods.RandomString(stringLength.Next(0, stringLength.Next(1, 100)))));
-                    command.Parameters.Add(new SqlParameter("I", HelperMethods.RandomString(stringLength.Next(0, stringLength.Next(1, 100)))));
-                    command.Parameters.Add(new SqlParameter("O", HelperMethods.RandomString(stringLength.Next(0, stringLength.Next(1, 100)))));
-                    command.Parameters.Add(new SqlParameter("P", HelperMethods.RandomString(stringLength.Next(0, stringLength.Next(1, 100)))));
-                    command.ExecuteNonQuery();
-                    }
-                if (token.IsCancellationRequested)
-                    break;
+                    command.Parameters.Add(new SqlParameter("Q", HelperMethods.RandomString(random1.Next(0, 100), random1)));
+                    command.Parameters.Add(new SqlParameter("W", HelperMethods.RandomString(random1.Next(0, 100), random1)));
+                    command.Parameters.Add(new SqlParameter("E", HelperMethods.RandomString(random1.Next(0, 100), random1)));
+                    command.Parameters.Add(new SqlParameter("R", HelperMethods.RandomString(random1.Next(0, 100), random1)));
+                    command.Parameters.Add(new SqlParameter("T", HelperMethods.RandomString(random1.Next(0, 100), random1)));
+                    command.Parameters.Add(new SqlParameter("Y", HelperMethods.RandomString(random1.Next(0, 100), random1)));
+                    command.Parameters.Add(new SqlParameter("U", HelperMethods.RandomString(random1.Next(0, 100), random1)));
+                    command.Parameters.Add(new SqlParameter("I", HelperMethods.RandomString(random1.Next(0, 100), random1)));
+                    command.Parameters.Add(new SqlParameter("O", HelperMethods.RandomString(random1.Next(0, 100), random1)));
+                    command.Parameters.Add(new SqlParameter("P", HelperMethods.RandomString(random1.Next(0, 100), random1)));
+                }
+                command.ExecuteNonQuery();
             }
         }
 

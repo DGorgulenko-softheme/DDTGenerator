@@ -163,6 +163,7 @@ namespace ChangeGen_v2
                             lvServer.SubItems[3].Text = server.ServerGeneratorStatus.ToString();   // Generator Status
                             lvServer.SubItems[4].Text = server.SqlGeneratorParameters?.DbName ?? "";
                             lvServer.SubItems[5].Text = server.SqlGeneratorParameters?.RowsToInsert.ToString() ?? "";
+                            lvServer.SubItems[6].Text = server.Progress.ToString();
                         }
                     }
                     if (isNew)
@@ -203,6 +204,7 @@ namespace ChangeGen_v2
             lviNewServer.SubItems.Add(server.ServerGeneratorStatus.ToString());
             lviNewServer.SubItems.Add(server.SqlGeneratorParameters?.DbName ?? "");
             lviNewServer.SubItems.Add(server.SqlGeneratorParameters?.RowsToInsert.ToString() ?? "");
+            lviNewServer.SubItems.Add(server.Progress.ToString());
             listView.Items.Add(lviNewServer);
         }
 
@@ -265,6 +267,7 @@ namespace ChangeGen_v2
             listview.Columns.Add("Generation Status", 100);
             listview.Columns.Add("DB Name", 100);
             listview.Columns.Add("Rows to Insert", 100);
+            listview.Columns.Add("Progress (%)", 100);
             listview.CheckBoxes = true;
         }
     }

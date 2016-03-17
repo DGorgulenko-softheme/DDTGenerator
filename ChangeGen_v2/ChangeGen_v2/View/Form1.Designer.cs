@@ -901,7 +901,7 @@
             this.tabSQL.Padding = new System.Windows.Forms.Padding(3);
             this.tabSQL.Size = new System.Drawing.Size(944, 465);
             this.tabSQL.TabIndex = 2;
-            this.tabSQL.Text = "SQL";
+            this.tabSQL.Text = "SQL (Beta)";
             this.tabSQL.UseVisualStyleBackColor = true;
             // 
             // btn_RemoveSQLManually

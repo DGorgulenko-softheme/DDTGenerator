@@ -9,6 +9,7 @@ namespace ChangeGen_v2
 {
     internal static class ExchangeGenerator
     {
+        private static Random _random;
         public static void StartGenerator(ServerConnectionCredentials serverCredentials, ExchangeGeneratorParameters genParameters, CancellationToken token)
         {
             ServicePointManager.ServerCertificateValidationCallback = OnValidationCallback;
@@ -21,20 +22,22 @@ namespace ChangeGen_v2
 
             Logger.Log("Exchange data generation started for server: " + serverCredentials.Ip + " . With mail size: " + genParameters.MessageSize, Logger.LogLevel.Info, serverCredentials.Ip);
 
+            _random = new Random();
+
             while (true)
             {
-                SendMessages(service, genParameters, serverCredentials);
+                SendMessages(service, genParameters, serverCredentials, _random);
                 if (token.IsCancellationRequested)
                     break;
             }
         }
 
-        private static void SendMessages(ExchangeService service, ExchangeGeneratorParameters genParameters, ServerConnectionCredentials serverCreds)
+        private static void SendMessages(ExchangeService service, ExchangeGeneratorParameters genParameters, ServerConnectionCredentials serverCreds, Random random1)
         {
             var email = new EmailMessage(service);
 
             email.ToRecipients.Add(genParameters.Recipient);            
-            email.Body = new MessageBody(HelperMethods.RandomString((int)genParameters.MessageSize));
+            email.Body = new MessageBody(HelperMethods.RandomString((int)genParameters.MessageSize,random1));
             email.Subject = "Exchange Generator (" + genParameters.MessageSize+")";
 
             var serviceRequestRetryCount = 0;

@@ -638,14 +638,16 @@ namespace ChangeGen_v2
             if (failedValidation)
                 return;
 
+
+            var rowsToInsert = Convert.ToInt32(tb_SQLAmountRows.Text);
+            var sqlParmsToSerialize = new SqlGeneratorParameters() { RowsToInsert = rowsToInsert, DbName = tb_dbName.Text };
+            sqlParmsToSerialize.SerizalizeSqlParamsToFile();
+
             if (!SqlGenWrapper.DoNotShowSqlPrerequisites)
             {
                 var prerequisitesForm = new SQLPrerequisites();
                 prerequisitesForm.Show();
             }
- 
-
-            var rowsToInsert = Convert.ToInt32(tb_SQLAmountRows.Text);
 
             // Start SQL Generation for selected servers with specific parameters
 
@@ -660,9 +662,7 @@ namespace ChangeGen_v2
 
             // Update ListView
             ServerWrapper.UpdateSqlListView(lv_SQL, lbl_SQLGenerationRunningvalue);
-
-            var sqlParmsToSerialize = new SqlGeneratorParameters() { RowsToInsert = rowsToInsert, DbName = tb_dbName.Text};
-            sqlParmsToSerialize.SerizalizeSqlParamsToFile();
+     
         }
 
         private void btn_AddSQLManually_Click(object sender, EventArgs e)
