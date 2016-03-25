@@ -59,6 +59,7 @@ namespace ChangeGen_v2
                     {
                         if (sqlServer.Cts.IsCancellationRequested)
                         {
+                            sqlServer.ServerGeneratorStatus = Server.GeneratorStatus.Stopped;
                             state.Break();
                         }
                         var connection1 = new SqlConnection(builder.ConnectionString);
