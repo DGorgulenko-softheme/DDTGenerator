@@ -126,6 +126,8 @@
             this.rb_Core = new System.Windows.Forms.RadioButton();
             this.rb_Manually = new System.Windows.Forms.RadioButton();
             this.lbl_Loading = new System.Windows.Forms.Label();
+            this.cb_fillingGeneration = new System.Windows.Forms.CheckBox();
+            this.lbl_fillingGenerationDescription = new System.Windows.Forms.Label();
             this.gb_ddtparams.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabControl.SuspendLayout();
@@ -362,6 +364,8 @@
             // 
             // gb_ddtparams
             // 
+            this.gb_ddtparams.Controls.Add(this.lbl_fillingGenerationDescription);
+            this.gb_ddtparams.Controls.Add(this.cb_fillingGeneration);
             this.gb_ddtparams.Controls.Add(this.lbl_Size);
             this.gb_ddtparams.Controls.Add(this.tb_Size);
             this.gb_ddtparams.Controls.Add(this.lbl_Compression);
@@ -372,7 +376,7 @@
             this.gb_ddtparams.Controls.Add(this.tb_Interval);
             this.gb_ddtparams.Location = new System.Drawing.Point(794, 12);
             this.gb_ddtparams.Name = "gb_ddtparams";
-            this.gb_ddtparams.Size = new System.Drawing.Size(144, 192);
+            this.gb_ddtparams.Size = new System.Drawing.Size(144, 223);
             this.gb_ddtparams.TabIndex = 34;
             this.gb_ddtparams.TabStop = false;
             this.gb_ddtparams.Text = "Parameters";
@@ -388,7 +392,7 @@
             // lbl_ChangeRateLabel
             // 
             this.lbl_ChangeRateLabel.AutoSize = true;
-            this.lbl_ChangeRateLabel.Location = new System.Drawing.Point(804, 387);
+            this.lbl_ChangeRateLabel.Location = new System.Drawing.Point(804, 419);
             this.lbl_ChangeRateLabel.Name = "lbl_ChangeRateLabel";
             this.lbl_ChangeRateLabel.Size = new System.Drawing.Size(128, 13);
             this.lbl_ChangeRateLabel.TabIndex = 35;
@@ -398,7 +402,7 @@
             // 
             this.lbl_ChangeRateValue.AutoSize = true;
             this.lbl_ChangeRateValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_ChangeRateValue.Location = new System.Drawing.Point(846, 403);
+            this.lbl_ChangeRateValue.Location = new System.Drawing.Point(846, 435);
             this.lbl_ChangeRateValue.Name = "lbl_ChangeRateValue";
             this.lbl_ChangeRateValue.Size = new System.Drawing.Size(15, 15);
             this.lbl_ChangeRateValue.TabIndex = 36;
@@ -408,7 +412,7 @@
             // 
             this.lbl_totalAgentsRunningValue.AutoSize = true;
             this.lbl_totalAgentsRunningValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_totalAgentsRunningValue.Location = new System.Drawing.Point(846, 363);
+            this.lbl_totalAgentsRunningValue.Location = new System.Drawing.Point(846, 395);
             this.lbl_totalAgentsRunningValue.Name = "lbl_totalAgentsRunningValue";
             this.lbl_totalAgentsRunningValue.Size = new System.Drawing.Size(15, 15);
             this.lbl_totalAgentsRunningValue.TabIndex = 38;
@@ -417,7 +421,7 @@
             // lbl_totalAgentsRunninglabel
             // 
             this.lbl_totalAgentsRunninglabel.AutoSize = true;
-            this.lbl_totalAgentsRunninglabel.Location = new System.Drawing.Point(804, 350);
+            this.lbl_totalAgentsRunninglabel.Location = new System.Drawing.Point(804, 382);
             this.lbl_totalAgentsRunninglabel.Name = "lbl_totalAgentsRunninglabel";
             this.lbl_totalAgentsRunninglabel.Size = new System.Drawing.Size(115, 13);
             this.lbl_totalAgentsRunninglabel.TabIndex = 37;
@@ -509,7 +513,7 @@
             this.gb_customCredentials.Controls.Add(this.lbl_customUserName);
             this.gb_customCredentials.Controls.Add(this.tb_customPassword);
             this.gb_customCredentials.Controls.Add(this.tb_customUsername);
-            this.gb_customCredentials.Location = new System.Drawing.Point(794, 232);
+            this.gb_customCredentials.Location = new System.Drawing.Point(794, 264);
             this.gb_customCredentials.Name = "gb_customCredentials";
             this.gb_customCredentials.Size = new System.Drawing.Size(147, 100);
             this.gb_customCredentials.TabIndex = 45;
@@ -561,7 +565,7 @@
             // cb_UseCustomCredentials
             // 
             this.cb_UseCustomCredentials.AutoSize = true;
-            this.cb_UseCustomCredentials.Location = new System.Drawing.Point(794, 209);
+            this.cb_UseCustomCredentials.Location = new System.Drawing.Point(794, 241);
             this.cb_UseCustomCredentials.Name = "cb_UseCustomCredentials";
             this.cb_UseCustomCredentials.Size = new System.Drawing.Size(138, 17);
             this.cb_UseCustomCredentials.TabIndex = 44;
@@ -1205,6 +1209,25 @@
             this.lbl_Loading.Text = "Loading... Please wait... It can take several minutes...";
             this.lbl_Loading.Visible = false;
             // 
+            // cb_fillingGeneration
+            // 
+            this.cb_fillingGeneration.AutoSize = true;
+            this.cb_fillingGeneration.Location = new System.Drawing.Point(6, 179);
+            this.cb_fillingGeneration.Name = "cb_fillingGeneration";
+            this.cb_fillingGeneration.Size = new System.Drawing.Size(109, 17);
+            this.cb_fillingGeneration.TabIndex = 21;
+            this.cb_fillingGeneration.Text = "Filling generation*";
+            this.cb_fillingGeneration.UseVisualStyleBackColor = true;
+            // 
+            // lbl_fillingGenerationDescription
+            // 
+            this.lbl_fillingGenerationDescription.AutoSize = true;
+            this.lbl_fillingGenerationDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_fillingGenerationDescription.Location = new System.Drawing.Point(7, 195);
+            this.lbl_fillingGenerationDescription.Name = "lbl_fillingGenerationDescription";
+            this.lbl_fillingGenerationDescription.Size = new System.Drawing.Size(0, 12);
+            this.lbl_fillingGenerationDescription.TabIndex = 22;
+            // 
             // Form1
             // 
             this.AcceptButton = this.btn_Connect;
@@ -1357,6 +1380,8 @@
         private System.Windows.Forms.ListView lv_SQL;
         private System.Windows.Forms.TextBox tb_dbName;
         private System.Windows.Forms.Label lbl_dbName;
+        private System.Windows.Forms.Label lbl_fillingGenerationDescription;
+        private System.Windows.Forms.CheckBox cb_fillingGeneration;
     }
 }
 

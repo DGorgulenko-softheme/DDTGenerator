@@ -39,6 +39,9 @@ namespace ChangeGen_v2
 
             lbl_MailSizeNote.Text =
                 "*Mail size value can impact\nCore repository compression.\nRecommended value is 'Small'.";
+
+            lbl_fillingGenerationDescription.Text =
+                "*Generated files will not be\ndeleted at the end of each cycle.";
         }
 
         private void AddItemsToCbMailSize()
@@ -182,7 +185,8 @@ namespace ChangeGen_v2
                 Filesize = Convert.ToInt32(tb_Size.Text),
                 Compression = Convert.ToInt32(tb_Compression.Text),
                 Interval = Convert.ToInt32(tb_Interval.Text),
-                Filepath = tb_Path.Text
+                Filepath = tb_Path.Text,
+                FillingGeneration = cb_fillingGeneration.Checked
             };
 
             _ddtParameters.SerizalizeDdtParamsToFile();

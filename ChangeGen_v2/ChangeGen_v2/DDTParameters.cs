@@ -18,6 +18,8 @@ namespace ChangeGen_v2
         [DataMember(Name = "IntervalMember")]
         public int Interval { get; set; }
 
+        public bool FillingGeneration { get; set; }
+
         public string Filepath
         {
             get

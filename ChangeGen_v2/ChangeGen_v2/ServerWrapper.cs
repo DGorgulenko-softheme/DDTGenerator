@@ -110,6 +110,7 @@ namespace ChangeGen_v2
                     lvServer.SubItems[5].Text = server.DdtParameters?.Compression.ToString() ?? ""; // Compression
                     lvServer.SubItems[6].Text = server.DdtParameters?.Interval.ToString() ?? "";    // Interval
                     lvServer.SubItems[7].Text = server.DdtParameters?.Filepath ?? "";               // Path
+                    lvServer.SubItems[8].Text = server.DdtParameters?.FillingGeneration.ToString() ?? ""; //Filling generation
                 }
                 if (isNew)
                     AddNewServerToListView(serverslistView, server);
@@ -171,6 +172,7 @@ namespace ChangeGen_v2
             lviNewServer.SubItems.Add(server.DdtParameters?.Compression.ToString() ?? "");
             lviNewServer.SubItems.Add(server.DdtParameters?.Interval.ToString() ?? "");
             lviNewServer.SubItems.Add(server.DdtParameters?.Filepath ?? "");
+            lviNewServer.SubItems.Add(server.DdtParameters?.FillingGeneration.ToString() ?? "");
             listView.Items.Add(lviNewServer);
         }
 
@@ -234,6 +236,7 @@ namespace ChangeGen_v2
             listview.Columns.Add("Compression", 75);
             listview.Columns.Add("Interval", 50);
             listview.Columns.Add("Path", 100);
+            listview.Columns.Add("Filling", 100);
             listview.CheckBoxes = true;
         }
 

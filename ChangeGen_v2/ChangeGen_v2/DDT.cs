@@ -42,7 +42,8 @@ namespace ChangeGen_v2
                     break;
                 }
 
-                CleanFilepathRemotely(serverCreds, remotePath);
+                if(!ddtParameters.FillingGeneration)
+                    CleanFilepathRemotely(serverCreds, remotePath);
 
                 WmiRunDdt(serverCreds, ddtParameters);
 
