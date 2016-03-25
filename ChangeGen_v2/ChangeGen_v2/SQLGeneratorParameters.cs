@@ -23,7 +23,7 @@ namespace ChangeGen_v2
 
         public static SqlGeneratorParameters DeserializeSqlParamsFromFile()
         {
-            SqlGeneratorParameters deserializedSqlParams = null;
+            SqlGeneratorParameters deserializedSqlParams;
             var dcs = new DataContractSerializer(typeof(SqlGeneratorParameters));
             try
             {

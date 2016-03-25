@@ -22,7 +22,7 @@ namespace ChangeGen_v2
 
         public static ExchangeGeneratorParameters DeserializeExchangeParamsFromFile()
         {
-            ExchangeGeneratorParameters deserializedExchangeParams = null;
+            ExchangeGeneratorParameters deserializedExchangeParams;
             var dcs = new DataContractSerializer(typeof(ExchangeGeneratorParameters));
             try
             {

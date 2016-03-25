@@ -167,11 +167,9 @@ namespace ChangeGen_v2
 
             foreach (var textBox in textBoxValidate)
             {
-                if (string.IsNullOrWhiteSpace(textBox.Text))
-                {
-                    errorProvider1.SetError(textBox,"Field cannot be empty");
-                    failedValidation = true;
-                }
+                if (!string.IsNullOrWhiteSpace(textBox.Text)) continue;
+                errorProvider1.SetError(textBox,"Field cannot be empty");
+                failedValidation = true;
             }
 
             if (failedValidation)
@@ -181,7 +179,10 @@ namespace ChangeGen_v2
 
             _ddtParameters = new DdtParameters()
             {
-                Filesize = Convert.ToInt32(tb_Size.Text), Compression = Convert.ToInt32(tb_Compression.Text), Interval = Convert.ToInt32(tb_Interval.Text), Filepath = tb_Path.Text
+                Filesize = Convert.ToInt32(tb_Size.Text),
+                Compression = Convert.ToInt32(tb_Compression.Text),
+                Interval = Convert.ToInt32(tb_Interval.Text),
+                Filepath = tb_Path.Text
             };
 
             _ddtParameters.SerizalizeDdtParamsToFile();
@@ -285,11 +286,9 @@ namespace ChangeGen_v2
 
             var sqlParams = SqlGeneratorParameters.DeserializeSqlParamsFromFile();
 
-            if (sqlParams != null)
-            {
-                tb_dbName.Text = sqlParams.DbName;
-                tb_SQLAmountRows.Text = sqlParams.RowsToInsert.ToString();
-            }
+            if (sqlParams == null) return;
+            tb_dbName.Text = sqlParams.DbName;
+            tb_SQLAmountRows.Text = sqlParams.RowsToInsert.ToString();
         }
 
         private void tb_hostname_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -565,9 +564,11 @@ namespace ChangeGen_v2
 
         private void btn_ExchangeImportCSV_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Filter = "CSV File|*.csv";
-            openFileDialog1.Title = "Open a CSV File";
+            var openFileDialog1 = new OpenFileDialog
+            {
+                Filter = "CSV File|*.csv",
+                Title = "Open a CSV File"
+            };
             openFileDialog1.ShowDialog();
 
             if (openFileDialog1.FileName != "")
@@ -578,7 +579,7 @@ namespace ChangeGen_v2
 
         private void btn_ExportCSV_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog()
+            var saveFileDialog1 = new SaveFileDialog()
             {
                 Filter = "CSV File|*.csv",
                 Title = "Save a CSV File",
@@ -594,7 +595,7 @@ namespace ChangeGen_v2
 
         private void btn_ExchangeExportCSV_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog()
+            var saveFileDialog1 = new SaveFileDialog()
             {
                 Filter = "CSV File|*.csv",
                 Title = "Save a CSV File",
@@ -610,9 +611,11 @@ namespace ChangeGen_v2
 
         private void btn_ImportCSV_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Filter = "CSV File|*.csv";
-            openFileDialog1.Title = "Open a CSV File";
+            var openFileDialog1 = new OpenFileDialog
+            {
+                Filter = "CSV File|*.csv",
+                Title = "Open a CSV File"
+            };
             openFileDialog1.ShowDialog();
 
             if (openFileDialog1.FileName != "")
@@ -628,11 +631,9 @@ namespace ChangeGen_v2
 
             foreach (var textBox in textBoxValidate)
             {
-                if (string.IsNullOrWhiteSpace(textBox.Text))
-                {
-                    errorProvider1.SetError(textBox, "Field cannot be empty");
-                    failedValidation = true;
-                }
+                if (!string.IsNullOrWhiteSpace(textBox.Text)) continue;
+                errorProvider1.SetError(textBox, "Field cannot be empty");
+                failedValidation = true;
             }
 
             if (failedValidation)
@@ -653,7 +654,8 @@ namespace ChangeGen_v2
 
             if (cb_UseCustomCredsSQL.Checked)
             {
-                SqlGenWrapper.StartSqlGenerator(lv_SQL, ServerWrapper.SqlServersList, tb_dbName.Text, rowsToInsert, tb_SQLCustomUsername.Text, tb_SQLCustomPassword.Text);
+                SqlGenWrapper.StartSqlGenerator(lv_SQL, ServerWrapper.SqlServersList, tb_dbName.Text, rowsToInsert, 
+                    tb_SQLCustomUsername.Text, tb_SQLCustomPassword.Text);
             }
             else
             {
@@ -667,8 +669,8 @@ namespace ChangeGen_v2
 
         private void btn_AddSQLManually_Click(object sender, EventArgs e)
         {
-            var addSQLServerManuallyForm = new AddSQLServerManually();
-            addSQLServerManuallyForm.Show();
+            var addSqlServerManuallyForm = new AddSqlServerManually();
+            addSqlServerManuallyForm.Show();
         }
 
         private void cb_SelectAllSQL_CheckedChanged(object sender, EventArgs e)
@@ -683,7 +685,7 @@ namespace ChangeGen_v2
 
         private void btn_ExportCSVSQL_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog()
+            var saveFileDialog1 = new SaveFileDialog()
             {
                 Filter = "CSV File|*.csv",
                 Title = "Save a CSV File",
@@ -699,9 +701,11 @@ namespace ChangeGen_v2
 
         private void btn_ImportCSVSQL_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Filter = "CSV File|*.csv";
-            openFileDialog1.Title = "Open a CSV File";
+            var openFileDialog1 = new OpenFileDialog
+            {
+                Filter = "CSV File|*.csv",
+                Title = "Open a CSV File"
+            };
             openFileDialog1.ShowDialog();
 
             if (openFileDialog1.FileName != "")
@@ -755,12 +759,12 @@ namespace ChangeGen_v2
 
         private void tb_SQLCustomUsername_TextChanged(object sender, EventArgs e)
         {
-            UpdateStartSQLButtonState();
+            UpdateStartSqlButtonState();
         }
 
         private void tb_SQLCustomPassword_TextChanged(object sender, EventArgs e)
         {
-            UpdateStartSQLButtonState();
+            UpdateStartSqlButtonState();
         }
 
         private void UpdateStartExchangeButtonState()
@@ -776,7 +780,7 @@ namespace ChangeGen_v2
                                    !string.IsNullOrWhiteSpace(tb_customPassword.Text);
         }
 
-        private void UpdateStartSQLButtonState()
+        private void UpdateStartSqlButtonState()
         {
             btn_StartSQLGeneration.Enabled = !string.IsNullOrWhiteSpace(tb_SQLCustomUsername.Text) &&
                                              !string.IsNullOrWhiteSpace(tb_SQLCustomPassword.Text);

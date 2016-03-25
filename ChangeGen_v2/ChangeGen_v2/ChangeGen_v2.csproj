@@ -115,88 +115,88 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\ExchangeGenWrapper.cs" />
-    <Compile Include="Controller\SQLGenWrapper.cs" />
-    <Compile Include="Model\CoreConnectionCredentials.cs" />
-    <Compile Include="Controller\ControlsImplementation.cs" />
-    <Compile Include="Model\CoreConnector.cs" />
-    <Compile Include="Controller\DDTWrapper.cs" />
-    <Compile Include="Controller\ServerWrapper.cs" />
-    <Compile Include="Model\CSV.cs" />
-    <Compile Include="Model\DDT.cs" />
-    <Compile Include="Model\DDTParameters.cs" />
-    <Compile Include="Model\ExchangeGenerator.cs" />
-    <Compile Include="Model\ExchangeGeneratorParameters.cs" />
-    <Compile Include="Model\ExchangeServer.cs" />
-    <Compile Include="Model\ServerConnectionCredentials.cs" />
-    <Compile Include="Model\SQLGenerator.cs" />
-    <Compile Include="Model\SQLGeneratorParameters.cs" />
-    <Compile Include="Model\SQLServer.cs" />
-    <Compile Include="View\AboutBox1.cs">
+    <Compile Include="ExchangeGenWrapper.cs" />
+    <Compile Include="SQLGenWrapper.cs" />
+    <Compile Include="CoreConnectionCredentials.cs" />
+    <Compile Include="ControlsImplementation.cs" />
+    <Compile Include="CoreConnector.cs" />
+    <Compile Include="DDTWrapper.cs" />
+    <Compile Include="ServerWrapper.cs" />
+    <Compile Include="CSV.cs" />
+    <Compile Include="DDT.cs" />
+    <Compile Include="DDTParameters.cs" />
+    <Compile Include="ExchangeGenerator.cs" />
+    <Compile Include="ExchangeGeneratorParameters.cs" />
+    <Compile Include="ExchangeServer.cs" />
+    <Compile Include="ServerConnectionCredentials.cs" />
+    <Compile Include="SQLGenerator.cs" />
+    <Compile Include="SQLGeneratorParameters.cs" />
+    <Compile Include="SQLServer.cs" />
+    <Compile Include="AboutBox1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\AboutBox1.Designer.cs">
+    <Compile Include="AboutBox1.Designer.cs">
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\AddExchangeServerManually.cs">
+    <Compile Include="AddExchangeServerManually.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\AddExchangeServerManually.Designer.cs">
+    <Compile Include="AddExchangeServerManually.Designer.cs">
       <DependentUpon>AddExchangeServerManually.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\AddServerManually.cs">
+    <Compile Include="AddServerManually.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\AddServerManually.Designer.cs">
+    <Compile Include="AddServerManually.Designer.cs">
       <DependentUpon>AddServerManually.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\AddSQLServerManually.cs">
+    <Compile Include="AddSQLServerManually.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\AddSQLServerManually.Designer.cs">
+    <Compile Include="AddSQLServerManually.Designer.cs">
       <DependentUpon>AddSQLServerManually.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\ExchangePrerequisites.cs">
+    <Compile Include="ExchangePrerequisites.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\ExchangePrerequisites.Designer.cs">
+    <Compile Include="ExchangePrerequisites.Designer.cs">
       <DependentUpon>ExchangePrerequisites.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Form1.cs">
+    <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Form1.Designer.cs">
+    <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\HelperMethods.cs" />
-    <Compile Include="Controller\ListViewColumnSorter.cs" />
-    <Compile Include="Model\Logger.cs" />
+    <Compile Include="HelperMethods.cs" />
+    <Compile Include="ListViewColumnSorter.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Model\Server.cs" />
-    <Compile Include="View\SQLPrerequisites.cs">
+    <Compile Include="Server.cs" />
+    <Compile Include="SQLPrerequisites.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\SQLPrerequisites.Designer.cs">
+    <Compile Include="SQLPrerequisites.Designer.cs">
       <DependentUpon>SQLPrerequisites.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Validator.cs" />
-    <EmbeddedResource Include="View\AboutBox1.resx">
+    <Compile Include="Validator.cs" />
+    <EmbeddedResource Include="AboutBox1.resx">
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\AddExchangeServerManually.resx">
+    <EmbeddedResource Include="AddExchangeServerManually.resx">
       <DependentUpon>AddExchangeServerManually.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\AddServerManually.resx">
+    <EmbeddedResource Include="AddServerManually.resx">
       <DependentUpon>AddServerManually.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\AddSQLServerManually.resx">
+    <EmbeddedResource Include="AddSQLServerManually.resx">
       <DependentUpon>AddSQLServerManually.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\ExchangePrerequisites.resx">
+    <EmbeddedResource Include="ExchangePrerequisites.resx">
       <DependentUpon>ExchangePrerequisites.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Form1.resx">
+    <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -209,7 +209,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="View\SQLPrerequisites.resx">
+    <EmbeddedResource Include="SQLPrerequisites.resx">
       <DependentUpon>SQLPrerequisites.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />

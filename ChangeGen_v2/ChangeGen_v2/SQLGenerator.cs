@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Diagnostics;
 using System.Management;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ChangeGen_v2
 {
@@ -17,7 +14,7 @@ namespace ChangeGen_v2
         private static readonly object Lock = new object();
         public static void StartGenerator(SqlServer sqlServer)
         {
-            int rowsAdded = 0;
+            var rowsAdded = 0;
             var instance = GetSqlInstanceNameFromService(sqlServer.ServerCredentials.Ip, sqlServer.ServerCredentials.Username, sqlServer.ServerCredentials.Password);
             var builder = new SqlConnectionStringBuilder
             {
@@ -101,7 +98,7 @@ namespace ChangeGen_v2
                 Authority = "ntlmdomain:"
             };
 
-            var scope = new ManagementScope(String.Format("\\\\{0}\\root\\CIMV2", hostname), connection);
+            var scope = new ManagementScope(string.Format("\\\\{0}\\root\\CIMV2", hostname), connection);
 
             var retries = 0;
 
@@ -116,7 +113,7 @@ namespace ChangeGen_v2
                 {
                     if (e.Message.Contains("local connections"))
                     {
-                        scope = new ManagementScope(String.Format("\\\\{0}\\root\\CIMV2", hostname));
+                        scope = new ManagementScope(string.Format("\\\\{0}\\root\\CIMV2", hostname));
                         scope.Connect();
                         break;
                     }
@@ -149,14 +146,13 @@ namespace ChangeGen_v2
             var query = new ObjectQuery("SELECT * FROM Win32_Service");
             var searcher = new ManagementObjectSearcher(scope, query);
 
-            foreach (ManagementObject wmiObject in searcher.Get())
+            foreach (var o in searcher.Get())
             {
-                if (wmiObject["Caption"].ToString().Contains("SQL Server ("))
-                {
-                    var servicename = wmiObject["Caption"].ToString();
-                    instanceName = servicename.Substring(servicename.IndexOf('(') + 1,
-                        servicename.Length - servicename.IndexOf('(') - 2);
-                }
+                var wmiObject = (ManagementObject) o;
+                if (!wmiObject["Caption"].ToString().Contains("SQL Server (")) continue;
+                var servicename = wmiObject["Caption"].ToString();
+                instanceName = servicename.Substring(servicename.IndexOf('(') + 1,
+                    servicename.Length - servicename.IndexOf('(') - 2);
             }
             return instanceName;
         }
@@ -194,61 +190,6 @@ namespace ChangeGen_v2
                     command.Parameters.Add(new SqlParameter("O", HelperMethods.RandomString(random1.Next(0, 100), random1)));
                     command.Parameters.Add(new SqlParameter("P", HelperMethods.RandomString(random1.Next(0, 100), random1)));
                 }
-                command.ExecuteNonQuery();
-            }
-        }
-
-        // Not used methods
-        static void GetDBList()
-        {
-            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-            builder.DataSource = "10.23.10.20\\SQLEXPRESS";
-            builder.UserID = "administrator";
-            builder.Password = "raid4us!";
-            //builder.InitialCatalog = "DB1";
-            builder.IntegratedSecurity = true;
-
-            List<string> dbList = new List<string>();
-
-            using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
-            {
-                connection.Open();
-
-                using (SqlCommand cmd = new SqlCommand("SELECT name from sys.databases", connection))
-                {
-                    using (SqlDataReader dr = cmd.ExecuteReader())
-                    {
-                        while (dr.Read())
-                        {
-                            dbList.Add(dr[0].ToString());
-                        }
-
-                    }
-                }
-            }
-
-            foreach (var db in dbList)
-            {
-                Console.WriteLine(db);
-            }
-        }
-
-        private static string GetInstanceNameFromServiceName(string serviceName)
-        {
-            if (!string.IsNullOrEmpty(serviceName))
-            {
-                return string.Equals(serviceName, "MSSQLSERVER", StringComparison.OrdinalIgnoreCase)
-                    ? serviceName
-                    : serviceName.Substring(serviceName.IndexOf('$') + 1,
-                        serviceName.Length - serviceName.IndexOf('$') - 1);
-            }
-            return string.Empty;
-        }
-
-        private static void CreateDatabase(SqlConnection connection)
-        {
-            using (var command = new SqlCommand("CREATE DATABASE GenerationDB", connection))
-            {
                 command.ExecuteNonQuery();
             }
         }

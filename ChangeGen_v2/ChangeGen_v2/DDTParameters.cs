@@ -45,7 +45,7 @@ namespace ChangeGen_v2
 
         public static DdtParameters DeserializeDdtParamsFromFile()
         {
-            DdtParameters deserializedDdTparams = null;
+            DdtParameters deserializedDdTparams;
             var dcs = new DataContractSerializer(typeof(DdtParameters));
             try
             {

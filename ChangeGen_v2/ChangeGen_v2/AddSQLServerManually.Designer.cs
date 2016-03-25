@@ -1,6 +1,6 @@
 ﻿namespace ChangeGen_v2
 {
-    partial class AddSQLServerManually
+    partial class AddSqlServerManually
     {
         /// <summary>
         /// Required designer variable.
@@ -129,7 +129,7 @@
             this.Controls.Add(this.tb_IP);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "AddSQLServerManually";
+            this.Name = "AddSqlServerManually";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Please specify SQL Server Credentials";
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();

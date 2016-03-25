@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ChangeGen_v2
 {
-    internal class Validator
+    internal static class Validator
     {
 
         public static void TextBox_ValidatingEmpty(CancelEventArgs e, TextBox textBox, ErrorProvider errorProvider)

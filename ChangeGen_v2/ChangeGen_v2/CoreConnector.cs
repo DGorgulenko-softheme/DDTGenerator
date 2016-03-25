@@ -76,7 +76,7 @@ namespace ChangeGen_v2
         }
 
         //This method returns collection of Agent's objects with SQL Server only
-        public static List<SqlServer> GetSQLServersToListFromCore(CoreConnectionCredentials coreCredentials)
+        public static List<SqlServer> GetSqlServersToListFromCore(CoreConnectionCredentials coreCredentials)
         {
             var sqlServersList = new List<SqlServer>();
             var coreClient = CoreConnector.GetFullCoreClient(coreCredentials);

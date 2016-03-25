@@ -16,7 +16,7 @@ namespace ChangeGen_v2
         {
             ServersList = CoreConnector.GetServersToListFromCore(coreCredentials);
             ExchangeServersList = CoreConnector.GetExchangeServersToListFromCore(coreCredentials);
-            SqlServersList = CoreConnector.GetSQLServersToListFromCore(coreCredentials);
+            SqlServersList = CoreConnector.GetSqlServersToListFromCore(coreCredentials);
         }
 
         public static void AddServerManually(string hostname, string username, string password)
@@ -95,82 +95,70 @@ namespace ChangeGen_v2
         // This method updates ListView with current state of each server
         public static void UpdateListView(ListView serverslistView, Label expectedRateLabel, Label amountOfActiveGeneraionsLabel)
         {
-            if (ServersList != null)
-            {
-                var listViewAgents = serverslistView.Items.Cast<ListViewItem>().ToList();
+            if (ServersList == null) return;
+            var listViewAgents = serverslistView.Items.Cast<ListViewItem>().ToList();
 
-                foreach (var server in ServersList)
+            foreach (var server in ServersList)
+            {
+                var isNew = true;
+                foreach (var lvServer in listViewAgents)
                 {
-                    bool isNew = true;
-                    foreach (var lvServer in listViewAgents)
-                    {
-                        if (lvServer.SubItems[1].Text == server.ServerCredentials.Ip)
-                        {
-                            isNew = false;
-                            lvServer.SubItems[3].Text = server.ServerGeneratorStatus.ToString();   // DDT Status
-                            lvServer.SubItems[4].Text = server.DdtParameters?.Filesize.ToString() ?? "";   // Filesize  
-                            lvServer.SubItems[5].Text = server.DdtParameters?.Compression.ToString() ?? ""; // Compression
-                            lvServer.SubItems[6].Text = server.DdtParameters?.Interval.ToString() ?? "";    // Interval
-                            lvServer.SubItems[7].Text = server.DdtParameters?.Filepath ?? "";               // Path
-                        }
-                    }
-                    if (isNew)
-                        AddNewServerToListView(serverslistView, server);
+                    if (lvServer.SubItems[1].Text != server.ServerCredentials.Ip) continue;
+                    isNew = false;
+                    lvServer.SubItems[3].Text = server.ServerGeneratorStatus.ToString();   // DDT Status
+                    lvServer.SubItems[4].Text = server.DdtParameters?.Filesize.ToString() ?? "";   // Filesize  
+                    lvServer.SubItems[5].Text = server.DdtParameters?.Compression.ToString() ?? ""; // Compression
+                    lvServer.SubItems[6].Text = server.DdtParameters?.Interval.ToString() ?? "";    // Interval
+                    lvServer.SubItems[7].Text = server.DdtParameters?.Filepath ?? "";               // Path
                 }
-                UpdateExpectedChangeRateAndAmountOfActiveGenerations(listViewAgents, expectedRateLabel, amountOfActiveGeneraionsLabel);
-            }       
+                if (isNew)
+                    AddNewServerToListView(serverslistView, server);
+            }
+            UpdateExpectedChangeRateAndAmountOfActiveGenerations(listViewAgents, expectedRateLabel, amountOfActiveGeneraionsLabel);
         }
 
         public static void UpdateExchangeListView(ListView exchangelistView, Label amountOfActiveGeneration)
         {
-            if (ExchangeServersList != null)
-            {
-                var listViewAgents = exchangelistView.Items.Cast<ListViewItem>().ToList();
+            if (ExchangeServersList == null) return;
+            var listViewAgents = exchangelistView.Items.Cast<ListViewItem>().ToList();
 
-                foreach (var server in ExchangeServersList)
+            foreach (var server in ExchangeServersList)
+            {
+                var isNew = true;
+                foreach (var lvServer in listViewAgents)
                 {
-                    bool isNew = true;
-                    foreach (var lvServer in listViewAgents)
-                    {
-                        if (lvServer.SubItems[1].Text == server.ServerCredentials.Ip)
-                        {
-                            isNew = false;
-                            lvServer.SubItems[3].Text = server.ServerGeneratorStatus.ToString();   // Generator Status
-                            lvServer.SubItems[4].Text = server.ExchangeGenParameters?.MessageSize.ToString() ?? ""; //Mail Size
-                        }                       
-                    }
-                    if (isNew)
-                        AddNewExchangeServerToListView(exchangelistView,server);
+                    if (lvServer.SubItems[1].Text != server.ServerCredentials.Ip) continue;
+                    isNew = false;
+                    lvServer.SubItems[3].Text = server.ServerGeneratorStatus.ToString();   // Generator Status
+                    lvServer.SubItems[4].Text = server.ExchangeGenParameters?.MessageSize.ToString() ?? ""; //Mail Size
                 }
-                UpdateAmountOfActiveExchangeGenerations(listViewAgents, amountOfActiveGeneration);
+                if (isNew)
+                    AddNewExchangeServerToListView(exchangelistView,server);
             }
+            UpdateAmountOfActiveExchangeGenerations(listViewAgents, amountOfActiveGeneration);
         }
 
         public static void UpdateSqlListView(ListView sqllistView, Label amountOfActiveGeneration)
         {
-            if (SqlServersList != null)
-            {
-                var listViewAgents = sqllistView.Items.Cast<ListViewItem>().ToList();
+            if (SqlServersList == null) return;
+            var listViewAgents = sqllistView.Items.Cast<ListViewItem>().ToList();
 
-                foreach (var server in SqlServersList)
+            foreach (var server in SqlServersList)
+            {
+                var isNew = true;
+                foreach (var lvServer in listViewAgents)
                 {
-                    bool isNew = true;
-                    foreach (var lvServer in listViewAgents)
-                    {
-                        if (lvServer.SubItems[1].Text == server.ServerCredentials.Ip)
-                        {
-                            isNew = false;
-                            lvServer.SubItems[3].Text = server.ServerGeneratorStatus.ToString();   // Generator Status
-                            lvServer.SubItems[4].Text = server.SqlGeneratorParameters?.DbName ?? "";
-                            lvServer.SubItems[5].Text = server.SqlGeneratorParameters?.RowsToInsert.ToString() ?? "";
-                            lvServer.SubItems[6].Text = server.Progress.ToString();
-                        }
-                    }
-                    if (isNew)
-                        AddNewSqlServerToListView(sqllistView, server);
+                    if (lvServer.SubItems[1].Text != server.ServerCredentials.Ip) continue;
+                    isNew = false;
+                    lvServer.SubItems[3].Text = server.ServerGeneratorStatus.ToString();   // Generator Status
+                    lvServer.SubItems[4].Text = server.SqlGeneratorParameters?.DbName ?? "";
+                    lvServer.SubItems[5].Text = server.SqlGeneratorParameters?.RowsToInsert.ToString() ?? "";
+                    lvServer.SubItems[6].Text = server.Progress.ToString();
                 }
-                UpdateAmountOfActiveSqlGenerations(listViewAgents, amountOfActiveGeneration);
+                if (isNew)
+                    AddNewSqlServerToListView(sqllistView, server);
             }
+            UpdateAmountOfActiveSqlGenerations(listViewAgents, amountOfActiveGeneration);
         }
 
         private static void AddNewServerToListView(ListView listView, Server server)
