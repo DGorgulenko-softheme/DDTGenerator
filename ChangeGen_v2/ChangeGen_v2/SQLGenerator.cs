@@ -23,7 +23,8 @@ namespace ChangeGen_v2
                 UserID = sqlServer.ServerCredentials.Username,
                 Password = sqlServer.ServerCredentials.Password,
                 IntegratedSecurity = true,
-                InitialCatalog = sqlServer.SqlGeneratorParameters.DbName
+                InitialCatalog = sqlServer.SqlGeneratorParameters.DbName,
+                ConnectTimeout = 300
             };
 
             using (var connection = new SqlConnection(builder.ConnectionString))
