@@ -32,6 +32,8 @@ namespace ChangeGen_v2
 
             CopyDdTtoRemoteMachine(serverCreds);
 
+            CreateTargetDirectory(serverCreds,remotePath);
+
             Logger.Log("Data generation started on remote server " + serverCreds.Ip, Logger.LogLevel.Info, serverCreds.Ip);
 
             while (true)
@@ -57,6 +59,21 @@ namespace ChangeGen_v2
             HelperMethods.PerformActionRemotely(() =>
             {
                 if (!Directory.Exists(remotePath))
+                    return;
+
+                var filesTodelete = new DirectoryInfo(remotePath);
+                foreach (var file in filesTodelete.GetFiles())
+                {
+                    file.Delete();
+                }
+            }, serverCreds);
+        }
+
+        private static void CreateTargetDirectory(ServerConnectionCredentials serverCreds, string remotePath)
+        {
+            HelperMethods.PerformActionRemotely(() =>
+            {
+                if (!Directory.Exists(remotePath))
                 {
                     try
                     {
@@ -67,12 +84,6 @@ namespace ChangeGen_v2
                         Logger.LogError("Remote path doesn't exist", serverCreds.Ip, e);
                         throw;
                     }
-                }
-
-                var filesTodelete = new DirectoryInfo(remotePath);
-                foreach (var file in filesTodelete.GetFiles())
-                {
-                    file.Delete();
                 }
             }, serverCreds);
         }
